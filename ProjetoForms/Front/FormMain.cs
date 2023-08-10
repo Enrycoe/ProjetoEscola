@@ -1,0 +1,86 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using MySql.Data;
+using MySql.Data.MySqlClient;
+using ProjetoForms.Front.Alunos;
+
+namespace ProjetoForms
+{
+    public partial class FormMain : Form
+    {
+        int x = 0;
+        int y = 0;
+        public FormMain()
+        {
+            InitializeComponent();
+
+        }
+
+        private void MostrarDataEHora()
+        {
+            while (true)
+            {
+                lblDataHora.Invoke(new Action(() => lblDataHora.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")));
+            }
+        }
+
+        private void lblDataHora_Load(object sender, EventArgs e)
+        {
+            Thread threadData = new Thread(new ThreadStart(MostrarDataEHora));
+            threadData.IsBackground = true;
+            threadData.Start();
+            lblDataHora.ForeColor = Color.FromArgb(17, 130, 186);
+        }
+
+
+        private void alunosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new FormVerAlunos();
+            form.ShowDialog();
+
+        }
+
+        private void verAlunosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new FormVerAlunos();
+            form.ShowDialog();
+        }
+
+        private void cadastrarAlunosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new FormCadastrarAluno();
+            form.ShowDialog();
+        }
+
+        private void NotaTurmasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new FormVerAlunoNota();
+            form.ShowDialog();
+        }
+
+        private void CalcularMediaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new FormVerAlunoMedia();
+            form.ShowDialog(); 
+        }
+
+        private void boletimToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Form form = new FormVerAlunoBoletim();
+            form.ShowDialog();
+        }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+    }
+}

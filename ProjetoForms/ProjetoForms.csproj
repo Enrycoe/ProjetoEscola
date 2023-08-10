@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E4E23687-6F5C-4F23-B6BA-79478530276B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>ProjetoForms</RootNamespace>
+    <AssemblyName>ProjetoForms</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MySql.Data, Version=8.1.0.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector NET 8.1.0\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Back\DAO\AlunoDAO.cs" />
+    <Compile Include="Back\DAO\BimestreDAO.cs" />
+    <Compile Include="Back\DAO\CidadeDAO.cs" />
+    <Compile Include="Back\DAO\EnderecoDAO.cs" />
+    <Compile Include="Back\DAO\EstadoDAO.cs" />
+    <Compile Include="Back\DAO\MediaDAO.cs" />
+    <Compile Include="Back\DAO\ProvaDAO.cs" />
+    <Compile Include="Back\DAO\TurmaDAO.cs" />
+    <Compile Include="Back\Entities\Aluno.cs" />
+    <Compile Include="Back\Entities\Bairro.cs" />
+    <Compile Include="Back\Entities\Bimestre.cs" />
+    <Compile Include="Back\Entities\Boletim.cs" />
+    <Compile Include="Back\Entities\Cidade.cs" />
+    <Compile Include="Back\Entities\Endereco.cs" />
+    <Compile Include="Back\Entities\Estado.cs" />
+    <Compile Include="Back\Entities\Materia.cs" />
+    <Compile Include="Back\Entities\Media.cs" />
+    <Compile Include="Back\Entities\Pessoa.cs" />
+    <Compile Include="Back\Entities\Professor.cs" />
+    <Compile Include="Back\Entities\Prova.cs" />
+    <Compile Include="Back\Entities\Turma.cs" />
+    <Compile Include="Back\Model\AlunoModel.cs" />
+    <Compile Include="Back\Model\BimestreModel.cs" />
+    <Compile Include="Back\Model\CidadeModel.cs" />
+    <Compile Include="Back\Model\EstadoModel.cs" />
+    <Compile Include="Back\DAO\MateriaDAO.cs" />
+    <Compile Include="Back\Model\MateriaModel.cs" />
+    <Compile Include="Back\Model\MediaModel.cs" />
+    <Compile Include="Back\Model\ProvaModel.cs" />
+    <Compile Include="Back\Model\TurmaModel.cs" />
+    <Compile Include="Conection.cs" />
+    <Compile Include="Front\Alunos\FormCadastrarAluno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front\Alunos\FormCadastrarAluno.Designer.cs">
+      <DependentUpon>FormCadastrarAluno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Front\Alunos\FormEditarAluno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front\Alunos\FormEditarAluno.Designer.cs">
+      <DependentUpon>FormEditarAluno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Front\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Back\Program.cs" />
+    <Compile Include="Front\Notas\FormBoletim.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front\Notas\FormBoletim.Designer.cs">
+      <DependentUpon>FormBoletim.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Front\Notas\FormCadastrarProva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front\Notas\FormCadastrarProva.Designer.cs">
+      <DependentUpon>FormCadastrarProva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Front\Notas\FormCalcularMedia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front\Notas\FormCalcularMedia.Designer.cs">
+      <DependentUpon>FormCalcularMedia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Front\Notas\FormVerAlunoMedia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front\Notas\FormVerAlunoMedia.Designer.cs">
+      <DependentUpon>FormVerAlunoMedia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Front\Notas\FormVerAlunoNota.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front\Notas\FormVerAlunoNota.Designer.cs">
+      <DependentUpon>FormVerAlunoNota.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Front\Notas\FormVerAlunosBoletim.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front\Notas\FormVerAlunosBoletim.Designer.cs">
+      <DependentUpon>FormVerAlunosBoletim.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Front\Alunos\FormVerAlunos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front\Alunos\FormVerAlunos.Designer.cs">
+      <DependentUpon>FormVerAlunos.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Front\Alunos\FormCadastrarAluno.resx">
+      <DependentUpon>FormCadastrarAluno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front\Alunos\FormEditarAluno.resx">
+      <DependentUpon>FormEditarAluno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front\Alunos\FormVerAlunos.resx">
+      <DependentUpon>FormVerAlunos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front\Notas\FormBoletim.resx">
+      <DependentUpon>FormBoletim.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front\Notas\FormCadastrarProva.resx">
+      <DependentUpon>FormCadastrarProva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front\Notas\FormCalcularMedia.resx">
+      <DependentUpon>FormCalcularMedia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front\Notas\FormVerAlunoMedia.resx">
+      <DependentUpon>FormVerAlunoMedia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front\Notas\FormVerAlunoNota.resx">
+      <DependentUpon>FormVerAlunoNota.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front\Notas\FormVerAlunosBoletim.resx">
+      <DependentUpon>FormVerAlunosBoletim.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FundoXD.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconeProfessor.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\IconeProfessor.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
