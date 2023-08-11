@@ -18,8 +18,7 @@ namespace ProjetoForms.Front.Notas
         AlunoModel alunoModel = new AlunoModel();
         MediaModel mediaModel = new MediaModel();
         Media media = new Media();
-        int x = 0;
-        int y = 0;
+        
         public FormBoletim(Aluno aluno)
         {
             InitializeComponent();
@@ -49,19 +48,42 @@ namespace ProjetoForms.Front.Notas
             ReceberMediaMatematica();
             ReceberMediaPortugues();
         }
+
+        private string MostrarNotaOuNula(double media)
+        {
+            if (media == -1)
+            {
+                return "--,--";
+            }
+            else
+            {
+                return media.ToString("F");
+            }
+        }
+
+        private string MostrarMediaFinal(double mediaFinal, double media1, double media2, double media3, double media4)
+        {
+            if(media1 == -1 || media2 == -1 || media3 == -1 || media4 == -1)
+            {
+                return "--,--";
+            }
+            return mediaFinal.ToString("F");
+        }
         private void ReceberMediaArtes()
         {
             double media1 = mediaModel.ReceberMedia(aluno, 1, 1);
             double media2 = mediaModel.ReceberMedia(aluno, 2, 1);
             double media3 = mediaModel.ReceberMedia(aluno, 3, 1);
             double media4 = mediaModel.ReceberMedia(aluno, 4, 1);
-            lbl1Artes.Text = media1.ToString("F");
-            lbl2Artes.Text = media2.ToString("F");
-            lbl3Artes.Text = media3.ToString("F");
-            lbl4Artes.Text = media4.ToString("F");
+                
+            lbl1Artes.Text = MostrarNotaOuNula(media1);
+            lbl2Artes.Text = MostrarNotaOuNula(media2);
+            lbl3Artes.Text = MostrarNotaOuNula(media3);
+            lbl4Artes.Text = MostrarNotaOuNula(media4);
+
             double mediaFinal = ((media1 + media2 + media3 + media4) / 4);
-            lblMArtes.Text = mediaFinal.ToString("F");
-            lblSArtes.Text = AprovadoOuReporovado(mediaFinal);
+            lblMArtes.Text = MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+            lblSArtes.Text = AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
         }
         private void ReceberMediaEducacaoFisica()
         {
@@ -69,13 +91,15 @@ namespace ProjetoForms.Front.Notas
             double media2 = mediaModel.ReceberMedia(aluno, 2, 2);
             double media3 = mediaModel.ReceberMedia(aluno, 3, 2);
             double media4 = mediaModel.ReceberMedia(aluno, 4, 2);
-            lbl1EF.Text = media1.ToString("F");
-            lbl2EF.Text = media2.ToString("F");
-            lbl3EF.Text = media3.ToString("F");
-            lbl4EF.Text = media4.ToString("F");
+
+            lbl1EF.Text = MostrarNotaOuNula(media1);
+            lbl2EF.Text = MostrarNotaOuNula(media2);
+            lbl3EF.Text = MostrarNotaOuNula(media3);
+            lbl4EF.Text = MostrarNotaOuNula(media4);
+
             double mediaFinal = ((media1 + media2 + media3 + media4) / 4);
-            lblMEF.Text = mediaFinal.ToString("F");
-            lblSEF.Text = AprovadoOuReporovado(mediaFinal);
+            lblMEF.Text = MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+            lblSEF.Text = AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
         }
 
         private void ReceberMediaFilosifia()
@@ -84,13 +108,15 @@ namespace ProjetoForms.Front.Notas
             double media2 = mediaModel.ReceberMedia(aluno, 2, 3);
             double media3 = mediaModel.ReceberMedia(aluno, 3, 3);
             double media4 = mediaModel.ReceberMedia(aluno, 4, 3);
-            lbl1Filosifia.Text = media1.ToString("F");
-            lbl2Filosifia.Text = media2.ToString("F");
-            lbl3Filosifia.Text = media3.ToString("F");
-            lbl4Filosifia.Text = media4.ToString("F");
+
+            lbl1Filosifia.Text = MostrarNotaOuNula(media1);
+            lbl2Filosifia.Text = MostrarNotaOuNula(media2);
+            lbl3Filosifia.Text = MostrarNotaOuNula(media3);
+            lbl4Filosifia.Text = MostrarNotaOuNula(media4);
+
             double mediaFinal = ((media1 + media2 + media3 + media4) / 4);
-            lblMFilosifia.Text = mediaFinal.ToString("F");
-           lblSFilosifia.Text = AprovadoOuReporovado(mediaFinal);
+            lblMFilosifia.Text = MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+            lblSFilosifia.Text = AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
         }
 
         private void ReceberMediaSociologia()
@@ -99,13 +125,15 @@ namespace ProjetoForms.Front.Notas
             double media2 = mediaModel.ReceberMedia(aluno, 2, 4);
             double media3 = mediaModel.ReceberMedia(aluno, 3, 4);
             double media4 = mediaModel.ReceberMedia(aluno, 4, 4);
-            lbl1Sociologia.Text = media1.ToString("F");
-            lbl2Sociologia.Text = media2.ToString("F");
-            lbl3Sociologia.Text = media3.ToString("F");
-            lbl4Sociologia.Text = media4.ToString("F");
+
+            lbl1Sociologia.Text = MostrarNotaOuNula(media1);
+            lbl2Sociologia.Text = MostrarNotaOuNula(media2);
+            lbl3Sociologia.Text = MostrarNotaOuNula(media3);
+            lbl4Sociologia.Text = MostrarNotaOuNula(media4);
+
             double mediaFinal = ((media1 + media2 + media3 + media4) / 4);
-            lblMSociologia.Text = mediaFinal.ToString("F");
-            lblSSociologia.Text = AprovadoOuReporovado(mediaFinal);
+            lblMSociologia.Text = MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+            lblSSociologia.Text = AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
         }
 
         private void ReceberMediaIngles()
@@ -114,13 +142,13 @@ namespace ProjetoForms.Front.Notas
             double media2 = mediaModel.ReceberMedia(aluno, 2, 5);
             double media3 = mediaModel.ReceberMedia(aluno, 3, 5);
             double media4 = mediaModel.ReceberMedia(aluno, 4, 5);
-            lbl1Ingles.Text = media1.ToString("F");
-            lbl2Ingles.Text = media2.ToString("F");
-            lbl3Ingles.Text = media3.ToString("F");
-            lbl4Ingles.Text = media4.ToString("F");
+            lbl1Ingles.Text = MostrarNotaOuNula(media1);
+            lbl2Ingles.Text = MostrarNotaOuNula(media2);
+            lbl3Ingles.Text = MostrarNotaOuNula(media3);
+            lbl4Ingles.Text = MostrarNotaOuNula(media4);
             double mediaFinal = ((media1 + media2 + media3 + media4) / 4);
-            lblMIngles.Text = mediaFinal.ToString("F");
-            lblSIngles.Text = AprovadoOuReporovado(mediaFinal);
+            lblMIngles.Text = MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+            lblSIngles.Text = AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
         }
 
         private void ReceberMediaFisica()
@@ -129,13 +157,13 @@ namespace ProjetoForms.Front.Notas
             double media2 = mediaModel.ReceberMedia(aluno, 2, 6);
             double media3 = mediaModel.ReceberMedia(aluno, 3, 6);
             double media4 = mediaModel.ReceberMedia(aluno, 4, 6);
-            lbl1Fisica.Text = media1.ToString("F"); 
-            lbl2Fisica.Text = media2.ToString("F");
-            lbl3Fisica.Text = media3.ToString("F");
-            lbl4Fisica.Text = media4.ToString("F");
+            lbl1Fisica.Text = MostrarNotaOuNula(media1);
+            lbl2Fisica.Text = MostrarNotaOuNula(media2);
+            lbl3Fisica.Text = MostrarNotaOuNula(media3);
+            lbl4Fisica.Text = MostrarNotaOuNula(media4);
             double mediaFinal = ((media1 + media2 + media3 + media4) / 4);
-            lblMFisica.Text = mediaFinal.ToString("F");
-            lblSFisica.Text = AprovadoOuReporovado(mediaFinal);
+            lblMFisica.Text = MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+            lblSFisica.Text = AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
         }
 
         private void ReceberMediaQuimica()
@@ -144,13 +172,13 @@ namespace ProjetoForms.Front.Notas
             double media2 = mediaModel.ReceberMedia(aluno, 2, 7);
             double media3 = mediaModel.ReceberMedia(aluno, 3, 7);
             double media4 = mediaModel.ReceberMedia(aluno, 4, 7);
-            lbl1Quimica.Text = media1.ToString("F");
-            lbl2Quimica.Text = media2.ToString("F");
-            lbl3Quimica.Text = media3.ToString("F");        
-            lbl4Quimica.Text = media4.ToString("F");
+            lbl1Quimica.Text = MostrarNotaOuNula(media1);
+            lbl2Quimica.Text = MostrarNotaOuNula(media2);
+            lbl3Quimica.Text = MostrarNotaOuNula(media3);        
+            lbl4Quimica.Text = MostrarNotaOuNula(media4);
             double mediaFinal = ((media1 + media2 + media3 + media4) / 4);
-            lblMQuimica.Text = mediaFinal.ToString("F");
-            lblSQuimica.Text = AprovadoOuReporovado(mediaFinal);
+            lblMQuimica.Text = MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+            lblSQuimica.Text = AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
         }
 
         private void ReceberMediaBiologia()
@@ -159,13 +187,13 @@ namespace ProjetoForms.Front.Notas
             double media2 = mediaModel.ReceberMedia(aluno, 2, 8);
             double media3 = mediaModel.ReceberMedia(aluno, 3, 8);
             double media4 = mediaModel.ReceberMedia(aluno, 4, 8);
-            lbl1Biologia.Text = media1.ToString("F");
-            lbl2Biologia.Text = media2.ToString("F");
-            lbl3Biologia.Text = media3.ToString("F");
-            lbl4Biologia.Text = media4.ToString("F");
+            lbl1Biologia.Text = MostrarNotaOuNula(media1);
+            lbl2Biologia.Text = MostrarNotaOuNula(media2);
+            lbl3Biologia.Text = MostrarNotaOuNula(media3);
+            lbl4Biologia.Text = MostrarNotaOuNula(media4);
             double mediaFinal = ((media1 + media2 + media3 + media4) / 4);
-            lblMBiologia.Text = mediaFinal.ToString("F");
-            lblSBiologia.Text = AprovadoOuReporovado(mediaFinal);
+            lblMBiologia.Text = MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+            lblSBiologia.Text = AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
         }
 
         private void ReceberMediaGeografia()
@@ -174,13 +202,13 @@ namespace ProjetoForms.Front.Notas
             double media2 = mediaModel.ReceberMedia(aluno, 2, 9);
             double media3 = mediaModel.ReceberMedia(aluno, 3, 9);
             double media4 = mediaModel.ReceberMedia(aluno, 4, 9);
-            lbl1Geografia.Text = media1.ToString("F"); 
-            lbl2Geografia.Text = media2.ToString("F");
-            lbl3Geografia.Text = media3.ToString("F");
-            lbl4Geografia.Text = media4.ToString("F");
+            lbl1Geografia.Text = MostrarNotaOuNula(media1); 
+            lbl2Geografia.Text = MostrarNotaOuNula(media2);
+            lbl3Geografia.Text = MostrarNotaOuNula(media3);
+            lbl4Geografia.Text = MostrarNotaOuNula(media4);
             double mediaFinal = ((media1 + media2 + media3 + media4) / 4);
-            lblMGeografia.Text = mediaFinal.ToString("F");
-            lblSGeografia.Text = AprovadoOuReporovado(mediaFinal);
+            lblMGeografia.Text = MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+            lblSGeografia.Text = AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
         }
 
         private void ReceberMediaHistoria()
@@ -189,13 +217,13 @@ namespace ProjetoForms.Front.Notas
             double media2 = mediaModel.ReceberMedia(aluno, 2, 10);
             double media3 = mediaModel.ReceberMedia(aluno, 3, 10);
             double media4 = mediaModel.ReceberMedia(aluno, 4, 10);
-            lbl1Historia.Text = media1.ToString("F");
-            lbl2Historia.Text = media2.ToString("F");
-            lbl3Historia.Text = media3.ToString("F");
-            lbl4Historia.Text = media4.ToString("F");
+            lbl1Historia.Text = MostrarNotaOuNula(media1);
+            lbl2Historia.Text = MostrarNotaOuNula(media2);
+            lbl3Historia.Text = MostrarNotaOuNula(media3);
+            lbl4Historia.Text = MostrarNotaOuNula(media4);
             double mediaFinal = ((media1 + media2 + media3 + media4) / 4);
-            lblMHistoria.Text = mediaFinal.ToString("F");
-            lblSHistoria.Text = AprovadoOuReporovado(mediaFinal);
+            lblMHistoria.Text = MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+            lblSHistoria.Text = AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
         }
 
         private void ReceberMediaMatematica()
@@ -204,13 +232,13 @@ namespace ProjetoForms.Front.Notas
             double media2 = mediaModel.ReceberMedia(aluno, 2, 11);
             double media3 = mediaModel.ReceberMedia(aluno, 3, 11);
             double media4 = mediaModel.ReceberMedia(aluno, 4, 11);
-            lbl1Matematica.Text = media1.ToString("F");
-            lbl2Matematica.Text = media2.ToString("F");
-            lbl3Matematica.Text = media3.ToString("F");  
-            lbl4Matematica.Text = media4.ToString("F");
+            lbl1Matematica.Text = MostrarNotaOuNula(media1);
+            lbl2Matematica.Text = MostrarNotaOuNula(media2);
+            lbl3Matematica.Text = MostrarNotaOuNula(media3);  
+            lbl4Matematica.Text = MostrarNotaOuNula(media4);
             double mediaFinal = ((media1 + media2 + media3 + media4) / 4);
-            lblMMatematica.Text = mediaFinal.ToString("F");
-            lblSMatematica.Text = AprovadoOuReporovado(mediaFinal);
+            lblMMatematica.Text = MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+            lblSMatematica.Text = AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
         }
 
         private void ReceberMediaPortugues()
@@ -219,17 +247,21 @@ namespace ProjetoForms.Front.Notas
             double media2 = mediaModel.ReceberMedia(aluno, 2, 12);
             double media3 = mediaModel.ReceberMedia(aluno, 3, 12);
             double media4 = mediaModel.ReceberMedia(aluno, 4, 12);
-            lbl1LP.Text = media1.ToString("F");
-            lbl2LP.Text = media2.ToString("F");
-            lbl3LP.Text = media3.ToString("F");
-            lbl4LP.Text = media4.ToString("F");
+            lbl1LP.Text = MostrarNotaOuNula(media1);
+            lbl2LP.Text = MostrarNotaOuNula(media2);
+            lbl3LP.Text = MostrarNotaOuNula(media3);
+            lbl4LP.Text = MostrarNotaOuNula(media4);
             double mediaFinal = ((media1 + media2 + media3 + media4) / 4);
-            lblMLP.Text = mediaFinal.ToString("F");
-            lblSLP.Text = AprovadoOuReporovado(mediaFinal);
+            lblMLP.Text = MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+            lblSLP.Text = AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
         }
        
-        private string AprovadoOuReporovado(double nota)
+        private string AprovadoOuReporovado(double nota, double media1, double media2, double media3, double media4)
         {
+            if(media1 == -1 || media2 == -1 || media3 == -1 || media4 == -1)
+            {
+                return "";
+            }
             if (nota > media.NotaMinima)
             {
                 return "APROVADO";

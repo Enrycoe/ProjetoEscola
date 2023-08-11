@@ -80,14 +80,16 @@
             // verProfessoresToolStripMenuItem
             // 
             this.verProfessoresToolStripMenuItem.Name = "verProfessoresToolStripMenuItem";
-            this.verProfessoresToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.verProfessoresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.verProfessoresToolStripMenuItem.Text = "Ver Professores";
+            this.verProfessoresToolStripMenuItem.Click += new System.EventHandler(this.verProfessoresToolStripMenuItem_Click);
             // 
             // cadastrarProfessoresToolStripMenuItem
             // 
             this.cadastrarProfessoresToolStripMenuItem.Name = "cadastrarProfessoresToolStripMenuItem";
-            this.cadastrarProfessoresToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-            this.cadastrarProfessoresToolStripMenuItem.Text = "Cadastrar Professores";
+            this.cadastrarProfessoresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cadastrarProfessoresToolStripMenuItem.Text = "Cadastrar Professor";
+            this.cadastrarProfessoresToolStripMenuItem.Click += new System.EventHandler(this.cadastrarProfessoresToolStripMenuItem_Click);
             // 
             // alunosToolStripMenuItem
             // 
@@ -109,8 +111,8 @@
             // cadastrarAlunosToolStripMenuItem
             // 
             this.cadastrarAlunosToolStripMenuItem.Name = "cadastrarAlunosToolStripMenuItem";
-            this.cadastrarAlunosToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.cadastrarAlunosToolStripMenuItem.Text = "Cadastrar Alunos";
+            this.cadastrarAlunosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cadastrarAlunosToolStripMenuItem.Text = "Cadastrar Aluno";
             this.cadastrarAlunosToolStripMenuItem.Click += new System.EventHandler(this.cadastrarAlunosToolStripMenuItem_Click);
             // 
             // NotasToolStripMenuItem

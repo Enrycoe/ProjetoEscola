@@ -9,7 +9,7 @@ using ProjetoForms.Back.Entities;
 
 namespace ProjetoForms.Back.Model
 {
-    internal class AlunoModel
+    internal class AlunoModel : IPessoaModel
     {
         AlunoDAO dao = new AlunoDAO();
 
@@ -28,32 +28,26 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        public void CadastrarAluno(Aluno aluno)
+        public void Cadastrar(Pessoa aluno)
         {
-            try 
+            if(aluno.GetType() == typeof(Aluno))
             {
-                aluno.Id = dao.GerarRA();
-                aluno.Idade = CalcularIdade(aluno.DataNascimento);
-                dao.CadastrarAluno(aluno);
-            }
-            catch (Exception)
-            {
+                try
+                {
+                    aluno.Id = dao.GerarRA();
+                    aluno.Idade = aluno.CalcularIdade(aluno.DataNascimento);
+                    dao.Cadastrar(aluno);
+                }
+                catch (Exception)
+                {
 
-                throw;
+                    throw;
+                }
             }
-            //string nome = txtNomeCompleto.Text;
-            //string NascimentoStr = dtNascimento.Value.ToString("yyyy/MM/dd");
-            //DateTime DataDeNascimento = DateTime.Parse(NascimentoStr);
+           
         }
 
-        public int CalcularIdade(DateTime dataNascimento)
-        {
-            if(dataNascimento.Day <= DateTime.Now.Day)
-            {
-                return DateTime.Now.Year - dataNascimento.Year;
-            }
-            return DateTime.Now.Year - dataNascimento.Year - 1;
-        }
+        
 
         internal Aluno ReceberAluno(int id)
         {
@@ -68,25 +62,29 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal void AtualizarAluno(Aluno aluno, Aluno alunoAntigo)
+        public void Atualizar(Pessoa aluno, Pessoa alunoAtualido)
         {
-            try
+            if (aluno.GetType() == typeof(Aluno))
             {
-                aluno.Idade = CalcularIdade(aluno.DataNascimento);
-                dao.AtualizarAluno(aluno, alunoAntigo);
-            }
-            catch (Exception)
-            {
+                try
+                {
+                    alunoAtualido.Idade = alunoAtualido.CalcularIdade(alunoAtualido.DataNascimento);
+                    dao.Atualizar(alunoAtualido, aluno);
+                }
+                catch (Exception)
+                {
 
-                throw;
+                    throw;
+                }
             }
+               
         }
 
-        internal void DeletarAluno(int id)
+        public void Deletar(int id)
         {
             try
             {
-                dao.DeleterAluno(id);
+                dao.Deleter(id);
             }
             catch (Exception)
             {
@@ -200,5 +198,7 @@ namespace ProjetoForms.Back.Model
                 throw ex;
             }
         }
+
+       
     }
 }

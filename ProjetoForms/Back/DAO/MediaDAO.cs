@@ -60,8 +60,13 @@ namespace ProjetoForms.Back.DAO
                 cmd.Parameters.AddWithValue("@aluno", aluno.Id);
                 cmd.Parameters.AddWithValue("@bimestre", idBimestre);
                 cmd.Parameters.AddWithValue("@materia", idMateria);
-                double media = Convert.ToDouble(cmd.ExecuteScalar());
-                return media;
+                var media = cmd.ExecuteScalar();
+                if(media == null) 
+                {
+                    return -1;
+                }
+               
+                return Convert.ToDouble(media);
             }
             catch (Exception)
             {

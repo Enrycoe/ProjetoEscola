@@ -11,13 +11,13 @@ using System.Windows.Forms;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using ProjetoForms.Front.Alunos;
+using ProjetoForms.Front.Professores;
 
 namespace ProjetoForms
 {
     public partial class FormMain : Form
     {
-        int x = 0;
-        int y = 0;
+        
         public FormMain()
         {
             InitializeComponent();
@@ -81,6 +81,18 @@ namespace ProjetoForms
         private void btnFechar_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void verProfessoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new FormVerProfessores();
+            form.ShowDialog();
+        }
+
+        private void cadastrarProfessoresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form form = new FormCadastrarProfessor();
+            form.ShowDialog();
         }
     }
 }

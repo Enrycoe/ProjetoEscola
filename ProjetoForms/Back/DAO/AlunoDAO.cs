@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace ProjetoForms.Back.DAO
 {
-    public class AlunoDAO
+    public class AlunoDAO 
     {
         Conection conn = new Conection();
         MySqlCommand cmd;
@@ -35,11 +35,11 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
-        public void CadastrarAluno(Aluno aluno)
+        public void Cadastrar(Pessoa pessoa)
         {
+            Aluno aluno = pessoa as Aluno;
             try
             {
-
                 conn.AbrirConexao();
                 cmd = new MySqlCommand("SELECT id FROM bairro where nome_bairro = @nome", conn.conn);
                 cmd.Parameters.AddWithValue("@nome", aluno.Endereco.Bairro.Nome_bairro);
@@ -185,8 +185,10 @@ namespace ProjetoForms.Back.DAO
             }
         }
 
-        internal void AtualizarAluno(Aluno aluno, Aluno alunoAntigo)
+        internal void Atualizar(Pessoa pessoa, Pessoa pessoaAtualizada)
         {
+            Aluno aluno = pessoaAtualizada as Aluno;
+            Aluno alunoAntigo = pessoa as Aluno;
             EnderecoDAO enderecoDAO = new EnderecoDAO();
 
             try
@@ -247,7 +249,7 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
-        internal void DeleterAluno(int id)
+        internal void Deleter(int id)
         {
             try
             {
@@ -269,17 +271,34 @@ namespace ProjetoForms.Back.DAO
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM aluno WHERE Nome LIKE @nome AND fk_Turma_ID LIKE @fk_turma_id AND RA LIKE @RA ", conn.conn);
-                cmd.Parameters.AddWithValue("@nome", nome + "%");
-                cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
-                cmd.Parameters.AddWithValue("@RA", rA + "%");
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
+                if (idTurma == 13)
+                {
+                    conn.AbrirConexao();
+                    cmd = new MySqlCommand("SELECT * FROM aluno WHERE Nome LIKE @nome AND RA LIKE @RA ", conn.conn);
+                    cmd.Parameters.AddWithValue("@nome", nome + "%");
+                    cmd.Parameters.AddWithValue("@RA", rA + "%");
+                    MySqlDataAdapter adapter = new MySqlDataAdapter();
+                    adapter.SelectCommand = cmd;
 
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                return dt;
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    return dt;
+                }
+                else
+                {
+                    conn.AbrirConexao();
+                    cmd = new MySqlCommand("SELECT * FROM aluno WHERE Nome LIKE @nome AND fk_Turma_ID = @fk_turma_id AND RA LIKE @RA ", conn.conn);
+                    cmd.Parameters.AddWithValue("@nome", nome + "%");
+                    cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
+                    cmd.Parameters.AddWithValue("@RA", rA + "%");
+                    MySqlDataAdapter adapter = new MySqlDataAdapter();
+                    adapter.SelectCommand = cmd;
+
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    return dt;
+                }
+               
             }
 
             catch (Exception)
@@ -315,6 +334,7 @@ namespace ProjetoForms.Back.DAO
         {
             try
             {
+
                 conn.AbrirConexao();
                 cmd = new MySqlCommand("SELECT * FROM aluno WHERE Nome LIKE @nome AND RA LIKE @RA ", conn.conn);
                 cmd.Parameters.AddWithValue("@nome", nome + "%");
@@ -337,16 +357,33 @@ namespace ProjetoForms.Back.DAO
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM aluno WHERE Nome LIKE @nome AND fk_Turma_ID LIKE @fk_turma_id", conn.conn);
-                cmd.Parameters.AddWithValue("@nome", nome + "%");
-                cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
+                if(idTurma == 13)
+                {
+                    conn.AbrirConexao();
+                    cmd = new MySqlCommand("SELECT * FROM aluno WHERE Nome LIKE @nome", conn.conn);
+                    cmd.Parameters.AddWithValue("@nome", nome + "%");
+                    cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
+                    MySqlDataAdapter adapter = new MySqlDataAdapter();
+                    adapter.SelectCommand = cmd;
 
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                return dt;
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    return dt;
+                }
+                else
+                {
+                    conn.AbrirConexao();
+                    cmd = new MySqlCommand("SELECT * FROM aluno WHERE Nome LIKE @nome AND fk_Turma_ID = @fk_turma_id", conn.conn);
+                    cmd.Parameters.AddWithValue("@nome", nome + "%");
+                    cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
+                    MySqlDataAdapter adapter = new MySqlDataAdapter();
+                    adapter.SelectCommand = cmd;
+
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    return dt;
+                }
+                
             }
 
             catch (Exception)
@@ -381,16 +418,33 @@ namespace ProjetoForms.Back.DAO
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM aluno WHERE fk_Turma_ID LIKE @fk_turma_id AND RA LIKE @RA ", conn.conn);
-                cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
-                cmd.Parameters.AddWithValue("@RA", rA + "%");
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
+                if(idTurma == 13)
+                {
+                    conn.AbrirConexao();
+                    cmd = new MySqlCommand("SELECT * FROM aluno WHERE RA LIKE @RA ", conn.conn);
+                    cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
+                    cmd.Parameters.AddWithValue("@RA", rA + "%");
+                    MySqlDataAdapter adapter = new MySqlDataAdapter();
+                    adapter.SelectCommand = cmd;
 
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                return dt;
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    return dt;
+                }
+                else
+                {
+                    conn.AbrirConexao();
+                    cmd = new MySqlCommand("SELECT * FROM aluno WHERE fk_Turma_ID LIKE @fk_turma_id AND RA LIKE @RA ", conn.conn);
+                    cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
+                    cmd.Parameters.AddWithValue("@RA", rA + "%");
+                    MySqlDataAdapter adapter = new MySqlDataAdapter();
+                    adapter.SelectCommand = cmd;
+
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    return dt;
+                }
+                
             }
 
             catch (Exception)
@@ -404,15 +458,31 @@ namespace ProjetoForms.Back.DAO
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM aluno WHERE fk_Turma_ID LIKE @fk_turma_id", conn.conn);
-                cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
+                if(idTurma == 13)
+                {
+                    conn.AbrirConexao();
+                    cmd = new MySqlCommand("SELECT * FROM aluno", conn.conn);
+                    cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
+                    MySqlDataAdapter adapter = new MySqlDataAdapter();
+                    adapter.SelectCommand = cmd;
 
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                return dt;
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    return dt;
+                }
+                else
+                {
+                    conn.AbrirConexao();
+                    cmd = new MySqlCommand("SELECT * FROM aluno WHERE fk_Turma_ID = @fk_turma_id", conn.conn);
+                    cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
+                    MySqlDataAdapter adapter = new MySqlDataAdapter();
+                    adapter.SelectCommand = cmd;
+
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    return dt;
+                }
+               
             }
 
             catch (Exception)

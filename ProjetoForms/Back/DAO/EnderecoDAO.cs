@@ -13,12 +13,12 @@ namespace ProjetoForms.Back.DAO
 
         Conection conn = new Conection();
         MySqlCommand cmd;
-        public int ReceberIDEndereco(Aluno aluno)
+        public int ReceberIDEndereco(Pessoa pessoa)
         {
             conn.AbrirConexao();
             cmd = new MySqlCommand("SELECT ID FROM endereco WHERE Nome_Rua = @nome AND Numero_Casa = @numero", conn.conn);
-            cmd.Parameters.AddWithValue("@nome", aluno.Endereco.NomeRua);
-            cmd.Parameters.AddWithValue("@numero", aluno.Endereco.NumCasa);
+            cmd.Parameters.AddWithValue("@nome", pessoa.Endereco.NomeRua);
+            cmd.Parameters.AddWithValue("@numero", pessoa.Endereco.NumCasa);
             var result = cmd.ExecuteScalar();
             return Convert.ToInt32(result);
         }

@@ -10,8 +10,7 @@ namespace ProjetoForms
 {
     public partial class FormVerAlunos : Form
     {
-        int x = 0;
-        int y = 0;
+        
         AlunoModel AlunoModel = new AlunoModel();
         TurmaModel turmaModel = new TurmaModel();
         public FormVerAlunos()

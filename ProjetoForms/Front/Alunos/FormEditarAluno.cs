@@ -19,8 +19,7 @@ namespace ProjetoForms.Front.Alunos
         CidadeModel cidadeModel = new CidadeModel();
         EstadoModel estadoModel = new EstadoModel();
         TurmaModel turmaModel = new TurmaModel();
-        int x = 0;
-        int y = 0;
+        
         public FormEditarAluno(Aluno aluno)
         {
             InitializeComponent();
@@ -70,11 +69,11 @@ namespace ProjetoForms.Front.Alunos
             aluno.Endereco = new Endereco();
             aluno.Endereco.Bairro = new Bairro();
             aluno.Endereco.Bairro.Cidade = new Cidade();
-            AtualizarAluno(aluno);
+            Atualizar(aluno);
             this.Close();
         }
 
-        private void AtualizarAluno(Aluno aluno)
+        private void Atualizar(Aluno aluno)
         {
 
             try
@@ -93,7 +92,12 @@ namespace ProjetoForms.Front.Alunos
                 aluno.TelefoneResponsavel = txtTelefoneResponsavel.Text;
                 aluno.TelefoneResponsavel2 = txtTelefoneResponsavel2.Text;
                 aluno.Turma.Id = (Convert.ToInt32(cbTurma.SelectedValue));
-                alunoModel.AtualizarAluno(aluno, alunoAntigo);
+
+                Pessoa pessoa = alunoAntigo;
+                Pessoa pessoaAtualizada = aluno;
+
+
+                alunoModel.Atualizar(pessoa, pessoaAtualizada);
                 MessageBox.Show("Aluno Salvo com Sucesso!", "Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -107,16 +111,16 @@ namespace ProjetoForms.Front.Alunos
         {
             if (MessageBox.Show("Você está preste a excluir um aluno permanentemente, deseja prosseguir?", "AVISO!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                DeletarAluno(id);
+                Deletar(id);
                 this.Close();
             }
         }
 
-        private void DeletarAluno(int id)
+        private void Deletar(int id)
         {
             try
             {
-                alunoModel.DeletarAluno(id);
+                alunoModel.Deletar(id);
             }
             
             catch(Exception ex)

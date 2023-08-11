@@ -1,14 +1,16 @@
 ﻿using MySql.Data.MySqlClient;
+using ProjetoForms.Back.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ProjetoForms.Back.DAO
 {
-    internal class CidadeDAO
+    internal class CidadeDAO 
     {
         Conection conn = new Conection();
         MySqlCommand cmd;
@@ -32,5 +34,7 @@ namespace ProjetoForms.Back.DAO
             }
             finally { conn.FecharConexao(); }
         }
+
+      
     }
 }

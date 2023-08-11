@@ -56,6 +56,7 @@
     <Compile Include="Back\DAO\EnderecoDAO.cs" />
     <Compile Include="Back\DAO\EstadoDAO.cs" />
     <Compile Include="Back\DAO\MediaDAO.cs" />
+    <Compile Include="Back\DAO\ProfessorDAO.cs" />
     <Compile Include="Back\DAO\ProvaDAO.cs" />
     <Compile Include="Back\DAO\TurmaDAO.cs" />
     <Compile Include="Back\Entities\Aluno.cs" />
@@ -78,6 +79,8 @@
     <Compile Include="Back\DAO\MateriaDAO.cs" />
     <Compile Include="Back\Model\MateriaModel.cs" />
     <Compile Include="Back\Model\MediaModel.cs" />
+    <Compile Include="Back\Model\IPessoaModel.cs" />
+    <Compile Include="Back\Model\ProfessorModel.cs" />
     <Compile Include="Back\Model\ProvaModel.cs" />
     <Compile Include="Back\Model\TurmaModel.cs" />
     <Compile Include="Conection.cs" />
@@ -136,6 +139,18 @@
     <Compile Include="Front\Notas\FormVerAlunosBoletim.Designer.cs">
       <DependentUpon>FormVerAlunosBoletim.cs</DependentUpon>
     </Compile>
+    <Compile Include="Front\Professores\FormCadastrarProfessor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front\Professores\FormCadastrarProfessor.Designer.cs">
+      <DependentUpon>FormCadastrarProfessor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Front\Professores\FormVerProfessores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front\Professores\FormVerProfessores.Designer.cs">
+      <DependentUpon>FormVerProfessores.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Front\Alunos\FormVerAlunos.cs">
       <SubType>Form</SubType>
@@ -172,6 +187,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Front\Notas\FormVerAlunosBoletim.resx">
       <DependentUpon>FormVerAlunosBoletim.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front\Professores\FormCadastrarProfessor.resx">
+      <DependentUpon>FormCadastrarProfessor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front\Professores\FormVerProfessores.resx">
+      <DependentUpon>FormVerProfessores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

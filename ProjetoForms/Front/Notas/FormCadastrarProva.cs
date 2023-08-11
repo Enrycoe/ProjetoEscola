@@ -18,8 +18,7 @@ namespace ProjetoForms.Front.Notas
         AlunoModel alunoModel = new AlunoModel();
         MateriaModel materiaModel = new MateriaModel();
         Aluno aluno;
-        int x = 0;
-        int y = 0;
+        
         public FormCadastrarProva(Aluno aluno)
         {
             this.aluno = aluno;

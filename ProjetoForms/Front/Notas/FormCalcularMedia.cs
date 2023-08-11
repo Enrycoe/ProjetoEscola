@@ -23,8 +23,7 @@ namespace ProjetoForms.Front.Notas
         ProvaModel provaModel = new ProvaModel();
         BimestreModel bimestreModel = new BimestreModel();
         MediaModel mediaModel = new MediaModel();
-        int x = 0;
-        int y = 0;
+        
         public FormCalcularMedia(Aluno aluno)
         {
             InitializeComponent();

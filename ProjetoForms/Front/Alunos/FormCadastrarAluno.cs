@@ -20,8 +20,7 @@ namespace ProjetoForms.Front.Alunos
         EstadoModel estadoModel = new EstadoModel();
         TurmaModel turmaModel = new TurmaModel();
         AlunoModel AlunoModel = new AlunoModel();
-        int x = 0;
-        int y = 0;
+        
         public FormCadastrarAluno()
         {
             InitializeComponent();
@@ -53,14 +52,14 @@ namespace ProjetoForms.Front.Alunos
             aluno.Endereco = new Endereco();
             aluno.Endereco.Bairro = new Bairro();
             aluno.Endereco.Bairro.Cidade = new Cidade();
-            CadastrarAluno(aluno);
+            Cadastrar(aluno);
             LimparCampos();
 
         }
 
-        private void CadastrarAluno(Aluno aluno)
+        private void Cadastrar(Aluno aluno)
         {
-
+            
             try
             {
                 aluno.Nome = txtNomeCompleto.Text;
@@ -74,7 +73,8 @@ namespace ProjetoForms.Front.Alunos
                 aluno.TelefoneResponsavel = txtTelefoneResponsavel.Text;
                 aluno.TelefoneResponsavel2 = txtTelefoneResponsavel2.Text;
                 aluno.Turma.Id = (Convert.ToInt32(cbTurma.SelectedValue));
-                AlunoModel.CadastrarAluno(aluno);
+                Pessoa pessoa = aluno;
+                AlunoModel.Cadastrar(pessoa);
                 MessageBox.Show("Aluno Cadastrado com Sucesso!", "Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)

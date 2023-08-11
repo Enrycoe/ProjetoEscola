@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjetoForms.Back.DAO
 {
-    internal class BimestreDAO
+    internal class BimestreDAO 
     {
         Conection conn = new Conection();
         MySqlCommand cmd;

@@ -18,5 +18,15 @@ namespace ProjetoForms.Back.Entities
         public DateTime DataNascimento { get => dataNascimento; set => dataNascimento = value; }
         public int Idade { get => idade; set => idade = value; }
         internal Endereco Endereco { get => endereco; set => endereco = value; }
+
+        public int CalcularIdade(DateTime dataNascimento)
+        {
+            if (dataNascimento.Day <= DateTime.Now.Day)
+            {
+                return DateTime.Now.Year - dataNascimento.Year;
+            }
+            return DateTime.Now.Year - dataNascimento.Year - 1;
+        }
+        
     }
 }

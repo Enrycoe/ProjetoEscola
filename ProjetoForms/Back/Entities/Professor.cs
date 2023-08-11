@@ -8,9 +8,14 @@ namespace ProjetoForms.Back.Entities
 {
     internal class Professor : Pessoa
     {
-        string estadoCivil;
-        List<Materia> materiaPorProfessor;
-        public string EstadoCivil { get => estadoCivil; set => estadoCivil = value; }
-        internal List<Materia> MateriaPorProfessor { get => materiaPorProfessor; }
+        string telefonePessoal;
+        string telefoneFixo;
+        List<Materia> materias;
+        List<Turma> turmas;
+
+        public string TelefonePessoal { get => telefonePessoal; set => telefonePessoal = value; }
+        public string TelefoneFixo { get => telefoneFixo; set => telefoneFixo = value; }
+        internal List<Materia> Materias { get => materias; set => materias = value; }
+        internal List<Turma> Turmas { get => turmas; set => turmas = value; }
     }
 }

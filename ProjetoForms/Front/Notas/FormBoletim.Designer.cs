@@ -382,6 +382,7 @@
             this.lbl1Artes.Size = new System.Drawing.Size(40, 17);
             this.lbl1Artes.TabIndex = 27;
             this.lbl1Artes.Text = "00,00";
+            this.lbl1Artes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl1EF
             // 
@@ -393,6 +394,7 @@
             this.lbl1EF.Size = new System.Drawing.Size(40, 17);
             this.lbl1EF.TabIndex = 28;
             this.lbl1EF.Text = "00,00";
+            this.lbl1EF.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl1Filosifia
             // 
@@ -404,6 +406,7 @@
             this.lbl1Filosifia.Size = new System.Drawing.Size(40, 17);
             this.lbl1Filosifia.TabIndex = 29;
             this.lbl1Filosifia.Text = "00,00";
+            this.lbl1Filosifia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl1Sociologia
             // 
@@ -415,6 +418,7 @@
             this.lbl1Sociologia.Size = new System.Drawing.Size(40, 17);
             this.lbl1Sociologia.TabIndex = 30;
             this.lbl1Sociologia.Text = "00,00";
+            this.lbl1Sociologia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl1Ingles
             // 
@@ -426,6 +430,7 @@
             this.lbl1Ingles.Size = new System.Drawing.Size(40, 17);
             this.lbl1Ingles.TabIndex = 31;
             this.lbl1Ingles.Text = "00,00";
+            this.lbl1Ingles.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl1Fisica
             // 
@@ -437,6 +442,7 @@
             this.lbl1Fisica.Size = new System.Drawing.Size(40, 17);
             this.lbl1Fisica.TabIndex = 32;
             this.lbl1Fisica.Text = "00,00";
+            this.lbl1Fisica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl1Quimica
             // 
@@ -448,6 +454,7 @@
             this.lbl1Quimica.Size = new System.Drawing.Size(40, 17);
             this.lbl1Quimica.TabIndex = 33;
             this.lbl1Quimica.Text = "00,00";
+            this.lbl1Quimica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl1Geografia
             // 
@@ -459,6 +466,7 @@
             this.lbl1Geografia.Size = new System.Drawing.Size(40, 17);
             this.lbl1Geografia.TabIndex = 34;
             this.lbl1Geografia.Text = "00,00";
+            this.lbl1Geografia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl1Biologia
             // 
@@ -470,6 +478,7 @@
             this.lbl1Biologia.Size = new System.Drawing.Size(40, 17);
             this.lbl1Biologia.TabIndex = 35;
             this.lbl1Biologia.Text = "00,00";
+            this.lbl1Biologia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl1Historia
             // 
@@ -481,6 +490,7 @@
             this.lbl1Historia.Size = new System.Drawing.Size(40, 17);
             this.lbl1Historia.TabIndex = 36;
             this.lbl1Historia.Text = "00,00";
+            this.lbl1Historia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl1Matematica
             // 
@@ -492,6 +502,7 @@
             this.lbl1Matematica.Size = new System.Drawing.Size(40, 17);
             this.lbl1Matematica.TabIndex = 37;
             this.lbl1Matematica.Text = "00,00";
+            this.lbl1Matematica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl1LP
             // 
@@ -503,6 +514,7 @@
             this.lbl1LP.Size = new System.Drawing.Size(40, 17);
             this.lbl1LP.TabIndex = 39;
             this.lbl1LP.Text = "00,00";
+            this.lbl1LP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl2LP
             // 
@@ -514,6 +526,7 @@
             this.lbl2LP.Size = new System.Drawing.Size(40, 17);
             this.lbl2LP.TabIndex = 51;
             this.lbl2LP.Text = "00,00";
+            this.lbl2LP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl2Matematica
             // 
@@ -525,6 +538,7 @@
             this.lbl2Matematica.Size = new System.Drawing.Size(40, 17);
             this.lbl2Matematica.TabIndex = 50;
             this.lbl2Matematica.Text = "00,00";
+            this.lbl2Matematica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl2Historia
             // 
@@ -536,6 +550,7 @@
             this.lbl2Historia.Size = new System.Drawing.Size(40, 17);
             this.lbl2Historia.TabIndex = 49;
             this.lbl2Historia.Text = "00,00";
+            this.lbl2Historia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl2Biologia
             // 
@@ -547,6 +562,7 @@
             this.lbl2Biologia.Size = new System.Drawing.Size(40, 17);
             this.lbl2Biologia.TabIndex = 48;
             this.lbl2Biologia.Text = "00,00";
+            this.lbl2Biologia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl2Geografia
             // 
@@ -558,6 +574,7 @@
             this.lbl2Geografia.Size = new System.Drawing.Size(40, 17);
             this.lbl2Geografia.TabIndex = 47;
             this.lbl2Geografia.Text = "00,00";
+            this.lbl2Geografia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl2Quimica
             // 
@@ -569,6 +586,7 @@
             this.lbl2Quimica.Size = new System.Drawing.Size(40, 17);
             this.lbl2Quimica.TabIndex = 46;
             this.lbl2Quimica.Text = "00,00";
+            this.lbl2Quimica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl2Fisica
             // 
@@ -580,6 +598,7 @@
             this.lbl2Fisica.Size = new System.Drawing.Size(40, 17);
             this.lbl2Fisica.TabIndex = 45;
             this.lbl2Fisica.Text = "00,00";
+            this.lbl2Fisica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl2Ingles
             // 
@@ -591,6 +610,7 @@
             this.lbl2Ingles.Size = new System.Drawing.Size(40, 17);
             this.lbl2Ingles.TabIndex = 44;
             this.lbl2Ingles.Text = "00,00";
+            this.lbl2Ingles.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl2Sociologia
             // 
@@ -602,6 +622,7 @@
             this.lbl2Sociologia.Size = new System.Drawing.Size(40, 17);
             this.lbl2Sociologia.TabIndex = 43;
             this.lbl2Sociologia.Text = "00,00";
+            this.lbl2Sociologia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl2Filosifia
             // 
@@ -613,6 +634,7 @@
             this.lbl2Filosifia.Size = new System.Drawing.Size(40, 17);
             this.lbl2Filosifia.TabIndex = 42;
             this.lbl2Filosifia.Text = "00,00";
+            this.lbl2Filosifia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl2EF
             // 
@@ -624,6 +646,7 @@
             this.lbl2EF.Size = new System.Drawing.Size(40, 17);
             this.lbl2EF.TabIndex = 41;
             this.lbl2EF.Text = "00,00";
+            this.lbl2EF.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl2Artes
             // 
@@ -635,6 +658,7 @@
             this.lbl2Artes.Size = new System.Drawing.Size(40, 17);
             this.lbl2Artes.TabIndex = 40;
             this.lbl2Artes.Text = "00,00";
+            this.lbl2Artes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl4LP
             // 
@@ -646,6 +670,7 @@
             this.lbl4LP.Size = new System.Drawing.Size(40, 17);
             this.lbl4LP.TabIndex = 75;
             this.lbl4LP.Text = "00,00";
+            this.lbl4LP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl4Matematica
             // 
@@ -657,6 +682,7 @@
             this.lbl4Matematica.Size = new System.Drawing.Size(40, 17);
             this.lbl4Matematica.TabIndex = 74;
             this.lbl4Matematica.Text = "00,00";
+            this.lbl4Matematica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl4Historia
             // 
@@ -668,6 +694,7 @@
             this.lbl4Historia.Size = new System.Drawing.Size(40, 17);
             this.lbl4Historia.TabIndex = 73;
             this.lbl4Historia.Text = "00,00";
+            this.lbl4Historia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl4Biologia
             // 
@@ -679,6 +706,7 @@
             this.lbl4Biologia.Size = new System.Drawing.Size(40, 17);
             this.lbl4Biologia.TabIndex = 72;
             this.lbl4Biologia.Text = "00,00";
+            this.lbl4Biologia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl4Geografia
             // 
@@ -690,6 +718,7 @@
             this.lbl4Geografia.Size = new System.Drawing.Size(40, 17);
             this.lbl4Geografia.TabIndex = 71;
             this.lbl4Geografia.Text = "00,00";
+            this.lbl4Geografia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl4Quimica
             // 
@@ -701,6 +730,7 @@
             this.lbl4Quimica.Size = new System.Drawing.Size(40, 17);
             this.lbl4Quimica.TabIndex = 70;
             this.lbl4Quimica.Text = "00,00";
+            this.lbl4Quimica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl4Fisica
             // 
@@ -712,6 +742,7 @@
             this.lbl4Fisica.Size = new System.Drawing.Size(40, 17);
             this.lbl4Fisica.TabIndex = 69;
             this.lbl4Fisica.Text = "00,00";
+            this.lbl4Fisica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl4Ingles
             // 
@@ -723,6 +754,7 @@
             this.lbl4Ingles.Size = new System.Drawing.Size(40, 17);
             this.lbl4Ingles.TabIndex = 68;
             this.lbl4Ingles.Text = "00,00";
+            this.lbl4Ingles.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl4Sociologia
             // 
@@ -734,6 +766,7 @@
             this.lbl4Sociologia.Size = new System.Drawing.Size(40, 17);
             this.lbl4Sociologia.TabIndex = 67;
             this.lbl4Sociologia.Text = "00,00";
+            this.lbl4Sociologia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl4Filosifia
             // 
@@ -745,6 +778,7 @@
             this.lbl4Filosifia.Size = new System.Drawing.Size(40, 17);
             this.lbl4Filosifia.TabIndex = 66;
             this.lbl4Filosifia.Text = "00,00";
+            this.lbl4Filosifia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl4EF
             // 
@@ -756,6 +790,7 @@
             this.lbl4EF.Size = new System.Drawing.Size(40, 17);
             this.lbl4EF.TabIndex = 65;
             this.lbl4EF.Text = "00,00";
+            this.lbl4EF.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl4Artes
             // 
@@ -767,6 +802,7 @@
             this.lbl4Artes.Size = new System.Drawing.Size(40, 17);
             this.lbl4Artes.TabIndex = 64;
             this.lbl4Artes.Text = "00,00";
+            this.lbl4Artes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl3LP
             // 
@@ -778,6 +814,7 @@
             this.lbl3LP.Size = new System.Drawing.Size(40, 17);
             this.lbl3LP.TabIndex = 63;
             this.lbl3LP.Text = "00,00";
+            this.lbl3LP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl3Matematica
             // 
@@ -789,6 +826,7 @@
             this.lbl3Matematica.Size = new System.Drawing.Size(40, 17);
             this.lbl3Matematica.TabIndex = 62;
             this.lbl3Matematica.Text = "00,00";
+            this.lbl3Matematica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl3Historia
             // 
@@ -800,6 +838,7 @@
             this.lbl3Historia.Size = new System.Drawing.Size(40, 17);
             this.lbl3Historia.TabIndex = 61;
             this.lbl3Historia.Text = "00,00";
+            this.lbl3Historia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl3Biologia
             // 
@@ -811,6 +850,7 @@
             this.lbl3Biologia.Size = new System.Drawing.Size(40, 17);
             this.lbl3Biologia.TabIndex = 60;
             this.lbl3Biologia.Text = "00,00";
+            this.lbl3Biologia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl3Geografia
             // 
@@ -822,6 +862,7 @@
             this.lbl3Geografia.Size = new System.Drawing.Size(40, 17);
             this.lbl3Geografia.TabIndex = 59;
             this.lbl3Geografia.Text = "00,00";
+            this.lbl3Geografia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl3Quimica
             // 
@@ -833,6 +874,7 @@
             this.lbl3Quimica.Size = new System.Drawing.Size(40, 17);
             this.lbl3Quimica.TabIndex = 58;
             this.lbl3Quimica.Text = "00,00";
+            this.lbl3Quimica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl3Fisica
             // 
@@ -844,6 +886,7 @@
             this.lbl3Fisica.Size = new System.Drawing.Size(40, 17);
             this.lbl3Fisica.TabIndex = 57;
             this.lbl3Fisica.Text = "00,00";
+            this.lbl3Fisica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl3Ingles
             // 
@@ -855,6 +898,7 @@
             this.lbl3Ingles.Size = new System.Drawing.Size(40, 17);
             this.lbl3Ingles.TabIndex = 56;
             this.lbl3Ingles.Text = "00,00";
+            this.lbl3Ingles.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl3Sociologia
             // 
@@ -866,6 +910,7 @@
             this.lbl3Sociologia.Size = new System.Drawing.Size(40, 17);
             this.lbl3Sociologia.TabIndex = 55;
             this.lbl3Sociologia.Text = "00,00";
+            this.lbl3Sociologia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl3Filosifia
             // 
@@ -877,6 +922,7 @@
             this.lbl3Filosifia.Size = new System.Drawing.Size(40, 17);
             this.lbl3Filosifia.TabIndex = 54;
             this.lbl3Filosifia.Text = "00,00";
+            this.lbl3Filosifia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl3EF
             // 
@@ -888,6 +934,7 @@
             this.lbl3EF.Size = new System.Drawing.Size(40, 17);
             this.lbl3EF.TabIndex = 53;
             this.lbl3EF.Text = "00,00";
+            this.lbl3EF.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl3Artes
             // 
@@ -899,6 +946,7 @@
             this.lbl3Artes.Size = new System.Drawing.Size(40, 17);
             this.lbl3Artes.TabIndex = 52;
             this.lbl3Artes.Text = "00,00";
+            this.lbl3Artes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblSLP
             // 
@@ -910,6 +958,7 @@
             this.lblSLP.Size = new System.Drawing.Size(40, 17);
             this.lblSLP.TabIndex = 99;
             this.lblSLP.Text = "00,00";
+            this.lblSLP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblSMatematica
             // 
@@ -921,6 +970,7 @@
             this.lblSMatematica.Size = new System.Drawing.Size(40, 17);
             this.lblSMatematica.TabIndex = 98;
             this.lblSMatematica.Text = "00,00";
+            this.lblSMatematica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblSHistoria
             // 
@@ -932,6 +982,7 @@
             this.lblSHistoria.Size = new System.Drawing.Size(40, 17);
             this.lblSHistoria.TabIndex = 97;
             this.lblSHistoria.Text = "00,00";
+            this.lblSHistoria.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblSBiologia
             // 
@@ -943,6 +994,7 @@
             this.lblSBiologia.Size = new System.Drawing.Size(40, 17);
             this.lblSBiologia.TabIndex = 96;
             this.lblSBiologia.Text = "00,00";
+            this.lblSBiologia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblSGeografia
             // 
@@ -954,6 +1006,7 @@
             this.lblSGeografia.Size = new System.Drawing.Size(40, 17);
             this.lblSGeografia.TabIndex = 95;
             this.lblSGeografia.Text = "00,00";
+            this.lblSGeografia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblSQuimica
             // 
@@ -965,6 +1018,7 @@
             this.lblSQuimica.Size = new System.Drawing.Size(40, 17);
             this.lblSQuimica.TabIndex = 94;
             this.lblSQuimica.Text = "00,00";
+            this.lblSQuimica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblSFisica
             // 
@@ -976,6 +1030,7 @@
             this.lblSFisica.Size = new System.Drawing.Size(40, 17);
             this.lblSFisica.TabIndex = 93;
             this.lblSFisica.Text = "00,00";
+            this.lblSFisica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblSIngles
             // 
@@ -987,6 +1042,7 @@
             this.lblSIngles.Size = new System.Drawing.Size(40, 17);
             this.lblSIngles.TabIndex = 92;
             this.lblSIngles.Text = "00,00";
+            this.lblSIngles.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblSSociologia
             // 
@@ -998,6 +1054,7 @@
             this.lblSSociologia.Size = new System.Drawing.Size(40, 17);
             this.lblSSociologia.TabIndex = 91;
             this.lblSSociologia.Text = "00,00";
+            this.lblSSociologia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblSFilosifia
             // 
@@ -1009,6 +1066,7 @@
             this.lblSFilosifia.Size = new System.Drawing.Size(40, 17);
             this.lblSFilosifia.TabIndex = 90;
             this.lblSFilosifia.Text = "00,00";
+            this.lblSFilosifia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblSEF
             // 
@@ -1020,6 +1078,7 @@
             this.lblSEF.Size = new System.Drawing.Size(40, 17);
             this.lblSEF.TabIndex = 89;
             this.lblSEF.Text = "00,00";
+            this.lblSEF.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblSArtes
             // 
@@ -1031,6 +1090,7 @@
             this.lblSArtes.Size = new System.Drawing.Size(40, 17);
             this.lblSArtes.TabIndex = 88;
             this.lblSArtes.Text = "00,00";
+            this.lblSArtes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblMLP
             // 
@@ -1042,6 +1102,7 @@
             this.lblMLP.Size = new System.Drawing.Size(40, 17);
             this.lblMLP.TabIndex = 87;
             this.lblMLP.Text = "00,00";
+            this.lblMLP.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblMMatematica
             // 
@@ -1053,6 +1114,7 @@
             this.lblMMatematica.Size = new System.Drawing.Size(40, 17);
             this.lblMMatematica.TabIndex = 86;
             this.lblMMatematica.Text = "00,00";
+            this.lblMMatematica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblMHistoria
             // 
@@ -1064,6 +1126,7 @@
             this.lblMHistoria.Size = new System.Drawing.Size(40, 17);
             this.lblMHistoria.TabIndex = 85;
             this.lblMHistoria.Text = "00,00";
+            this.lblMHistoria.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblMBiologia
             // 
@@ -1075,6 +1138,7 @@
             this.lblMBiologia.Size = new System.Drawing.Size(40, 17);
             this.lblMBiologia.TabIndex = 84;
             this.lblMBiologia.Text = "00,00";
+            this.lblMBiologia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblMGeografia
             // 
@@ -1086,6 +1150,7 @@
             this.lblMGeografia.Size = new System.Drawing.Size(40, 17);
             this.lblMGeografia.TabIndex = 83;
             this.lblMGeografia.Text = "00,00";
+            this.lblMGeografia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblMQuimica
             // 
@@ -1097,6 +1162,7 @@
             this.lblMQuimica.Size = new System.Drawing.Size(40, 17);
             this.lblMQuimica.TabIndex = 82;
             this.lblMQuimica.Text = "00,00";
+            this.lblMQuimica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblMFisica
             // 
@@ -1108,6 +1174,7 @@
             this.lblMFisica.Size = new System.Drawing.Size(40, 17);
             this.lblMFisica.TabIndex = 81;
             this.lblMFisica.Text = "00,00";
+            this.lblMFisica.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblMIngles
             // 
@@ -1119,6 +1186,7 @@
             this.lblMIngles.Size = new System.Drawing.Size(40, 17);
             this.lblMIngles.TabIndex = 80;
             this.lblMIngles.Text = "00,00";
+            this.lblMIngles.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblMSociologia
             // 
@@ -1130,6 +1198,7 @@
             this.lblMSociologia.Size = new System.Drawing.Size(40, 17);
             this.lblMSociologia.TabIndex = 79;
             this.lblMSociologia.Text = "00,00";
+            this.lblMSociologia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblMFilosifia
             // 
@@ -1141,6 +1210,7 @@
             this.lblMFilosifia.Size = new System.Drawing.Size(40, 17);
             this.lblMFilosifia.TabIndex = 78;
             this.lblMFilosifia.Text = "00,00";
+            this.lblMFilosifia.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblMEF
             // 
@@ -1152,6 +1222,7 @@
             this.lblMEF.Size = new System.Drawing.Size(40, 17);
             this.lblMEF.TabIndex = 77;
             this.lblMEF.Text = "00,00";
+            this.lblMEF.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblMArtes
             // 
@@ -1163,6 +1234,7 @@
             this.lblMArtes.Size = new System.Drawing.Size(40, 17);
             this.lblMArtes.TabIndex = 76;
             this.lblMArtes.Text = "00,00";
+            this.lblMArtes.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblProfessor
             // 

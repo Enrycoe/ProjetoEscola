@@ -13,8 +13,7 @@ namespace ProjetoForms
     {
         AlunoModel AlunoModel = new AlunoModel();
         TurmaModel turmaModel = new TurmaModel();
-        int x = 0;
-        int y = 0;
+        
         public FormVerAlunoNota()
         {
             InitializeComponent();
