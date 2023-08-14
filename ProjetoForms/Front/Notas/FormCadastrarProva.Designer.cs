@@ -156,7 +156,7 @@
             this.MinimizeBox = false;
             this.Name = "FormCadastrarProva";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormCadastrarProva";
+            this.Text = "Prova";
             this.Load += new System.EventHandler(this.FormCadastrarProva_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

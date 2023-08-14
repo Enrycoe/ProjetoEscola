@@ -1370,7 +1370,7 @@
             this.MinimizeBox = false;
             this.Name = "FormBoletim";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SAIR";
+            this.Text = "Boletim";
             this.Load += new System.EventHandler(this.lblNome_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

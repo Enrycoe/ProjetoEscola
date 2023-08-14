@@ -87,6 +87,8 @@
             // 
             // gridProfessores
             // 
+            this.gridProfessores.AllowUserToAddRows = false;
+            this.gridProfessores.AllowUserToDeleteRows = false;
             this.gridProfessores.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.gridProfessores.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.gridProfessores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -105,6 +107,7 @@
             this.gridProfessores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridProfessores.Size = new System.Drawing.Size(759, 629);
             this.gridProfessores.TabIndex = 0;
+            this.gridProfessores.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProfessores_CellDoubleClick);
             // 
             // ID
             // 
@@ -168,8 +171,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1043, 635);
             this.Controls.Add(this.panel1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormVerProfessores";
-            this.Text = "FormVerProfessores";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Ver Professores";
             this.Load += new System.EventHandler(this.FormVerProfessores_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

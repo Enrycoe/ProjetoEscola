@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSair = new System.Windows.Forms.Button();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.lblTurma = new System.Windows.Forms.Label();
             this.cbTurma = new System.Windows.Forms.ComboBox();
@@ -48,7 +49,6 @@
             this.Telefone_Responsavel_2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.data_de_Nascimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fk_endereco_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSair = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridAlunos)).BeginInit();
             this.SuspendLayout();
@@ -68,6 +68,19 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1040, 606);
             this.panel1.TabIndex = 4;
+            // 
+            // btnSair
+            // 
+            this.btnSair.BackColor = System.Drawing.Color.Maroon;
+            this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSair.ForeColor = System.Drawing.Color.Red;
+            this.btnSair.Location = new System.Drawing.Point(9, 558);
+            this.btnSair.Name = "btnSair";
+            this.btnSair.Size = new System.Drawing.Size(64, 48);
+            this.btnSair.TabIndex = 11;
+            this.btnSair.Text = "SAIR";
+            this.btnSair.UseVisualStyleBackColor = false;
+            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // lblTitulo
             // 
@@ -273,19 +286,6 @@
             this.fk_endereco_id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.fk_endereco_id.Visible = false;
             // 
-            // btnSair
-            // 
-            this.btnSair.BackColor = System.Drawing.Color.Maroon;
-            this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSair.ForeColor = System.Drawing.Color.Red;
-            this.btnSair.Location = new System.Drawing.Point(9, 558);
-            this.btnSair.Name = "btnSair";
-            this.btnSair.Size = new System.Drawing.Size(64, 48);
-            this.btnSair.TabIndex = 11;
-            this.btnSair.Text = "SAIR";
-            this.btnSair.UseVisualStyleBackColor = false;
-            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
-            // 
             // FormVerAlunoBoletim
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -297,7 +297,7 @@
             this.MinimizeBox = false;
             this.Name = "FormVerAlunoBoletim";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormVerAlunosBoletim";
+            this.Text = "Ver Alunos";
             this.Load += new System.EventHandler(this.FormVerAlunoBoletim_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -145,6 +145,12 @@
     <Compile Include="Front\Professores\FormCadastrarProfessor.Designer.cs">
       <DependentUpon>FormCadastrarProfessor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Front\Professores\FormEditarProfessor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front\Professores\FormEditarProfessor.Designer.cs">
+      <DependentUpon>FormEditarProfessor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Front\Professores\FormVerProfessores.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +196,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Front\Professores\FormCadastrarProfessor.resx">
       <DependentUpon>FormCadastrarProfessor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front\Professores\FormEditarProfessor.resx">
+      <DependentUpon>FormEditarProfessor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Front\Professores\FormVerProfessores.resx">
       <DependentUpon>FormVerProfessores.cs</DependentUpon>

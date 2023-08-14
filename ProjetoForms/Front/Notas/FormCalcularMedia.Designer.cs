@@ -227,7 +227,7 @@
             this.MinimizeBox = false;
             this.Name = "FormCalcularMedia";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormCalcularMedia";
+            this.Text = "Média";
             this.Load += new System.EventHandler(this.FormCalcularMedia_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProvas)).EndInit();
             this.ResumeLayout(false);

@@ -224,7 +224,6 @@
             this.Telefone_Pessoal.ReadOnly = true;
             this.Telefone_Pessoal.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Telefone_Pessoal.Visible = false;
-            this.Telefone_Pessoal.Width = 114;
             // 
             // Telefone_FIxo
             // 
@@ -235,7 +234,6 @@
             this.Telefone_FIxo.ReadOnly = true;
             this.Telefone_FIxo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Telefone_FIxo.Visible = false;
-            this.Telefone_FIxo.Width = 96;
             // 
             // Telefone_Responsavel
             // 
@@ -246,7 +244,6 @@
             this.Telefone_Responsavel.ReadOnly = true;
             this.Telefone_Responsavel.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Telefone_Responsavel.Visible = false;
-            this.Telefone_Responsavel.Width = 139;
             // 
             // Telefone_Responsavel_2
             // 
@@ -257,7 +254,6 @@
             this.Telefone_Responsavel_2.ReadOnly = true;
             this.Telefone_Responsavel_2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Telefone_Responsavel_2.Visible = false;
-            this.Telefone_Responsavel_2.Width = 139;
             // 
             // data_de_Nascimento
             // 
@@ -268,7 +264,6 @@
             this.data_de_Nascimento.ReadOnly = true;
             this.data_de_Nascimento.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.data_de_Nascimento.Visible = false;
-            this.data_de_Nascimento.Width = 129;
             // 
             // fk_endereco_id
             // 
@@ -279,7 +274,6 @@
             this.fk_endereco_id.ReadOnly = true;
             this.fk_endereco_id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.fk_endereco_id.Visible = false;
-            this.fk_endereco_id.Width = 78;
             // 
             // FormVerAlunos
             // 
@@ -292,7 +286,7 @@
             this.MinimizeBox = false;
             this.Name = "FormVerAlunos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "VerAlunosForms";
+            this.Text = "Alunos";
             this.Load += new System.EventHandler(this.FormVerAlunos_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

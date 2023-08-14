@@ -27,3 +27,4 @@ C:\Users\Dell\source\repos\ProjetoForms\ProjetoForms\obj\Debug\ProjetoForms.Fron
 C:\Users\Dell\source\repos\ProjetoForms\ProjetoForms\obj\Debug\ProjetoForms.FormVerAlunoBoletim.resources
 C:\Users\Dell\source\repos\ProjetoForms\ProjetoForms\obj\Debug\ProjetoForms.Front.Professores.FormCadastrarProfessor.resources
 C:\Users\Dell\source\repos\ProjetoForms\ProjetoForms\obj\Debug\ProjetoForms.Front.Professores.FormVerProfessores.resources
+C:\Users\Dell\source\repos\ProjetoForms\ProjetoForms\obj\Debug\ProjetoForms.Front.Professores.FormEditarProfessor.resources

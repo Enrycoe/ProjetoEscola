@@ -80,14 +80,14 @@
             // verProfessoresToolStripMenuItem
             // 
             this.verProfessoresToolStripMenuItem.Name = "verProfessoresToolStripMenuItem";
-            this.verProfessoresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.verProfessoresToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.verProfessoresToolStripMenuItem.Text = "Ver Professores";
             this.verProfessoresToolStripMenuItem.Click += new System.EventHandler(this.verProfessoresToolStripMenuItem_Click);
             // 
             // cadastrarProfessoresToolStripMenuItem
             // 
             this.cadastrarProfessoresToolStripMenuItem.Name = "cadastrarProfessoresToolStripMenuItem";
-            this.cadastrarProfessoresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cadastrarProfessoresToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.cadastrarProfessoresToolStripMenuItem.Text = "Cadastrar Professor";
             this.cadastrarProfessoresToolStripMenuItem.Click += new System.EventHandler(this.cadastrarProfessoresToolStripMenuItem_Click);
             // 
@@ -104,14 +104,14 @@
             // verAlunosToolStripMenuItem
             // 
             this.verAlunosToolStripMenuItem.Name = "verAlunosToolStripMenuItem";
-            this.verAlunosToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.verAlunosToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.verAlunosToolStripMenuItem.Text = "Ver Alunos";
             this.verAlunosToolStripMenuItem.Click += new System.EventHandler(this.verAlunosToolStripMenuItem_Click);
             // 
             // cadastrarAlunosToolStripMenuItem
             // 
             this.cadastrarAlunosToolStripMenuItem.Name = "cadastrarAlunosToolStripMenuItem";
-            this.cadastrarAlunosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cadastrarAlunosToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.cadastrarAlunosToolStripMenuItem.Text = "Cadastrar Aluno";
             this.cadastrarAlunosToolStripMenuItem.Click += new System.EventHandler(this.cadastrarAlunosToolStripMenuItem_Click);
             // 
@@ -177,6 +177,7 @@
             this.MinimumSize = new System.Drawing.Size(100, 100);
             this.Name = "FormMain";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "XD People";
             this.Load += new System.EventHandler(this.lblDataHora_Load);
             this.menuStrip1.ResumeLayout(false);

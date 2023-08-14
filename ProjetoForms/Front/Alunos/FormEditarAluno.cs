@@ -14,7 +14,7 @@ namespace ProjetoForms.Front.Alunos
 {
     public partial class FormEditarAluno : Form
     {
-        int id;
+        Aluno aluno;
         AlunoModel alunoModel = new AlunoModel();
         CidadeModel cidadeModel = new CidadeModel();
         EstadoModel estadoModel = new EstadoModel();
@@ -23,7 +23,7 @@ namespace ProjetoForms.Front.Alunos
         public FormEditarAluno(Aluno aluno)
         {
             InitializeComponent();
-            id = aluno.Id;
+            this.aluno = alunoModel.ReceberAluno(aluno.Id);
             cbEstado.ValueMember = "id";
             cbEstado.DisplayMember = "Sigla";
             cbCidade.ValueMember = "id";
@@ -35,10 +35,9 @@ namespace ProjetoForms.Front.Alunos
         private void FormEditarAluno_Load(object sender, EventArgs e)
         {
 
-            txtRA.Text = id.ToString();
+            txtRA.Text = aluno.Id.ToString();
             cbEstado.DataSource = estadoModel.Listar();
             cbTurma.DataSource = turmaModel.Listar();
-            Aluno aluno = alunoModel.ReceberAluno(id);
             cbEstado.SelectedValue = aluno.Endereco.Bairro.Cidade.Estado.Id;
             cbCidade.SelectedValue = aluno.Endereco.Bairro.Cidade.Id;
             cbTurma.SelectedValue = aluno.Turma.Id;
@@ -55,7 +54,7 @@ namespace ProjetoForms.Front.Alunos
 
         private void cbEstado_TextChanged(object sender, EventArgs e)
         {
-            cbCidade.Text = "";
+            cbCidade.Text = null;
 
             DataTable cidadePorEstado = cidadeModel.Listar(Convert.ToInt32(cbEstado.SelectedValue));
 
@@ -65,36 +64,69 @@ namespace ProjetoForms.Front.Alunos
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
             Aluno aluno = new Aluno();
-            aluno.Turma = new Turma();
-            aluno.Endereco = new Endereco();
-            aluno.Endereco.Bairro = new Bairro();
-            aluno.Endereco.Bairro.Cidade = new Cidade();
-            Atualizar(aluno);
+            if (string.IsNullOrWhiteSpace(txtNomeCompleto.Text))
+            {
+                MessageBox.Show("Nome do aluno não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNomeCompleto.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtBairro.Text))
+            {
+                MessageBox.Show("Nome do bairro não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtBairro.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtNumeroCasa.Text))
+            {
+                MessageBox.Show("Número da casa não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtNomeCompleto.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtRua.Text))
+            {
+                MessageBox.Show("Nome da rua não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtRua.Focus();
+                return;
+            }
+
+            int idade = aluno.CalcularIdade(Convert.ToDateTime(dtNascimento.ToString()));
+            if (idade < aluno.IdadeMinima || idade > aluno.IdadeMaxima)
+            {
+                MessageBox.Show("O aluno precisa estar entre 13 e 21 anos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dtNascimento.Focus();
+                return;
+            }
+            Atualizar();
             this.Close();
         }
 
-        private void Atualizar(Aluno aluno)
+        private void Atualizar()
         {
 
             try
             {
-                Aluno alunoAntigo = alunoModel.ReceberAluno(id);
+                Aluno alunoAtualizado = new Aluno();
+                alunoAtualizado.Endereco = new Endereco();
+                alunoAtualizado.Endereco.Bairro = new Bairro(); 
+                alunoAtualizado.Endereco.Bairro.Cidade = new Cidade();
+                alunoAtualizado.Turma = new Turma();
 
-                aluno.Id = Convert.ToInt32(txtRA.Text);
-                aluno.Nome = txtNomeCompleto.Text;
-                aluno.DataNascimento = Convert.ToDateTime(dtNascimento.Text);
-                aluno.Endereco.Bairro.Nome_bairro = txtBairro.Text;
-                aluno.Endereco.NumCasa = Convert.ToInt32(txtNumeroCasa.Text);
-                aluno.Endereco.NomeRua = txtRua.Text;
-                aluno.Endereco.Bairro.Cidade.Id = (Convert.ToInt32(cbCidade.SelectedValue));
-                aluno.TelefonePessoal = txtTelefonePessoal.Text;
-                aluno.TelefoneFixo = txtTelefoneFixo.Text;
-                aluno.TelefoneResponsavel = txtTelefoneResponsavel.Text;
-                aluno.TelefoneResponsavel2 = txtTelefoneResponsavel2.Text;
-                aluno.Turma.Id = (Convert.ToInt32(cbTurma.SelectedValue));
+                alunoAtualizado.Id = Convert.ToInt32(txtRA.Text);
+                alunoAtualizado.Nome = txtNomeCompleto.Text;
+                alunoAtualizado.DataNascimento = Convert.ToDateTime(dtNascimento.Text);
+                alunoAtualizado.Idade = alunoAtualizado.CalcularIdade(alunoAtualizado.DataNascimento);
+                alunoAtualizado.Endereco.Bairro.Nome_bairro = txtBairro.Text;
+                alunoAtualizado.Endereco.NumCasa = Convert.ToInt32(txtNumeroCasa.Text);
+                alunoAtualizado.Endereco.NomeRua = txtRua.Text;
+                alunoAtualizado.Endereco.Bairro.Cidade.Id = (Convert.ToInt32(cbCidade.SelectedValue));
+                alunoAtualizado.TelefonePessoal = txtTelefonePessoal.Text;
+                alunoAtualizado.TelefoneFixo = txtTelefoneFixo.Text;
+                alunoAtualizado.TelefoneResponsavel = txtTelefoneResponsavel.Text;
+                alunoAtualizado.TelefoneResponsavel2 = txtTelefoneResponsavel2.Text;
+                alunoAtualizado.Turma.Id = (Convert.ToInt32(cbTurma.SelectedValue));
 
-                Pessoa pessoa = alunoAntigo;
-                Pessoa pessoaAtualizada = aluno;
+                Pessoa pessoa = aluno;
+                Pessoa pessoaAtualizada = alunoAtualizado;
 
 
                 alunoModel.Atualizar(pessoa, pessoaAtualizada);
@@ -111,16 +143,16 @@ namespace ProjetoForms.Front.Alunos
         {
             if (MessageBox.Show("Você está preste a excluir um aluno permanentemente, deseja prosseguir?", "AVISO!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                Deletar(id);
+                Deletar();
                 this.Close();
             }
         }
 
-        private void Deletar(int id)
+        private void Deletar()
         {
             try
             {
-                alunoModel.Deletar(id);
+                alunoModel.Deletar(aluno.Id);
             }
             
             catch(Exception ex)

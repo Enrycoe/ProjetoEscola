@@ -1,6 +1,6 @@
 ﻿namespace ProjetoForms.Front.Professores
 {
-    partial class FormCadastrarProfessor
+    partial class FormEditarProfessor
     {
         /// <summary>
         /// Required designer variable.
@@ -74,11 +74,12 @@
             this.lblEstado = new System.Windows.Forms.Label();
             this.cbCidade = new System.Windows.Forms.ComboBox();
             this.cbEstado = new System.Windows.Forms.ComboBox();
-            this.btnCadastrar = new System.Windows.Forms.Button();
+            this.btnAtualizar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.txtNomeCompleto = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblNomeCompleto = new System.Windows.Forms.Label();
+            this.brnExcluir = new System.Windows.Forms.Button();
             this.pnlCadastrarAluno.SuspendLayout();
             this.gbTurma.SuspendLayout();
             this.dbMateria.SuspendLayout();
@@ -89,6 +90,7 @@
             // pnlCadastrarAluno
             // 
             this.pnlCadastrarAluno.BackColor = System.Drawing.Color.Transparent;
+            this.pnlCadastrarAluno.Controls.Add(this.brnExcluir);
             this.pnlCadastrarAluno.Controls.Add(this.gbTurma);
             this.pnlCadastrarAluno.Controls.Add(this.dbMateria);
             this.pnlCadastrarAluno.Controls.Add(this.dtNascimento);
@@ -96,15 +98,15 @@
             this.pnlCadastrarAluno.Controls.Add(this.panel2);
             this.pnlCadastrarAluno.Controls.Add(this.label1);
             this.pnlCadastrarAluno.Controls.Add(this.pnlEndereço);
-            this.pnlCadastrarAluno.Controls.Add(this.btnCadastrar);
+            this.pnlCadastrarAluno.Controls.Add(this.btnAtualizar);
             this.pnlCadastrarAluno.Controls.Add(this.btnCancelar);
             this.pnlCadastrarAluno.Controls.Add(this.txtNomeCompleto);
             this.pnlCadastrarAluno.Controls.Add(this.label2);
             this.pnlCadastrarAluno.Controls.Add(this.lblNomeCompleto);
-            this.pnlCadastrarAluno.Location = new System.Drawing.Point(3, 1);
+            this.pnlCadastrarAluno.Location = new System.Drawing.Point(2, 0);
             this.pnlCadastrarAluno.Name = "pnlCadastrarAluno";
-            this.pnlCadastrarAluno.Size = new System.Drawing.Size(735, 666);
-            this.pnlCadastrarAluno.TabIndex = 1;
+            this.pnlCadastrarAluno.Size = new System.Drawing.Size(562, 666);
+            this.pnlCadastrarAluno.TabIndex = 2;
             // 
             // gbTurma
             // 
@@ -423,7 +425,6 @@
             // 
             // label9
             // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(31, 230);
@@ -434,7 +435,6 @@
             // 
             // panel2
             // 
-            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panel2.Controls.Add(this.txtTelefoneFixo);
             this.panel2.Controls.Add(this.txtTelefonePessoal);
@@ -485,7 +485,6 @@
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Modern No. 20", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(31, 76);
@@ -496,7 +495,6 @@
             // 
             // pnlEndereço
             // 
-            this.pnlEndereço.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pnlEndereço.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.pnlEndereço.Controls.Add(this.txtNumeroCasa);
             this.pnlEndereço.Controls.Add(this.txtRua);
@@ -608,23 +606,21 @@
             this.cbEstado.TabIndex = 0;
             this.cbEstado.TextChanged += new System.EventHandler(this.cbEstado_TextChanged);
             // 
-            // btnCadastrar
+            // btnAtualizar
             // 
-            this.btnCadastrar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnCadastrar.BackColor = System.Drawing.SystemColors.Control;
-            this.btnCadastrar.Font = new System.Drawing.Font("MS Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCadastrar.ForeColor = System.Drawing.Color.Green;
-            this.btnCadastrar.Location = new System.Drawing.Point(424, 598);
-            this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(121, 55);
-            this.btnCadastrar.TabIndex = 25;
-            this.btnCadastrar.Text = "Cadastrar";
-            this.btnCadastrar.UseVisualStyleBackColor = false;
-            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
+            this.btnAtualizar.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAtualizar.Font = new System.Drawing.Font("MS Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAtualizar.ForeColor = System.Drawing.Color.Green;
+            this.btnAtualizar.Location = new System.Drawing.Point(424, 598);
+            this.btnAtualizar.Name = "btnAtualizar";
+            this.btnAtualizar.Size = new System.Drawing.Size(121, 55);
+            this.btnAtualizar.TabIndex = 25;
+            this.btnAtualizar.Text = "Atualizar";
+            this.btnAtualizar.UseVisualStyleBackColor = false;
+            this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCancelar.BackColor = System.Drawing.SystemColors.Control;
             this.btnCancelar.Font = new System.Drawing.Font("MS Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.Color.Red;
@@ -638,7 +634,6 @@
             // 
             // txtNomeCompleto
             // 
-            this.txtNomeCompleto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNomeCompleto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNomeCompleto.Location = new System.Drawing.Point(160, 11);
             this.txtNomeCompleto.Name = "txtNomeCompleto";
@@ -647,7 +642,6 @@
             // 
             // label2
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(14, 43);
@@ -658,7 +652,6 @@
             // 
             // lblNomeCompleto
             // 
-            this.lblNomeCompleto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblNomeCompleto.AutoSize = true;
             this.lblNomeCompleto.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNomeCompleto.Location = new System.Drawing.Point(39, 11);
@@ -667,18 +660,32 @@
             this.lblNomeCompleto.TabIndex = 15;
             this.lblNomeCompleto.Text = "Nome Completo:";
             // 
-            // FormCadastrarProfessor
+            // brnExcluir
+            // 
+            this.brnExcluir.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.brnExcluir.BackColor = System.Drawing.Color.Maroon;
+            this.brnExcluir.Font = new System.Drawing.Font("MS Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.brnExcluir.ForeColor = System.Drawing.Color.RosyBrown;
+            this.brnExcluir.Location = new System.Drawing.Point(221, 598);
+            this.brnExcluir.Name = "brnExcluir";
+            this.brnExcluir.Size = new System.Drawing.Size(121, 55);
+            this.brnExcluir.TabIndex = 32;
+            this.brnExcluir.Text = "Deletar";
+            this.brnExcluir.UseVisualStyleBackColor = false;
+            this.brnExcluir.Click += new System.EventHandler(this.brnExcluir_Click);
+            // 
+            // FormEditarProfessor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(559, 679);
+            this.ClientSize = new System.Drawing.Size(567, 678);
             this.Controls.Add(this.pnlCadastrarAluno);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FormCadastrarProfessor";
+            this.Name = "FormEditarProfessor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cadastro de Professor";
-            this.Load += new System.EventHandler(this.FormCadastrarProfessor_Load);
+            this.Text = "Edição de Professor";
+            this.Load += new System.EventHandler(this.FormEditarProfessor_Load);
             this.pnlCadastrarAluno.ResumeLayout(false);
             this.pnlCadastrarAluno.PerformLayout();
             this.gbTurma.ResumeLayout(false);
@@ -696,7 +703,32 @@
         #endregion
 
         private System.Windows.Forms.Panel pnlCadastrarAluno;
+        private System.Windows.Forms.GroupBox gbTurma;
+        private System.Windows.Forms.CheckBox cbTD;
+        private System.Windows.Forms.CheckBox cbPB;
+        private System.Windows.Forms.CheckBox cbTC;
+        private System.Windows.Forms.CheckBox cbPA;
+        private System.Windows.Forms.CheckBox cbTB;
+        private System.Windows.Forms.CheckBox cbPC;
+        private System.Windows.Forms.CheckBox cbTA;
+        private System.Windows.Forms.CheckBox cbPD;
+        private System.Windows.Forms.CheckBox cbSD;
+        private System.Windows.Forms.CheckBox cbSA;
+        private System.Windows.Forms.CheckBox cbSC;
+        private System.Windows.Forms.CheckBox cbSB;
         private System.Windows.Forms.GroupBox dbMateria;
+        private System.Windows.Forms.CheckBox cbLinguaP;
+        private System.Windows.Forms.CheckBox cbFisica;
+        private System.Windows.Forms.CheckBox cbMatematica;
+        private System.Windows.Forms.CheckBox cbIngles;
+        private System.Windows.Forms.CheckBox cbHistoria;
+        private System.Windows.Forms.CheckBox cbSociologia;
+        private System.Windows.Forms.CheckBox cbGeografia;
+        private System.Windows.Forms.CheckBox cbFilosofia;
+        private System.Windows.Forms.CheckBox cbBiologia;
+        private System.Windows.Forms.CheckBox cbEducacaoF;
+        private System.Windows.Forms.CheckBox cbQuímica;
+        private System.Windows.Forms.CheckBox cbArtes;
         private System.Windows.Forms.DateTimePicker dtNascimento;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel2;
@@ -716,35 +748,11 @@
         private System.Windows.Forms.Label lblEstado;
         private System.Windows.Forms.ComboBox cbCidade;
         private System.Windows.Forms.ComboBox cbEstado;
-        private System.Windows.Forms.Button btnCadastrar;
+        private System.Windows.Forms.Button btnAtualizar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.TextBox txtNomeCompleto;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblNomeCompleto;
-        private System.Windows.Forms.GroupBox gbTurma;
-        private System.Windows.Forms.CheckBox cbTD;
-        private System.Windows.Forms.CheckBox cbPB;
-        private System.Windows.Forms.CheckBox cbTC;
-        private System.Windows.Forms.CheckBox cbPA;
-        private System.Windows.Forms.CheckBox cbTB;
-        private System.Windows.Forms.CheckBox cbPC;
-        private System.Windows.Forms.CheckBox cbTA;
-        private System.Windows.Forms.CheckBox cbPD;
-        private System.Windows.Forms.CheckBox cbSD;
-        private System.Windows.Forms.CheckBox cbSA;
-        private System.Windows.Forms.CheckBox cbSC;
-        private System.Windows.Forms.CheckBox cbSB;
-        private System.Windows.Forms.CheckBox cbLinguaP;
-        private System.Windows.Forms.CheckBox cbFisica;
-        private System.Windows.Forms.CheckBox cbMatematica;
-        private System.Windows.Forms.CheckBox cbIngles;
-        private System.Windows.Forms.CheckBox cbHistoria;
-        private System.Windows.Forms.CheckBox cbSociologia;
-        private System.Windows.Forms.CheckBox cbGeografia;
-        private System.Windows.Forms.CheckBox cbFilosofia;
-        private System.Windows.Forms.CheckBox cbBiologia;
-        private System.Windows.Forms.CheckBox cbEducacaoF;
-        private System.Windows.Forms.CheckBox cbQuímica;
-        private System.Windows.Forms.CheckBox cbArtes;
+        private System.Windows.Forms.Button brnExcluir;
     }
 }

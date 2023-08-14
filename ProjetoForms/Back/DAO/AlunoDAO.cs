@@ -249,7 +249,7 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
-        internal void Deleter(int id)
+        internal void Deletar(int id)
         {
             try
             {

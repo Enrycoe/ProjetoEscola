@@ -418,7 +418,7 @@
             this.MinimizeBox = false;
             this.Name = "FormCadastrarAluno";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormCadastrarAluno";
+            this.Text = "Cadastro de Aluno";
             this.Load += new System.EventHandler(this.FormCadastrarAluno_Load);
             this.pnlCadastrarAluno.ResumeLayout(false);
             this.pnlCadastrarAluno.PerformLayout();

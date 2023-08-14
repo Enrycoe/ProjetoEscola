@@ -35,7 +35,7 @@ namespace ProjetoForms.Back.Model
                 try
                 {
                     aluno.Id = dao.GerarRA();
-                    aluno.Idade = aluno.CalcularIdade(aluno.DataNascimento);
+                    
                     dao.Cadastrar(aluno);
                 }
                 catch (Exception)
@@ -68,8 +68,8 @@ namespace ProjetoForms.Back.Model
             {
                 try
                 {
-                    alunoAtualido.Idade = alunoAtualido.CalcularIdade(alunoAtualido.DataNascimento);
-                    dao.Atualizar(alunoAtualido, aluno);
+                    
+                    dao.Atualizar(aluno, alunoAtualido);
                 }
                 catch (Exception)
                 {
@@ -84,7 +84,7 @@ namespace ProjetoForms.Back.Model
         {
             try
             {
-                dao.Deleter(id);
+                dao.Deletar(id);
             }
             catch (Exception)
             {

@@ -20,7 +20,7 @@ namespace ProjetoForms.Back.Model
                 try
                 {
                     pessoaAtualizada.Idade = pessoaAtualizada.CalcularIdade(pessoaAtualizada.DataNascimento);
-                    dao.Atualizar(pessoaAtualizada, pessoa);
+                    dao.Atualizar(pessoa, pessoaAtualizada);
                 }
                 catch (Exception)
                 {
@@ -49,7 +49,15 @@ namespace ProjetoForms.Back.Model
 
         public void Deletar(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                dao.Deletar(id);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public DataTable Listar()
@@ -64,6 +72,19 @@ namespace ProjetoForms.Back.Model
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        internal Professor ReceberProfessor(int id)
+        {
+            try
+            {
+                return dao.ReceberProfessor(id);
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

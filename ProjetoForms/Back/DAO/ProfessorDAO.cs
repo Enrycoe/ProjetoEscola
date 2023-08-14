@@ -15,7 +15,7 @@ namespace ProjetoForms.Back.DAO
         Conection conn = new Conection();
         MySqlCommand cmd;
 
-        internal void Atualizar(Pessoa pessoaAtualizada, Pessoa pessoa)
+        internal void Atualizar(Pessoa pessoa, Pessoa pessoaAtualizada)
         {
             Professor professor = pessoa as Professor;
             Professor professorAtualizada = pessoaAtualizada as Professor;
@@ -54,6 +54,30 @@ namespace ProjetoForms.Back.DAO
                     cmd.Parameters.AddWithValue("@numero_casa", professorAtualizada.Endereco.NumCasa);
                     cmd.Parameters.AddWithValue("@fk_bairro_id", professorAtualizada.Endereco.Bairro.Id);
                     cmd.Parameters.AddWithValue("@ID", enderecoDAO.ReceberIDEndereco(professor));
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+                cmd = new MySqlCommand("DELETE FROM materia_professor WHERE fk_Professor_ID = @ID", conn.conn);
+                cmd.Parameters.AddWithValue("@ID", professorAtualizada.Id);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                foreach (Materia materia in professorAtualizada.Materias)
+                {
+                    cmd = new MySqlCommand("INSERT INTO materia_professor (fk_Materia_ID, fk_Professor_ID) VALUES (@materia, @professor)", conn.conn);
+                    cmd.Parameters.AddWithValue("@materia", materia.Id);
+                    cmd.Parameters.AddWithValue("@professor", professorAtualizada.Id);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                }
+                cmd = new MySqlCommand("DELETE FROM professor_turma WHERE fk_Professor_ID = @ID", conn.conn);
+                cmd.Parameters.AddWithValue("@ID", professorAtualizada.Id);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                foreach (Turma turma in professorAtualizada.Turmas)
+                {
+                    cmd = new MySqlCommand("INSERT INTO professor_turma (fk_Turma_ID, fk_Professor_ID) VALUES (@turma, @professor)", conn.conn);
+                    cmd.Parameters.AddWithValue("@turma", turma.Id);
+                    cmd.Parameters.AddWithValue("@professor", professorAtualizada.Id);
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
                 }
@@ -159,6 +183,33 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
+        internal void Deletar(int id)
+        {
+            try
+            {
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("DELETE FROM materia_professor WHERE fk_Professor_ID = @ID", conn.conn);
+                cmd.Parameters.AddWithValue("@ID", id);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                cmd = new MySqlCommand("DELETE FROM professor_turma WHERE fk_Professor_ID = @ID", conn.conn);
+                cmd.Parameters.AddWithValue("@ID", id);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                cmd = new MySqlCommand("DELETE FROM professor WHERE ID = @ID", conn.conn);
+                cmd.Parameters.AddWithValue("@ID", id);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            finally { conn.FecharConexao(); }
+        }
+
         internal DataTable Listar()
         {
             try
@@ -175,6 +226,78 @@ namespace ProjetoForms.Back.DAO
 
             catch (Exception)
             {
+                throw;
+            }
+            finally { conn.FecharConexao(); }
+        }
+
+        internal Professor ReceberProfessor(int id)
+        {
+            try
+            {
+                Professor professor = new Professor();
+                professor.Turmas = new List<Turma>();   
+                professor.Endereco = new Endereco();
+                professor.Endereco.Bairro = new Bairro();
+                professor.Endereco.Bairro.Cidade = new Cidade();
+                professor.Endereco.Bairro.Cidade.Estado = new Estado();
+                professor.Materias = new List<Materia>();
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("SELECT * FROM professor p \r\nJOIN endereco e ON p.fk_endereço_id = e.ID\r\nJOIN bairro b ON e.fk_bairro_id = b.ID\r\nJOIN cidade c ON b.fk_cidade_id = c.ID\r\nJOIN estado es ON c.fk_Estado_ID = es.ID\r\nWHERE p.ID = @ID", conn.conn);
+                cmd.Parameters.AddWithValue("@ID", id);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    professor.Id = Convert.ToInt32(reader["ID"]);
+                    professor.DataNascimento = Convert.ToDateTime(reader["Data_de_Nascimento"]);
+                    professor.Idade = Convert.ToInt32(reader["Idade"]);
+                    professor.Nome = reader["Nome"].ToString();
+                    professor.TelefonePessoal = reader["Telefone_Pessoal"].ToString();
+                    professor.TelefoneFixo = reader["Telefone_Fixo"].ToString();
+                    professor.Endereco.Id = Convert.ToInt32(reader["fk_endereÇo_ID"]);
+                    professor.Endereco.NomeRua = reader["Nome_Rua"].ToString();
+                    professor.Endereco.NumCasa = Convert.ToInt32(reader["Numero_Casa"]);
+                    professor.Endereco.Bairro.Id = Convert.ToInt32(reader["fk_bairro_id"]);
+                    professor.Endereco.Bairro.Nome_bairro = reader["Nome_Bairro"].ToString();
+                    professor.Endereco.Bairro.Cidade.Id = Convert.ToInt32(reader["fk_cidade_id"]);
+                    professor.Endereco.Bairro.Cidade.Nome = reader["Nome_Cidade"].ToString();
+                    professor.Endereco.Bairro.Cidade.Estado.Id = Convert.ToInt32(reader["fk_Estado_ID"]);
+                    professor.Endereco.Bairro.Cidade.Estado.Sigla = reader["Sigla"].ToString();
+                    professor.Endereco.Bairro.Cidade.Estado.Nome = reader["Nome_Estado"].ToString();
+                }
+                cmd.Dispose();
+                conn.FecharConexao();
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("SELECT p.fk_Turma_ID, t.Nome_Turma FROM professor_turma p JOIN turma t ON t.ID = fk_Turma_ID WHERE fk_Professor_ID = @ID", conn.conn);
+                cmd.Parameters.AddWithValue("@ID", id);
+                var readerTurma = cmd.ExecuteReader();
+                while (readerTurma.Read())
+                {
+                    Turma turma = new Turma();
+                    turma.Id = Convert.ToInt32(readerTurma["fk_Turma_ID"]);
+                    turma.Nome = readerTurma["Nome_Turma"].ToString();
+                    professor.Turmas.Add(turma);    
+                }
+                cmd.Dispose();
+                conn.FecharConexao();
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("SELECT p.fk_Materia_ID, m.Nome_da_Materia FROM materia_professor p JOIN materia m ON m.ID = fk_Materia_ID WHERE fk_Professor_ID = @ID", conn.conn);
+                cmd.Parameters.AddWithValue("@ID", id);
+                var readerMateria = cmd.ExecuteReader();
+                while (readerMateria.Read())
+                {
+                    Materia materia = new Materia();
+                    materia.Id = Convert.ToInt32(readerMateria["fk_Materia_ID"]);
+                    materia.NomeMateria = readerMateria["Nome_da_Materia"].ToString();
+                    professor.Materias.Add(materia);
+                }
+                cmd.Dispose();
+                return professor;
+
+            }
+            catch (Exception)
+            {
+
                 throw;
             }
             finally { conn.FecharConexao(); }
