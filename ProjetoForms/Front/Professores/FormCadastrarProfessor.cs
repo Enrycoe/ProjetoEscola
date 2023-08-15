@@ -328,5 +328,37 @@ namespace ProjetoForms.Front.Professores
             cbMatematica.Checked = false;
             cbLinguaP.Checked = false;
         }
+
+        private void txtNomeCompleto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsLetter(e.KeyChar)) && !Char.IsControl(e.KeyChar) && (e.KeyChar != ' '))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBairro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsLetter(e.KeyChar)) && !Char.IsControl(e.KeyChar) && (e.KeyChar != ' '))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtRua_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsLetter(e.KeyChar)) && !Char.IsControl(e.KeyChar) && (e.KeyChar != ' '))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtNumeroCasa_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsNumber(e.KeyChar)) && !Char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

@@ -34,6 +34,50 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
+        internal void ExcluirMediaExistente(Media media)
+        {
+            try
+            {
+                
+                conn.AbrirConexao();
+                media.Id = ReceberIDMedia(media);
+                cmd.Dispose();
+                cmd = new MySqlCommand("UPDATE provas SET fk_Media_ID = null WHERE fk_Media_ID = @media ", conn.conn);
+                cmd.Parameters.AddWithValue("@media", media.Id);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                cmd = new MySqlCommand("DELETE FROM media WHERE fk_Aluno_RA = @aluno AND fk_Bimestre_ID = @bimestre AND fk_Materia_ID = @materia", conn.conn);
+                cmd.Parameters.AddWithValue("@aluno", media.Aluno.Id);
+                cmd.Parameters.AddWithValue("@bimestre", media.Bimestre.Id);
+                cmd.Parameters.AddWithValue("@materia", media.Materia.Id);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();  
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { conn.FecharConexao(); }
+        }
+
+        internal int ReceberIDMedia(Media media)
+        {
+            try
+            {
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("SELECT ID FROM media WHERE fk_Aluno_RA = @aluno AND fk_Bimestre_ID = @bimestre AND fk_Materia_ID = @materia ORDER BY ID DESC LIMIT 1", conn.conn);
+                cmd.Parameters.AddWithValue("@aluno", media.Aluno.Id);
+                cmd.Parameters.AddWithValue("@bimestre", media.Bimestre.Id);
+                cmd.Parameters.AddWithValue("@materia", media.Materia.Id);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         internal int ReceberIDUltimaMedia()
         {
             try
@@ -76,6 +120,28 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
-       
+        internal bool VerificarMediaExistente(Media media)
+        {
+            try
+            {
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("SELECT * FROM media WHERE fk_Aluno_RA = @aluno AND fk_Bimestre_ID = @bimestre AND fk_Materia_ID = @materia ORDER BY ID DESC LIMIT 1", conn.conn);
+                cmd.Parameters.AddWithValue("@aluno", media.Aluno.Id);
+                cmd.Parameters.AddWithValue("@bimestre", media.Bimestre.Id);
+                cmd.Parameters.AddWithValue("@materia", media.Materia.Id);
+                var mediasExistentes = cmd.ExecuteScalar();
+                if (mediasExistentes != null)
+                {
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { conn.FecharConexao(); }
+        }
     }
 }

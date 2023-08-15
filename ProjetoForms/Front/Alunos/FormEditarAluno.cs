@@ -88,8 +88,7 @@ namespace ProjetoForms.Front.Alunos
                 txtRua.Focus();
                 return;
             }
-
-            int idade = aluno.CalcularIdade(Convert.ToDateTime(dtNascimento.ToString()));
+            int idade = aluno.CalcularIdade(Convert.ToDateTime(dtNascimento.Text));
             if (idade < aluno.IdadeMinima || idade > aluno.IdadeMaxima)
             {
                 MessageBox.Show("O aluno precisa estar entre 13 e 21 anos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -159,13 +158,43 @@ namespace ProjetoForms.Front.Alunos
             {
                 throw ex;
             }
-
-
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txtNomeCompleto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsLetter(e.KeyChar)) && !Char.IsControl(e.KeyChar) && (e.KeyChar != ' '))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtBairro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsLetter(e.KeyChar)) && !Char.IsControl(e.KeyChar) && (e.KeyChar != ' '))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtRua_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsLetter(e.KeyChar)) && !Char.IsControl(e.KeyChar) && (e.KeyChar != ' '))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtNumeroCasa_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsNumber(e.KeyChar)) && !Char.IsControl(e.KeyChar) && (e.KeyChar != ' '))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

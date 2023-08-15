@@ -23,7 +23,6 @@ namespace ProjetoForms
 
         private void FormVerAlunoBoletim_Load(object sender, EventArgs e)
         {
-            this.BackColor = Color.FromArgb(17, 130, 186);
             cbTurma.DataSource = turmaModel.Listar();
             cbTurma.SelectedIndex = 12;
             Listar();
@@ -166,6 +165,22 @@ namespace ProjetoForms
         private void btnSair_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsLetter(e.KeyChar)) && !Char.IsControl(e.KeyChar) && (e.KeyChar != ' '))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtRA_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsNumber(e.KeyChar)) && !Char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVerAlunoMedia));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnSair = new System.Windows.Forms.Button();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.lblTurma = new System.Windows.Forms.Label();
             this.cbTurma = new System.Windows.Forms.ComboBox();
@@ -49,14 +49,18 @@
             this.Telefone_Responsavel_2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.data_de_Nascimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fk_endereco_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridAlunos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.panel1.Controls.Add(this.btnSair);
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.lblTitulo);
             this.panel1.Controls.Add(this.lblTurma);
             this.panel1.Controls.Add(this.cbTurma);
@@ -65,31 +69,19 @@
             this.panel1.Controls.Add(this.lblNome);
             this.panel1.Controls.Add(this.txtNome);
             this.panel1.Controls.Add(this.gridAlunos);
-            this.panel1.Location = new System.Drawing.Point(-11, 4);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1040, 609);
+            this.panel1.Size = new System.Drawing.Size(1037, 632);
             this.panel1.TabIndex = 3;
-            // 
-            // btnSair
-            // 
-            this.btnSair.BackColor = System.Drawing.Color.Maroon;
-            this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSair.ForeColor = System.Drawing.Color.Red;
-            this.btnSair.Location = new System.Drawing.Point(15, 554);
-            this.btnSair.Name = "btnSair";
-            this.btnSair.Size = new System.Drawing.Size(67, 49);
-            this.btnSair.TabIndex = 10;
-            this.btnSair.Text = "SAIR";
-            this.btnSair.UseVisualStyleBackColor = false;
-            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
             // lblTitulo
             // 
-            this.lblTitulo.BackColor = System.Drawing.Color.DodgerBlue;
+            this.lblTitulo.BackColor = System.Drawing.Color.Transparent;
             this.lblTitulo.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(3, 0);
+            this.lblTitulo.ForeColor = System.Drawing.Color.White;
+            this.lblTitulo.Location = new System.Drawing.Point(0, 0);
             this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(277, 208);
+            this.lblTitulo.Size = new System.Drawing.Size(279, 208);
             this.lblTitulo.TabIndex = 7;
             this.lblTitulo.Text = "MEDIA";
             this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -97,8 +89,10 @@
             // lblTurma
             // 
             this.lblTurma.AutoSize = true;
+            this.lblTurma.BackColor = System.Drawing.Color.Transparent;
             this.lblTurma.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTurma.Location = new System.Drawing.Point(108, 474);
+            this.lblTurma.ForeColor = System.Drawing.Color.White;
+            this.lblTurma.Location = new System.Drawing.Point(108, 451);
             this.lblTurma.Name = "lblTurma";
             this.lblTurma.Size = new System.Drawing.Size(54, 20);
             this.lblTurma.TabIndex = 6;
@@ -111,7 +105,7 @@
             this.cbTurma.FormattingEnabled = true;
             this.cbTurma.Items.AddRange(new object[] {
             " "});
-            this.cbTurma.Location = new System.Drawing.Point(78, 497);
+            this.cbTurma.Location = new System.Drawing.Point(78, 474);
             this.cbTurma.Name = "cbTurma";
             this.cbTurma.Size = new System.Drawing.Size(121, 28);
             this.cbTurma.TabIndex = 5;
@@ -120,8 +114,10 @@
             // lblRA
             // 
             this.lblRA.AutoSize = true;
+            this.lblRA.BackColor = System.Drawing.Color.Transparent;
             this.lblRA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRA.Location = new System.Drawing.Point(100, 355);
+            this.lblRA.ForeColor = System.Drawing.Color.White;
+            this.lblRA.Location = new System.Drawing.Point(100, 332);
             this.lblRA.Name = "lblRA";
             this.lblRA.Size = new System.Drawing.Size(99, 20);
             this.lblRA.TabIndex = 4;
@@ -130,17 +126,20 @@
             // txtRA
             // 
             this.txtRA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRA.Location = new System.Drawing.Point(62, 378);
+            this.txtRA.Location = new System.Drawing.Point(62, 355);
             this.txtRA.Name = "txtRA";
             this.txtRA.Size = new System.Drawing.Size(174, 26);
             this.txtRA.TabIndex = 3;
             this.txtRA.TextChanged += new System.EventHandler(this.txtRA_TextChanged);
+            this.txtRA.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRA_KeyPress);
             // 
             // lblNome
             // 
             this.lblNome.AutoSize = true;
+            this.lblNome.BackColor = System.Drawing.Color.Transparent;
             this.lblNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNome.Location = new System.Drawing.Point(81, 231);
+            this.lblNome.ForeColor = System.Drawing.Color.White;
+            this.lblNome.Location = new System.Drawing.Point(81, 208);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(118, 20);
             this.lblNome.TabIndex = 2;
@@ -149,14 +148,17 @@
             // txtNome
             // 
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNome.Location = new System.Drawing.Point(53, 254);
+            this.txtNome.Location = new System.Drawing.Point(53, 231);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(174, 26);
             this.txtNome.TabIndex = 1;
             this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
+            this.txtNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNome_KeyPress);
             // 
             // gridAlunos
             // 
+            this.gridAlunos.AllowUserToAddRows = false;
+            this.gridAlunos.AllowUserToDeleteRows = false;
             this.gridAlunos.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.gridAlunos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.gridAlunos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -177,7 +179,7 @@
             this.gridAlunos.ReadOnly = true;
             this.gridAlunos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.gridAlunos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridAlunos.Size = new System.Drawing.Size(759, 603);
+            this.gridAlunos.Size = new System.Drawing.Size(759, 629);
             this.gridAlunos.TabIndex = 0;
             this.gridAlunos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridAlunos_CellContentDoubleClick);
             // 
@@ -287,11 +289,21 @@
             this.fk_endereco_id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.fk_endereco_id.Visible = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 517);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(279, 115);
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
+            // 
             // FormVerAlunoMedia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1036, 610);
+            this.ClientSize = new System.Drawing.Size(1044, 638);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -303,6 +315,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridAlunos)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -329,6 +342,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn data_de_Nascimento;
         private System.Windows.Forms.DataGridViewTextBoxColumn fk_endereco_id;
         private System.Windows.Forms.Label lblTitulo;
-        private System.Windows.Forms.Button btnSair;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

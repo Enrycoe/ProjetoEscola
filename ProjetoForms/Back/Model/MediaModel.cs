@@ -24,6 +24,19 @@ namespace ProjetoForms.Back.Model
             }
         }
 
+        internal void ExcluirMediaExistente(Media media)
+        {
+            try
+            {
+                dao.ExcluirMediaExistente(media);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         internal int ReceberIDUltimaMedia()
         {
             try
@@ -42,6 +55,9 @@ namespace ProjetoForms.Back.Model
             return dao.ReceberMedia(aluno, idBimestre, idMateria);
         }
 
-  
+        internal bool VerificarMediaExistente(Media media)
+        {
+            return dao.VerificarMediaExistente(media);
+        }
     }
 }

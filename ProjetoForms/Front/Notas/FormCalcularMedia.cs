@@ -23,7 +23,7 @@ namespace ProjetoForms.Front.Notas
         ProvaModel provaModel = new ProvaModel();
         BimestreModel bimestreModel = new BimestreModel();
         MediaModel mediaModel = new MediaModel();
-        
+
         public FormCalcularMedia(Aluno aluno)
         {
             InitializeComponent();
@@ -99,14 +99,29 @@ namespace ProjetoForms.Front.Notas
                 MessageBox.Show("Selecione pelo menos uma prova para cadastrar um média", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
+
             media.Materia = new Materia();
             media.Materia.Id = Convert.ToInt32(cbMateria.SelectedValue);
             media.Bimestre = new Bimestre();
             media.Bimestre.Id = Convert.ToInt32(cbBimestre.SelectedValue);
             media.Aluno = aluno;
-            CadastrarMedia(media);
-
-            foreach(Prova prova in provas)
+            if (mediaModel.VerificarMediaExistente(media))
+            {
+                CadastrarMedia(media);
+            }
+            else
+            {
+                if (MessageBox.Show("Já existe uma média para este aluno nesta matéria e neste bimestre. Você deseja substituir?", "AVISO!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    mediaModel.ExcluirMediaExistente(media);
+                    CadastrarMedia(media);                   
+                }
+                else
+                {
+                    return;
+                }
+            }
+            foreach (Prova prova in provas)
             {
                 prova.Media = new Media();
                 prova.Media.Id = ReceberIDUltimaMedia();
@@ -128,7 +143,7 @@ namespace ProjetoForms.Front.Notas
 
                 MessageBox.Show("Erro: " + ex.Message);
             }
-            
+
         }
 
         private void DesignarProvaMedia(Prova prova)

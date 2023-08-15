@@ -37,7 +37,7 @@ namespace ProjetoForms
             Thread threadData = new Thread(new ThreadStart(MostrarDataEHora));
             threadData.IsBackground = true;
             threadData.Start();
-            lblDataHora.ForeColor = Color.FromArgb(17, 130, 186);
+     
         }
 
 

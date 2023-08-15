@@ -20,7 +20,7 @@ namespace ProjetoForms.Front.Alunos
         EstadoModel estadoModel = new EstadoModel();
         TurmaModel turmaModel = new TurmaModel();
         AlunoModel alunoModel = new AlunoModel();
-        
+
         public FormCadastrarAluno()
         {
             InitializeComponent();
@@ -39,8 +39,6 @@ namespace ProjetoForms.Front.Alunos
 
         private void FormCadastrarAluno_Load(object sender, EventArgs e)
         {
-            this.BackColor = Color.FromArgb(17, 130, 186);
-            pnlCadastrarAluno.BackColor = Color.FromArgb(17, 130, 186);
             cbEstado.DataSource = estadoModel.Listar();
             cbTurma.DataSource = turmaModel.Listar();
         }
@@ -52,7 +50,7 @@ namespace ProjetoForms.Front.Alunos
             aluno.Endereco = new Endereco();
             aluno.Endereco.Bairro = new Bairro();
             aluno.Endereco.Bairro.Cidade = new Cidade();
-            if(string.IsNullOrWhiteSpace(txtNomeCompleto.Text))
+            if (string.IsNullOrWhiteSpace(txtNomeCompleto.Text))
             {
                 MessageBox.Show("Nome do aluno não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNomeCompleto.Focus();
@@ -73,11 +71,11 @@ namespace ProjetoForms.Front.Alunos
             if (string.IsNullOrWhiteSpace(txtRua.Text))
             {
                 MessageBox.Show("Nome da rua não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtRua.Focus(); 
+                txtRua.Focus();
                 return;
             }
             DateTime dataNascimento = Convert.ToDateTime(dtNascimento.Text);
-            int idade = aluno.CalcularIdade(dataNascimento) ;
+            int idade = aluno.CalcularIdade(dataNascimento);
             if (idade < aluno.IdadeMinima || idade > aluno.IdadeMaxima)
             {
                 MessageBox.Show("O aluno precisa estar entre 13 e 21 anos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -91,7 +89,7 @@ namespace ProjetoForms.Front.Alunos
 
         private void Cadastrar(Aluno aluno)
         {
-            
+
             try
             {
                 aluno.Nome = txtNomeCompleto.Text;
@@ -144,6 +142,36 @@ namespace ProjetoForms.Front.Alunos
             txtTelefoneResponsavel2.Text = "";
         }
 
+        private void txtNomeCompleto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsLetter(e.KeyChar)) && !Char.IsControl(e.KeyChar) && (e.KeyChar != ' '))
+            {
+                e.Handled = true;
+            }
+        }
 
+        private void txtBairro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsLetter(e.KeyChar)) && !Char.IsControl(e.KeyChar) && (e.KeyChar != ' '))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtRua_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsLetter(e.KeyChar)) && !Char.IsControl(e.KeyChar) && (e.KeyChar != ' '))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtNumeroCasa_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsNumber(e.KeyChar)) && !Char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

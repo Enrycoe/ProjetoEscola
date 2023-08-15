@@ -152,7 +152,7 @@
             this.lblDataHora.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDataHora.BackColor = System.Drawing.SystemColors.ControlLight;
             this.lblDataHora.Font = new System.Drawing.Font("Agency FB", 63.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDataHora.ForeColor = System.Drawing.Color.SteelBlue;
+            this.lblDataHora.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(51)))), ((int)(((byte)(71)))));
             this.lblDataHora.Location = new System.Drawing.Point(378, 292);
             this.lblDataHora.Name = "lblDataHora";
             this.lblDataHora.Size = new System.Drawing.Size(676, 112);

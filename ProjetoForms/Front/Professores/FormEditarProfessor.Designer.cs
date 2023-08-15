@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.pnlCadastrarAluno = new System.Windows.Forms.Panel();
+            this.brnExcluir = new System.Windows.Forms.Button();
             this.gbTurma = new System.Windows.Forms.GroupBox();
             this.cbTD = new System.Windows.Forms.CheckBox();
             this.cbPB = new System.Windows.Forms.CheckBox();
@@ -79,7 +80,6 @@
             this.txtNomeCompleto = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblNomeCompleto = new System.Windows.Forms.Label();
-            this.brnExcluir = new System.Windows.Forms.Button();
             this.pnlCadastrarAluno.SuspendLayout();
             this.gbTurma.SuspendLayout();
             this.dbMateria.SuspendLayout();
@@ -107,6 +107,20 @@
             this.pnlCadastrarAluno.Name = "pnlCadastrarAluno";
             this.pnlCadastrarAluno.Size = new System.Drawing.Size(562, 666);
             this.pnlCadastrarAluno.TabIndex = 2;
+            // 
+            // brnExcluir
+            // 
+            this.brnExcluir.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.brnExcluir.BackColor = System.Drawing.Color.Maroon;
+            this.brnExcluir.Font = new System.Drawing.Font("MS Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.brnExcluir.ForeColor = System.Drawing.Color.RosyBrown;
+            this.brnExcluir.Location = new System.Drawing.Point(221, 598);
+            this.brnExcluir.Name = "brnExcluir";
+            this.brnExcluir.Size = new System.Drawing.Size(121, 55);
+            this.brnExcluir.TabIndex = 32;
+            this.brnExcluir.Text = "Deletar";
+            this.brnExcluir.UseVisualStyleBackColor = false;
+            this.brnExcluir.Click += new System.EventHandler(this.brnExcluir_Click);
             // 
             // gbTurma
             // 
@@ -518,6 +532,7 @@
             this.txtNumeroCasa.Name = "txtNumeroCasa";
             this.txtNumeroCasa.Size = new System.Drawing.Size(86, 22);
             this.txtNumeroCasa.TabIndex = 9;
+            this.txtNumeroCasa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeroCasa_KeyPress);
             // 
             // txtRua
             // 
@@ -526,6 +541,7 @@
             this.txtRua.Name = "txtRua";
             this.txtRua.Size = new System.Drawing.Size(233, 22);
             this.txtRua.TabIndex = 8;
+            this.txtRua.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRua_KeyPress);
             // 
             // txtBairro
             // 
@@ -534,6 +550,7 @@
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(400, 22);
             this.txtBairro.TabIndex = 7;
+            this.txtBairro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBairro_KeyPress);
             // 
             // lblNumero
             // 
@@ -639,6 +656,7 @@
             this.txtNomeCompleto.Name = "txtNomeCompleto";
             this.txtNomeCompleto.Size = new System.Drawing.Size(385, 26);
             this.txtNomeCompleto.TabIndex = 19;
+            this.txtNomeCompleto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomeCompleto_KeyPress);
             // 
             // label2
             // 
@@ -659,20 +677,6 @@
             this.lblNomeCompleto.Size = new System.Drawing.Size(112, 18);
             this.lblNomeCompleto.TabIndex = 15;
             this.lblNomeCompleto.Text = "Nome Completo:";
-            // 
-            // brnExcluir
-            // 
-            this.brnExcluir.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.brnExcluir.BackColor = System.Drawing.Color.Maroon;
-            this.brnExcluir.Font = new System.Drawing.Font("MS Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.brnExcluir.ForeColor = System.Drawing.Color.RosyBrown;
-            this.brnExcluir.Location = new System.Drawing.Point(221, 598);
-            this.brnExcluir.Name = "brnExcluir";
-            this.brnExcluir.Size = new System.Drawing.Size(121, 55);
-            this.brnExcluir.TabIndex = 32;
-            this.brnExcluir.Text = "Deletar";
-            this.brnExcluir.UseVisualStyleBackColor = false;
-            this.brnExcluir.Click += new System.EventHandler(this.brnExcluir_Click);
             // 
             // FormEditarProfessor
             // 

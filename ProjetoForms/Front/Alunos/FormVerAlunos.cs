@@ -22,7 +22,6 @@ namespace ProjetoForms
 
         private void FormVerAlunos_Load(object sender, EventArgs e)
         {
-            this.BackColor = Color.FromArgb(17, 130, 186);
             cbTurma.DataSource = turmaModel.Listar();
             cbTurma.SelectedIndex = 12;
             Listar();
@@ -50,9 +49,9 @@ namespace ProjetoForms
                 f.ShowDialog();
                 Listar();
             }
-            catch (System.InvalidCastException)
+            catch (Exception ex)
             {
-                
+                MessageBox.Show("Erro: " + ex.Message);
             }          
         }
 
@@ -166,6 +165,27 @@ namespace ProjetoForms
         private void btnSair_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsLetter(e.KeyChar)) && !Char.IsControl(e.KeyChar) && (e.KeyChar != ' '))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtRA_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsNumber(e.KeyChar)) && !Char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

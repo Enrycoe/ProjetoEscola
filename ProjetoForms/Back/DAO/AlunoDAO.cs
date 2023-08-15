@@ -194,6 +194,7 @@ namespace ProjetoForms.Back.DAO
             try
             {
                 conn.AbrirConexao();
+
                 cmd = new MySqlCommand("SELECT id FROM bairro where nome_bairro = @nome AND fk_cidade_id = @idCidade", conn.conn);
                 cmd.Parameters.AddWithValue("@nome", aluno.Endereco.Bairro.Nome_bairro);
                 cmd.Parameters.AddWithValue("@idCidade", aluno.Endereco.Bairro.Cidade.Id);

@@ -55,5 +55,13 @@ namespace ProjetoForms.Front.Professores
                 MessageBox.Show("Erro: " + ex.Message);
             }
         }
+
+        private void txtNome_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(Char.IsLetter(e.KeyChar)) && !Char.IsControl(e.KeyChar) && (e.KeyChar != ' '))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
