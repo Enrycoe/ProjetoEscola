@@ -124,6 +124,8 @@
             this.lblMArtes = new System.Windows.Forms.Label();
             this.lblProfessor = new System.Windows.Forms.Label();
             this.btnSair = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblRA
@@ -168,7 +170,7 @@
             this.lblHistoria.BackColor = System.Drawing.Color.Transparent;
             this.lblHistoria.Font = new System.Drawing.Font("Yu Gothic", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHistoria.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblHistoria.Location = new System.Drawing.Point(11, 561);
+            this.lblHistoria.Location = new System.Drawing.Point(7, 552);
             this.lblHistoria.Name = "lblHistoria";
             this.lblHistoria.Size = new System.Drawing.Size(83, 25);
             this.lblHistoria.TabIndex = 3;
@@ -179,7 +181,7 @@
             this.lblGeografia.AutoSize = true;
             this.lblGeografia.BackColor = System.Drawing.Color.Transparent;
             this.lblGeografia.Font = new System.Drawing.Font("Yu Gothic", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGeografia.Location = new System.Drawing.Point(11, 511);
+            this.lblGeografia.Location = new System.Drawing.Point(7, 503);
             this.lblGeografia.Name = "lblGeografia";
             this.lblGeografia.Size = new System.Drawing.Size(102, 25);
             this.lblGeografia.TabIndex = 4;
@@ -190,7 +192,7 @@
             this.lblQuimica.AutoSize = true;
             this.lblQuimica.BackColor = System.Drawing.Color.Transparent;
             this.lblQuimica.Font = new System.Drawing.Font("Yu Gothic", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuimica.Location = new System.Drawing.Point(11, 411);
+            this.lblQuimica.Location = new System.Drawing.Point(7, 405);
             this.lblQuimica.Name = "lblQuimica";
             this.lblQuimica.Size = new System.Drawing.Size(87, 25);
             this.lblQuimica.TabIndex = 6;
@@ -202,7 +204,7 @@
             this.lblBiologia.BackColor = System.Drawing.Color.Transparent;
             this.lblBiologia.Font = new System.Drawing.Font("Yu Gothic", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBiologia.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblBiologia.Location = new System.Drawing.Point(11, 461);
+            this.lblBiologia.Location = new System.Drawing.Point(7, 454);
             this.lblBiologia.Name = "lblBiologia";
             this.lblBiologia.Size = new System.Drawing.Size(84, 25);
             this.lblBiologia.TabIndex = 5;
@@ -213,7 +215,7 @@
             this.lblFilosofia.AutoSize = true;
             this.lblFilosofia.BackColor = System.Drawing.Color.Transparent;
             this.lblFilosofia.Font = new System.Drawing.Font("Yu Gothic", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFilosofia.Location = new System.Drawing.Point(11, 211);
+            this.lblFilosofia.Location = new System.Drawing.Point(7, 209);
             this.lblFilosofia.Name = "lblFilosofia";
             this.lblFilosofia.Size = new System.Drawing.Size(90, 25);
             this.lblFilosofia.TabIndex = 10;
@@ -225,7 +227,7 @@
             this.lblSociologia.BackColor = System.Drawing.Color.Transparent;
             this.lblSociologia.Font = new System.Drawing.Font("Yu Gothic", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSociologia.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblSociologia.Location = new System.Drawing.Point(11, 261);
+            this.lblSociologia.Location = new System.Drawing.Point(7, 258);
             this.lblSociologia.Name = "lblSociologia";
             this.lblSociologia.Size = new System.Drawing.Size(105, 25);
             this.lblSociologia.TabIndex = 9;
@@ -236,7 +238,7 @@
             this.lblIngles.AutoSize = true;
             this.lblIngles.BackColor = System.Drawing.Color.Transparent;
             this.lblIngles.Font = new System.Drawing.Font("Yu Gothic", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIngles.Location = new System.Drawing.Point(11, 311);
+            this.lblIngles.Location = new System.Drawing.Point(7, 307);
             this.lblIngles.Name = "lblIngles";
             this.lblIngles.Size = new System.Drawing.Size(67, 25);
             this.lblIngles.TabIndex = 8;
@@ -248,7 +250,7 @@
             this.lblFisica.BackColor = System.Drawing.Color.Transparent;
             this.lblFisica.Font = new System.Drawing.Font("Yu Gothic", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFisica.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblFisica.Location = new System.Drawing.Point(11, 361);
+            this.lblFisica.Location = new System.Drawing.Point(7, 356);
             this.lblFisica.Name = "lblFisica";
             this.lblFisica.Size = new System.Drawing.Size(65, 25);
             this.lblFisica.TabIndex = 7;
@@ -259,7 +261,7 @@
             this.lblArtes.AutoSize = true;
             this.lblArtes.BackColor = System.Drawing.Color.Transparent;
             this.lblArtes.Font = new System.Drawing.Font("Yu Gothic", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArtes.Location = new System.Drawing.Point(11, 111);
+            this.lblArtes.Location = new System.Drawing.Point(7, 111);
             this.lblArtes.Name = "lblArtes";
             this.lblArtes.Size = new System.Drawing.Size(60, 25);
             this.lblArtes.TabIndex = 12;
@@ -271,7 +273,7 @@
             this.lblEducacaoF.BackColor = System.Drawing.Color.Transparent;
             this.lblEducacaoF.Font = new System.Drawing.Font("Yu Gothic", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEducacaoF.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblEducacaoF.Location = new System.Drawing.Point(11, 161);
+            this.lblEducacaoF.Location = new System.Drawing.Point(7, 160);
             this.lblEducacaoF.Name = "lblEducacaoF";
             this.lblEducacaoF.Size = new System.Drawing.Size(159, 25);
             this.lblEducacaoF.TabIndex = 11;
@@ -282,7 +284,7 @@
             this.lblMatematica.AutoSize = true;
             this.lblMatematica.BackColor = System.Drawing.Color.Transparent;
             this.lblMatematica.Font = new System.Drawing.Font("Yu Gothic", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMatematica.Location = new System.Drawing.Point(11, 611);
+            this.lblMatematica.Location = new System.Drawing.Point(7, 601);
             this.lblMatematica.Name = "lblMatematica";
             this.lblMatematica.Size = new System.Drawing.Size(120, 25);
             this.lblMatematica.TabIndex = 14;
@@ -294,7 +296,7 @@
             this.lblPortugues.BackColor = System.Drawing.Color.Transparent;
             this.lblPortugues.Font = new System.Drawing.Font("Yu Gothic", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPortugues.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblPortugues.Location = new System.Drawing.Point(11, 661);
+            this.lblPortugues.Location = new System.Drawing.Point(7, 650);
             this.lblPortugues.Name = "lblPortugues";
             this.lblPortugues.Size = new System.Drawing.Size(185, 25);
             this.lblPortugues.TabIndex = 13;
@@ -389,7 +391,7 @@
             this.lbl1EF.AutoSize = true;
             this.lbl1EF.BackColor = System.Drawing.Color.Transparent;
             this.lbl1EF.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl1EF.Location = new System.Drawing.Point(228, 167);
+            this.lbl1EF.Location = new System.Drawing.Point(228, 166);
             this.lbl1EF.Name = "lbl1EF";
             this.lbl1EF.Size = new System.Drawing.Size(40, 17);
             this.lbl1EF.TabIndex = 28;
@@ -401,7 +403,7 @@
             this.lbl1Filosifia.AutoSize = true;
             this.lbl1Filosifia.BackColor = System.Drawing.Color.Transparent;
             this.lbl1Filosifia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl1Filosifia.Location = new System.Drawing.Point(228, 217);
+            this.lbl1Filosifia.Location = new System.Drawing.Point(228, 215);
             this.lbl1Filosifia.Name = "lbl1Filosifia";
             this.lbl1Filosifia.Size = new System.Drawing.Size(40, 17);
             this.lbl1Filosifia.TabIndex = 29;
@@ -413,7 +415,7 @@
             this.lbl1Sociologia.AutoSize = true;
             this.lbl1Sociologia.BackColor = System.Drawing.Color.Transparent;
             this.lbl1Sociologia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl1Sociologia.Location = new System.Drawing.Point(228, 267);
+            this.lbl1Sociologia.Location = new System.Drawing.Point(228, 264);
             this.lbl1Sociologia.Name = "lbl1Sociologia";
             this.lbl1Sociologia.Size = new System.Drawing.Size(40, 17);
             this.lbl1Sociologia.TabIndex = 30;
@@ -425,7 +427,7 @@
             this.lbl1Ingles.AutoSize = true;
             this.lbl1Ingles.BackColor = System.Drawing.Color.Transparent;
             this.lbl1Ingles.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl1Ingles.Location = new System.Drawing.Point(228, 317);
+            this.lbl1Ingles.Location = new System.Drawing.Point(228, 313);
             this.lbl1Ingles.Name = "lbl1Ingles";
             this.lbl1Ingles.Size = new System.Drawing.Size(40, 17);
             this.lbl1Ingles.TabIndex = 31;
@@ -437,7 +439,7 @@
             this.lbl1Fisica.AutoSize = true;
             this.lbl1Fisica.BackColor = System.Drawing.Color.Transparent;
             this.lbl1Fisica.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl1Fisica.Location = new System.Drawing.Point(228, 367);
+            this.lbl1Fisica.Location = new System.Drawing.Point(228, 362);
             this.lbl1Fisica.Name = "lbl1Fisica";
             this.lbl1Fisica.Size = new System.Drawing.Size(40, 17);
             this.lbl1Fisica.TabIndex = 32;
@@ -449,7 +451,7 @@
             this.lbl1Quimica.AutoSize = true;
             this.lbl1Quimica.BackColor = System.Drawing.Color.Transparent;
             this.lbl1Quimica.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl1Quimica.Location = new System.Drawing.Point(228, 417);
+            this.lbl1Quimica.Location = new System.Drawing.Point(228, 413);
             this.lbl1Quimica.Name = "lbl1Quimica";
             this.lbl1Quimica.Size = new System.Drawing.Size(40, 17);
             this.lbl1Quimica.TabIndex = 33;
@@ -461,7 +463,7 @@
             this.lbl1Geografia.AutoSize = true;
             this.lbl1Geografia.BackColor = System.Drawing.Color.Transparent;
             this.lbl1Geografia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl1Geografia.Location = new System.Drawing.Point(228, 517);
+            this.lbl1Geografia.Location = new System.Drawing.Point(228, 511);
             this.lbl1Geografia.Name = "lbl1Geografia";
             this.lbl1Geografia.Size = new System.Drawing.Size(40, 17);
             this.lbl1Geografia.TabIndex = 34;
@@ -473,7 +475,7 @@
             this.lbl1Biologia.AutoSize = true;
             this.lbl1Biologia.BackColor = System.Drawing.Color.Transparent;
             this.lbl1Biologia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl1Biologia.Location = new System.Drawing.Point(228, 467);
+            this.lbl1Biologia.Location = new System.Drawing.Point(228, 462);
             this.lbl1Biologia.Name = "lbl1Biologia";
             this.lbl1Biologia.Size = new System.Drawing.Size(40, 17);
             this.lbl1Biologia.TabIndex = 35;
@@ -485,7 +487,7 @@
             this.lbl1Historia.AutoSize = true;
             this.lbl1Historia.BackColor = System.Drawing.Color.Transparent;
             this.lbl1Historia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl1Historia.Location = new System.Drawing.Point(228, 567);
+            this.lbl1Historia.Location = new System.Drawing.Point(228, 560);
             this.lbl1Historia.Name = "lbl1Historia";
             this.lbl1Historia.Size = new System.Drawing.Size(40, 17);
             this.lbl1Historia.TabIndex = 36;
@@ -497,7 +499,7 @@
             this.lbl1Matematica.AutoSize = true;
             this.lbl1Matematica.BackColor = System.Drawing.Color.Transparent;
             this.lbl1Matematica.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl1Matematica.Location = new System.Drawing.Point(228, 617);
+            this.lbl1Matematica.Location = new System.Drawing.Point(228, 609);
             this.lbl1Matematica.Name = "lbl1Matematica";
             this.lbl1Matematica.Size = new System.Drawing.Size(40, 17);
             this.lbl1Matematica.TabIndex = 37;
@@ -509,7 +511,7 @@
             this.lbl1LP.AutoSize = true;
             this.lbl1LP.BackColor = System.Drawing.Color.Transparent;
             this.lbl1LP.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl1LP.Location = new System.Drawing.Point(228, 667);
+            this.lbl1LP.Location = new System.Drawing.Point(228, 658);
             this.lbl1LP.Name = "lbl1LP";
             this.lbl1LP.Size = new System.Drawing.Size(40, 17);
             this.lbl1LP.TabIndex = 39;
@@ -521,7 +523,7 @@
             this.lbl2LP.AutoSize = true;
             this.lbl2LP.BackColor = System.Drawing.Color.Transparent;
             this.lbl2LP.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl2LP.Location = new System.Drawing.Point(330, 667);
+            this.lbl2LP.Location = new System.Drawing.Point(330, 658);
             this.lbl2LP.Name = "lbl2LP";
             this.lbl2LP.Size = new System.Drawing.Size(40, 17);
             this.lbl2LP.TabIndex = 51;
@@ -533,7 +535,7 @@
             this.lbl2Matematica.AutoSize = true;
             this.lbl2Matematica.BackColor = System.Drawing.Color.Transparent;
             this.lbl2Matematica.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl2Matematica.Location = new System.Drawing.Point(330, 617);
+            this.lbl2Matematica.Location = new System.Drawing.Point(330, 609);
             this.lbl2Matematica.Name = "lbl2Matematica";
             this.lbl2Matematica.Size = new System.Drawing.Size(40, 17);
             this.lbl2Matematica.TabIndex = 50;
@@ -545,7 +547,7 @@
             this.lbl2Historia.AutoSize = true;
             this.lbl2Historia.BackColor = System.Drawing.Color.Transparent;
             this.lbl2Historia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl2Historia.Location = new System.Drawing.Point(330, 567);
+            this.lbl2Historia.Location = new System.Drawing.Point(330, 560);
             this.lbl2Historia.Name = "lbl2Historia";
             this.lbl2Historia.Size = new System.Drawing.Size(40, 17);
             this.lbl2Historia.TabIndex = 49;
@@ -557,7 +559,7 @@
             this.lbl2Biologia.AutoSize = true;
             this.lbl2Biologia.BackColor = System.Drawing.Color.Transparent;
             this.lbl2Biologia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl2Biologia.Location = new System.Drawing.Point(330, 467);
+            this.lbl2Biologia.Location = new System.Drawing.Point(330, 462);
             this.lbl2Biologia.Name = "lbl2Biologia";
             this.lbl2Biologia.Size = new System.Drawing.Size(40, 17);
             this.lbl2Biologia.TabIndex = 48;
@@ -569,7 +571,7 @@
             this.lbl2Geografia.AutoSize = true;
             this.lbl2Geografia.BackColor = System.Drawing.Color.Transparent;
             this.lbl2Geografia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl2Geografia.Location = new System.Drawing.Point(330, 517);
+            this.lbl2Geografia.Location = new System.Drawing.Point(330, 511);
             this.lbl2Geografia.Name = "lbl2Geografia";
             this.lbl2Geografia.Size = new System.Drawing.Size(40, 17);
             this.lbl2Geografia.TabIndex = 47;
@@ -581,7 +583,7 @@
             this.lbl2Quimica.AutoSize = true;
             this.lbl2Quimica.BackColor = System.Drawing.Color.Transparent;
             this.lbl2Quimica.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl2Quimica.Location = new System.Drawing.Point(330, 417);
+            this.lbl2Quimica.Location = new System.Drawing.Point(330, 413);
             this.lbl2Quimica.Name = "lbl2Quimica";
             this.lbl2Quimica.Size = new System.Drawing.Size(40, 17);
             this.lbl2Quimica.TabIndex = 46;
@@ -593,7 +595,7 @@
             this.lbl2Fisica.AutoSize = true;
             this.lbl2Fisica.BackColor = System.Drawing.Color.Transparent;
             this.lbl2Fisica.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl2Fisica.Location = new System.Drawing.Point(330, 367);
+            this.lbl2Fisica.Location = new System.Drawing.Point(330, 362);
             this.lbl2Fisica.Name = "lbl2Fisica";
             this.lbl2Fisica.Size = new System.Drawing.Size(40, 17);
             this.lbl2Fisica.TabIndex = 45;
@@ -605,7 +607,7 @@
             this.lbl2Ingles.AutoSize = true;
             this.lbl2Ingles.BackColor = System.Drawing.Color.Transparent;
             this.lbl2Ingles.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl2Ingles.Location = new System.Drawing.Point(330, 317);
+            this.lbl2Ingles.Location = new System.Drawing.Point(330, 313);
             this.lbl2Ingles.Name = "lbl2Ingles";
             this.lbl2Ingles.Size = new System.Drawing.Size(40, 17);
             this.lbl2Ingles.TabIndex = 44;
@@ -617,7 +619,7 @@
             this.lbl2Sociologia.AutoSize = true;
             this.lbl2Sociologia.BackColor = System.Drawing.Color.Transparent;
             this.lbl2Sociologia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl2Sociologia.Location = new System.Drawing.Point(330, 267);
+            this.lbl2Sociologia.Location = new System.Drawing.Point(330, 264);
             this.lbl2Sociologia.Name = "lbl2Sociologia";
             this.lbl2Sociologia.Size = new System.Drawing.Size(40, 17);
             this.lbl2Sociologia.TabIndex = 43;
@@ -629,7 +631,7 @@
             this.lbl2Filosifia.AutoSize = true;
             this.lbl2Filosifia.BackColor = System.Drawing.Color.Transparent;
             this.lbl2Filosifia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl2Filosifia.Location = new System.Drawing.Point(330, 217);
+            this.lbl2Filosifia.Location = new System.Drawing.Point(330, 215);
             this.lbl2Filosifia.Name = "lbl2Filosifia";
             this.lbl2Filosifia.Size = new System.Drawing.Size(40, 17);
             this.lbl2Filosifia.TabIndex = 42;
@@ -641,7 +643,7 @@
             this.lbl2EF.AutoSize = true;
             this.lbl2EF.BackColor = System.Drawing.Color.Transparent;
             this.lbl2EF.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl2EF.Location = new System.Drawing.Point(330, 167);
+            this.lbl2EF.Location = new System.Drawing.Point(330, 166);
             this.lbl2EF.Name = "lbl2EF";
             this.lbl2EF.Size = new System.Drawing.Size(40, 17);
             this.lbl2EF.TabIndex = 41;
@@ -665,7 +667,7 @@
             this.lbl4LP.AutoSize = true;
             this.lbl4LP.BackColor = System.Drawing.Color.Transparent;
             this.lbl4LP.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl4LP.Location = new System.Drawing.Point(528, 667);
+            this.lbl4LP.Location = new System.Drawing.Point(528, 658);
             this.lbl4LP.Name = "lbl4LP";
             this.lbl4LP.Size = new System.Drawing.Size(40, 17);
             this.lbl4LP.TabIndex = 75;
@@ -677,7 +679,7 @@
             this.lbl4Matematica.AutoSize = true;
             this.lbl4Matematica.BackColor = System.Drawing.Color.Transparent;
             this.lbl4Matematica.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl4Matematica.Location = new System.Drawing.Point(528, 617);
+            this.lbl4Matematica.Location = new System.Drawing.Point(528, 609);
             this.lbl4Matematica.Name = "lbl4Matematica";
             this.lbl4Matematica.Size = new System.Drawing.Size(40, 17);
             this.lbl4Matematica.TabIndex = 74;
@@ -689,7 +691,7 @@
             this.lbl4Historia.AutoSize = true;
             this.lbl4Historia.BackColor = System.Drawing.Color.Transparent;
             this.lbl4Historia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl4Historia.Location = new System.Drawing.Point(528, 567);
+            this.lbl4Historia.Location = new System.Drawing.Point(528, 560);
             this.lbl4Historia.Name = "lbl4Historia";
             this.lbl4Historia.Size = new System.Drawing.Size(40, 17);
             this.lbl4Historia.TabIndex = 73;
@@ -701,7 +703,7 @@
             this.lbl4Biologia.AutoSize = true;
             this.lbl4Biologia.BackColor = System.Drawing.Color.Transparent;
             this.lbl4Biologia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl4Biologia.Location = new System.Drawing.Point(528, 467);
+            this.lbl4Biologia.Location = new System.Drawing.Point(528, 462);
             this.lbl4Biologia.Name = "lbl4Biologia";
             this.lbl4Biologia.Size = new System.Drawing.Size(40, 17);
             this.lbl4Biologia.TabIndex = 72;
@@ -713,7 +715,7 @@
             this.lbl4Geografia.AutoSize = true;
             this.lbl4Geografia.BackColor = System.Drawing.Color.Transparent;
             this.lbl4Geografia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl4Geografia.Location = new System.Drawing.Point(528, 517);
+            this.lbl4Geografia.Location = new System.Drawing.Point(528, 511);
             this.lbl4Geografia.Name = "lbl4Geografia";
             this.lbl4Geografia.Size = new System.Drawing.Size(40, 17);
             this.lbl4Geografia.TabIndex = 71;
@@ -725,7 +727,7 @@
             this.lbl4Quimica.AutoSize = true;
             this.lbl4Quimica.BackColor = System.Drawing.Color.Transparent;
             this.lbl4Quimica.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl4Quimica.Location = new System.Drawing.Point(528, 417);
+            this.lbl4Quimica.Location = new System.Drawing.Point(528, 413);
             this.lbl4Quimica.Name = "lbl4Quimica";
             this.lbl4Quimica.Size = new System.Drawing.Size(40, 17);
             this.lbl4Quimica.TabIndex = 70;
@@ -737,7 +739,7 @@
             this.lbl4Fisica.AutoSize = true;
             this.lbl4Fisica.BackColor = System.Drawing.Color.Transparent;
             this.lbl4Fisica.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl4Fisica.Location = new System.Drawing.Point(528, 367);
+            this.lbl4Fisica.Location = new System.Drawing.Point(528, 362);
             this.lbl4Fisica.Name = "lbl4Fisica";
             this.lbl4Fisica.Size = new System.Drawing.Size(40, 17);
             this.lbl4Fisica.TabIndex = 69;
@@ -749,7 +751,7 @@
             this.lbl4Ingles.AutoSize = true;
             this.lbl4Ingles.BackColor = System.Drawing.Color.Transparent;
             this.lbl4Ingles.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl4Ingles.Location = new System.Drawing.Point(528, 317);
+            this.lbl4Ingles.Location = new System.Drawing.Point(528, 313);
             this.lbl4Ingles.Name = "lbl4Ingles";
             this.lbl4Ingles.Size = new System.Drawing.Size(40, 17);
             this.lbl4Ingles.TabIndex = 68;
@@ -761,7 +763,7 @@
             this.lbl4Sociologia.AutoSize = true;
             this.lbl4Sociologia.BackColor = System.Drawing.Color.Transparent;
             this.lbl4Sociologia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl4Sociologia.Location = new System.Drawing.Point(528, 267);
+            this.lbl4Sociologia.Location = new System.Drawing.Point(528, 264);
             this.lbl4Sociologia.Name = "lbl4Sociologia";
             this.lbl4Sociologia.Size = new System.Drawing.Size(40, 17);
             this.lbl4Sociologia.TabIndex = 67;
@@ -773,7 +775,7 @@
             this.lbl4Filosifia.AutoSize = true;
             this.lbl4Filosifia.BackColor = System.Drawing.Color.Transparent;
             this.lbl4Filosifia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl4Filosifia.Location = new System.Drawing.Point(528, 217);
+            this.lbl4Filosifia.Location = new System.Drawing.Point(528, 215);
             this.lbl4Filosifia.Name = "lbl4Filosifia";
             this.lbl4Filosifia.Size = new System.Drawing.Size(40, 17);
             this.lbl4Filosifia.TabIndex = 66;
@@ -785,7 +787,7 @@
             this.lbl4EF.AutoSize = true;
             this.lbl4EF.BackColor = System.Drawing.Color.Transparent;
             this.lbl4EF.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl4EF.Location = new System.Drawing.Point(528, 167);
+            this.lbl4EF.Location = new System.Drawing.Point(528, 166);
             this.lbl4EF.Name = "lbl4EF";
             this.lbl4EF.Size = new System.Drawing.Size(40, 17);
             this.lbl4EF.TabIndex = 65;
@@ -809,7 +811,7 @@
             this.lbl3LP.AutoSize = true;
             this.lbl3LP.BackColor = System.Drawing.Color.Transparent;
             this.lbl3LP.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl3LP.Location = new System.Drawing.Point(431, 667);
+            this.lbl3LP.Location = new System.Drawing.Point(431, 658);
             this.lbl3LP.Name = "lbl3LP";
             this.lbl3LP.Size = new System.Drawing.Size(40, 17);
             this.lbl3LP.TabIndex = 63;
@@ -821,7 +823,7 @@
             this.lbl3Matematica.AutoSize = true;
             this.lbl3Matematica.BackColor = System.Drawing.Color.Transparent;
             this.lbl3Matematica.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl3Matematica.Location = new System.Drawing.Point(431, 617);
+            this.lbl3Matematica.Location = new System.Drawing.Point(431, 609);
             this.lbl3Matematica.Name = "lbl3Matematica";
             this.lbl3Matematica.Size = new System.Drawing.Size(40, 17);
             this.lbl3Matematica.TabIndex = 62;
@@ -833,7 +835,7 @@
             this.lbl3Historia.AutoSize = true;
             this.lbl3Historia.BackColor = System.Drawing.Color.Transparent;
             this.lbl3Historia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl3Historia.Location = new System.Drawing.Point(431, 567);
+            this.lbl3Historia.Location = new System.Drawing.Point(431, 560);
             this.lbl3Historia.Name = "lbl3Historia";
             this.lbl3Historia.Size = new System.Drawing.Size(40, 17);
             this.lbl3Historia.TabIndex = 61;
@@ -845,7 +847,7 @@
             this.lbl3Biologia.AutoSize = true;
             this.lbl3Biologia.BackColor = System.Drawing.Color.Transparent;
             this.lbl3Biologia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl3Biologia.Location = new System.Drawing.Point(431, 467);
+            this.lbl3Biologia.Location = new System.Drawing.Point(431, 462);
             this.lbl3Biologia.Name = "lbl3Biologia";
             this.lbl3Biologia.Size = new System.Drawing.Size(40, 17);
             this.lbl3Biologia.TabIndex = 60;
@@ -857,7 +859,7 @@
             this.lbl3Geografia.AutoSize = true;
             this.lbl3Geografia.BackColor = System.Drawing.Color.Transparent;
             this.lbl3Geografia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl3Geografia.Location = new System.Drawing.Point(431, 517);
+            this.lbl3Geografia.Location = new System.Drawing.Point(431, 511);
             this.lbl3Geografia.Name = "lbl3Geografia";
             this.lbl3Geografia.Size = new System.Drawing.Size(40, 17);
             this.lbl3Geografia.TabIndex = 59;
@@ -869,7 +871,7 @@
             this.lbl3Quimica.AutoSize = true;
             this.lbl3Quimica.BackColor = System.Drawing.Color.Transparent;
             this.lbl3Quimica.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl3Quimica.Location = new System.Drawing.Point(431, 417);
+            this.lbl3Quimica.Location = new System.Drawing.Point(431, 413);
             this.lbl3Quimica.Name = "lbl3Quimica";
             this.lbl3Quimica.Size = new System.Drawing.Size(40, 17);
             this.lbl3Quimica.TabIndex = 58;
@@ -881,7 +883,7 @@
             this.lbl3Fisica.AutoSize = true;
             this.lbl3Fisica.BackColor = System.Drawing.Color.Transparent;
             this.lbl3Fisica.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl3Fisica.Location = new System.Drawing.Point(431, 367);
+            this.lbl3Fisica.Location = new System.Drawing.Point(431, 362);
             this.lbl3Fisica.Name = "lbl3Fisica";
             this.lbl3Fisica.Size = new System.Drawing.Size(40, 17);
             this.lbl3Fisica.TabIndex = 57;
@@ -893,7 +895,7 @@
             this.lbl3Ingles.AutoSize = true;
             this.lbl3Ingles.BackColor = System.Drawing.Color.Transparent;
             this.lbl3Ingles.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl3Ingles.Location = new System.Drawing.Point(431, 317);
+            this.lbl3Ingles.Location = new System.Drawing.Point(431, 313);
             this.lbl3Ingles.Name = "lbl3Ingles";
             this.lbl3Ingles.Size = new System.Drawing.Size(40, 17);
             this.lbl3Ingles.TabIndex = 56;
@@ -905,7 +907,7 @@
             this.lbl3Sociologia.AutoSize = true;
             this.lbl3Sociologia.BackColor = System.Drawing.Color.Transparent;
             this.lbl3Sociologia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl3Sociologia.Location = new System.Drawing.Point(431, 267);
+            this.lbl3Sociologia.Location = new System.Drawing.Point(431, 264);
             this.lbl3Sociologia.Name = "lbl3Sociologia";
             this.lbl3Sociologia.Size = new System.Drawing.Size(40, 17);
             this.lbl3Sociologia.TabIndex = 55;
@@ -917,7 +919,7 @@
             this.lbl3Filosifia.AutoSize = true;
             this.lbl3Filosifia.BackColor = System.Drawing.Color.Transparent;
             this.lbl3Filosifia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl3Filosifia.Location = new System.Drawing.Point(431, 217);
+            this.lbl3Filosifia.Location = new System.Drawing.Point(431, 215);
             this.lbl3Filosifia.Name = "lbl3Filosifia";
             this.lbl3Filosifia.Size = new System.Drawing.Size(40, 17);
             this.lbl3Filosifia.TabIndex = 54;
@@ -929,7 +931,7 @@
             this.lbl3EF.AutoSize = true;
             this.lbl3EF.BackColor = System.Drawing.Color.Transparent;
             this.lbl3EF.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl3EF.Location = new System.Drawing.Point(431, 167);
+            this.lbl3EF.Location = new System.Drawing.Point(431, 166);
             this.lbl3EF.Name = "lbl3EF";
             this.lbl3EF.Size = new System.Drawing.Size(40, 17);
             this.lbl3EF.TabIndex = 53;
@@ -953,7 +955,7 @@
             this.lblSLP.AutoSize = true;
             this.lblSLP.BackColor = System.Drawing.Color.Transparent;
             this.lblSLP.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSLP.Location = new System.Drawing.Point(707, 667);
+            this.lblSLP.Location = new System.Drawing.Point(707, 658);
             this.lblSLP.Name = "lblSLP";
             this.lblSLP.Size = new System.Drawing.Size(40, 17);
             this.lblSLP.TabIndex = 99;
@@ -965,7 +967,7 @@
             this.lblSMatematica.AutoSize = true;
             this.lblSMatematica.BackColor = System.Drawing.Color.Transparent;
             this.lblSMatematica.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSMatematica.Location = new System.Drawing.Point(707, 617);
+            this.lblSMatematica.Location = new System.Drawing.Point(707, 609);
             this.lblSMatematica.Name = "lblSMatematica";
             this.lblSMatematica.Size = new System.Drawing.Size(40, 17);
             this.lblSMatematica.TabIndex = 98;
@@ -977,7 +979,7 @@
             this.lblSHistoria.AutoSize = true;
             this.lblSHistoria.BackColor = System.Drawing.Color.Transparent;
             this.lblSHistoria.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSHistoria.Location = new System.Drawing.Point(707, 567);
+            this.lblSHistoria.Location = new System.Drawing.Point(707, 560);
             this.lblSHistoria.Name = "lblSHistoria";
             this.lblSHistoria.Size = new System.Drawing.Size(40, 17);
             this.lblSHistoria.TabIndex = 97;
@@ -989,7 +991,7 @@
             this.lblSBiologia.AutoSize = true;
             this.lblSBiologia.BackColor = System.Drawing.Color.Transparent;
             this.lblSBiologia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSBiologia.Location = new System.Drawing.Point(707, 467);
+            this.lblSBiologia.Location = new System.Drawing.Point(707, 462);
             this.lblSBiologia.Name = "lblSBiologia";
             this.lblSBiologia.Size = new System.Drawing.Size(40, 17);
             this.lblSBiologia.TabIndex = 96;
@@ -1001,7 +1003,7 @@
             this.lblSGeografia.AutoSize = true;
             this.lblSGeografia.BackColor = System.Drawing.Color.Transparent;
             this.lblSGeografia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSGeografia.Location = new System.Drawing.Point(707, 517);
+            this.lblSGeografia.Location = new System.Drawing.Point(707, 511);
             this.lblSGeografia.Name = "lblSGeografia";
             this.lblSGeografia.Size = new System.Drawing.Size(40, 17);
             this.lblSGeografia.TabIndex = 95;
@@ -1013,7 +1015,7 @@
             this.lblSQuimica.AutoSize = true;
             this.lblSQuimica.BackColor = System.Drawing.Color.Transparent;
             this.lblSQuimica.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSQuimica.Location = new System.Drawing.Point(707, 417);
+            this.lblSQuimica.Location = new System.Drawing.Point(707, 413);
             this.lblSQuimica.Name = "lblSQuimica";
             this.lblSQuimica.Size = new System.Drawing.Size(40, 17);
             this.lblSQuimica.TabIndex = 94;
@@ -1025,7 +1027,7 @@
             this.lblSFisica.AutoSize = true;
             this.lblSFisica.BackColor = System.Drawing.Color.Transparent;
             this.lblSFisica.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSFisica.Location = new System.Drawing.Point(707, 367);
+            this.lblSFisica.Location = new System.Drawing.Point(707, 362);
             this.lblSFisica.Name = "lblSFisica";
             this.lblSFisica.Size = new System.Drawing.Size(40, 17);
             this.lblSFisica.TabIndex = 93;
@@ -1037,7 +1039,7 @@
             this.lblSIngles.AutoSize = true;
             this.lblSIngles.BackColor = System.Drawing.Color.Transparent;
             this.lblSIngles.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSIngles.Location = new System.Drawing.Point(707, 317);
+            this.lblSIngles.Location = new System.Drawing.Point(707, 313);
             this.lblSIngles.Name = "lblSIngles";
             this.lblSIngles.Size = new System.Drawing.Size(40, 17);
             this.lblSIngles.TabIndex = 92;
@@ -1049,7 +1051,7 @@
             this.lblSSociologia.AutoSize = true;
             this.lblSSociologia.BackColor = System.Drawing.Color.Transparent;
             this.lblSSociologia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSSociologia.Location = new System.Drawing.Point(707, 267);
+            this.lblSSociologia.Location = new System.Drawing.Point(707, 264);
             this.lblSSociologia.Name = "lblSSociologia";
             this.lblSSociologia.Size = new System.Drawing.Size(40, 17);
             this.lblSSociologia.TabIndex = 91;
@@ -1061,7 +1063,7 @@
             this.lblSFilosifia.AutoSize = true;
             this.lblSFilosifia.BackColor = System.Drawing.Color.Transparent;
             this.lblSFilosifia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSFilosifia.Location = new System.Drawing.Point(707, 217);
+            this.lblSFilosifia.Location = new System.Drawing.Point(707, 215);
             this.lblSFilosifia.Name = "lblSFilosifia";
             this.lblSFilosifia.Size = new System.Drawing.Size(40, 17);
             this.lblSFilosifia.TabIndex = 90;
@@ -1073,7 +1075,7 @@
             this.lblSEF.AutoSize = true;
             this.lblSEF.BackColor = System.Drawing.Color.Transparent;
             this.lblSEF.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSEF.Location = new System.Drawing.Point(707, 167);
+            this.lblSEF.Location = new System.Drawing.Point(707, 166);
             this.lblSEF.Name = "lblSEF";
             this.lblSEF.Size = new System.Drawing.Size(40, 17);
             this.lblSEF.TabIndex = 89;
@@ -1097,7 +1099,7 @@
             this.lblMLP.AutoSize = true;
             this.lblMLP.BackColor = System.Drawing.Color.Transparent;
             this.lblMLP.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMLP.Location = new System.Drawing.Point(629, 667);
+            this.lblMLP.Location = new System.Drawing.Point(629, 658);
             this.lblMLP.Name = "lblMLP";
             this.lblMLP.Size = new System.Drawing.Size(40, 17);
             this.lblMLP.TabIndex = 87;
@@ -1109,7 +1111,7 @@
             this.lblMMatematica.AutoSize = true;
             this.lblMMatematica.BackColor = System.Drawing.Color.Transparent;
             this.lblMMatematica.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMMatematica.Location = new System.Drawing.Point(629, 617);
+            this.lblMMatematica.Location = new System.Drawing.Point(629, 609);
             this.lblMMatematica.Name = "lblMMatematica";
             this.lblMMatematica.Size = new System.Drawing.Size(40, 17);
             this.lblMMatematica.TabIndex = 86;
@@ -1121,7 +1123,7 @@
             this.lblMHistoria.AutoSize = true;
             this.lblMHistoria.BackColor = System.Drawing.Color.Transparent;
             this.lblMHistoria.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMHistoria.Location = new System.Drawing.Point(629, 567);
+            this.lblMHistoria.Location = new System.Drawing.Point(629, 560);
             this.lblMHistoria.Name = "lblMHistoria";
             this.lblMHistoria.Size = new System.Drawing.Size(40, 17);
             this.lblMHistoria.TabIndex = 85;
@@ -1133,7 +1135,7 @@
             this.lblMBiologia.AutoSize = true;
             this.lblMBiologia.BackColor = System.Drawing.Color.Transparent;
             this.lblMBiologia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMBiologia.Location = new System.Drawing.Point(629, 467);
+            this.lblMBiologia.Location = new System.Drawing.Point(629, 462);
             this.lblMBiologia.Name = "lblMBiologia";
             this.lblMBiologia.Size = new System.Drawing.Size(40, 17);
             this.lblMBiologia.TabIndex = 84;
@@ -1145,7 +1147,7 @@
             this.lblMGeografia.AutoSize = true;
             this.lblMGeografia.BackColor = System.Drawing.Color.Transparent;
             this.lblMGeografia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMGeografia.Location = new System.Drawing.Point(629, 517);
+            this.lblMGeografia.Location = new System.Drawing.Point(629, 511);
             this.lblMGeografia.Name = "lblMGeografia";
             this.lblMGeografia.Size = new System.Drawing.Size(40, 17);
             this.lblMGeografia.TabIndex = 83;
@@ -1157,7 +1159,7 @@
             this.lblMQuimica.AutoSize = true;
             this.lblMQuimica.BackColor = System.Drawing.Color.Transparent;
             this.lblMQuimica.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMQuimica.Location = new System.Drawing.Point(629, 417);
+            this.lblMQuimica.Location = new System.Drawing.Point(629, 413);
             this.lblMQuimica.Name = "lblMQuimica";
             this.lblMQuimica.Size = new System.Drawing.Size(40, 17);
             this.lblMQuimica.TabIndex = 82;
@@ -1169,7 +1171,7 @@
             this.lblMFisica.AutoSize = true;
             this.lblMFisica.BackColor = System.Drawing.Color.Transparent;
             this.lblMFisica.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMFisica.Location = new System.Drawing.Point(629, 367);
+            this.lblMFisica.Location = new System.Drawing.Point(629, 362);
             this.lblMFisica.Name = "lblMFisica";
             this.lblMFisica.Size = new System.Drawing.Size(40, 17);
             this.lblMFisica.TabIndex = 81;
@@ -1181,7 +1183,7 @@
             this.lblMIngles.AutoSize = true;
             this.lblMIngles.BackColor = System.Drawing.Color.Transparent;
             this.lblMIngles.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMIngles.Location = new System.Drawing.Point(629, 317);
+            this.lblMIngles.Location = new System.Drawing.Point(629, 313);
             this.lblMIngles.Name = "lblMIngles";
             this.lblMIngles.Size = new System.Drawing.Size(40, 17);
             this.lblMIngles.TabIndex = 80;
@@ -1193,7 +1195,7 @@
             this.lblMSociologia.AutoSize = true;
             this.lblMSociologia.BackColor = System.Drawing.Color.Transparent;
             this.lblMSociologia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMSociologia.Location = new System.Drawing.Point(629, 267);
+            this.lblMSociologia.Location = new System.Drawing.Point(629, 264);
             this.lblMSociologia.Name = "lblMSociologia";
             this.lblMSociologia.Size = new System.Drawing.Size(40, 17);
             this.lblMSociologia.TabIndex = 79;
@@ -1205,7 +1207,7 @@
             this.lblMFilosifia.AutoSize = true;
             this.lblMFilosifia.BackColor = System.Drawing.Color.Transparent;
             this.lblMFilosifia.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMFilosifia.Location = new System.Drawing.Point(629, 217);
+            this.lblMFilosifia.Location = new System.Drawing.Point(629, 215);
             this.lblMFilosifia.Name = "lblMFilosifia";
             this.lblMFilosifia.Size = new System.Drawing.Size(40, 17);
             this.lblMFilosifia.TabIndex = 78;
@@ -1217,7 +1219,7 @@
             this.lblMEF.AutoSize = true;
             this.lblMEF.BackColor = System.Drawing.Color.Transparent;
             this.lblMEF.Font = new System.Drawing.Font("Yu Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMEF.Location = new System.Drawing.Point(629, 167);
+            this.lblMEF.Location = new System.Drawing.Point(629, 166);
             this.lblMEF.Name = "lblMEF";
             this.lblMEF.Size = new System.Drawing.Size(40, 17);
             this.lblMEF.TabIndex = 77;
@@ -1250,16 +1252,26 @@
             // 
             // btnSair
             // 
-            this.btnSair.BackColor = System.Drawing.Color.Maroon;
+            this.btnSair.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(215)))), ((int)(((byte)(220)))));
+            this.btnSair.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSair.BackgroundImage")));
+            this.btnSair.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSair.FlatAppearance.BorderSize = 0;
             this.btnSair.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSair.ForeColor = System.Drawing.Color.Red;
-            this.btnSair.Location = new System.Drawing.Point(3, 702);
+            this.btnSair.Location = new System.Drawing.Point(3, 3);
             this.btnSair.Name = "btnSair";
-            this.btnSair.Size = new System.Drawing.Size(75, 36);
+            this.btnSair.Size = new System.Drawing.Size(45, 45);
             this.btnSair.TabIndex = 101;
-            this.btnSair.Text = "SAIR";
             this.btnSair.UseVisualStyleBackColor = false;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnSair);
+            this.panel1.Location = new System.Drawing.Point(2, 687);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(801, 53);
+            this.panel1.TabIndex = 102;
             // 
             // FormBoletim
             // 
@@ -1269,7 +1281,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(801, 741);
-            this.Controls.Add(this.btnSair);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblProfessor);
             this.Controls.Add(this.lblSLP);
             this.Controls.Add(this.lblSMatematica);
@@ -1365,13 +1377,15 @@
             this.Controls.Add(this.lblNome);
             this.Controls.Add(this.lblRA);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormBoletim";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Boletim";
             this.Load += new System.EventHandler(this.lblNome_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormBoletim_MouseDown);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1474,5 +1488,6 @@
         private System.Windows.Forms.Label lblMArtes;
         private System.Windows.Forms.Label lblProfessor;
         private System.Windows.Forms.Button btnSair;
+        private System.Windows.Forms.Panel panel1;
     }
 }

@@ -32,7 +32,6 @@
             this.brnExcluir = new System.Windows.Forms.Button();
             this.dtNascimento = new System.Windows.Forms.DateTimePicker();
             this.btnCadastrar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.cbTurma = new System.Windows.Forms.ComboBox();
             this.txtRA = new System.Windows.Forms.TextBox();
             this.txtNomeCompleto = new System.Windows.Forms.TextBox();
@@ -60,6 +59,7 @@
             this.lblEstado = new System.Windows.Forms.Label();
             this.cbCidade = new System.Windows.Forms.ComboBox();
             this.cbEstado = new System.Windows.Forms.ComboBox();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.panel2.SuspendLayout();
             this.pnlEndereço.SuspendLayout();
             this.SuspendLayout();
@@ -68,13 +68,16 @@
             // 
             this.brnExcluir.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.brnExcluir.BackColor = System.Drawing.Color.Maroon;
+            this.brnExcluir.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("brnExcluir.BackgroundImage")));
+            this.brnExcluir.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.brnExcluir.FlatAppearance.BorderSize = 0;
+            this.brnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.brnExcluir.Font = new System.Drawing.Font("MS Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.brnExcluir.ForeColor = System.Drawing.Color.RosyBrown;
-            this.brnExcluir.Location = new System.Drawing.Point(241, 516);
+            this.brnExcluir.Location = new System.Drawing.Point(12, 535);
             this.brnExcluir.Name = "brnExcluir";
-            this.brnExcluir.Size = new System.Drawing.Size(121, 55);
+            this.brnExcluir.Size = new System.Drawing.Size(60, 60);
             this.brnExcluir.TabIndex = 45;
-            this.brnExcluir.Text = "Deletar";
             this.brnExcluir.UseVisualStyleBackColor = false;
             this.brnExcluir.Click += new System.EventHandler(this.brnExcluir_Click);
             // 
@@ -82,7 +85,7 @@
             // 
             this.dtNascimento.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtNascimento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtNascimento.Location = new System.Drawing.Point(176, 61);
+            this.dtNascimento.Location = new System.Drawing.Point(178, 108);
             this.dtNascimento.Name = "dtNascimento";
             this.dtNascimento.Size = new System.Drawing.Size(385, 26);
             this.dtNascimento.TabIndex = 44;
@@ -91,29 +94,18 @@
             // 
             this.btnCadastrar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCadastrar.BackColor = System.Drawing.SystemColors.Control;
+            this.btnCadastrar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCadastrar.BackgroundImage")));
+            this.btnCadastrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCadastrar.FlatAppearance.BorderSize = 0;
+            this.btnCadastrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCadastrar.Font = new System.Drawing.Font("MS Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCadastrar.ForeColor = System.Drawing.Color.Green;
-            this.btnCadastrar.Location = new System.Drawing.Point(454, 516);
+            this.btnCadastrar.Location = new System.Drawing.Point(535, 535);
             this.btnCadastrar.Name = "btnCadastrar";
-            this.btnCadastrar.Size = new System.Drawing.Size(121, 55);
+            this.btnCadastrar.Size = new System.Drawing.Size(60, 60);
             this.btnCadastrar.TabIndex = 40;
-            this.btnCadastrar.Text = "Atualizar";
             this.btnCadastrar.UseVisualStyleBackColor = false;
             this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnCancelar.BackColor = System.Drawing.SystemColors.Control;
-            this.btnCancelar.Font = new System.Drawing.Font("MS Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.ForeColor = System.Drawing.Color.Red;
-            this.btnCancelar.Location = new System.Drawing.Point(31, 516);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(121, 55);
-            this.btnCancelar.TabIndex = 39;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // cbTurma
             // 
@@ -121,7 +113,7 @@
             this.cbTurma.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTurma.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTurma.FormattingEnabled = true;
-            this.cbTurma.Location = new System.Drawing.Point(410, 463);
+            this.cbTurma.Location = new System.Drawing.Point(412, 501);
             this.cbTurma.Name = "cbTurma";
             this.cbTurma.Size = new System.Drawing.Size(157, 28);
             this.cbTurma.TabIndex = 37;
@@ -131,7 +123,7 @@
             this.txtRA.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtRA.Enabled = false;
             this.txtRA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRA.Location = new System.Drawing.Point(76, 465);
+            this.txtRA.Location = new System.Drawing.Point(78, 501);
             this.txtRA.Name = "txtRA";
             this.txtRA.Size = new System.Drawing.Size(157, 26);
             this.txtRA.TabIndex = 36;
@@ -141,7 +133,7 @@
             this.txtNomeCompleto.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNomeCompleto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNomeCompleto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNomeCompleto.Location = new System.Drawing.Point(176, 29);
+            this.txtNomeCompleto.Location = new System.Drawing.Point(178, 76);
             this.txtNomeCompleto.Name = "txtNomeCompleto";
             this.txtNomeCompleto.Size = new System.Drawing.Size(385, 26);
             this.txtNomeCompleto.TabIndex = 35;
@@ -152,7 +144,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(349, 467);
+            this.label5.Location = new System.Drawing.Point(349, 505);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(55, 18);
             this.label5.TabIndex = 34;
@@ -164,7 +156,7 @@
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmail.ForeColor = System.Drawing.Color.White;
-            this.lblEmail.Location = new System.Drawing.Point(36, 469);
+            this.lblEmail.Location = new System.Drawing.Point(38, 505);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(34, 18);
             this.lblEmail.TabIndex = 33;
@@ -176,7 +168,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(36, 61);
+            this.label2.Location = new System.Drawing.Point(38, 108);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(141, 18);
             this.label2.TabIndex = 32;
@@ -188,7 +180,7 @@
             this.lblNomeCompleto.AutoSize = true;
             this.lblNomeCompleto.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNomeCompleto.ForeColor = System.Drawing.Color.White;
-            this.lblNomeCompleto.Location = new System.Drawing.Point(36, 29);
+            this.lblNomeCompleto.Location = new System.Drawing.Point(38, 76);
             this.lblNomeCompleto.Name = "lblNomeCompleto";
             this.lblNomeCompleto.Size = new System.Drawing.Size(112, 18);
             this.lblNomeCompleto.TabIndex = 31;
@@ -208,7 +200,7 @@
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(-29, 279);
+            this.panel2.Location = new System.Drawing.Point(-27, 326);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(657, 167);
             this.panel2.TabIndex = 42;
@@ -309,7 +301,7 @@
             this.pnlEndereço.Controls.Add(this.lblEstado);
             this.pnlEndereço.Controls.Add(this.cbCidade);
             this.pnlEndereço.Controls.Add(this.cbEstado);
-            this.pnlEndereço.Location = new System.Drawing.Point(-16, 106);
+            this.pnlEndereço.Location = new System.Drawing.Point(-14, 153);
             this.pnlEndereço.Name = "pnlEndereço";
             this.pnlEndereço.Size = new System.Drawing.Size(726, 167);
             this.pnlEndereço.TabIndex = 41;
@@ -412,6 +404,23 @@
             this.cbEstado.TabIndex = 0;
             this.cbEstado.TextChanged += new System.EventHandler(this.cbEstado_TextChanged);
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(215)))), ((int)(((byte)(220)))));
+            this.btnCancelar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCancelar.BackgroundImage")));
+            this.btnCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnCancelar.FlatAppearance.BorderSize = 0;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("MS Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.ForeColor = System.Drawing.Color.Red;
+            this.btnCancelar.Location = new System.Drawing.Point(545, 12);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(50, 50);
+            this.btnCancelar.TabIndex = 39;
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // FormEditarAluno
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -431,13 +440,14 @@
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.lblNomeCompleto);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormEditarAluno";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edição de Aluno";
             this.Load += new System.EventHandler(this.FormEditarAluno_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormEditarAluno_MouseDown);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.pnlEndereço.ResumeLayout(false);
@@ -472,7 +482,6 @@
         private System.Windows.Forms.ComboBox cbCidade;
         private System.Windows.Forms.ComboBox cbEstado;
         private System.Windows.Forms.Button btnCadastrar;
-        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.ComboBox cbTurma;
         private System.Windows.Forms.TextBox txtRA;
         private System.Windows.Forms.TextBox txtNomeCompleto;
@@ -480,5 +489,6 @@
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblNomeCompleto;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

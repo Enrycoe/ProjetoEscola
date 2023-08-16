@@ -93,7 +93,7 @@ namespace ProjetoForms.Back.Model
             }
             
         }
-
+        
         internal DataTable BuscarAluno(string nome, int rA, int idTurma)
         {
             try

@@ -99,6 +99,29 @@ namespace ProjetoForms.Back.DAO
             }
             finally { conn.FecharConexao(); }
         }
+
+        internal DataTable BuscarPorNome(string nome)
+        {
+            try
+            {
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("SELECT * FROM professor WHERE Nome LIKE @nome", conn.conn);
+                cmd.Parameters.AddWithValue("@nome", nome + "%");
+
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                adapter.SelectCommand = cmd;
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                return dt;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         internal void Cadastrar(Pessoa pessoa)
         {
             Professor professor = pessoa as Professor;

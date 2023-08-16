@@ -107,5 +107,10 @@ namespace ProjetoForms
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
         }
+
+        private void btnFechar_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

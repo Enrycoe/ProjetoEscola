@@ -75,6 +75,11 @@ namespace ProjetoForms.Back.Model
             }
         }
 
+        internal DataTable BuscarPorNome(string nome)
+        {
+            return dao.BuscarPorNome(nome);
+        }
+
         internal Professor ReceberProfessor(int id)
         {
             try

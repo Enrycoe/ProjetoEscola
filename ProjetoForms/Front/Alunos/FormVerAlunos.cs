@@ -4,6 +4,7 @@ using ProjetoForms.Front.Alunos;
 using System;
 using System.Data;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace ProjetoForms
@@ -20,11 +21,17 @@ namespace ProjetoForms
             cbTurma.DisplayMember = "Nome_Turma";
         }
 
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
         private void FormVerAlunos_Load(object sender, EventArgs e)
         {
             cbTurma.DataSource = turmaModel.Listar();
             cbTurma.SelectedIndex = 12;
             Listar();
+            gridAlunos.EnableHeadersVisualStyles = false;
+            gridAlunos.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
         }
 
         public void Listar()
@@ -72,13 +79,13 @@ namespace ProjetoForms
 
         private void Pesquisar()
         {
-            if ((txtNome.Text == "") && (txtRA.Text == "") && (cbTurma.Text == ""))
+            if ((string.IsNullOrEmpty(txtNome.Text)) && (string.IsNullOrEmpty(txtRA.Text)) && (string.IsNullOrEmpty(cbTurma.Text)))
             {
                 Listar();
                 return;
             }
 
-            if (!(txtNome.Text == "") && !(txtRA.Text == "") && !(cbTurma.Text == ""))
+            if (!(string.IsNullOrEmpty(txtNome.Text)) && !(string.IsNullOrEmpty(txtRA.Text)) && !(string.IsNullOrEmpty(cbTurma.Text)))
             {
                 string nome = txtNome.Text;
                 int RA = Convert.ToInt32(txtRA.Text);
@@ -86,34 +93,34 @@ namespace ProjetoForms
                 gridAlunos.DataSource = BuscarAluno(nome, RA, idTurma);
                 return;
             }
-            if (!(txtNome.Text == "") && (txtRA.Text == "") && (cbTurma.Text == ""))
+            if (!(string.IsNullOrEmpty(txtNome.Text)) && (string.IsNullOrEmpty(txtRA.Text)) && (string.IsNullOrEmpty(cbTurma.Text)))
             {
                 string nome = txtNome.Text;
                 gridAlunos.DataSource = BuscarAlunoPorNome(nome);
                 return;
             }
-            if (!(txtNome.Text == "") && !(txtRA.Text == "") && (cbTurma.Text == ""))
+            if (!((string.IsNullOrEmpty(txtNome.Text)) && !(string.IsNullOrEmpty(txtRA.Text)) && (string.IsNullOrEmpty(cbTurma.Text))))
             {
                 string nome = txtNome.Text;
                 int RA = Convert.ToInt32(txtRA.Text);
                 gridAlunos.DataSource = BuscarAlunoPorNomeERA(nome, RA);
                 return;
             }
-            if (!(txtNome.Text == "") && (txtRA.Text == "") && !(cbTurma.Text == ""))
+            if (!((string.IsNullOrEmpty(txtNome.Text)) && (string.IsNullOrEmpty(txtRA.Text)) && !(string.IsNullOrEmpty(cbTurma.Text))))
             {
                 string nome = txtNome.Text;
                 int idTurma = Convert.ToInt32(cbTurma.SelectedValue);
                 gridAlunos.DataSource = BuscarAlunoPorNomeETurma(nome, idTurma);
                 return;
             }
-            if ((txtNome.Text == "") && !(txtRA.Text == "") && (cbTurma.Text == ""))
+            if ((string.IsNullOrEmpty(txtNome.Text) && !(string.IsNullOrEmpty(txtRA.Text)) && (string.IsNullOrEmpty(cbTurma.Text))))
             {
                 int RA = Convert.ToInt32(txtRA.Text);
                 gridAlunos.DataSource = BuscarAlunoPorRA(RA);
                 return;
             }
 
-            if ((txtNome.Text == "") && !(txtRA.Text == "") && !(cbTurma.Text == ""))
+            if ((string.IsNullOrEmpty(txtNome.Text) && !(string.IsNullOrEmpty(txtRA.Text)) && !(string.IsNullOrEmpty(cbTurma.Text))))
             {
                 int RA = Convert.ToInt32(txtRA.Text);
                 int idTurma = Convert.ToInt32(cbTurma.SelectedValue);
@@ -121,7 +128,7 @@ namespace ProjetoForms
                 return;
             }
 
-            if ((txtNome.Text == "") && (txtRA.Text == "") && !(cbTurma.Text == ""))
+            if ((string.IsNullOrEmpty(txtNome.Text) && (string.IsNullOrEmpty(txtRA.Text)) && !(string.IsNullOrEmpty(cbTurma.Text))))
             {
                 int idTurma = Convert.ToInt32(cbTurma.SelectedValue);
                 gridAlunos.DataSource = BuscarAlunoPorTurma(idTurma);
@@ -186,6 +193,17 @@ namespace ProjetoForms
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+        
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

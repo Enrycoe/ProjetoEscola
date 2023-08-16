@@ -255,6 +255,16 @@ namespace ProjetoForms.Back.DAO
             try
             {
                 conn.AbrirConexao();
+                cmd = new MySqlCommand("DELETE FROM provas WHERE fk_Aluno_RA = @RA", conn.conn);
+                cmd.Parameters.AddWithValue("@RA", id);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+
+                cmd = new MySqlCommand("DELETE FROM media WHERE fk_Aluno_RA = @RA", conn.conn);
+                cmd.Parameters.AddWithValue("@RA", id);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+                
                 cmd = new MySqlCommand("DELETE FROM aluno WHERE RA = @RA", conn.conn);
                 cmd.Parameters.AddWithValue("@RA", id);
                 cmd.ExecuteNonQuery();

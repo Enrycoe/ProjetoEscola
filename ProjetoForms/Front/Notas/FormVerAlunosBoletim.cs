@@ -5,6 +5,7 @@ using ProjetoForms.Front.Notas;
 using System;
 using System.Data;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace ProjetoForms
@@ -21,11 +22,18 @@ namespace ProjetoForms
             cbTurma.DisplayMember = "Nome_Turma";
         }
 
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
+
         private void FormVerAlunoBoletim_Load(object sender, EventArgs e)
         {
             cbTurma.DataSource = turmaModel.Listar();
             cbTurma.SelectedIndex = 12;
             Listar();
+            gridAlunos.EnableHeadersVisualStyles = false;
+            gridAlunos.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
         }
 
         public void Listar()
@@ -181,6 +189,17 @@ namespace ProjetoForms
             {
                 e.Handled = true;
             }
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
