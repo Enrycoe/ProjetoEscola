@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVerProfessores));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblTitulo = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblNome = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.gridProfessores = new System.Windows.Forms.DataGridView();
@@ -41,10 +41,9 @@
             this.Telefone_Fixo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Data_de_Nascimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fk_endereço_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridProfessores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridProfessores)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -52,7 +51,6 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.lblTitulo);
             this.panel1.Controls.Add(this.lblNome);
             this.panel1.Controls.Add(this.txtNome);
             this.panel1.Controls.Add(this.gridProfessores);
@@ -60,19 +58,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1037, 641);
             this.panel1.TabIndex = 2;
+            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
-            // lblTitulo
+            // pictureBox1
             // 
-            this.lblTitulo.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitulo.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.ForeColor = System.Drawing.Color.White;
-            this.lblTitulo.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.lblTitulo.Location = new System.Drawing.Point(0, 0);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(279, 208);
-            this.lblTitulo.TabIndex = 8;
-            this.lblTitulo.Text = "PROFESSORES";
-            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(64, 53);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(279, 115);
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
             // 
             // lblNome
             // 
@@ -80,7 +76,7 @@
             this.lblNome.BackColor = System.Drawing.Color.Transparent;
             this.lblNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNome.ForeColor = System.Drawing.Color.White;
-            this.lblNome.Location = new System.Drawing.Point(69, 326);
+            this.lblNome.Location = new System.Drawing.Point(616, 88);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(145, 20);
             this.lblNome.TabIndex = 2;
@@ -89,7 +85,7 @@
             // txtNome
             // 
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNome.Location = new System.Drawing.Point(57, 349);
+            this.txtNome.Location = new System.Drawing.Point(604, 123);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(174, 26);
             this.txtNome.TabIndex = 1;
@@ -110,12 +106,12 @@
             this.Telefone_Fixo,
             this.Data_de_Nascimento,
             this.fk_endereço_id});
-            this.gridProfessores.Location = new System.Drawing.Point(278, 0);
+            this.gridProfessores.Location = new System.Drawing.Point(64, 216);
             this.gridProfessores.Name = "gridProfessores";
             this.gridProfessores.ReadOnly = true;
             this.gridProfessores.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.gridProfessores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridProfessores.Size = new System.Drawing.Size(759, 629);
+            this.gridProfessores.Size = new System.Drawing.Size(909, 361);
             this.gridProfessores.TabIndex = 0;
             this.gridProfessores.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridProfessores_CellDoubleClick);
             // 
@@ -175,22 +171,13 @@
             this.fk_endereço_id.ReadOnly = true;
             this.fk_endereço_id.Visible = false;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 514);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(279, 115);
-            this.pictureBox1.TabIndex = 13;
-            this.pictureBox1.TabStop = false;
-            // 
             // FormVerProfessores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1044, 638);
+            this.ClientSize = new System.Drawing.Size(1035, 631);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormVerProfessores";
@@ -199,8 +186,8 @@
             this.Load += new System.EventHandler(this.FormVerProfessores_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridProfessores)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridProfessores)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -208,7 +195,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label lblNome;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.DataGridView gridProfessores;

@@ -63,5 +63,10 @@ namespace ProjetoForms.Front.Professores
                 e.Handled = true;
             }
         }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }

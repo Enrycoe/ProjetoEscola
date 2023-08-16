@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormVerAlunos));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblTitulo = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblTurma = new System.Windows.Forms.Label();
             this.cbTurma = new System.Windows.Forms.ComboBox();
             this.lblRA = new System.Windows.Forms.Label();
@@ -49,17 +49,13 @@
             this.Telefone_Responsavel_2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.data_de_Nascimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fk_endereco_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridAlunos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridAlunos)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.Controls.Add(this.pictureBox1);
@@ -70,25 +66,21 @@
             this.panel1.Controls.Add(this.lblNome);
             this.panel1.Controls.Add(this.txtNome);
             this.panel1.Controls.Add(this.gridAlunos);
-            this.panel1.Controls.Add(this.lblTitulo);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1037, 632);
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // lblTitulo
+            // pictureBox1
             // 
-            this.lblTitulo.BackColor = System.Drawing.Color.Transparent;
-            this.lblTitulo.Font = new System.Drawing.Font("Tw Cen MT Condensed Extra Bold", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.ForeColor = System.Drawing.Color.White;
-            this.lblTitulo.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.lblTitulo.Location = new System.Drawing.Point(0, 0);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(279, 208);
-            this.lblTitulo.TabIndex = 8;
-            this.lblTitulo.Text = "ALUNOS";
-            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(64, 53);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(279, 115);
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
             // 
             // lblTurma
             // 
@@ -96,7 +88,7 @@
             this.lblTurma.BackColor = System.Drawing.Color.Transparent;
             this.lblTurma.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTurma.ForeColor = System.Drawing.Color.White;
-            this.lblTurma.Location = new System.Drawing.Point(107, 413);
+            this.lblTurma.Location = new System.Drawing.Point(851, 88);
             this.lblTurma.Name = "lblTurma";
             this.lblTurma.Size = new System.Drawing.Size(54, 20);
             this.lblTurma.TabIndex = 6;
@@ -109,7 +101,7 @@
             this.cbTurma.FormattingEnabled = true;
             this.cbTurma.Items.AddRange(new object[] {
             " "});
-            this.cbTurma.Location = new System.Drawing.Point(77, 436);
+            this.cbTurma.Location = new System.Drawing.Point(820, 121);
             this.cbTurma.Name = "cbTurma";
             this.cbTurma.Size = new System.Drawing.Size(121, 28);
             this.cbTurma.TabIndex = 5;
@@ -121,7 +113,7 @@
             this.lblRA.BackColor = System.Drawing.Color.Transparent;
             this.lblRA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRA.ForeColor = System.Drawing.Color.White;
-            this.lblRA.Location = new System.Drawing.Point(90, 301);
+            this.lblRA.Location = new System.Drawing.Point(648, 88);
             this.lblRA.Name = "lblRA";
             this.lblRA.Size = new System.Drawing.Size(99, 20);
             this.lblRA.TabIndex = 4;
@@ -130,7 +122,7 @@
             // txtRA
             // 
             this.txtRA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRA.Location = new System.Drawing.Point(52, 324);
+            this.txtRA.Location = new System.Drawing.Point(611, 123);
             this.txtRA.Name = "txtRA";
             this.txtRA.Size = new System.Drawing.Size(174, 26);
             this.txtRA.TabIndex = 3;
@@ -143,7 +135,7 @@
             this.lblNome.BackColor = System.Drawing.Color.Transparent;
             this.lblNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNome.ForeColor = System.Drawing.Color.White;
-            this.lblNome.Location = new System.Drawing.Point(80, 159);
+            this.lblNome.Location = new System.Drawing.Point(430, 88);
             this.lblNome.Name = "lblNome";
             this.lblNome.Size = new System.Drawing.Size(118, 20);
             this.lblNome.TabIndex = 2;
@@ -152,7 +144,7 @@
             // txtNome
             // 
             this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNome.Location = new System.Drawing.Point(52, 182);
+            this.txtNome.Location = new System.Drawing.Point(402, 123);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(174, 26);
             this.txtNome.TabIndex = 1;
@@ -178,12 +170,12 @@
             this.Telefone_Responsavel_2,
             this.data_de_Nascimento,
             this.fk_endereco_id});
-            this.gridAlunos.Location = new System.Drawing.Point(278, 0);
+            this.gridAlunos.Location = new System.Drawing.Point(64, 216);
             this.gridAlunos.Name = "gridAlunos";
             this.gridAlunos.ReadOnly = true;
             this.gridAlunos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.gridAlunos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridAlunos.Size = new System.Drawing.Size(759, 629);
+            this.gridAlunos.Size = new System.Drawing.Size(909, 361);
             this.gridAlunos.TabIndex = 0;
             this.gridAlunos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridAlunos_CellContentDoubleClick);
             // 
@@ -293,23 +285,13 @@
             this.fk_endereco_id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.fk_endereco_id.Visible = false;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 514);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(279, 115);
-            this.pictureBox1.TabIndex = 9;
-            this.pictureBox1.TabStop = false;
-            // 
             // FormVerAlunos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1044, 638);
+            this.ClientSize = new System.Drawing.Size(1035, 631);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormVerAlunos";
@@ -318,8 +300,8 @@
             this.Load += new System.EventHandler(this.FormVerAlunos_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridAlunos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridAlunos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -344,7 +326,6 @@
         private System.Windows.Forms.TextBox txtRA;
         private System.Windows.Forms.Label lblTurma;
         private System.Windows.Forms.ComboBox cbTurma;
-        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
