@@ -15,7 +15,7 @@ namespace ProjetoForms.Back.DAO
     {
         EnderecoDAO enderecoDAO = new EnderecoDAO();
         BairroDAO bairroDAO = new BairroDAO();
-        Conection conn = new Conection();
+        ConexaoMySQL conn = new ConexaoMySQL();
         MySqlCommand cmd;
 
         internal void Atualizar(Pessoa pessoa, Pessoa pessoaAtualizada)
@@ -25,7 +25,7 @@ namespace ProjetoForms.Back.DAO
             Professor professorAtualizada = pessoaAtualizada as Professor;
             try
             {
-                conn.AbrirConexao();
+                
 
                 bool bairroExiste = bairroDAO.VerificarSeBairroExiste(professorAtualizada.Endereco.Bairro);
                 if (bairroExiste)
@@ -40,6 +40,8 @@ namespace ProjetoForms.Back.DAO
                     enderecoDAO.AtualizarEndereco(professorAtualizada.Endereco, professor.Endereco);
                 }
                 DeletarMateriaDoProfessorPorId(professor.Id);
+                DeletarTurmadoProfessorPorId(professor.Id);
+                conn.AbrirConexao();
                 foreach (Materia materia in professorAtualizada.Materias)
                 {
                     cmd = new MySqlCommand("INSERT INTO materia_professor (fk_Materia_ID, fk_Professor_ID) VALUES (@materia, @professor)", conn.conn);
@@ -47,8 +49,7 @@ namespace ProjetoForms.Back.DAO
                     cmd.Parameters.AddWithValue("@professor", professorAtualizada.Id);
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
-                }
-                DeletarTurmadoProfessorPorId(professor.Id);
+                }         
                 foreach (Turma turma in professorAtualizada.Turmas)
                 {
                     cmd = new MySqlCommand("INSERT INTO professor_turma (fk_Turma_ID, fk_Professor_ID) VALUES (@turma, @professor)", conn.conn);
@@ -197,6 +198,7 @@ namespace ProjetoForms.Back.DAO
         {
             try
             {
+                conn.AbrirConexao();
                 cmd = new MySqlCommand("DELETE FROM professor_turma WHERE fk_Professor_ID = @ID", conn.conn);
                 cmd.Parameters.AddWithValue("@ID", id);
                 cmd.ExecuteNonQuery();
@@ -209,12 +211,13 @@ namespace ProjetoForms.Back.DAO
             }
             finally { conn.FecharConexao(); }
         }
-        internal void Deletar(int id)
+        internal void DeletarPorId(int id)
         {
             try
             {
                 DeletarMateriaDoProfessorPorId(id);
                 DeletarTurmadoProfessorPorId(id);
+                conn.AbrirConexao();
                 cmd = new MySqlCommand("DELETE FROM professor WHERE ID = @ID", conn.conn);
                 cmd.Parameters.AddWithValue("@ID", id);
                 cmd.ExecuteNonQuery();
@@ -277,7 +280,7 @@ namespace ProjetoForms.Back.DAO
                     professor.Endereco.NomeRua = reader["Nome_Rua"].ToString();
                     professor.Endereco.NumCasa = Convert.ToInt32(reader["Numero_Casa"]);
                     professor.Endereco.Bairro.Id = Convert.ToInt32(reader["fk_bairro_id"]);
-                    professor.Endereco.Bairro.Nome_bairro = reader["Nome_Bairro"].ToString();
+                    professor.Endereco.Bairro.NomeBairro = reader["Nome_Bairro"].ToString();
                     professor.Endereco.Bairro.Cidade.Id = Convert.ToInt32(reader["fk_cidade_id"]);
                     professor.Endereco.Bairro.Cidade.Nome = reader["Nome_Cidade"].ToString();
                     professor.Endereco.Bairro.Cidade.Estado.Id = Convert.ToInt32(reader["fk_Estado_ID"]);

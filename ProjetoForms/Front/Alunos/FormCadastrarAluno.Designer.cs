@@ -173,6 +173,7 @@
             this.dtNascimento.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtNascimento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtNascimento.Location = new System.Drawing.Point(178, 111);
+            this.dtNascimento.MaxDate = new System.DateTime(2023, 8, 25, 23, 59, 59, 0);
             this.dtNascimento.Name = "dtNascimento";
             this.dtNascimento.Size = new System.Drawing.Size(385, 26);
             this.dtNascimento.TabIndex = 40;
@@ -207,6 +208,7 @@
             this.txtNumeroCasa.Name = "txtNumeroCasa";
             this.txtNumeroCasa.Size = new System.Drawing.Size(86, 26);
             this.txtNumeroCasa.TabIndex = 9;
+            this.txtNumeroCasa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeroCasa_KeyPress);
             // 
             // txtRua
             // 
@@ -217,6 +219,7 @@
             this.txtRua.Name = "txtRua";
             this.txtRua.Size = new System.Drawing.Size(233, 26);
             this.txtRua.TabIndex = 8;
+            this.txtRua.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRua_KeyPress);
             // 
             // txtBairro
             // 
@@ -227,6 +230,7 @@
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(400, 26);
             this.txtBairro.TabIndex = 7;
+            this.txtBairro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBairro_KeyPress);
             // 
             // lblNumero
             // 
@@ -342,6 +346,7 @@
             this.txtNomeCompleto.Name = "txtNomeCompleto";
             this.txtNomeCompleto.Size = new System.Drawing.Size(385, 26);
             this.txtNomeCompleto.TabIndex = 33;
+            this.txtNomeCompleto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNomeCompleto_KeyPress);
             // 
             // label5
             // 

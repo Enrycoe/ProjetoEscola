@@ -126,7 +126,7 @@ namespace ProjetoForms.Front.Professores
                 professor.Nome = txtNomeCompleto.Text;
                 professor.Endereco.NomeRua = txtRua.Text;
                 professor.Endereco.NumCasa = Convert.ToInt32(txtNumeroCasa.Text);
-                professor.Endereco.Bairro.Nome_bairro = txtBairro.Text;
+                professor.Endereco.Bairro.NomeBairro = txtBairro.Text;
                 professor.TelefoneFixo = txtTelefoneFixo.Text;
                 professor.TelefonePessoal = txtTelefonePessoal.Text;
                 Pessoa pessoa = professor;

@@ -13,7 +13,7 @@ namespace ProjetoForms.Back.Entities
         Cidade cidade;
 
         public int Id { get => id; set => id = value; }
-        public string Nome_bairro { get => nomeBairro; set => nomeBairro = value; }
+        public string NomeBairro { get => nomeBairro; set => nomeBairro = value; }
         internal Cidade Cidade { get => cidade; set => cidade = value; }
     }
 }

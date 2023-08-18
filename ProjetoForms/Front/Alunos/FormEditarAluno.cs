@@ -44,7 +44,7 @@ namespace ProjetoForms.Front.Alunos
                 cbCidade.SelectedValue = aluno.Endereco.Bairro.Cidade.Id;
                 cbTurma.SelectedValue = aluno.Turma.Id;
                 txtNomeCompleto.Text = aluno.Nome;
-                txtBairro.Text = aluno.Endereco.Bairro.Nome_bairro;
+                txtBairro.Text = aluno.Endereco.Bairro.NomeBairro;
                 dtNascimento.Text = aluno.DataNascimento.ToString();
                 txtRua.Text = aluno.Endereco.NomeRua;
                 txtNumeroCasa.Text = aluno.Endereco.NumCasa.ToString();
@@ -141,7 +141,7 @@ namespace ProjetoForms.Front.Alunos
                 alunoAtualizado.Nome = txtNomeCompleto.Text;
                 alunoAtualizado.DataNascimento = Convert.ToDateTime(dtNascimento.Text);
                 alunoAtualizado.Idade = alunoAtualizado.CalcularIdade(alunoAtualizado.DataNascimento);
-                alunoAtualizado.Endereco.Bairro.Nome_bairro = txtBairro.Text;
+                alunoAtualizado.Endereco.Bairro.NomeBairro = txtBairro.Text;
                 alunoAtualizado.Endereco.NumCasa = Convert.ToInt32(txtNumeroCasa.Text);
                 alunoAtualizado.Endereco.NomeRua = txtRua.Text;
                 alunoAtualizado.Endereco.Bairro.Cidade.Id = (Convert.ToInt32(cbCidade.SelectedValue));
@@ -171,7 +171,7 @@ namespace ProjetoForms.Front.Alunos
             {
                 if (MessageBox.Show("Você está preste a excluir um aluno permanentemente, deseja prosseguir?", "AVISO!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    Deletar();
+                    DeletarPorId();
                     this.Close();
                 }
             }
@@ -183,11 +183,11 @@ namespace ProjetoForms.Front.Alunos
             
         }
 
-        private void Deletar()
+        private void DeletarPorId()
         {
             try
             {
-                alunoModel.Deletar(aluno.Id);
+                alunoModel.DeletarPorId(aluno.Id);
             }
             
             catch(Exception ex)

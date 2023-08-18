@@ -37,7 +37,7 @@ namespace ProjetoForms.Front.Professores
                 cbEstado.SelectedValue = professor.Endereco.Bairro.Cidade.Estado.Id;
                 cbCidade.SelectedValue = professor.Endereco.Bairro.Cidade.Id;
                 txtNomeCompleto.Text = professor.Nome;
-                txtBairro.Text = professor.Endereco.Bairro.Nome_bairro;
+                txtBairro.Text = professor.Endereco.Bairro.NomeBairro;
                 dtNascimento.Text = professor.DataNascimento.ToString();
                 txtRua.Text = professor.Endereco.NomeRua;
                 txtNumeroCasa.Text = professor.Endereco.NumCasa.ToString();
@@ -148,7 +148,7 @@ namespace ProjetoForms.Front.Professores
             {
                 if (MessageBox.Show("Você está preste a excluir um professor permanentemente, deseja prosseguir?", "AVISO!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    Deletar();
+                    DeletarPorId();
                     this.Close();
                 }
             }
@@ -161,11 +161,11 @@ namespace ProjetoForms.Front.Professores
             
         }
 
-        private void Deletar()
+        private void DeletarPorId()
         {
             try
             {
-                professorModel.Deletar(professor.Id);
+                professorModel.DeletarPorId(professor.Id);
                 MessageBox.Show("Professor deletado com sucesso", "Deletado!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
@@ -261,12 +261,12 @@ namespace ProjetoForms.Front.Professores
                 professorAtualizado.Nome = txtNomeCompleto.Text;
                 professorAtualizado.Endereco.NomeRua = txtRua.Text;
                 professorAtualizado.Endereco.NumCasa = Convert.ToInt32(txtNumeroCasa.Text);
-                professorAtualizado.Endereco.Bairro.Nome_bairro = txtBairro.Text;
+                professorAtualizado.Endereco.Bairro.NomeBairro = txtBairro.Text;
                 professorAtualizado.TelefoneFixo = txtTelefoneFixo.Text;
                 professorAtualizado.TelefonePessoal = txtTelefonePessoal.Text;
                 Pessoa pessoa = professor;
                 Pessoa pessoaAtualizada = professorAtualizado;
-                professorModel.Atualizar(pessoa, professorAtualizado);
+                professorModel.AtualizarPorId(pessoa, professorAtualizado);
                 MessageBox.Show("Professor atualizado com sucesso", "Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)

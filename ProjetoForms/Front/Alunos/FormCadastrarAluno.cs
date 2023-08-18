@@ -110,7 +110,7 @@ namespace ProjetoForms.Front.Alunos
             {
                 aluno.Nome = txtNomeCompleto.Text;
                 aluno.DataNascimento = Convert.ToDateTime(dtNascimento.Text);
-                aluno.Endereco.Bairro.Nome_bairro = txtBairro.Text;
+                aluno.Endereco.Bairro.NomeBairro = txtBairro.Text;
                 aluno.Endereco.NumCasa = Convert.ToInt32(txtNumeroCasa.Text);
                 aluno.Endereco.NomeRua = txtRua.Text;
                 aluno.Endereco.Bairro.Cidade.Id = (Convert.ToInt32(cbCidade.SelectedValue));

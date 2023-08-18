@@ -13,10 +13,10 @@ namespace ProjetoForms.Back.Model
         
         void Cadastrar(Pessoa pessoa);
 
-        void Atualizar (Pessoa pessoa, Pessoa pessoaAtualizada);
+        void AtualizarPorId (Pessoa pessoa, Pessoa pessoaAtualizada);
 
         DataTable Listar();
 
-        void Deletar(int id);
+        void DeletarPorId(int id);
     }
 }

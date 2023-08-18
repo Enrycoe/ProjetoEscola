@@ -38,6 +38,7 @@ namespace ProjetoForms.Back.DAO
         {
             try
             {
+                conn.AbrirConexao();
                 cmd = new MySqlCommand("DELETE FROM media WHERE fk_Aluno_RA = @RA", conn.conn);
                 cmd.Parameters.AddWithValue("@RA", id);
                 cmd.ExecuteNonQuery();
@@ -73,7 +74,6 @@ namespace ProjetoForms.Back.DAO
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally { conn.FecharConexao(); }
@@ -92,9 +92,9 @@ namespace ProjetoForms.Back.DAO
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
+            finally { conn.FecharConexao(); }
         }
         internal int ReceberIDUltimaMedia()
         {

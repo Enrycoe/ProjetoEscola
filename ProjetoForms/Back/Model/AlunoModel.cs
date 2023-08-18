@@ -62,14 +62,14 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        public void Atualizar(Pessoa aluno, Pessoa alunoAtualido)
+        public void AtualizarPorId(Pessoa aluno, Pessoa alunoAtualido)
         {
             if (aluno.GetType() == typeof(Aluno))
             {
                 try
                 {
                     
-                    dao.Atualizar(aluno, alunoAtualido);
+                    dao.AtualizarPorId(aluno, alunoAtualido);
                 }
                 catch (Exception ex)
                 {

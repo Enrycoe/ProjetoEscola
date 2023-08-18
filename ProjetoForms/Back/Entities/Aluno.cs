@@ -19,8 +19,6 @@ namespace ProjetoForms.Back.Entities
 
         int idadeMinima = 13;
         int idadeMaxima = 21;
-        
-
 
         public string TelefonePessoal { get => telefonePessoal; set => telefonePessoal = value; }
         public string TelefoneFixo { get => telefoneFixo; set => telefoneFixo = value; }

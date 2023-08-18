@@ -83,7 +83,7 @@
             // 
             this.verProfessoresToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("verProfessoresToolStripMenuItem.Image")));
             this.verProfessoresToolStripMenuItem.Name = "verProfessoresToolStripMenuItem";
-            this.verProfessoresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.verProfessoresToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.verProfessoresToolStripMenuItem.Text = "Ver Professores";
             this.verProfessoresToolStripMenuItem.Click += new System.EventHandler(this.verProfessoresToolStripMenuItem_Click);
             // 
@@ -91,7 +91,7 @@
             // 
             this.cadastrarProfessoresToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cadastrarProfessoresToolStripMenuItem.Image")));
             this.cadastrarProfessoresToolStripMenuItem.Name = "cadastrarProfessoresToolStripMenuItem";
-            this.cadastrarProfessoresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cadastrarProfessoresToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.cadastrarProfessoresToolStripMenuItem.Text = "Cadastrar Professor";
             this.cadastrarProfessoresToolStripMenuItem.Click += new System.EventHandler(this.cadastrarProfessoresToolStripMenuItem_Click);
             // 
@@ -109,7 +109,7 @@
             // 
             this.verAlunosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("verAlunosToolStripMenuItem.Image")));
             this.verAlunosToolStripMenuItem.Name = "verAlunosToolStripMenuItem";
-            this.verAlunosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.verAlunosToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.verAlunosToolStripMenuItem.Text = "Ver Alunos";
             this.verAlunosToolStripMenuItem.Click += new System.EventHandler(this.verAlunosToolStripMenuItem_Click);
             // 
@@ -117,7 +117,7 @@
             // 
             this.cadastrarAlunosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cadastrarAlunosToolStripMenuItem.Image")));
             this.cadastrarAlunosToolStripMenuItem.Name = "cadastrarAlunosToolStripMenuItem";
-            this.cadastrarAlunosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cadastrarAlunosToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.cadastrarAlunosToolStripMenuItem.Text = "Cadastrar Aluno";
             this.cadastrarAlunosToolStripMenuItem.Click += new System.EventHandler(this.cadastrarAlunosToolStripMenuItem_Click);
             // 
@@ -136,7 +136,7 @@
             // 
             this.NotaTurmasToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("NotaTurmasToolStripMenuItem.Image")));
             this.NotaTurmasToolStripMenuItem.Name = "NotaTurmasToolStripMenuItem";
-            this.NotaTurmasToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.NotaTurmasToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.NotaTurmasToolStripMenuItem.Text = "Cadastrar Provas";
             this.NotaTurmasToolStripMenuItem.Click += new System.EventHandler(this.NotaTurmasToolStripMenuItem_Click);
             // 
@@ -144,7 +144,7 @@
             // 
             this.CalcularMediaToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("CalcularMediaToolStripMenuItem.Image")));
             this.CalcularMediaToolStripMenuItem.Name = "CalcularMediaToolStripMenuItem";
-            this.CalcularMediaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.CalcularMediaToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.CalcularMediaToolStripMenuItem.Text = "Calcular Media";
             this.CalcularMediaToolStripMenuItem.Click += new System.EventHandler(this.CalcularMediaToolStripMenuItem_Click);
             // 
@@ -152,7 +152,7 @@
             // 
             this.boletimToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("boletimToolStripMenuItem1.Image")));
             this.boletimToolStripMenuItem1.Name = "boletimToolStripMenuItem1";
-            this.boletimToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.boletimToolStripMenuItem1.Size = new System.Drawing.Size(162, 22);
             this.boletimToolStripMenuItem1.Text = "Boletim";
             this.boletimToolStripMenuItem1.Click += new System.EventHandler(this.boletimToolStripMenuItem1_Click);
             // 
@@ -174,6 +174,7 @@
             this.btnFechar.BackColor = System.Drawing.Color.Transparent;
             this.btnFechar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFechar.BackgroundImage")));
             this.btnFechar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnFechar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFechar.FlatAppearance.BorderSize = 0;
             this.btnFechar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFechar.Location = new System.Drawing.Point(1288, 12);
