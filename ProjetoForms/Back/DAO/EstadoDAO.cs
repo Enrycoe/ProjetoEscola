@@ -26,9 +26,9 @@ namespace ProjetoForms.Back.DAO
                 return dt;
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }

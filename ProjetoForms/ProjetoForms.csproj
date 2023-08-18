@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Back\DAO\AlunoDAO.cs" />
+    <Compile Include="Back\DAO\BairroDAO.cs" />
     <Compile Include="Back\DAO\BimestreDAO.cs" />
     <Compile Include="Back\DAO\CidadeDAO.cs" />
     <Compile Include="Back\DAO\EnderecoDAO.cs" />

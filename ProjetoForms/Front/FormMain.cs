@@ -44,7 +44,7 @@ namespace ProjetoForms
             Thread threadData = new Thread(new ThreadStart(MostrarDataEHora));
             threadData.IsBackground = true;
             threadData.Start();
-     
+
         }
 
 

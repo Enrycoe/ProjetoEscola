@@ -75,7 +75,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1037, 632);
             this.panel1.TabIndex = 1;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             // 
             // btnVoltar
@@ -140,6 +139,7 @@
             // 
             this.txtRA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRA.Location = new System.Drawing.Point(611, 123);
+            this.txtRA.MaxLength = 8;
             this.txtRA.Name = "txtRA";
             this.txtRA.Size = new System.Drawing.Size(174, 26);
             this.txtRA.TabIndex = 3;

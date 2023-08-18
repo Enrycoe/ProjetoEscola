@@ -22,7 +22,7 @@ namespace ProjetoForms.Front.Professores
         public FormEditarProfessor(Professor professor)
         {
             InitializeComponent();
-            this.professor = professorModel.ReceberProfessor(professor.Id);
+            this.professor = professor;
             cbEstado.ValueMember = "id";
             cbEstado.DisplayMember = "Sigla";
             cbCidade.ValueMember = "id";
@@ -31,101 +31,108 @@ namespace ProjetoForms.Front.Professores
 
         private void FormEditarProfessor_Load(object sender, EventArgs e)
         {
-            cbEstado.DataSource = estadoModel.Listar();
-            cbEstado.SelectedValue = professor.Endereco.Bairro.Cidade.Estado.Id;
-            cbCidade.SelectedValue = professor.Endereco.Bairro.Cidade.Id;
-            txtNomeCompleto.Text = professor.Nome;
-            txtBairro.Text = professor.Endereco.Bairro.Nome_bairro;
-            dtNascimento.Text = professor.DataNascimento.ToString();
-            txtRua.Text = professor.Endereco.NomeRua;
-            txtNumeroCasa.Text = professor.Endereco.NumCasa.ToString();
-            txtTelefonePessoal.Text = professor.TelefonePessoal;
-            txtTelefoneFixo.Text = professor.TelefoneFixo;
-
-            foreach (Materia materia in professor.Materias)
+            try
             {
-                switch (materia.Id)
+                cbEstado.DataSource = estadoModel.Listar();
+                cbEstado.SelectedValue = professor.Endereco.Bairro.Cidade.Estado.Id;
+                cbCidade.SelectedValue = professor.Endereco.Bairro.Cidade.Id;
+                txtNomeCompleto.Text = professor.Nome;
+                txtBairro.Text = professor.Endereco.Bairro.Nome_bairro;
+                dtNascimento.Text = professor.DataNascimento.ToString();
+                txtRua.Text = professor.Endereco.NomeRua;
+                txtNumeroCasa.Text = professor.Endereco.NumCasa.ToString();
+                txtTelefonePessoal.Text = professor.TelefonePessoal;
+                txtTelefoneFixo.Text = professor.TelefoneFixo;
+
+                foreach (Materia materia in professor.Materias)
                 {
-                    case 1:
-                        cbArtes.Checked = true;
-                        break;
-                    case 2:
-                        cbEducacaoF.Checked = true;
-                        break;
-                    case 3:
-                        cbFilosofia.Checked = true;
-                        break;
-                    case 4:
-                        cbSociologia.Checked = true;
-                        break;
-                    case 5:
-                        cbIngles.Checked = true;
-                        break;
-                    case 6:
-                        cbFisica.Checked = true;
-                        break;
-                    case 7:
-                        cbQuímica.Checked = true;
-                        break;
-                    case 8:
-                        cbBiologia.Checked = true;
-                        break;
-                    case 9:
-                        cbGeografia.Checked = true;
-                        break;
-                    case 10:
-                        cbHistoria.Checked = true;
-                        break;
-                    case 11:
-                        cbMatematica.Checked = true;
-                        break;
-                    case 12:
-                        cbLinguaP.Checked = true;
-                        break;
+                    switch (materia.Id)
+                    {
+                        case 1:
+                            cbArtes.Checked = true;
+                            break;
+                        case 2:
+                            cbEducacaoF.Checked = true;
+                            break;
+                        case 3:
+                            cbFilosofia.Checked = true;
+                            break;
+                        case 4:
+                            cbSociologia.Checked = true;
+                            break;
+                        case 5:
+                            cbIngles.Checked = true;
+                            break;
+                        case 6:
+                            cbFisica.Checked = true;
+                            break;
+                        case 7:
+                            cbQuímica.Checked = true;
+                            break;
+                        case 8:
+                            cbBiologia.Checked = true;
+                            break;
+                        case 9:
+                            cbGeografia.Checked = true;
+                            break;
+                        case 10:
+                            cbHistoria.Checked = true;
+                            break;
+                        case 11:
+                            cbMatematica.Checked = true;
+                            break;
+                        case 12:
+                            cbLinguaP.Checked = true;
+                            break;
+                    }
+                }
+
+                foreach (Turma turma in professor.Turmas)
+                {
+                    switch (turma.Id)
+                    {
+                        case 1:
+                            cbPA.Checked = true;
+                            break;
+                        case 2:
+                            cbPB.Checked = true;
+                            break;
+                        case 3:
+                            cbPC.Checked = true;
+                            break;
+                        case 4:
+                            cbPD.Checked = true;
+                            break;
+                        case 5:
+                            cbSA.Checked = true;
+                            break;
+                        case 6:
+                            cbSB.Checked = true;
+                            break;
+                        case 7:
+                            cbSC.Checked = true;
+                            break;
+                        case 8:
+                            cbSD.Checked = true;
+                            break;
+                        case 9:
+                            cbTA.Checked = true;
+                            break;
+                        case 10:
+                            cbTB.Checked = true;
+                            break;
+                        case 11:
+                            cbTC.Checked = true;
+                            break;
+                        case 12:
+                            cbTD.Checked = true;
+                            break;
+                    }
                 }
             }
-
-            foreach (Turma turma in professor.Turmas)
+            catch (Exception ex)
             {
-                switch (turma.Id)
-                {
-                    case 1:
-                        cbPA.Checked = true;
-                        break;
-                    case 2:
-                        cbPB.Checked = true;
-                        break;
-                    case 3:
-                        cbPC.Checked = true;
-                        break;
-                    case 4:
-                        cbPD.Checked = true;
-                        break;
-                    case 5:
-                        cbSA.Checked = true;
-                        break;
-                    case 6:
-                        cbSB.Checked = true;
-                        break;
-                    case 7:
-                        cbSC.Checked = true;
-                        break;
-                    case 8:
-                        cbSD.Checked = true;
-                        break;
-                    case 9:
-                        cbTA.Checked = true;
-                        break;
-                    case 10:
-                        cbTB.Checked = true;
-                        break;
-                    case 11:
-                        cbTC.Checked = true;
-                        break;
-                    case 12:
-                        cbTD.Checked = true;
-                        break;
-                }
+                MessageBox.Show("Erro: " + ex.Message, "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
         }
@@ -137,11 +144,20 @@ namespace ProjetoForms.Front.Professores
 
         private void brnExcluir_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Você está preste a excluir um professor permanentemente, deseja prosseguir?", "AVISO!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            try
             {
-                Deletar();
-                this.Close();
+                if (MessageBox.Show("Você está preste a excluir um professor permanentemente, deseja prosseguir?", "AVISO!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    Deletar();
+                    this.Close();
+                }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Erro: " + ex.Message, "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            
             
         }
 
@@ -162,50 +178,67 @@ namespace ProjetoForms.Front.Professores
 
         private void cbEstado_TextChanged(object sender, EventArgs e)
         {
-            cbCidade.Text = "";
+            try
+            {
+                cbCidade.Text = "";
 
-            DataTable cidadePorEstado = cidadeModel.Listar(Convert.ToInt32(cbEstado.SelectedValue));
+                DataTable cidadePorEstado = cidadeModel.Listar(Convert.ToInt32(cbEstado.SelectedValue));
 
-            cbCidade.DataSource = cidadePorEstado;
+                cbCidade.DataSource = cidadePorEstado;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Erro: " + ex.Message, "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-            Professor professor = new Professor();
-            if (string.IsNullOrWhiteSpace(txtNomeCompleto.Text))
+            try
             {
-                MessageBox.Show("Nome do aluno não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNomeCompleto.Focus();
-                return;
+                Professor professor = new Professor();
+                if (string.IsNullOrWhiteSpace(txtNomeCompleto.Text))
+                {
+                    MessageBox.Show("Nome do aluno não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNomeCompleto.Focus();
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(txtBairro.Text))
+                {
+                    MessageBox.Show("Nome do bairro não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtBairro.Focus();
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(txtNumeroCasa.Text))
+                {
+                    MessageBox.Show("Número da casa não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNomeCompleto.Focus();
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(txtRua.Text))
+                {
+                    MessageBox.Show("Nome da rua não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtRua.Focus();
+                    return;
+                }
+                DateTime dataNascimento = Convert.ToDateTime(dtNascimento.Text);
+                int idade = professor.CalcularIdade(dataNascimento);
+                if (idade < professor.IdadeMinima || idade > professor.IdadeMaxima)
+                {
+                    MessageBox.Show("O professor precisa estar acima de 21 anos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    dtNascimento.Focus();
+                    return;
+                }
+                Atualizar();
+                this.Close();
             }
-            if (string.IsNullOrWhiteSpace(txtBairro.Text))
+            catch (Exception ex)
             {
-                MessageBox.Show("Nome do bairro não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtBairro.Focus();
-                return;
+
+                MessageBox.Show("Erro: " + ex.Message, "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            if (string.IsNullOrWhiteSpace(txtNumeroCasa.Text))
-            {
-                MessageBox.Show("Número da casa não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNomeCompleto.Focus();
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtRua.Text))
-            {
-                MessageBox.Show("Nome da rua não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtRua.Focus();
-                return;
-            }
-            DateTime dataNascimento = Convert.ToDateTime(dtNascimento.Text);
-            int idade = professor.CalcularIdade(dataNascimento);
-            if (idade < professor.IdadeMinima || idade > professor.IdadeMaxima)
-            {
-                MessageBox.Show("O professor precisa estar acima de 21 anos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                dtNascimento.Focus();
-                return;
-            }
-            Atualizar();
-            this.Close();
+           
         }
 
         private void Atualizar()

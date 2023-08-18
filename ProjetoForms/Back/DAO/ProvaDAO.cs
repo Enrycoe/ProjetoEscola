@@ -30,9 +30,9 @@ namespace ProjetoForms.Back.DAO
                 return dt;
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }
@@ -50,12 +50,31 @@ namespace ProjetoForms.Back.DAO
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
+        }
+
+        internal void DeletarProvaPorAluno(int id)
+        {
+            try
+            {
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("DELETE FROM provas WHERE fk_Aluno_RA = @RA", conn.conn);
+                cmd.Parameters.AddWithValue("@RA", id);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { conn.FecharConexao(); }
+            
         }
 
         internal void DesignarProvaMedia(Prova prova)
@@ -71,9 +90,9 @@ namespace ProjetoForms.Back.DAO
                 
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }

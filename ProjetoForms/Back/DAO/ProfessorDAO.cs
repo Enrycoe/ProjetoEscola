@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using ProjetoForms.Back.Entities;
+using ProjetoForms.Back.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,55 +13,33 @@ namespace ProjetoForms.Back.DAO
 {
     internal class ProfessorDAO
     {
+        EnderecoDAO enderecoDAO = new EnderecoDAO();
+        BairroDAO bairroDAO = new BairroDAO();
         Conection conn = new Conection();
         MySqlCommand cmd;
 
         internal void Atualizar(Pessoa pessoa, Pessoa pessoaAtualizada)
         {
+
             Professor professor = pessoa as Professor;
             Professor professorAtualizada = pessoaAtualizada as Professor;
-            EnderecoDAO enderecoDAO = new EnderecoDAO();
-
             try
             {
                 conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT id FROM bairro where nome_bairro = @nome AND fk_cidade_id = @idCidade", conn.conn);
-                cmd.Parameters.AddWithValue("@nome", professorAtualizada.Endereco.Bairro.Nome_bairro);
-                cmd.Parameters.AddWithValue("@idCidade", professorAtualizada.Endereco.Bairro.Cidade.Id);
-                var result = cmd.ExecuteScalar();
-                if (result != null && result != DBNull.Value)
+
+                bool bairroExiste = bairroDAO.VerificarSeBairroExiste(professorAtualizada.Endereco.Bairro);
+                if (bairroExiste)
                 {
-                    professorAtualizada.Endereco.Bairro.Id = Convert.ToInt32(result);
-                    cmd = new MySqlCommand($"UPDATE endereco SET Nome_Rua = @nome_rua, Numero_Casa = @numero_casa, fk_bairro_id = @fk_bairro_id WHERE ID = @ID", conn.conn);
-                    cmd.Parameters.AddWithValue("@nome_rua", professorAtualizada.Endereco.NomeRua);
-                    cmd.Parameters.AddWithValue("@numero_casa", professorAtualizada.Endereco.NumCasa);
-                    cmd.Parameters.AddWithValue("@fk_bairro_id", professorAtualizada.Endereco.Bairro.Id);
-                    cmd.Parameters.AddWithValue("@ID", enderecoDAO.ReceberIDEndereco(professor));
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
+                    professorAtualizada.Endereco.Bairro.Id = bairroDAO.ReceberIdBairro(professorAtualizada.Endereco.Bairro);
+                    enderecoDAO.AtualizarEndereco(professorAtualizada.Endereco, professor.Endereco);
                 }
                 else
                 {
-                    cmd = new MySqlCommand("INSERT INTO bairro (Nome_Bairro, fk_cidade_id) VALUES (@Nome_Bairro, @fk_cidade_id)", conn.conn);
-                    cmd.Parameters.AddWithValue("@Nome_Bairro", professorAtualizada.Endereco.Bairro.Nome_bairro);
-                    cmd.Parameters.AddWithValue("@fk_cidade_id", professorAtualizada.Endereco.Bairro.Cidade.Id);
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                    cmd = new MySqlCommand($"SELECT id FROM bairro ORDER BY id DESC LIMIT 1", conn.conn);
-                    professorAtualizada.Endereco.Bairro.Id = Convert.ToInt32(cmd.ExecuteScalar());
-                    cmd.Dispose();
-                    cmd = new MySqlCommand($"UPDATE endereco SET Nome_Rua = @nome_rua, Numero_Casa = @numero_casa, fk_bairro_id = @fk_bairro_id WHERE ID = @ID", conn.conn);
-                    cmd.Parameters.AddWithValue("@nome_rua", professorAtualizada.Endereco.NomeRua);
-                    cmd.Parameters.AddWithValue("@numero_casa", professorAtualizada.Endereco.NumCasa);
-                    cmd.Parameters.AddWithValue("@fk_bairro_id", professorAtualizada.Endereco.Bairro.Id);
-                    cmd.Parameters.AddWithValue("@ID", enderecoDAO.ReceberIDEndereco(professor));
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
+                    bairroDAO.CadastrarBairro(professorAtualizada.Endereco.Bairro);
+                    professorAtualizada.Endereco.Bairro.Id = bairroDAO.ReceberIdUltimoBairro();
+                    enderecoDAO.AtualizarEndereco(professorAtualizada.Endereco, professor.Endereco);
                 }
-                cmd = new MySqlCommand("DELETE FROM materia_professor WHERE fk_Professor_ID = @ID", conn.conn);
-                cmd.Parameters.AddWithValue("@ID", professorAtualizada.Id);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
+                DeletarMateriaDoProfessorPorId(professor.Id);
                 foreach (Materia materia in professorAtualizada.Materias)
                 {
                     cmd = new MySqlCommand("INSERT INTO materia_professor (fk_Materia_ID, fk_Professor_ID) VALUES (@materia, @professor)", conn.conn);
@@ -69,10 +48,7 @@ namespace ProjetoForms.Back.DAO
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
                 }
-                cmd = new MySqlCommand("DELETE FROM professor_turma WHERE fk_Professor_ID = @ID", conn.conn);
-                cmd.Parameters.AddWithValue("@ID", professorAtualizada.Id);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
+                DeletarTurmadoProfessorPorId(professor.Id);
                 foreach (Turma turma in professorAtualizada.Turmas)
                 {
                     cmd = new MySqlCommand("INSERT INTO professor_turma (fk_Turma_ID, fk_Professor_ID) VALUES (@turma, @professor)", conn.conn);
@@ -88,14 +64,13 @@ namespace ProjetoForms.Back.DAO
                 cmd.Parameters.AddWithValue("@nome", professorAtualizada.Nome);
                 cmd.Parameters.AddWithValue("@Telefone_Pessoal", professorAtualizada.TelefonePessoal);
                 cmd.Parameters.AddWithValue("@Telefone_Fixo", professorAtualizada.TelefoneFixo);
-
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }
@@ -115,11 +90,12 @@ namespace ProjetoForms.Back.DAO
                 adapter.Fill(dt);
                 return dt;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
+            finally { conn.FecharConexao(); }
         }
 
         internal void Cadastrar(Pessoa pessoa)
@@ -127,44 +103,22 @@ namespace ProjetoForms.Back.DAO
             Professor professor = pessoa as Professor;
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT id FROM bairro where nome_bairro = @nome", conn.conn);
-                cmd.Parameters.AddWithValue("@nome", professor.Endereco.Bairro.Nome_bairro);
-                var result = cmd.ExecuteScalar();
-                if (result != null && result != DBNull.Value)
+                bool bairroExiste = bairroDAO.VerificarSeBairroExiste(professor.Endereco.Bairro);
+                if (bairroExiste)
                 {
-                    professor.Endereco.Bairro.Id = Convert.ToInt32(result);
-                    cmd = new MySqlCommand($"INSERT INTO endereco(Nome_Rua, Numero_Casa, fk_bairro_id) VALUES(@nome_rua, @numero_casa, @fk_bairro_id)", conn.conn);
-                    cmd.Parameters.AddWithValue("@nome_rua", professor.Endereco.NomeRua);
-                    cmd.Parameters.AddWithValue("@numero_casa", professor.Endereco.NumCasa);
-                    cmd.Parameters.AddWithValue("@fk_bairro_id", professor.Endereco.Bairro.Id);
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                    cmd = new MySqlCommand($"SELECT id FROM endereco ORDER BY id DESC LIMIT 1", conn.conn);
-                    professor.Endereco.Id = Convert.ToInt32(cmd.ExecuteScalar());
-                    cmd.Dispose();
+                    professor.Endereco.Bairro.Id = bairroDAO.ReceberIdBairro(professor.Endereco.Bairro);
+                    enderecoDAO.CadastrarEndereco(professor.Endereco);
+                    professor.Endereco.Id = enderecoDAO.ReceberIDUltimoEndereco();
                 }
                 else
                 {
-                    cmd = new MySqlCommand("INSERT INTO bairro (Nome_Bairro, fk_cidade_id) VALUES (@Nome_Bairro, @fk_cidade_id)", conn.conn);
-                    cmd.Parameters.AddWithValue("@Nome_Bairro", professor.Endereco.Bairro.Nome_bairro);
-                    cmd.Parameters.AddWithValue("@fk_cidade_id", professor.Endereco.Bairro.Cidade.Id);
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                    cmd = new MySqlCommand($"SELECT id FROM bairro ORDER BY id DESC LIMIT 1", conn.conn);
-                    professor.Endereco.Bairro.Id = Convert.ToInt32(cmd.ExecuteScalar());
-                    cmd.Dispose();
-                    cmd = new MySqlCommand($"INSERT INTO endereco(Nome_Rua, Numero_Casa, fk_bairro_id) VALUES(@nome_rua, @numero_casa, @fk_bairro_id)", conn.conn);
-                    cmd.Parameters.AddWithValue("@nome_rua", professor.Endereco.NomeRua);
-                    cmd.Parameters.AddWithValue("@numero_casa", professor.Endereco.NumCasa);
-                    cmd.Parameters.AddWithValue("@fk_bairro_id", professor.Endereco.Bairro.Id);
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                    cmd = new MySqlCommand($"SELECT id FROM endereco ORDER BY id DESC LIMIT 1", conn.conn);
-                    professor.Endereco.Id = Convert.ToInt32(cmd.ExecuteScalar());
-                    cmd.Dispose();
+                    bairroDAO.CadastrarBairro(professor.Endereco.Bairro);
+                    professor.Endereco.Bairro.Id = bairroDAO.ReceberIdUltimoBairro();
+                    enderecoDAO.CadastrarEndereco(professor.Endereco);
+                    professor.Endereco.Id = enderecoDAO.ReceberIDUltimoEndereco();
 
                 }
+                conn.AbrirConexao();
                 cmd = new MySqlCommand($"INSERT INTO professor (Idade, Data_de_Nascimento, fk_Endereço_ID,  Telefone_Pessoal, Telefone_Fixo, Nome) " +
                        $"VALUES(@Idade, @Data_de_Nascimento, @fk_endereco_id, @Telefone_Pessoal, @Telefone_Fixo, @nome)", conn.conn);
                 cmd.Parameters.AddWithValue("@Data_de_Nascimento", professor.DataNascimento.ToString("yyyy-MM-dd"));
@@ -176,8 +130,7 @@ namespace ProjetoForms.Back.DAO
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
 
-                cmd = new MySqlCommand("SELECT id FROM professor ORDER BY id DESC LIMIT 1", conn.conn);
-                professor.Id = Convert.ToInt32(cmd.ExecuteScalar());
+                professor.Id = ReceberIdUltimoProfessor();
                 cmd.Dispose();
                 foreach (Materia materia in professor.Materias)
                 {
@@ -201,12 +154,28 @@ namespace ProjetoForms.Back.DAO
             catch (Exception ex)
             {
 
-                MessageBox.Show("Erro ao salvar: " + ex.Message);
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }
 
-        internal void Deletar(int id)
+        internal int ReceberIdUltimoProfessor()
+        {
+            try
+            {
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("SELECT id FROM professor ORDER BY id DESC LIMIT 1", conn.conn);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { conn.FecharConexao(); }
+        }
+
+        internal void DeletarMateriaDoProfessorPorId(int id)
         {
             try
             {
@@ -215,19 +184,46 @@ namespace ProjetoForms.Back.DAO
                 cmd.Parameters.AddWithValue("@ID", id);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { conn.FecharConexao(); }
+        }
+
+        internal void DeletarTurmadoProfessorPorId(int id)
+        {
+            try
+            {
                 cmd = new MySqlCommand("DELETE FROM professor_turma WHERE fk_Professor_ID = @ID", conn.conn);
                 cmd.Parameters.AddWithValue("@ID", id);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { conn.FecharConexao(); }
+        }
+        internal void Deletar(int id)
+        {
+            try
+            {
+                DeletarMateriaDoProfessorPorId(id);
+                DeletarTurmadoProfessorPorId(id);
                 cmd = new MySqlCommand("DELETE FROM professor WHERE ID = @ID", conn.conn);
                 cmd.Parameters.AddWithValue("@ID", id);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
 
             finally { conn.FecharConexao(); }
@@ -247,19 +243,19 @@ namespace ProjetoForms.Back.DAO
                 return dt;
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }
 
-        internal Professor ReceberProfessor(int id)
+        internal Professor ReceberProfessorPorId(int id)
         {
             try
             {
                 Professor professor = new Professor();
-                professor.Turmas = new List<Turma>();   
+                professor.Turmas = new List<Turma>();
                 professor.Endereco = new Endereco();
                 professor.Endereco.Bairro = new Bairro();
                 professor.Endereco.Bairro.Cidade = new Cidade();
@@ -299,7 +295,7 @@ namespace ProjetoForms.Back.DAO
                     Turma turma = new Turma();
                     turma.Id = Convert.ToInt32(readerTurma["fk_Turma_ID"]);
                     turma.Nome = readerTurma["Nome_Turma"].ToString();
-                    professor.Turmas.Add(turma);    
+                    professor.Turmas.Add(turma);
                 }
                 cmd.Dispose();
                 conn.FecharConexao();
@@ -318,10 +314,10 @@ namespace ProjetoForms.Back.DAO
                 return professor;
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }

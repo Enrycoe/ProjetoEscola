@@ -22,17 +22,35 @@ namespace ProjetoForms.Front.Notas
         
         public FormCadastrarProva(Aluno aluno)
         {
-            this.aluno = aluno;
             InitializeComponent();
-            cbMateria.ValueMember = "ID";
-            cbMateria.DisplayMember = "Nome_da_Materia";
+            try
+            {
+                this.aluno = aluno;
+                cbMateria.ValueMember = "ID";
+                cbMateria.DisplayMember = "Nome_da_Materia";
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Erro: " + ex.Message, "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+           
         }
 
         private void FormCadastrarProva_Load(object sender, EventArgs e)
         {
-            this.aluno = alunoModel.ReceberAluno(aluno.Id);
-            lblAluno.Text = "Aluno: " + aluno.Nome.ToString();
-            cbMateria.DataSource = materiaModel.Listar();
+            try
+            {
+                lblAluno.Text = "Aluno: " + aluno.Nome.ToString();
+                cbMateria.DataSource = materiaModel.Listar();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Erro: " + ex.Message, "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+           
         }
 
         private void btnCadastrarProva_Click(object sender, EventArgs e)
@@ -58,10 +76,10 @@ namespace ProjetoForms.Front.Notas
                 txtDesc.Text = null;
                 txtNota.Text = null;    
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                MessageBox.Show("Insira um valor válido!", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Erro: " + ex.Message, "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }  
         }
 
@@ -75,7 +93,7 @@ namespace ProjetoForms.Front.Notas
             catch (Exception ex)
             {
 
-                MessageBox.Show("Erro: " + ex.Message);
+                MessageBox.Show("Erro: " + ex.Message, "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             
             

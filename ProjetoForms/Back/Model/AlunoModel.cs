@@ -38,10 +38,10 @@ namespace ProjetoForms.Back.Model
                     
                     dao.Cadastrar(aluno);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
 
-                    throw;
+                    throw ex;
                 }
             }
            
@@ -49,16 +49,16 @@ namespace ProjetoForms.Back.Model
 
         
 
-        internal Aluno ReceberAluno(int id)
+        internal Aluno ReceberAlunoPorId(int id)
         {
             try
             {
-                return dao.ReceberAluno(id);
+                return dao.ReceberAlunoPorId(id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
         }
 
@@ -71,10 +71,10 @@ namespace ProjetoForms.Back.Model
                     
                     dao.Atualizar(aluno, alunoAtualido);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
 
-                    throw;
+                    throw ex;
                 }
             }
                
@@ -86,10 +86,10 @@ namespace ProjetoForms.Back.Model
             {
                 dao.Deletar(id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             
         }
@@ -169,7 +169,7 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal object BuscarAlunoPorRAETurma(int rA, int idTurma)
+        internal DataTable BuscarAlunoPorRAETurma(int rA, int idTurma)
         {
             try
             {
@@ -184,7 +184,7 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal object BuscarAlunoPorTurma(int idTurma)
+        internal DataTable BuscarAlunoPorTurma(int idTurma)
         {
             try
             {
@@ -199,6 +199,57 @@ namespace ProjetoForms.Back.Model
             }
         }
 
+        internal DataTable PesquisarAluno(string nome, string raStr, int ra, string turma, int idTurma)
+        {
+            try
+            {
+                if (!(string.IsNullOrEmpty(nome)) && !(string.IsNullOrEmpty(raStr)) && !(string.IsNullOrEmpty(turma)))
+                {
+
+                    return BuscarAluno(nome, ra, idTurma);
+
+                }
+                if (!(string.IsNullOrEmpty(nome)) && (string.IsNullOrEmpty(raStr)) && (string.IsNullOrEmpty(turma)))
+                {
+                    return BuscarAlunoPorNome(nome);
+                }
+                if (!(string.IsNullOrEmpty(nome)) && !(string.IsNullOrEmpty(raStr)) && (string.IsNullOrEmpty(turma)))
+                {
+
+                    return BuscarAlunoPorNomeERA(nome, ra);
+
+                }
+                if (!(string.IsNullOrEmpty(nome)) && (string.IsNullOrEmpty(raStr)) && !(string.IsNullOrEmpty(turma)))
+                {
+
+                    return BuscarAlunoPorNomeETurma(nome, idTurma);
+                }
+                if (string.IsNullOrEmpty(nome) && !(string.IsNullOrEmpty(raStr)) && (string.IsNullOrEmpty(turma)))
+                {
+
+                    return BuscarAlunoPorRA(ra);
+                }
+
+                if (string.IsNullOrEmpty(nome) && !(string.IsNullOrEmpty(raStr)) && !(string.IsNullOrEmpty(turma)))
+                {
+                    return BuscarAlunoPorRAETurma(ra, idTurma);
+                }
+
+                if (string.IsNullOrEmpty(nome) && (string.IsNullOrEmpty(raStr)) && !(string.IsNullOrEmpty(turma)))
+                {
+                    return BuscarAlunoPorTurma(idTurma);
+
+                }
+                return Listar();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            
+        }
        
     }
 }

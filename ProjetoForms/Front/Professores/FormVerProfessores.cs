@@ -32,9 +32,18 @@ namespace ProjetoForms.Front.Professores
        
         private void FormVerProfessores_Load(object sender, EventArgs e)
         {
-            Listar();
-            gridProfessores.EnableHeadersVisualStyles = false;
-            gridProfessores.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
+            try
+            {
+                Listar();
+                gridProfessores.EnableHeadersVisualStyles = false;
+                gridProfessores.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Erro: " + ex.Message, "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+           
         }
 
         private void Listar()
@@ -45,7 +54,7 @@ namespace ProjetoForms.Front.Professores
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao Listar os Dados: " + ex.Message);
+                throw ex;
             }
         }
 
@@ -53,8 +62,9 @@ namespace ProjetoForms.Front.Professores
         {
             try
             {
-                Professor professor = new Professor();
-                professor.Id = Convert.ToInt32(gridProfessores.CurrentRow.Cells[0].Value);
+                
+                int id = Convert.ToInt32(gridProfessores.CurrentRow.Cells[0].Value);
+                Professor professor = professorModel.ReceberProfessorPorId(id);
                 Form form = new FormEditarProfessor(professor);
                 form.ShowDialog();
                 Listar();
@@ -62,7 +72,7 @@ namespace ProjetoForms.Front.Professores
             catch (Exception ex)
             {
 
-                MessageBox.Show("Erro: " + ex.Message);
+                MessageBox.Show("Erro: " + ex.Message, "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -100,7 +110,7 @@ namespace ProjetoForms.Front.Professores
             catch (Exception ex)
             {
 
-                MessageBox.Show("Erro: " + ex.Message);
+                MessageBox.Show("Erro: " + ex.Message, "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
            
         }
@@ -112,7 +122,6 @@ namespace ProjetoForms.Front.Professores
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             

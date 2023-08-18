@@ -139,6 +139,7 @@
             // 
             this.txtRA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtRA.Location = new System.Drawing.Point(611, 123);
+            this.txtRA.MaxLength = 8;
             this.txtRA.Name = "txtRA";
             this.txtRA.Size = new System.Drawing.Size(174, 26);
             this.txtRA.TabIndex = 3;

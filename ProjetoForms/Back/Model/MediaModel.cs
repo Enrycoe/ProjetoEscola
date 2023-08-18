@@ -17,10 +17,10 @@ namespace ProjetoForms.Back.Model
             {
                 dao.CadastrarMedia(media);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
         }
 
@@ -30,10 +30,10 @@ namespace ProjetoForms.Back.Model
             {
                 dao.ExcluirMediaExistente(media);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
         }
 
@@ -43,21 +43,39 @@ namespace ProjetoForms.Back.Model
             {
                 return dao.ReceberIDUltimaMedia();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
         }
 
         internal double ReceberMedia(Aluno aluno, int idBimestre, int idMateria)
         {
-            return dao.ReceberMedia(aluno, idBimestre, idMateria);
+            try
+            {
+                return dao.ReceberMedia(aluno, idBimestre, idMateria);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
         }
 
         internal bool VerificarMediaExistente(Media media)
         {
-            return dao.VerificarMediaExistente(media);
+            try
+            {
+                return dao.VerificarMediaExistente(media);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
         }
     }
 }

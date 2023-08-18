@@ -26,12 +26,30 @@ namespace ProjetoForms.Back.DAO
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
+        }
+
+        internal void DeletarMediaPorAluno(int id)
+        {
+            try
+            {
+                cmd = new MySqlCommand("DELETE FROM media WHERE fk_Aluno_RA = @RA", conn.conn);
+                cmd.Parameters.AddWithValue("@RA", id);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { conn.FecharConexao(); }
+            
         }
 
         internal void ExcluirMediaExistente(Media media)
@@ -53,10 +71,10 @@ namespace ProjetoForms.Back.DAO
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();  
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }
@@ -72,10 +90,10 @@ namespace ProjetoForms.Back.DAO
                 cmd.Parameters.AddWithValue("@materia", media.Materia.Id);
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
         }
         internal int ReceberIDUltimaMedia()
@@ -87,10 +105,10 @@ namespace ProjetoForms.Back.DAO
                 int id = Convert.ToInt32(cmd.ExecuteScalar());
                 return id;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao() ;}
         }
@@ -112,10 +130,10 @@ namespace ProjetoForms.Back.DAO
                
                 return Convert.ToDouble(media);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }
@@ -136,10 +154,10 @@ namespace ProjetoForms.Back.DAO
                 }
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }

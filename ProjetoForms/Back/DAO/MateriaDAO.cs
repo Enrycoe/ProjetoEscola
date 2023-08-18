@@ -24,9 +24,9 @@ namespace ProjetoForms.Back.Model
                 return dt;
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }

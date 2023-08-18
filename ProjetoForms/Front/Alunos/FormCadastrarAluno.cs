@@ -33,58 +33,73 @@ namespace ProjetoForms.Front.Alunos
             cbTurma.DisplayMember = "Nome_Turma";
         }
 
-        private void FormCadastrarAluno_MouseDown1(object sender, MouseEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         private void FormCadastrarAluno_Load(object sender, EventArgs e)
         {
-            cbEstado.DataSource = estadoModel.Listar();
-            cbTurma.DataSource = turmaModel.Listar();
+            try
+            {
+                cbEstado.DataSource = estadoModel.Listar();
+                cbTurma.DataSource = turmaModel.Listar();
+                cbTurma.SelectedIndex = 12;
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Erro: " + ex.Message, "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            
         }
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            Aluno aluno = new Aluno();
-            aluno.Turma = new Turma();
-            aluno.Endereco = new Endereco();
-            aluno.Endereco.Bairro = new Bairro();
-            aluno.Endereco.Bairro.Cidade = new Cidade();
-            if (string.IsNullOrWhiteSpace(txtNomeCompleto.Text))
+            try
             {
-                MessageBox.Show("Nome do aluno não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNomeCompleto.Focus();
-                return;
+                Aluno aluno = new Aluno();
+                aluno.Turma = new Turma();
+                aluno.Endereco = new Endereco();
+                aluno.Endereco.Bairro = new Bairro();
+                aluno.Endereco.Bairro.Cidade = new Cidade();
+                if (string.IsNullOrWhiteSpace(txtNomeCompleto.Text))
+                {
+                    MessageBox.Show("Nome do aluno não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNomeCompleto.Focus();
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(txtBairro.Text))
+                {
+                    MessageBox.Show("Nome do bairro não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtBairro.Focus();
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(txtNumeroCasa.Text))
+                {
+                    MessageBox.Show("Número da casa não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtNomeCompleto.Focus();
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(txtRua.Text))
+                {
+                    MessageBox.Show("Nome da rua não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtRua.Focus();
+                    return;
+                }
+                DateTime dataNascimento = Convert.ToDateTime(dtNascimento.Text);
+                int idade = aluno.CalcularIdade(dataNascimento);
+                if (idade < aluno.IdadeMinima || idade > aluno.IdadeMaxima)
+                {
+                    MessageBox.Show("O aluno precisa estar entre 13 e 21 anos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    dtNascimento.Focus();
+                    return;
+                }
+                Cadastrar(aluno);
+                LimparCampos();
+
             }
-            if (string.IsNullOrWhiteSpace(txtBairro.Text))
+            catch (Exception ex)
             {
-                MessageBox.Show("Nome do bairro não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtBairro.Focus();
-                return;
+
+                MessageBox.Show("Erro: " + ex.Message, "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            if (string.IsNullOrWhiteSpace(txtNumeroCasa.Text))
-            {
-                MessageBox.Show("Número da casa não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtNomeCompleto.Focus();
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtRua.Text))
-            {
-                MessageBox.Show("Nome da rua não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtRua.Focus();
-                return;
-            }
-            DateTime dataNascimento = Convert.ToDateTime(dtNascimento.Text);
-            int idade = aluno.CalcularIdade(dataNascimento);
-            if (idade < aluno.IdadeMinima || idade > aluno.IdadeMaxima)
-            {
-                MessageBox.Show("O aluno precisa estar entre 13 e 21 anos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                dtNascimento.Focus();
-                return;
-            }
-            Cadastrar(aluno);
-            LimparCampos();
+            
 
         }
 
@@ -123,11 +138,20 @@ namespace ProjetoForms.Front.Alunos
 
         private void cbEstado_TextChanged(object sender, EventArgs e)
         {
-            cbCidade.Text = null;
+            try
+            {
+                cbCidade.Text = null;
 
-            DataTable cidadePorEstado = cidadeModel.Listar(Convert.ToInt32(cbEstado.SelectedValue));
+                DataTable cidadePorEstado = cidadeModel.Listar(Convert.ToInt32(cbEstado.SelectedValue));
 
-            cbCidade.DataSource = cidadePorEstado;
+                cbCidade.DataSource = cidadePorEstado;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
 
         }
 
@@ -137,6 +161,7 @@ namespace ProjetoForms.Front.Alunos
             dtNascimento.Text = "";
             txtBairro.Text = "";
             txtNumeroCasa.Text = "";
+            txtRua.Text = "";
             txtTelefonePessoal.Text = "";
             txtTelefoneFixo.Text = "";
             txtTelefoneResponsavel.Text = "";

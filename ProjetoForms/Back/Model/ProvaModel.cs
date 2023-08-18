@@ -52,10 +52,10 @@ namespace ProjetoForms.Back.Model
             {
                 dao.CadastrarProva(prova, aluno);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
         }
     }

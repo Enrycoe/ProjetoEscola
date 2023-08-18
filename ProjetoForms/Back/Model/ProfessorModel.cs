@@ -22,10 +22,10 @@ namespace ProjetoForms.Back.Model
                     pessoaAtualizada.Idade = pessoaAtualizada.CalcularIdade(pessoaAtualizada.DataNascimento);
                     dao.Atualizar(pessoa, pessoaAtualizada);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
 
-                    throw;
+                    throw ex;
                 }
             }
         }
@@ -39,10 +39,10 @@ namespace ProjetoForms.Back.Model
                     professor.Idade = professor.CalcularIdade(professor.DataNascimento);
                     dao.Cadastrar(professor);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
 
-                    throw;
+                    throw ex;
                 }
             }
         }
@@ -53,10 +53,10 @@ namespace ProjetoForms.Back.Model
             {
                 dao.Deletar(id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
         }
 
@@ -80,16 +80,16 @@ namespace ProjetoForms.Back.Model
             return dao.BuscarPorNome(nome);
         }
 
-        internal Professor ReceberProfessor(int id)
+        internal Professor ReceberProfessorPorId(int id)
         {
             try
             {
-                return dao.ReceberProfessor(id);
+                return dao.ReceberProfessorPorId(id);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
         }
     }

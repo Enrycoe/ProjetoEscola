@@ -14,6 +14,10 @@ namespace ProjetoForms.Back.DAO
     {
         Conection conn = new Conection();
         MySqlCommand cmd;
+        BairroDAO bairroDAO  = new BairroDAO();
+        EnderecoDAO enderecoDAO = new EnderecoDAO();
+        ProvaDAO provaDAO = new ProvaDAO();
+        MediaDAO mediaDAO = new MediaDAO();
         public DataTable Listar()
         {
             try
@@ -28,9 +32,9 @@ namespace ProjetoForms.Back.DAO
                 return dt;
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }
@@ -40,44 +44,21 @@ namespace ProjetoForms.Back.DAO
             Aluno aluno = pessoa as Aluno;
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT id FROM bairro where nome_bairro = @nome", conn.conn);
-                cmd.Parameters.AddWithValue("@nome", aluno.Endereco.Bairro.Nome_bairro);
-                var result = cmd.ExecuteScalar();
-                if (result != null && result != DBNull.Value)
+                bool bairroExiste = bairroDAO.VerificarSeBairroExiste(aluno.Endereco.Bairro);
+                if (bairroExiste)
                 {
-                    aluno.Endereco.Bairro.Id = Convert.ToInt32(result);
-                    cmd = new MySqlCommand($"INSERT INTO endereco(Nome_Rua, Numero_Casa, fk_bairro_id) VALUES(@nome_rua, @numero_casa, @fk_bairro_id)", conn.conn);
-                    cmd.Parameters.AddWithValue("@nome_rua", aluno.Endereco.NomeRua);
-                    cmd.Parameters.AddWithValue("@numero_casa", aluno.Endereco.NumCasa);
-                    cmd.Parameters.AddWithValue("@fk_bairro_id", aluno.Endereco.Bairro.Id);
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                    cmd = new MySqlCommand($"SELECT id FROM endereco ORDER BY id DESC LIMIT 1", conn.conn);
-                    aluno.Endereco.Id = Convert.ToInt32(cmd.ExecuteScalar());
-                    cmd.Dispose();
+                    aluno.Endereco.Bairro.Id = bairroDAO.ReceberIdBairro(aluno.Endereco.Bairro);
+                    enderecoDAO.CadastrarEndereco(aluno.Endereco);
+                    aluno.Endereco.Id = enderecoDAO.ReceberIDUltimoEndereco();
                 }
                 else
                 {
-                    cmd = new MySqlCommand("INSERT INTO bairro (Nome_Bairro, fk_cidade_id) VALUES (@Nome_Bairro, @fk_cidade_id)", conn.conn);
-                    cmd.Parameters.AddWithValue("@Nome_Bairro", aluno.Endereco.Bairro.Nome_bairro);
-                    cmd.Parameters.AddWithValue("@fk_cidade_id", aluno.Endereco.Bairro.Cidade.Id);
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                    cmd = new MySqlCommand($"SELECT id FROM bairro ORDER BY id DESC LIMIT 1", conn.conn);
-                    aluno.Endereco.Bairro.Id = Convert.ToInt32(cmd.ExecuteScalar());
-                    cmd.Dispose();
-                    cmd = new MySqlCommand($"INSERT INTO endereco(Nome_Rua, Numero_Casa, fk_bairro_id) VALUES(@nome_rua, @numero_casa, @fk_bairro_id)", conn.conn);
-                    cmd.Parameters.AddWithValue("@nome_rua", aluno.Endereco.NomeRua);
-                    cmd.Parameters.AddWithValue("@numero_casa", aluno.Endereco.NumCasa);
-                    cmd.Parameters.AddWithValue("@fk_bairro_id", aluno.Endereco.Bairro.Id);
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                    cmd = new MySqlCommand($"SELECT id FROM endereco ORDER BY id DESC LIMIT 1", conn.conn);
-                    aluno.Endereco.Id = Convert.ToInt32(cmd.ExecuteScalar());
-                    cmd.Dispose();
-
+                    bairroDAO.CadastrarBairro(aluno.Endereco.Bairro);
+                    aluno.Endereco.Bairro.Id = bairroDAO.ReceberIdUltimoBairro();
+                    enderecoDAO.CadastrarEndereco(aluno.Endereco);
+                    aluno.Endereco.Id = enderecoDAO.ReceberIDUltimoEndereco();
                 }
+                conn.AbrirConexao();
                 cmd = new MySqlCommand($"INSERT INTO aluno(Data_de_Nascimento, RA, Idade, Nome, fk_Turma_ID, fk_Endereco_ID, Telefone_Pessoal, Telefone_Fixo, Telefone_Responsavel, Telefone_Responsavel_2) " +
                        $"VALUES(@Data_de_Nascimento, @RA, @Idade, @nome, @fk_turma_id, @fk_endereco_id, @Telefone_Pessoal, @Telefone_Fixo, @Telefone_Responsavel, @Telefone_Responsavel_2)", conn.conn);
                 cmd.Parameters.AddWithValue("@Data_de_Nascimento", aluno.DataNascimento.ToString("yyyy-MM-dd"));
@@ -96,13 +77,12 @@ namespace ProjetoForms.Back.DAO
             }
             catch (Exception ex)
             {
-
-                MessageBox.Show("Erro ao salvar: " + ex.Message);
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }
 
-        public Aluno ReceberAluno(int id)
+        public Aluno ReceberAlunoPorId(int id)
         {
             try
             {
@@ -144,11 +124,12 @@ namespace ProjetoForms.Back.DAO
                 return aluno;
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
+            finally { conn.FecharConexao(); }
         }
 
 
@@ -178,63 +159,42 @@ namespace ProjetoForms.Back.DAO
                 } while (raExiste);
                 return Convert.ToInt32(ra);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
+
+            finally { conn.FecharConexao(); }
         }
 
         internal void Atualizar(Pessoa pessoa, Pessoa pessoaAtualizada)
         {
             Aluno aluno = pessoaAtualizada as Aluno;
             Aluno alunoAntigo = pessoa as Aluno;
-            EnderecoDAO enderecoDAO = new EnderecoDAO();
 
             try
             {
-                conn.AbrirConexao();
-
-                cmd = new MySqlCommand("SELECT id FROM bairro where nome_bairro = @nome AND fk_cidade_id = @idCidade", conn.conn);
-                cmd.Parameters.AddWithValue("@nome", aluno.Endereco.Bairro.Nome_bairro);
-                cmd.Parameters.AddWithValue("@idCidade", aluno.Endereco.Bairro.Cidade.Id);
-                var result = cmd.ExecuteScalar();
-                if (result != null && result != DBNull.Value)
+                
+                bool bairroExiste = bairroDAO.VerificarSeBairroExiste(aluno.Endereco.Bairro);
+                if (bairroExiste)
                 {
-                    aluno.Endereco.Bairro.Id = Convert.ToInt32(result);
-                    cmd = new MySqlCommand($"UPDATE endereco SET Nome_Rua = @nome_rua, Numero_Casa = @numero_casa, fk_bairro_id = @fk_bairro_id WHERE ID = @ID", conn.conn);
-                    cmd.Parameters.AddWithValue("@nome_rua", aluno.Endereco.NomeRua);
-                    cmd.Parameters.AddWithValue("@numero_casa", aluno.Endereco.NumCasa);
-                    cmd.Parameters.AddWithValue("@fk_bairro_id", aluno.Endereco.Bairro.Id);
-                    cmd.Parameters.AddWithValue("@ID", enderecoDAO.ReceberIDEndereco(alunoAntigo));
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
+                    aluno.Endereco.Bairro.Id = bairroDAO.ReceberIdBairro(aluno.Endereco.Bairro);
+                    enderecoDAO.AtualizarEndereco(aluno.Endereco, alunoAntigo.Endereco);
                 }
                 else
                 {
-                    cmd = new MySqlCommand("INSERT INTO bairro (Nome_Bairro, fk_cidade_id) VALUES (@Nome_Bairro, @fk_cidade_id)", conn.conn);
-                    cmd.Parameters.AddWithValue("@Nome_Bairro", aluno.Endereco.Bairro.Nome_bairro);
-                    cmd.Parameters.AddWithValue("@fk_cidade_id", aluno.Endereco.Bairro.Cidade.Id);
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose();
-                    cmd = new MySqlCommand($"SELECT id FROM bairro ORDER BY id DESC LIMIT 1", conn.conn);
-                    aluno.Endereco.Bairro.Id = Convert.ToInt32(cmd.ExecuteScalar());
-                    cmd.Dispose();
-                    cmd = new MySqlCommand($"UPDATE endereco SET Nome_Rua = @nome_rua, Numero_Casa = @numero_casa, fk_bairro_id = @fk_bairro_id WHERE ID = @ID", conn.conn);
-                    cmd.Parameters.AddWithValue("@nome_rua", aluno.Endereco.NomeRua);
-                    cmd.Parameters.AddWithValue("@numero_casa", aluno.Endereco.NumCasa);
-                    cmd.Parameters.AddWithValue("@fk_bairro_id", aluno.Endereco.Bairro.Id);
-                    cmd.Parameters.AddWithValue("@ID", enderecoDAO.ReceberIDEndereco(alunoAntigo));
-                    cmd.ExecuteNonQuery();
-                    cmd.Dispose(); 
+                    bairroDAO.CadastrarBairro(aluno.Endereco.Bairro);
+                    aluno.Endereco.Bairro.Id = bairroDAO.ReceberIdUltimoBairro();
+                    enderecoDAO.AtualizarEndereco(aluno.Endereco, alunoAntigo.Endereco);
                 }
+                conn.AbrirConexao();
                 cmd = new MySqlCommand($"UPDATE aluno SET Data_de_Nascimento = @Data_de_Nascimento , Idade = @Idade, Nome = @nome, fk_Turma_ID = @fk_turma_id, Telefone_Pessoal = @Telefone_Pessoal, Telefone_Fixo = @Telefone_Fixo, Telefone_Responsavel = @Telefone_Responsavel, Telefone_Responsavel_2 = @Telefone_Responsavel_2 WHERE RA = @RA" , conn.conn);
                 cmd.Parameters.AddWithValue("@Data_de_Nascimento", aluno.DataNascimento.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@RA", aluno.Id);
                 cmd.Parameters.AddWithValue("@Idade", aluno.Idade);
                 cmd.Parameters.AddWithValue("@nome", aluno.Nome);
                 cmd.Parameters.AddWithValue("@fk_turma_id", aluno.Turma.Id);
-                cmd.Parameters.AddWithValue("@fk_endereco_id", enderecoDAO.ReceberIDEndereco(alunoAntigo));
                 cmd.Parameters.AddWithValue("@Telefone_Pessoal", aluno.TelefonePessoal);
                 cmd.Parameters.AddWithValue("@Telefone_Fixo", aluno.TelefoneFixo);
                 cmd.Parameters.AddWithValue("@Telefone_Responsavel", aluno.TelefoneResponsavel);
@@ -242,10 +202,10 @@ namespace ProjetoForms.Back.DAO
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }
@@ -254,26 +214,17 @@ namespace ProjetoForms.Back.DAO
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("DELETE FROM provas WHERE fk_Aluno_RA = @RA", conn.conn);
-                cmd.Parameters.AddWithValue("@RA", id);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
-
-                cmd = new MySqlCommand("DELETE FROM media WHERE fk_Aluno_RA = @RA", conn.conn);
-                cmd.Parameters.AddWithValue("@RA", id);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
-                
+                provaDAO.DeletarProvaPorAluno(id);
+                mediaDAO.DeletarMediaPorAluno(id);          
                 cmd = new MySqlCommand("DELETE FROM aluno WHERE RA = @RA", conn.conn);
                 cmd.Parameters.AddWithValue("@RA", id);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }
@@ -285,7 +236,7 @@ namespace ProjetoForms.Back.DAO
                 if (idTurma == 13)
                 {
                     conn.AbrirConexao();
-                    cmd = new MySqlCommand("SELECT * FROM aluno WHERE Nome LIKE @nome AND RA LIKE @RA ", conn.conn);
+                    cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE Nome LIKE @nome AND RA LIKE @RA ", conn.conn);
                     cmd.Parameters.AddWithValue("@nome", nome + "%");
                     cmd.Parameters.AddWithValue("@RA", rA + "%");
                     MySqlDataAdapter adapter = new MySqlDataAdapter();
@@ -298,7 +249,7 @@ namespace ProjetoForms.Back.DAO
                 else
                 {
                     conn.AbrirConexao();
-                    cmd = new MySqlCommand("SELECT * FROM aluno WHERE Nome LIKE @nome AND fk_Turma_ID = @fk_turma_id AND RA LIKE @RA ", conn.conn);
+                    cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE Nome LIKE @nome AND fk_Turma_ID = @fk_turma_id AND RA LIKE @RA ", conn.conn);
                     cmd.Parameters.AddWithValue("@nome", nome + "%");
                     cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
                     cmd.Parameters.AddWithValue("@RA", rA + "%");
@@ -312,9 +263,9 @@ namespace ProjetoForms.Back.DAO
                
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }
@@ -324,7 +275,7 @@ namespace ProjetoForms.Back.DAO
             try
             {
                 conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM aluno WHERE Nome LIKE @nome", conn.conn);
+                cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE Nome LIKE @nome", conn.conn);
                 cmd.Parameters.AddWithValue("@nome", nome + "%");
                 MySqlDataAdapter adapter = new MySqlDataAdapter();
                 adapter.SelectCommand = cmd;
@@ -334,9 +285,9 @@ namespace ProjetoForms.Back.DAO
                 return dt;
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }
@@ -347,7 +298,7 @@ namespace ProjetoForms.Back.DAO
             {
 
                 conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM aluno WHERE Nome LIKE @nome AND RA LIKE @RA ", conn.conn);
+                cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE Nome LIKE @nome AND RA LIKE @RA ", conn.conn);
                 cmd.Parameters.AddWithValue("@nome", nome + "%");
                 cmd.Parameters.AddWithValue("@RA", rA + "%");
                 MySqlDataAdapter adapter = new MySqlDataAdapter();
@@ -357,9 +308,9 @@ namespace ProjetoForms.Back.DAO
                 return dt;
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }
@@ -371,7 +322,7 @@ namespace ProjetoForms.Back.DAO
                 if(idTurma == 13)
                 {
                     conn.AbrirConexao();
-                    cmd = new MySqlCommand("SELECT * FROM aluno WHERE Nome LIKE @nome", conn.conn);
+                    cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE Nome LIKE @nome", conn.conn);
                     cmd.Parameters.AddWithValue("@nome", nome + "%");
                     cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
                     MySqlDataAdapter adapter = new MySqlDataAdapter();
@@ -384,7 +335,7 @@ namespace ProjetoForms.Back.DAO
                 else
                 {
                     conn.AbrirConexao();
-                    cmd = new MySqlCommand("SELECT * FROM aluno WHERE Nome LIKE @nome AND fk_Turma_ID = @fk_turma_id", conn.conn);
+                    cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE Nome LIKE @nome AND fk_Turma_ID = @fk_turma_id", conn.conn);
                     cmd.Parameters.AddWithValue("@nome", nome + "%");
                     cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
                     MySqlDataAdapter adapter = new MySqlDataAdapter();
@@ -397,9 +348,9 @@ namespace ProjetoForms.Back.DAO
                 
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }
@@ -409,7 +360,7 @@ namespace ProjetoForms.Back.DAO
             try
             {
                 conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM aluno WHERE RA LIKE @RA ", conn.conn);
+                cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE RA LIKE @RA ", conn.conn);
                 cmd.Parameters.AddWithValue("@RA", rA + "%");
                 MySqlDataAdapter adapter = new MySqlDataAdapter();
                 adapter.SelectCommand = cmd;
@@ -418,9 +369,9 @@ namespace ProjetoForms.Back.DAO
                 return dt;
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }
@@ -432,7 +383,7 @@ namespace ProjetoForms.Back.DAO
                 if(idTurma == 13)
                 {
                     conn.AbrirConexao();
-                    cmd = new MySqlCommand("SELECT * FROM aluno WHERE RA LIKE @RA ", conn.conn);
+                    cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE RA LIKE @RA ", conn.conn);
                     cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
                     cmd.Parameters.AddWithValue("@RA", rA + "%");
                     MySqlDataAdapter adapter = new MySqlDataAdapter();
@@ -445,7 +396,7 @@ namespace ProjetoForms.Back.DAO
                 else
                 {
                     conn.AbrirConexao();
-                    cmd = new MySqlCommand("SELECT * FROM aluno WHERE fk_Turma_ID LIKE @fk_turma_id AND RA LIKE @RA ", conn.conn);
+                    cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE fk_Turma_ID = @fk_turma_id AND RA LIKE @RA ", conn.conn);
                     cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
                     cmd.Parameters.AddWithValue("@RA", rA + "%");
                     MySqlDataAdapter adapter = new MySqlDataAdapter();
@@ -458,9 +409,9 @@ namespace ProjetoForms.Back.DAO
                 
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }
@@ -472,7 +423,7 @@ namespace ProjetoForms.Back.DAO
                 if(idTurma == 13)
                 {
                     conn.AbrirConexao();
-                    cmd = new MySqlCommand("SELECT * FROM aluno", conn.conn);
+                    cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID", conn.conn);
                     cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
                     MySqlDataAdapter adapter = new MySqlDataAdapter();
                     adapter.SelectCommand = cmd;
@@ -484,7 +435,7 @@ namespace ProjetoForms.Back.DAO
                 else
                 {
                     conn.AbrirConexao();
-                    cmd = new MySqlCommand("SELECT * FROM aluno WHERE fk_Turma_ID = @fk_turma_id", conn.conn);
+                    cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE fk_Turma_ID = @fk_turma_id", conn.conn);
                     cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
                     MySqlDataAdapter adapter = new MySqlDataAdapter();
                     adapter.SelectCommand = cmd;
@@ -496,9 +447,9 @@ namespace ProjetoForms.Back.DAO
                
             }
 
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw ex;
             }
             finally { conn.FecharConexao(); }
         }
