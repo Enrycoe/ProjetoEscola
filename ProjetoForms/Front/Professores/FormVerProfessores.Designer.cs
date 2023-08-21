@@ -152,11 +152,11 @@
             // 
             // ID
             // 
+            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ID.DataPropertyName = "ID";
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
-            this.ID.Visible = false;
             // 
             // Nome
             // 
@@ -177,7 +177,7 @@
             // Telefone_Pessoal
             // 
             this.Telefone_Pessoal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Telefone_Pessoal.DataPropertyName = "Telefone_Pessoal";
+            this.Telefone_Pessoal.DataPropertyName = "TelefonePessoal";
             this.Telefone_Pessoal.HeaderText = "Telefone Pessoal";
             this.Telefone_Pessoal.Name = "Telefone_Pessoal";
             this.Telefone_Pessoal.ReadOnly = true;
@@ -185,7 +185,7 @@
             // Telefone_Fixo
             // 
             this.Telefone_Fixo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Telefone_Fixo.DataPropertyName = "Telefone_Fixo";
+            this.Telefone_Fixo.DataPropertyName = "TelefoneFixo";
             this.Telefone_Fixo.HeaderText = "Telefone Fixo";
             this.Telefone_Fixo.Name = "Telefone_Fixo";
             this.Telefone_Fixo.ReadOnly = true;
@@ -233,6 +233,8 @@
         private System.Windows.Forms.Label lblNome;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.DataGridView gridProfessores;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn Idade;
@@ -240,7 +242,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefone_Fixo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Data_de_Nascimento;
         private System.Windows.Forms.DataGridViewTextBoxColumn fk_endereço_id;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnVoltar;
     }
 }

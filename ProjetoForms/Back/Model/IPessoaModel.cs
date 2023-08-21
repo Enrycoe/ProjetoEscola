@@ -15,7 +15,7 @@ namespace ProjetoForms.Back.Model
 
         void AtualizarPorId (Pessoa pessoa, Pessoa pessoaAtualizada);
 
-        DataTable Listar();
+        List<T> Listar<T>() where T : Pessoa;
 
         void DeletarPorId(int id);
     }

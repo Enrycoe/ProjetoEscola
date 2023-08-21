@@ -8,7 +8,7 @@ namespace ProjetoForms.Back.Model
     internal class MateriaDAO
     {
 
-        Conection conn = new Conection();
+        ConexaoMySQL conn = new ConexaoMySQL();
         MySqlCommand cmd;
         public DataTable Listar()
         {

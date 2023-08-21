@@ -155,7 +155,7 @@ namespace ProjetoForms.Front.Alunos
                 Pessoa pessoaAtualizada = alunoAtualizado;
 
 
-                alunoModel.Atualizar(pessoa, pessoaAtualizada);
+                alunoModel.AtualizarPorId(pessoa, pessoaAtualizada);
                 MessageBox.Show("Aluno Salvo com Sucesso!", "Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)

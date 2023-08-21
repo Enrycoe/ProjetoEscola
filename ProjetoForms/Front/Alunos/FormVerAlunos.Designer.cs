@@ -223,7 +223,7 @@
             // RA
             // 
             this.RA.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.RA.DataPropertyName = "RA";
+            this.RA.DataPropertyName = "ID";
             this.RA.HeaderText = "RA";
             this.RA.Name = "RA";
             this.RA.ReadOnly = true;
@@ -275,6 +275,7 @@
             this.Telefone_Pessoal.ReadOnly = true;
             this.Telefone_Pessoal.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Telefone_Pessoal.Visible = false;
+            this.Telefone_Pessoal.Width = 114;
             // 
             // Telefone_FIxo
             // 
@@ -285,6 +286,7 @@
             this.Telefone_FIxo.ReadOnly = true;
             this.Telefone_FIxo.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Telefone_FIxo.Visible = false;
+            this.Telefone_FIxo.Width = 96;
             // 
             // Telefone_Responsavel
             // 
@@ -295,6 +297,7 @@
             this.Telefone_Responsavel.ReadOnly = true;
             this.Telefone_Responsavel.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Telefone_Responsavel.Visible = false;
+            this.Telefone_Responsavel.Width = 139;
             // 
             // Telefone_Responsavel_2
             // 
@@ -305,6 +308,7 @@
             this.Telefone_Responsavel_2.ReadOnly = true;
             this.Telefone_Responsavel_2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.Telefone_Responsavel_2.Visible = false;
+            this.Telefone_Responsavel_2.Width = 139;
             // 
             // data_de_Nascimento
             // 
@@ -315,6 +319,7 @@
             this.data_de_Nascimento.ReadOnly = true;
             this.data_de_Nascimento.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.data_de_Nascimento.Visible = false;
+            this.data_de_Nascimento.Width = 129;
             // 
             // fk_endereco_id
             // 
@@ -325,6 +330,7 @@
             this.fk_endereco_id.ReadOnly = true;
             this.fk_endereco_id.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.fk_endereco_id.Visible = false;
+            this.fk_endereco_id.Width = 78;
             // 
             // FormVerAlunos
             // 
@@ -350,6 +356,14 @@
         #endregion
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView gridAlunos;
+        private System.Windows.Forms.TextBox txtNome;
+        private System.Windows.Forms.Label lblNome;
+        private System.Windows.Forms.Label lblRA;
+        private System.Windows.Forms.TextBox txtRA;
+        private System.Windows.Forms.Label lblTurma;
+        private System.Windows.Forms.ComboBox cbTurma;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.DataGridViewTextBoxColumn RA;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nome;
         private System.Windows.Forms.DataGridViewTextBoxColumn Idade;
@@ -361,13 +375,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefone_Responsavel_2;
         private System.Windows.Forms.DataGridViewTextBoxColumn data_de_Nascimento;
         private System.Windows.Forms.DataGridViewTextBoxColumn fk_endereco_id;
-        private System.Windows.Forms.TextBox txtNome;
-        private System.Windows.Forms.Label lblNome;
-        private System.Windows.Forms.Label lblRA;
-        private System.Windows.Forms.TextBox txtRA;
-        private System.Windows.Forms.Label lblTurma;
-        private System.Windows.Forms.ComboBox cbTurma;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnVoltar;
     }
 }

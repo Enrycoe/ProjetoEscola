@@ -12,7 +12,7 @@ namespace ProjetoForms.Back.DAO
 {
     internal class CidadeDAO 
     {
-        Conection conn = new Conection();
+        ConexaoMySQL conn = new ConexaoMySQL();
         MySqlCommand cmd;
         public DataTable Listar(int id)
         {

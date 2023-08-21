@@ -34,9 +34,11 @@ namespace ProjetoForms.Front.Professores
         {
             try
             {
-                Listar();
                 gridProfessores.EnableHeadersVisualStyles = false;
+                gridProfessores.AutoGenerateColumns = false;
                 gridProfessores.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
+                Listar();
+               
             }
             catch (Exception ex)
             {
@@ -50,7 +52,7 @@ namespace ProjetoForms.Front.Professores
         {
             try
             {
-                gridProfessores.DataSource = professorModel.Listar();
+                gridProfessores.DataSource = professorModel.Listar<Professor>();
             }
             catch (Exception ex)
             {

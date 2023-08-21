@@ -232,23 +232,77 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
-        internal DataTable Listar()
+        internal List<Professor> BuscarTodosProfessores()
         {
             try
             {
                 conn.AbrirConexao();
                 cmd = new MySqlCommand("SELECT * FROM professor", conn.conn);
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
+                
 
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                return dt;
+                return ListarProfessores(cmd);
             }
 
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally { conn.FecharConexao(); }
+        }
+
+        private List<Professor> ListarProfessores(MySqlCommand cmd)
+        {
+            List<Professor> professores = new List<Professor>();    
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            adapter.SelectCommand = cmd;
+
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+
+            foreach(DataRow dr in dt.Rows)
+            {
+                Professor professor = new Professor();
+                professor.Endereco = new Endereco();
+                professor.Endereco.Bairro = new Bairro();
+                professor.Endereco.Bairro.Cidade = new Cidade();
+                professor.Endereco.Bairro.Cidade.Estado = new Estado();
+                professor.Id = Convert.ToInt32(dr["ID"]);
+                professor.DataNascimento = Convert.ToDateTime(dr["Data_de_Nascimento"]);
+                professor.Idade = Convert.ToInt32(dr["Idade"]);
+                professor.Nome = dr["Nome"].ToString();
+                professor.TelefonePessoal = dr["Telefone_Pessoal"].ToString();
+                professor.TelefoneFixo = dr["Telefone_Fixo"].ToString();
+                professor.Endereco.Id = Convert.ToInt32(dr["fk_endereÇo_ID"]);
+                professor.Materias = ListarMateriaPorProfessor(professor);
+                professor.Turmas = ListarTurmasPorProfessor(professor);
+                professores.Add(professor);
+            }
+            return professores;
+        }
+
+        private List<Turma> ListarTurmasPorProfessor(Professor professor)
+        {
+            try
+            {
+                List<Turma> turmas = new List<Turma>();
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("SELECT p.fk_Turma_ID, t.Nome_Turma FROM professor_turma p JOIN turma t ON t.ID = fk_Turma_ID WHERE fk_Professor_ID = @ID", conn.conn);
+                cmd.Parameters.AddWithValue("@ID", professor.Id);
+                var readerTurma = cmd.ExecuteReader();
+                while (readerTurma.Read())
+                {
+                    Turma turma = new Turma();
+                    turma.Id = Convert.ToInt32(readerTurma["fk_Turma_ID"]);
+                    turma.Nome = readerTurma["Nome_Turma"].ToString();
+                    turmas.Add(turma);
+                }
+                cmd.Dispose();
+                return turmas;
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
             finally { conn.FecharConexao(); }
         }
@@ -323,6 +377,33 @@ namespace ProjetoForms.Back.DAO
                 throw ex;
             }
             finally { conn.FecharConexao(); }
+        }
+
+        public List<Materia> ListarMateriaPorProfessor(Professor professor)
+        {
+            try
+            {
+                List<Materia> materias = new List<Materia>();
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("SELECT p.fk_Materia_ID, m.Nome_da_Materia FROM materia_professor p JOIN materia m ON m.ID = fk_Materia_ID WHERE fk_Professor_ID = @ID", conn.conn);
+                cmd.Parameters.AddWithValue("@ID", professor.Id);
+                var readerMateria = cmd.ExecuteReader();
+                while (readerMateria.Read())  
+                {
+                    Materia materia = new Materia();
+                    materia.Id = Convert.ToInt32(readerMateria["fk_Materia_ID"]);
+                    materia.NomeMateria = readerMateria["Nome_da_Materia"].ToString();
+                    materias.Add(materia);
+                }
+                cmd.Dispose();
+                return materias;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { conn.FecharConexao(); };
         }
     }
 

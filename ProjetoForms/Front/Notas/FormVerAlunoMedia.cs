@@ -34,6 +34,7 @@ namespace ProjetoForms
                 cbTurma.SelectedIndex = 12;
                 PesquisarAluno();
                 gridAlunos.EnableHeadersVisualStyles = false;
+                gridAlunos.AutoGenerateColumns = false;
                 gridAlunos.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
             }
             catch (Exception ex)
@@ -50,7 +51,7 @@ namespace ProjetoForms
             try
             {
 
-                int id = Convert.ToInt32(gridAlunos.CurrentRow.Cells[1].Value);
+                int id = Convert.ToInt32(gridAlunos.CurrentRow.Cells[0].Value);
                 Aluno aluno = alunoModel.ReceberAlunoPorId(id);
                 Form f = new FormCalcularMedia(aluno);
                 f.ShowDialog();
@@ -97,7 +98,7 @@ namespace ProjetoForms
 
                 string turma = cbTurma.Text;
                 int idTurma = Convert.ToInt32(cbTurma.SelectedValue);
-                gridAlunos.DataSource = alunoModel.PesquisarAluno(nome, raStr, ra, turma, idTurma);
+                gridAlunos.DataSource = alunoModel.PesquisarAluno<Aluno>(nome, raStr, ra, turma, idTurma);
             }
             catch (Exception ex)
             {

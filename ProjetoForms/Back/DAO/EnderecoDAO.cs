@@ -11,10 +11,10 @@ namespace ProjetoForms.Back.DAO
     internal class EnderecoDAO
     {
 
-        Conection conn = new Conection();
+        ConexaoMySQL conn = new ConexaoMySQL();
         MySqlCommand cmd;
         public int ReceberIDEndereco(Endereco endereco)
-        {
+        {  
             try
             {
                 conn.AbrirConexao();

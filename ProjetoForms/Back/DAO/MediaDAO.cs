@@ -10,7 +10,7 @@ namespace ProjetoForms.Back.DAO
 {
     internal class MediaDAO
     {
-        Conection conn = new Conection();
+        ConexaoMySQL conn = new ConexaoMySQL();
         MySqlCommand cmd;
 
         internal void CadastrarMedia(Media media)

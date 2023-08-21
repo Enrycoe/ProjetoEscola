@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Back\ConexaoMySQL.cs" />
     <Compile Include="Back\DAO\AlunoDAO.cs" />
     <Compile Include="Back\DAO\BairroDAO.cs" />
     <Compile Include="Back\DAO\BimestreDAO.cs" />
@@ -84,7 +85,6 @@
     <Compile Include="Back\Model\ProfessorModel.cs" />
     <Compile Include="Back\Model\ProvaModel.cs" />
     <Compile Include="Back\Model\TurmaModel.cs" />
-    <Compile Include="Conection.cs" />
     <Compile Include="Front\Alunos\FormCadastrarAluno.cs">
       <SubType>Form</SubType>
     </Compile>

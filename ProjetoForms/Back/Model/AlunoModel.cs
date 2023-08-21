@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjetoForms.Back.Entities;
+using MySql.Data.MySqlClient;
 
 namespace ProjetoForms.Back.Model
 {
@@ -13,15 +14,12 @@ namespace ProjetoForms.Back.Model
     {
         AlunoDAO dao = new AlunoDAO();
 
-        public DataTable Listar()
+        public List<T> Listar<T>() where T : Pessoa
         {
             try
             {
-                DataTable dt = new DataTable();
-                dt = dao.Listar();
-                return dt;
+                return dao.BuscarTodosAlunos() as List<T>;
             }
-
             catch (Exception ex)
             {
                 throw ex;
@@ -30,24 +28,44 @@ namespace ProjetoForms.Back.Model
 
         public void Cadastrar(Pessoa aluno)
         {
-            if(aluno.GetType() == typeof(Aluno))
-            {
-                try
-                {
-                    aluno.Id = dao.GerarRA();
-                    
-                    dao.Cadastrar(aluno);
-                }
-                catch (Exception ex)
-                {
 
-                    throw ex;
-                }
+            try
+            {
+                aluno.Id = GerarRA();
+
+                dao.Cadastrar(aluno);
             }
-           
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+
         }
 
-        
+        private int GerarRA()
+        {
+            string raStr;
+            int ra;
+            try
+            {
+                do
+                {
+                    string anoRa = DateTime.Now.Year.ToString();
+                    string raNum = new Random().Next(1000, 9999).ToString();
+                    raStr = anoRa + raNum;
+                    ra = Convert.ToInt32(raStr);
+                } while (dao.VerificarSeRAExiste(ra));
+                return ra;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
 
         internal Aluno ReceberAlunoPorId(int id)
         {
@@ -64,43 +82,80 @@ namespace ProjetoForms.Back.Model
 
         public void AtualizarPorId(Pessoa aluno, Pessoa alunoAtualido)
         {
-            if (aluno.GetType() == typeof(Aluno))
-            {
-                try
-                {
-                    
-                    dao.AtualizarPorId(aluno, alunoAtualido);
-                }
-                catch (Exception ex)
-                {
 
-                    throw ex;
-                }
-            }
-               
-        }
-
-        public void Deletar(int id)
-        {
             try
             {
-                dao.Deletar(id);
+                dao.AtualizarPorId(aluno, alunoAtualido);
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
-            
+
+
         }
+
+        public void DeletarPorId(int id)
+        {
+            try
+            {
+                dao.DeletarPorId(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+
+        internal List<Aluno> BuscarAluno(string nome, int rA, int idTurma)
+        {
+            try
+            {
+          
+                return dao.BuscarAluno(nome, rA, idTurma);
+                
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        internal List<Aluno> BuscarAlunoPorNome(string nome)
+        {
+            try
+            {
+                return dao.BuscarAlunoPorNome(nome);
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        internal List<Aluno> BuscarAlunoPorNomeERA(string nome, int rA)
         
-        internal DataTable BuscarAluno(string nome, int rA, int idTurma)
         {
             try
             {
-                DataTable dt = new DataTable();
-                dt = dao.BuscarAluno(nome, rA, idTurma);
-                return dt;
+                return dao.BuscarAlunoPorNomeERA(nome, rA);
+            }
+            catch (Exception ex) 
+            {
+                throw ex; 
+            }
+        }
+
+        internal List<Aluno> BuscarAlunoPorNomeETurma(string nome, int idTurma)
+        {
+            try
+            {
+                return dao.BuscarAlunoPorNomeETurma(nome, idTurma);
             }
 
             catch (Exception ex)
@@ -109,13 +164,11 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal DataTable BuscarAlunoPorNome(string nome)
+        internal List<Aluno> BuscarAlunoPorRA(int rA) 
         {
             try
             {
-                DataTable dt = new DataTable();
-                dt = dao.BuscarAlunoPorNome(nome);
-                return dt;
+                return dao.BuscarAlunoPorRA(rA);
             }
 
             catch (Exception ex)
@@ -124,13 +177,11 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal DataTable BuscarAlunoPorNomeERA(string nome, int rA)
+        internal List<Aluno> BuscarAlunoPorRAETurma(int rA, int idTurma)
         {
             try
             {
-                DataTable dt = new DataTable();
-                dt = dao.BuscarAlunoPorNomeERA(nome, rA);
-                return dt;
+                return dao.BuscarAlunoPorRAETurma(rA, idTurma);
             }
 
             catch (Exception ex)
@@ -139,13 +190,11 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal DataTable BuscarAlunoPorNomeETurma(string nome, int idTurma)
+        internal List<Aluno> BuscarAlunoPorTurma(int idTurma)
         {
             try
             {
-                DataTable dt = new DataTable();
-                dt = dao.BuscarAlunoPorNomeETurma(nome, idTurma);
-                return dt;
+                return dao.BuscarAlunoPorTurma(idTurma);
             }
 
             catch (Exception ex)
@@ -154,93 +203,48 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal DataTable BuscarAlunoPorRA(int rA)
-        {
-            try
-            {
-                DataTable dt = new DataTable();
-                dt = dao.BuscarAlunoPorRA(rA);
-                return dt;
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        internal DataTable BuscarAlunoPorRAETurma(int rA, int idTurma)
-        {
-            try
-            {
-                DataTable dt = new DataTable();
-                dt = dao.BuscarAlunoPorRAETurma(rA, idTurma);
-                return dt;
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        internal DataTable BuscarAlunoPorTurma(int idTurma)
-        {
-            try
-            {
-                DataTable dt = new DataTable();
-                dt = dao.BuscarAlunoPorTurma(idTurma);
-                return dt;
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        internal DataTable PesquisarAluno(string nome, string raStr, int ra, string turma, int idTurma)
+        internal List<T> PesquisarAluno<T>(string nome, string raStr, int ra, string turma, int idTurma) where T : Pessoa
         {
             try
             {
                 if (!(string.IsNullOrEmpty(nome)) && !(string.IsNullOrEmpty(raStr)) && !(string.IsNullOrEmpty(turma)))
                 {
 
-                    return BuscarAluno(nome, ra, idTurma);
+                    return BuscarAluno(nome, ra, idTurma) as List<T>;
 
                 }
                 if (!(string.IsNullOrEmpty(nome)) && (string.IsNullOrEmpty(raStr)) && (string.IsNullOrEmpty(turma)))
                 {
-                    return BuscarAlunoPorNome(nome);
+                    return BuscarAlunoPorNome(nome) as List<T>;
                 }
                 if (!(string.IsNullOrEmpty(nome)) && !(string.IsNullOrEmpty(raStr)) && (string.IsNullOrEmpty(turma)))
                 {
 
-                    return BuscarAlunoPorNomeERA(nome, ra);
+                    return BuscarAlunoPorNomeERA(nome, ra) as List<T>;
 
                 }
                 if (!(string.IsNullOrEmpty(nome)) && (string.IsNullOrEmpty(raStr)) && !(string.IsNullOrEmpty(turma)))
                 {
 
-                    return BuscarAlunoPorNomeETurma(nome, idTurma);
+                    return BuscarAlunoPorNomeETurma(nome, idTurma) as List<T>;
                 }
                 if (string.IsNullOrEmpty(nome) && !(string.IsNullOrEmpty(raStr)) && (string.IsNullOrEmpty(turma)))
                 {
 
-                    return BuscarAlunoPorRA(ra);
+                    return BuscarAlunoPorRA(ra) as List<T>;
                 }
 
                 if (string.IsNullOrEmpty(nome) && !(string.IsNullOrEmpty(raStr)) && !(string.IsNullOrEmpty(turma)))
                 {
-                    return BuscarAlunoPorRAETurma(ra, idTurma);
+                    return BuscarAlunoPorRAETurma(ra, idTurma) as List<T>;
                 }
 
                 if (string.IsNullOrEmpty(nome) && (string.IsNullOrEmpty(raStr)) && !(string.IsNullOrEmpty(turma)))
                 {
-                    return BuscarAlunoPorTurma(idTurma);
+                    return BuscarAlunoPorTurma(idTurma) as List<T>;
 
                 }
-                return Listar();
+                return Listar<T>();
             }
             catch (Exception ex)
             {
@@ -248,8 +252,8 @@ namespace ProjetoForms.Back.Model
                 throw ex;
             }
 
-            
+
         }
-       
+
     }
 }

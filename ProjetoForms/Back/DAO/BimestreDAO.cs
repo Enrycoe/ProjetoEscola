@@ -10,9 +10,9 @@ namespace ProjetoForms.Back.DAO
 {
     internal class BimestreDAO 
     {
-        Conection conn = new Conection();
+        ConexaoMySQL conn = new ConexaoMySQL();
         MySqlCommand cmd;
-        internal DataTable Listar()
+        internal DataTable Listar() //////transforma em lista seu viado
         {
             try
             {

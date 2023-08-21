@@ -13,45 +13,42 @@ namespace ProjetoForms.Back.Model
     {
         ProfessorDAO dao = new ProfessorDAO();
 
-        public void Atualizar(Pessoa pessoa, Pessoa pessoaAtualizada)
+        public void AtualizarPorId(Pessoa pessoa, Pessoa pessoaAtualizada)
         {
-            if (pessoaAtualizada.GetType() == typeof(Professor))
-            {
-                try
-                {
-                    pessoaAtualizada.Idade = pessoaAtualizada.CalcularIdade(pessoaAtualizada.DataNascimento);
-                    dao.Atualizar(pessoa, pessoaAtualizada);
-                }
-                catch (Exception ex)
-                {
 
-                    throw ex;
-                }
+            try
+            {
+                pessoaAtualizada.Idade = pessoaAtualizada.CalcularIdade(pessoaAtualizada.DataNascimento);
+                dao.Atualizar(pessoa, pessoaAtualizada);
             }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
         }
 
         public void Cadastrar(Pessoa professor)
         {
-            if (professor.GetType() == typeof(Professor))
+            try
             {
-                try
-                {
-                    professor.Idade = professor.CalcularIdade(professor.DataNascimento);
-                    dao.Cadastrar(professor);
-                }
-                catch (Exception ex)
-                {
-
-                    throw ex;
-                }
+                professor.Idade = professor.CalcularIdade(professor.DataNascimento);
+                dao.Cadastrar(professor);
             }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
         }
 
-        public void Deletar(int id)
+        public void DeletarPorId(int id)
         {
             try
             {
-                dao.Deletar(id);
+                dao.DeletarPorId(id);
             }
             catch (Exception ex)
             {
@@ -60,13 +57,12 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        public DataTable Listar()
+        public List<T> Listar<T>() where T : Pessoa
         {
             try
             {
-                DataTable dt = new DataTable();
-                dt = dao.Listar();
-                return dt;
+                 
+                return dao.BuscarTodosProfessores() as List<T>;
             }
 
             catch (Exception ex)

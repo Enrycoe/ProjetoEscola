@@ -12,7 +12,7 @@ namespace ProjetoForms.Back.DAO
 {
     internal class ProvaDAO
     {
-        Conection conn = new Conection();
+        ConexaoMySQL conn = new ConexaoMySQL();
         MySqlCommand cmd;
         public DataTable ListarProvaPorMateria(Prova prova)
         {

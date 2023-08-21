@@ -1,24 +1,24 @@
 ﻿using MySql.Data.MySqlClient;
-using ProjetoForms.Back;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProjetoForms
+namespace ProjetoForms.Back
 {
-    internal class ConexaoMySQL : IDBConnection
+    internal class ConexaoMySQL 
     {
-        string strConnection = "server=127.0.0.1;User Id=root;database = db_escola;password=Enrycoe23042003@";
+        string conexao = "SERVER=localhost; DATABASE=db_escola; USER=root; PASSWORD=Enrycoe23042003@;";
         public MySqlConnection conn = null;
+
 
 
         public void AbrirConexao()
         {
             try
             {
-                conn = new MySqlConnection(strConnection);
+                conn = new MySqlConnection(conexao);
                 conn.Open();
             }
             catch (Exception ex)
@@ -26,18 +26,22 @@ namespace ProjetoForms
                 throw ex;
             }
         }
-
         public void FecharConexao()
         {
             try
             {
-                conn = new MySqlConnection(strConnection);
+                conn = new MySqlConnection(conexao);
                 conn.Close();
             }
             catch (Exception ex)
-            {   
+            {
                 throw ex;
+            }
+            finally
+            {
+                conn.Close();
             }
         }
     }
 }
+

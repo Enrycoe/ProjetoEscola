@@ -10,7 +10,7 @@ namespace ProjetoForms.Back.DAO
 {
     internal class TurmaDAO
     {
-        Conection conn = new Conection();
+        ConexaoMySQL conn = new ConexaoMySQL();
         MySqlCommand cmd;
         public DataTable Listar()
         {
