@@ -31,12 +31,12 @@ namespace ProjetoForms.Front.Notas
             try
             {
                 this.aluno = aluno;
-                cbMateria.ValueMember = "ID";
-                cbMateria.DisplayMember = "Nome_da_Materia";
-                cbBimestre.ValueMember = "ID";
-                cbBimestre.DisplayMember = "bimestre";
-                cbMateria.DataSource = materiaModel.Listar();
-                cbBimestre.DataSource = bimestreModel.Listar();
+                cbMateria.ValueMember = "Id";
+                cbMateria.DisplayMember = "NomeMateria";
+                cbBimestre.ValueMember = "Id";
+                cbBimestre.DisplayMember = "Nome";
+                cbMateria.DataSource = materiaModel.BuscarMateria();
+                cbBimestre.DataSource = bimestreModel.BuscarBimestres();
             }
             catch (Exception ex)
             {
@@ -55,7 +55,7 @@ namespace ProjetoForms.Front.Notas
                 prova.Aluno = aluno;
                 Materia materia = new Materia();
                 materia.Id = Convert.ToInt32(cbMateria.SelectedValue);
-                dataGridProvas.DataSource = provaModel.ListarProvaPorMateria(prova);
+                dataGridProvas.DataSource = provaModel.BuscarProvaPorMateria(prova);
                 quantidadeProvas = 0;
                 somaNotas = 0;
                 media.ValorMedia = 0;

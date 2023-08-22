@@ -26,7 +26,7 @@ namespace ProjetoForms.Back.Entities
         public string TelefoneResponsavel2 { get => telefoneResponsavel2; set => telefoneResponsavel2 = value; }
         public int IdadeMinima { get => idadeMinima; set => idadeMinima = value; }
         public int IdadeMaxima { get => idadeMaxima; set => idadeMaxima = value; }
-        internal List<Prova> Provas { get => provas; set => provas = value; }
-        internal Turma Turma { get => turma; set => turma = value; }
+        public List<Prova> Provas { get => provas; set => provas = value; }
+        public Turma Turma { get => turma; set => turma = value; }
     }
 }

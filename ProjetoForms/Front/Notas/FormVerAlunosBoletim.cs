@@ -31,12 +31,12 @@ namespace ProjetoForms
         {
             try
             {
-                cbTurma.DataSource = turmaModel.Listar();
+                cbTurma.DataSource = turmaModel.BuscarTurmas();
                 cbTurma.SelectedIndex = 12;
-                PesquisarAluno();
-                gridAlunos.AutoGenerateColumns = false;
                 gridAlunos.EnableHeadersVisualStyles = false;
                 gridAlunos.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
+                PesquisarAluno();
+                
             }
             catch (Exception ex)
             {
@@ -97,6 +97,7 @@ namespace ProjetoForms
 
                 string turma = cbTurma.Text;
                 int idTurma = Convert.ToInt32(cbTurma.SelectedValue);
+                gridAlunos.AutoGenerateColumns = false;
                 gridAlunos.DataSource = alunoModel.PesquisarAluno<Aluno>(nome, raStr, ra, turma, idTurma);
 
             }

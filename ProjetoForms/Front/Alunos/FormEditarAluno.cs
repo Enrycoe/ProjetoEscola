@@ -28,7 +28,7 @@ namespace ProjetoForms.Front.Alunos
             cbEstado.ValueMember = "id";
             cbEstado.DisplayMember = "Sigla";
             cbCidade.ValueMember = "id";
-            cbCidade.DisplayMember = "Nome_Cidade";
+            cbCidade.DisplayMember = "Nome";
             cbTurma.ValueMember = "id";
             cbTurma.DisplayMember = "Nome_Turma";
         }
@@ -38,8 +38,8 @@ namespace ProjetoForms.Front.Alunos
             try
             {
                 txtRA.Text = aluno.Id.ToString();
-                cbEstado.DataSource = estadoModel.Listar();
-                cbTurma.DataSource = turmaModel.Listar();
+                cbEstado.DataSource = estadoModel.BuscarEstados();
+                cbTurma.DataSource = turmaModel.BuscarTurmas();
                 cbEstado.SelectedValue = aluno.Endereco.Bairro.Cidade.Estado.Id;
                 cbCidade.SelectedValue = aluno.Endereco.Bairro.Cidade.Id;
                 cbTurma.SelectedValue = aluno.Turma.Id;
@@ -67,10 +67,7 @@ namespace ProjetoForms.Front.Alunos
             try
             {
                 cbCidade.Text = null;
-
-                DataTable cidadePorEstado = cidadeModel.Listar(Convert.ToInt32(cbEstado.SelectedValue));
-
-                cbCidade.DataSource = cidadePorEstado;
+                cbCidade.DataSource = cidadeModel.BuscarCidadePorEstado(Convert.ToInt32(cbEstado.SelectedValue));
             }
             catch (Exception ex)
             {

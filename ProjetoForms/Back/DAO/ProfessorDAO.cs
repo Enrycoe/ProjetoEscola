@@ -76,7 +76,7 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
-        internal DataTable BuscarPorNome(string nome)
+        internal List<Professor> BuscarPorNome(string nome)
         {
             try
             {
@@ -84,12 +84,7 @@ namespace ProjetoForms.Back.DAO
                 cmd = new MySqlCommand("SELECT * FROM professor WHERE Nome LIKE @nome", conn.conn);
                 cmd.Parameters.AddWithValue("@nome", nome + "%");
 
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
-
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                return dt;
+               return ListarProfessores(cmd);
             }
             catch (Exception ex)
             {
@@ -305,7 +300,7 @@ namespace ProjetoForms.Back.DAO
                 throw;
             }
             finally { conn.FecharConexao(); }
-        }
+        } // Arrumar isso que ta feio
 
         internal Professor ReceberProfessorPorId(int id)
         {
@@ -404,9 +399,8 @@ namespace ProjetoForms.Back.DAO
                 throw;
             }
             finally { conn.FecharConexao(); };
-        }
+        } // e isso tbm
     }
-
 
 }
 

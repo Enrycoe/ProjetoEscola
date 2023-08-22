@@ -29,13 +29,11 @@ namespace ProjetoForms.Back.Model
 
         }
 
-        internal DataTable ListarProvaPorMateria(Prova prova)
+        internal List<Prova> BuscarProvaPorMateria(Prova prova)
         {
             try
             {
-                DataTable dt = new DataTable();
-                dt = dao.ListarProvaPorMateria(prova);
-                return dt;
+                return dao.BuscarProvaPorMateria(prova);
             }
 
             catch (Exception ex)

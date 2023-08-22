@@ -27,7 +27,7 @@ namespace ProjetoForms.Front.Notas
             {
                 this.aluno = aluno;
                 cbMateria.ValueMember = "ID";
-                cbMateria.DisplayMember = "Nome_da_Materia";
+                cbMateria.DisplayMember = "NomeMateria";
 
             }
             catch (Exception ex)
@@ -43,7 +43,7 @@ namespace ProjetoForms.Front.Notas
             try
             {
                 lblAluno.Text = "Aluno: " + aluno.Nome.ToString();
-                cbMateria.DataSource = materiaModel.Listar();
+                cbMateria.DataSource = materiaModel.BuscarMateria();
             }
             catch (Exception ex)
             {

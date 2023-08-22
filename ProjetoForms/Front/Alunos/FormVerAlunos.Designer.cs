@@ -251,7 +251,7 @@
             // Turma_Nome
             // 
             this.Turma_Nome.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Turma_Nome.DataPropertyName = "Nome_Turma";
+            this.Turma_Nome.DataPropertyName = "Turma";
             this.Turma_Nome.HeaderText = "Turma";
             this.Turma_Nome.Name = "Turma_Nome";
             this.Turma_Nome.ReadOnly = true;

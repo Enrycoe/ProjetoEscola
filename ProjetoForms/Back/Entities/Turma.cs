@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjetoForms.Back.Entities
 {
-    internal class Turma
+    public class Turma
     {
         int id;
         string nome;

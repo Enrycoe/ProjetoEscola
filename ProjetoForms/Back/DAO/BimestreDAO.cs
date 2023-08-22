@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using ProjetoForms.Back.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,18 +13,15 @@ namespace ProjetoForms.Back.DAO
     {
         ConexaoMySQL conn = new ConexaoMySQL();
         MySqlCommand cmd;
-        internal DataTable Listar() //////transforma em lista seu viado
+        internal List<Bimestre> BuscarBimestres() //////transforma em lista seu viado
         {
             try
             {
+                
                 conn.AbrirConexao();
                 cmd = new MySqlCommand("SELECT * FROM bimestre", conn.conn);
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
-
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                return dt;
+                return ListarBimestres(cmd);
+                
             }
 
             catch (Exception ex)
@@ -31,6 +29,33 @@ namespace ProjetoForms.Back.DAO
                 throw ex;
             }
             finally { conn.FecharConexao(); }
+        }
+
+        private List<Bimestre> ListarBimestres(MySqlCommand cmd)
+        {
+            try
+            {
+                List<Bimestre> bimestres = new List<Bimestre>();
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                adapter.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+
+                adapter.Fill(dt);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    Bimestre bimestre = new Bimestre();
+                    bimestre.Nome = dr["bimestre"].ToString();
+                    bimestre.Id = Convert.ToInt32(dr["id"]);
+                    bimestres.Add(bimestre);
+                }
+                return bimestres;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+           
         }
     }
 }

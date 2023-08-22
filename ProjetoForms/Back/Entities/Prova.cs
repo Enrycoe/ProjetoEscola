@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjetoForms.Back.Entities
 {
-    internal class Prova
+    public class Prova
     {
         int id;
         double nota;

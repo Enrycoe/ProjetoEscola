@@ -13,13 +13,11 @@ namespace ProjetoForms.Back.Model
     {
         BimestreDAO dao = new BimestreDAO();
 
-        internal object Listar()
+        internal List<Bimestre> BuscarBimestres()
         {
             try
             {
-                DataTable dt = new DataTable();
-                dt = dao.Listar();
-                return dt;
+                return dao.BuscarBimestres();
             }
 
             catch (Exception ex)

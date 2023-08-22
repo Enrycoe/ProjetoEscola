@@ -12,16 +12,13 @@ namespace ProjetoForms.Back.Model
     internal class MateriaModel
     {
         MateriaDAO dao = new MateriaDAO();
-        public DataTable Listar()
+        public List<Materia> BuscarMateria()
         {
 
             try
             {
-                DataTable dt = new DataTable();
-                dt = dao.Listar();
-                return dt;
+               return dao.BuscarMateria();             
             }
-
             catch (Exception ex)
             {
                 throw ex;

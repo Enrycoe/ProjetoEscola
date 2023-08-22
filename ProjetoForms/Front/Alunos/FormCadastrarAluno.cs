@@ -28,7 +28,7 @@ namespace ProjetoForms.Front.Alunos
             cbEstado.ValueMember = "id";
             cbEstado.DisplayMember = "Sigla";
             cbCidade.ValueMember = "id";
-            cbCidade.DisplayMember = "Nome_Cidade";
+            cbCidade.DisplayMember = "Nome";
             cbTurma.ValueMember = "id";
             cbTurma.DisplayMember = "Nome_Turma";
         }
@@ -37,8 +37,8 @@ namespace ProjetoForms.Front.Alunos
         {
             try
             {
-                cbEstado.DataSource = estadoModel.Listar();
-                cbTurma.DataSource = turmaModel.Listar();
+                cbEstado.DataSource = estadoModel.BuscarEstados();
+                cbTurma.DataSource = turmaModel.BuscarTurmas();
                 cbTurma.SelectedIndex = 12;
             }
             catch (Exception ex)
@@ -142,9 +142,7 @@ namespace ProjetoForms.Front.Alunos
             {
                 cbCidade.Text = null;
 
-                DataTable cidadePorEstado = cidadeModel.Listar(Convert.ToInt32(cbEstado.SelectedValue));
-
-                cbCidade.DataSource = cidadePorEstado;
+                cbCidade.DataSource = cidadeModel.BuscarCidadePorEstado(Convert.ToInt32(cbEstado.SelectedValue));
             }
             catch (Exception ex)
             {

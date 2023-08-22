@@ -116,7 +116,7 @@ namespace ProjetoForms.Front.Professores
             }
            
         }
-        private DataTable BuscarPorNome(string nome)
+        private List<Professor> BuscarPorNome(string nome)
         {
             try
             {

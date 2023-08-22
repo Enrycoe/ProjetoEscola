@@ -1,4 +1,5 @@
 ﻿using ProjetoForms.Back.DAO;
+using ProjetoForms.Back.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,13 +13,11 @@ namespace ProjetoForms.Back.Model
     internal class TurmaModel
     {
         TurmaDAO dao = new TurmaDAO();
-        public DataTable Listar()
+        public List<Turma> BuscarTurmas()
         {
             try
             {
-                DataTable dt = new DataTable();
-                dt = dao.Listar();
-                return dt;
+                return dao.BuscarTurmas();
             }
 
             catch (Exception ex)

@@ -1,4 +1,5 @@
 ﻿using ProjetoForms.Back.DAO;
+using ProjetoForms.Back.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,13 +13,11 @@ namespace ProjetoForms.Back.Model
     internal class EstadoModel
     {
         EstadoDAO dao = new EstadoDAO();
-        public DataTable Listar()
+        public List<Estado> BuscarEstados()
         {
             try
             {
-                DataTable dt = new DataTable();
-                dt = dao.Listar();
-                return dt;
+                return dao.BuscarEstados();
             }
 
             catch (Exception ex)

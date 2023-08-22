@@ -14,7 +14,7 @@ namespace ProjetoForms.Back.DAO
     {
         ConexaoMySQL conn = new ConexaoMySQL();
         MySqlCommand cmd;
-        public DataTable ListarProvaPorMateria(Prova prova)
+        public List<Prova> BuscarProvaPorMateria(Prova prova)
         {
             try
             {
@@ -22,12 +22,7 @@ namespace ProjetoForms.Back.DAO
                 cmd = new MySqlCommand("SELECT * FROM provas WHERE fk_Materia_ID = @materia AND fk_Aluno_RA = @aluno", conn.conn);
                 cmd.Parameters.AddWithValue("@materia", prova.Materia.Id);
                 cmd.Parameters.AddWithValue("@aluno", prova.Aluno.Id);
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
-
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                return dt;
+                return ListarProva(cmd);
             }
 
             catch (Exception ex)
@@ -35,6 +30,40 @@ namespace ProjetoForms.Back.DAO
                 throw ex;
             }
             finally { conn.FecharConexao(); }
+
+        }
+
+        public List<Prova> ListarProva(MySqlCommand cmd)
+        {
+            try
+            {
+                List<Prova> provas = new List<Prova>();
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                adapter.SelectCommand = cmd;
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    var prova = new Prova();
+                    prova.Aluno = new Aluno();
+                    prova.Materia = new Materia();
+                    prova.Media = new Media();  
+                    prova.Nota = Convert.ToDouble(dr["nota"]);
+                    prova.Id = Convert.ToInt32(dr["id"]);
+                    prova.Descricao = dr["descricao"].ToString();
+                    prova.Materia.Id = Convert.ToInt32(dr["fk_Materia_ID"]);   
+                    prova.Aluno.Id = Convert.ToInt32(dr["fk_Aluno_RA"]);
+                    prova.Media.Id = Convert.ToInt32(dr["fk_Media_RA"]);
+                    provas.Add(prova);
+                }
+                return provas;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         internal void CadastrarProva(Prova prova, Aluno aluno)

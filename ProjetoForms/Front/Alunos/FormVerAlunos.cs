@@ -29,7 +29,7 @@ namespace ProjetoForms
         {
             try
             {
-                cbTurma.DataSource = turmaModel.Listar();
+                cbTurma.DataSource = turmaModel.BuscarTurmas();
                 cbTurma.SelectedIndex = 12;
                 gridAlunos.DataSource = alunoModel.Listar<Aluno>();
                 gridAlunos.EnableHeadersVisualStyles = false;

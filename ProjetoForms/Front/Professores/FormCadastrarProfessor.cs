@@ -24,13 +24,13 @@ namespace ProjetoForms.Front.Professores
             cbEstado.ValueMember = "id";
             cbEstado.DisplayMember = "Sigla";
             cbCidade.ValueMember = "id";
-            cbCidade.DisplayMember = "Nome_Cidade";
+            cbCidade.DisplayMember = "Nome";
         }
         private void FormCadastrarProfessor_Load(object sender, EventArgs e)
         {
             try
             {
-                cbEstado.DataSource = estadoModel.Listar();
+                cbEstado.DataSource = estadoModel.BuscarEstados();
             }
             catch (Exception ex)
             {
@@ -46,9 +46,7 @@ namespace ProjetoForms.Front.Professores
             {
                 cbCidade.Text = null;
 
-                DataTable cidadePorEstado = cidadeModel.Listar(Convert.ToInt32(cbEstado.SelectedValue));
-
-                cbCidade.DataSource = cidadePorEstado;
+                cbCidade.DataSource = cidadeModel.BuscarCidadePorEstado(Convert.ToInt32(cbEstado.SelectedValue));
             }
             catch (Exception ex)
             {
@@ -74,7 +72,7 @@ namespace ProjetoForms.Front.Professores
 
                 if (string.IsNullOrWhiteSpace(txtNomeCompleto.Text))
                 {
-                    MessageBox.Show("Nome do aluno não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Nome do professor não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtNomeCompleto.Focus();
                     return;
                 }
