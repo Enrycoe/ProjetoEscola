@@ -31,6 +31,36 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
+        internal Estado ReceberEstadoPorId(int idEstado)
+        {
+            try
+            {
+                var estado = new Estado();
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("SELECT * FROM estado WHERE ID = @idEstado", conn.conn);
+                cmd.Parameters.AddWithValue("@idEstado", idEstado);
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                adapter.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    
+                    estado.Id = idEstado;
+                    estado.Nome = dr["Nome_Estado"].ToString();
+                    estado.Sigla = dr["Sigla"].ToString();
+                }
+                cmd.Dispose();
+                return estado;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { conn.FecharConexao();}
+        }
+
         private List<Estado> ListarEstados(MySqlCommand cmd)
         {
             try

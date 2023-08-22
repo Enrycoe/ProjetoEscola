@@ -262,9 +262,7 @@ namespace ProjetoForms.Front.Professores
                 professorAtualizado.Endereco.Bairro.NomeBairro = txtBairro.Text;
                 professorAtualizado.TelefoneFixo = txtTelefoneFixo.Text;
                 professorAtualizado.TelefonePessoal = txtTelefonePessoal.Text;
-                Pessoa pessoa = professor;
-                Pessoa pessoaAtualizada = professorAtualizado;
-                professorModel.AtualizarPorId(pessoa, professorAtualizado);
+                professorModel.AtualizarPorId(professor, professorAtualizado);
                 MessageBox.Show("Professor atualizado com sucesso", "Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)

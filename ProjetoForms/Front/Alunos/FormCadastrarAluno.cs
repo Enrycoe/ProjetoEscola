@@ -120,8 +120,7 @@ namespace ProjetoForms.Front.Alunos
                 aluno.TelefoneResponsavel = txtTelefoneResponsavel.Text;
                 aluno.TelefoneResponsavel2 = txtTelefoneResponsavel2.Text;
                 aluno.Turma.Id = (Convert.ToInt32(cbTurma.SelectedValue));
-                Pessoa pessoa = aluno;
-                alunoModel.Cadastrar(pessoa);
+                alunoModel.Cadastrar(aluno);
                 MessageBox.Show("Aluno Cadastrado com Sucesso!", "Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)

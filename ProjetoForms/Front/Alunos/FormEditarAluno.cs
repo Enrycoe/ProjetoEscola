@@ -133,7 +133,6 @@ namespace ProjetoForms.Front.Alunos
                 alunoAtualizado.Endereco.Bairro = new Bairro(); 
                 alunoAtualizado.Endereco.Bairro.Cidade = new Cidade();
                 alunoAtualizado.Turma = new Turma();
-
                 alunoAtualizado.Id = Convert.ToInt32(txtRA.Text);
                 alunoAtualizado.Nome = txtNomeCompleto.Text;
                 alunoAtualizado.DataNascimento = Convert.ToDateTime(dtNascimento.Text);
@@ -148,11 +147,8 @@ namespace ProjetoForms.Front.Alunos
                 alunoAtualizado.TelefoneResponsavel2 = txtTelefoneResponsavel2.Text;
                 alunoAtualizado.Turma.Id = (Convert.ToInt32(cbTurma.SelectedValue));
 
-                Pessoa pessoa = aluno;
-                Pessoa pessoaAtualizada = alunoAtualizado;
 
-
-                alunoModel.AtualizarPorId(pessoa, pessoaAtualizada);
+                alunoModel.AtualizarPorId(aluno, alunoAtualizado);
                 MessageBox.Show("Aluno Salvo com Sucesso!", "Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)

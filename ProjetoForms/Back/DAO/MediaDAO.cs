@@ -58,9 +58,8 @@ namespace ProjetoForms.Back.DAO
             try
             {
                 
-                conn.AbrirConexao();
                 media.Id = ReceberIDMedia(media);
-                cmd.Dispose();
+                conn.AbrirConexao();
                 cmd = new MySqlCommand("UPDATE provas SET fk_Media_ID = null WHERE fk_Media_ID = @media ", conn.conn);
                 cmd.Parameters.AddWithValue("@media", media.Id);
                 cmd.ExecuteNonQuery();

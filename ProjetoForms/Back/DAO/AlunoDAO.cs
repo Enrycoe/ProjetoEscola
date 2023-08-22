@@ -134,7 +134,7 @@ namespace ProjetoForms.Back.DAO
                 aluno.Endereco.Bairro.Cidade = new Cidade();
                 aluno.Endereco.Bairro.Cidade.Estado = new Estado();
                 conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM aluno a \r\nJOIN turma t ON t.ID = fk_Turma_ID \r\nJOIN endereco e ON a.fk_endereco_id = e.ID\r\nJOIN bairro b ON e.fk_bairro_id = b.ID\r\nJOIN cidade c ON b.fk_cidade_id = c.ID\r\nJOIN estado es ON c.fk_Estado_ID = es.ID\r\nWHERE a.RA = @RA", conn.conn);
+                cmd = new MySqlCommand("SELECT * FROM aluno a JOIN turma t ON t.ID = fk_Turma_ID WHERE a.RA = @RA", conn.conn);
                 cmd.Parameters.AddWithValue("@RA", id);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -150,15 +150,7 @@ namespace ProjetoForms.Back.DAO
                     aluno.TelefoneResponsavel2 = reader["Telefone_Responsavel_2"].ToString();
                     aluno.Endereco.Id = Convert.ToInt32(reader["fk_endereco_ID"]);
                     aluno.Turma.Nome = reader["Nome_Turma"].ToString();
-                    aluno.Endereco.NomeRua = reader["Nome_Rua"].ToString();
-                    aluno.Endereco.NumCasa = Convert.ToInt32(reader["Numero_Casa"]);
-                    aluno.Endereco.Bairro.Id = Convert.ToInt32(reader["fk_bairro_id"]);
-                    aluno.Endereco.Bairro.NomeBairro = reader["Nome_Bairro"].ToString();
-                    aluno.Endereco.Bairro.Cidade.Id = Convert.ToInt32(reader["fk_cidade_id"]);
-                    aluno.Endereco.Bairro.Cidade.Nome = reader["Nome_Cidade"].ToString();
-                    aluno.Endereco.Bairro.Cidade.Estado.Id = Convert.ToInt32(reader["fk_Estado_ID"]);
-                    aluno.Endereco.Bairro.Cidade.Estado.Sigla = reader["Sigla"].ToString();
-                    aluno.Endereco.Bairro.Cidade.Estado.Nome = reader["Nome_Estado"].ToString();
+                    aluno.Endereco = enderecoDAO.ReceberEnderecoPorPessoa(aluno);
                 }
 
 

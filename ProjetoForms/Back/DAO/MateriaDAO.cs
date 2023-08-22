@@ -43,7 +43,7 @@ namespace ProjetoForms.Back.Model
                 {
                     var materia = new Materia();
                     materia.NomeMateria = dr["Nome_da_Materia"].ToString();
-                    materia.Id = Convert.ToInt32(dr["id"]);
+                    materia.Id = Convert.ToInt32(dr["ID"]);
                     materias.Add(materia);
                 }
                 return materias;
@@ -55,6 +55,24 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-     
+
+
+        public List<Materia> BuscarMateriaPorProfessor(Professor professor)
+        {
+            try
+            {
+                List<Materia> materias = new List<Materia>();
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("SELECT m.ID, m.Nome_da_Materia FROM materia_professor p JOIN materia m ON m.ID = fk_Materia_ID WHERE fk_Professor_ID = @ID", conn.conn);
+                cmd.Parameters.AddWithValue("@ID", professor.Id);
+                return ListarMaterias(cmd);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { conn.FecharConexao(); };
+        } 
     }
 }

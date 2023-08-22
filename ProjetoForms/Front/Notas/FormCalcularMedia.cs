@@ -49,6 +49,7 @@ namespace ProjetoForms.Front.Notas
         {
             try
             {
+                dataGridProvas.AutoGenerateColumns = false;
                 Prova prova = new Prova();
                 prova.Materia = new Materia();
                 prova.Materia.Id = Convert.ToInt32(cbMateria.SelectedValue);

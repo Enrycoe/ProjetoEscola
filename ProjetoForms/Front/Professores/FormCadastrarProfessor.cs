@@ -127,8 +127,7 @@ namespace ProjetoForms.Front.Professores
                 professor.Endereco.Bairro.NomeBairro = txtBairro.Text;
                 professor.TelefoneFixo = txtTelefoneFixo.Text;
                 professor.TelefonePessoal = txtTelefonePessoal.Text;
-                Pessoa pessoa = professor;
-                professorModel.Cadastrar(pessoa);
+                professorModel.Cadastrar(professor);
                 MessageBox.Show("Professor cadastrado com sucesso", "Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimparCampos();
             }

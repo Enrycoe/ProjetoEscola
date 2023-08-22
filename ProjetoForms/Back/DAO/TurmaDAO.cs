@@ -28,6 +28,22 @@ namespace ProjetoForms.Back.DAO
             }
             finally { conn.FecharConexao(); }
         }
+        public List<Turma> BuscarTurmasPorProfessor(Professor professor)
+        {
+            try
+            {
+                List<Turma> turmas = new List<Turma>();
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("SELECT t.ID, t.Nome_Turma FROM professor_turma p JOIN turma t ON t.ID = fk_Turma_ID WHERE fk_Professor_ID = @ID", conn.conn);
+                cmd.Parameters.AddWithValue("@ID", professor.Id);
+                return ListarTurmas(cmd);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally { conn.FecharConexao(); }
+        }
 
         public List<Turma> ListarTurmas(MySqlCommand cmd)
         {
@@ -57,5 +73,7 @@ namespace ProjetoForms.Back.DAO
             
             
         }
+
+      
     }
 }

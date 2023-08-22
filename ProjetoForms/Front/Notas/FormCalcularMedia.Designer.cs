@@ -35,13 +35,6 @@
             this.cbMateria = new System.Windows.Forms.ComboBox();
             this.lblMateria = new System.Windows.Forms.Label();
             this.dataGridProvas = new System.Windows.Forms.DataGridView();
-            this.CheckBox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.nota = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fk_Materia_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fk_Aluno_RA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fk_media_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtMedia = new System.Windows.Forms.TextBox();
             this.lblMedia = new System.Windows.Forms.Label();
             this.lblNome = new System.Windows.Forms.Label();
@@ -49,6 +42,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSalvarMedia = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.CheckBox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.nota = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fk_Materia_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fk_Aluno_RA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fk_media_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProvas)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -113,62 +113,6 @@
             this.dataGridProvas.Size = new System.Drawing.Size(444, 270);
             this.dataGridProvas.TabIndex = 2;
             this.dataGridProvas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProvas_CellContentClick);
-            // 
-            // CheckBox
-            // 
-            this.CheckBox.HeaderText = "";
-            this.CheckBox.Name = "CheckBox";
-            this.CheckBox.ReadOnly = true;
-            this.CheckBox.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // nota
-            // 
-            this.nota.DataPropertyName = "nota";
-            this.nota.HeaderText = "Nota";
-            this.nota.Name = "nota";
-            this.nota.ReadOnly = true;
-            this.nota.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            // 
-            // descricao
-            // 
-            this.descricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.descricao.DataPropertyName = "descricao";
-            this.descricao.HeaderText = "Descrição";
-            this.descricao.Name = "descricao";
-            this.descricao.ReadOnly = true;
-            this.descricao.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // fk_Materia_ID
-            // 
-            this.fk_Materia_ID.DataPropertyName = "fk_Materia_ID";
-            this.fk_Materia_ID.HeaderText = "Materia_ID";
-            this.fk_Materia_ID.Name = "fk_Materia_ID";
-            this.fk_Materia_ID.ReadOnly = true;
-            this.fk_Materia_ID.Visible = false;
-            // 
-            // fk_Aluno_RA
-            // 
-            this.fk_Aluno_RA.DataPropertyName = "fk_Aluno_RA";
-            this.fk_Aluno_RA.HeaderText = "Aluno_RA";
-            this.fk_Aluno_RA.Name = "fk_Aluno_RA";
-            this.fk_Aluno_RA.ReadOnly = true;
-            this.fk_Aluno_RA.Visible = false;
-            // 
-            // fk_media_ID
-            // 
-            this.fk_media_ID.DataPropertyName = "fk_media_ID";
-            this.fk_media_ID.HeaderText = "Media";
-            this.fk_media_ID.Name = "fk_media_ID";
-            this.fk_media_ID.ReadOnly = true;
-            this.fk_media_ID.Visible = false;
             // 
             // txtMedia
             // 
@@ -251,6 +195,62 @@
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // CheckBox
+            // 
+            this.CheckBox.HeaderText = "";
+            this.CheckBox.Name = "CheckBox";
+            this.CheckBox.ReadOnly = true;
+            this.CheckBox.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // nota
+            // 
+            this.nota.DataPropertyName = "Nota";
+            this.nota.HeaderText = "Nota";
+            this.nota.Name = "nota";
+            this.nota.ReadOnly = true;
+            this.nota.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // descricao
+            // 
+            this.descricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.descricao.DataPropertyName = "Descricao";
+            this.descricao.HeaderText = "Descrição";
+            this.descricao.Name = "descricao";
+            this.descricao.ReadOnly = true;
+            this.descricao.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // fk_Materia_ID
+            // 
+            this.fk_Materia_ID.DataPropertyName = "fk_Materia_ID";
+            this.fk_Materia_ID.HeaderText = "Materia_ID";
+            this.fk_Materia_ID.Name = "fk_Materia_ID";
+            this.fk_Materia_ID.ReadOnly = true;
+            this.fk_Materia_ID.Visible = false;
+            // 
+            // fk_Aluno_RA
+            // 
+            this.fk_Aluno_RA.DataPropertyName = "fk_Aluno_RA";
+            this.fk_Aluno_RA.HeaderText = "Aluno_RA";
+            this.fk_Aluno_RA.Name = "fk_Aluno_RA";
+            this.fk_Aluno_RA.ReadOnly = true;
+            this.fk_Aluno_RA.Visible = false;
+            // 
+            // fk_media_ID
+            // 
+            this.fk_media_ID.DataPropertyName = "fk_media_ID";
+            this.fk_media_ID.HeaderText = "Media";
+            this.fk_media_ID.Name = "fk_media_ID";
+            this.fk_media_ID.ReadOnly = true;
+            this.fk_media_ID.Visible = false;
+            // 
             // FormCalcularMedia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -287,6 +287,12 @@
         private System.Windows.Forms.Label lblMateria;
         private System.Windows.Forms.DataGridView dataGridProvas;
         private System.Windows.Forms.Button btnSalvarMedia;
+        private System.Windows.Forms.TextBox txtMedia;
+        private System.Windows.Forms.Label lblMedia;
+        private System.Windows.Forms.Label lblNome;
+        private System.Windows.Forms.ComboBox cbBimestre;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn CheckBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn nota;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
@@ -294,11 +300,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fk_Materia_ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn fk_Aluno_RA;
         private System.Windows.Forms.DataGridViewTextBoxColumn fk_media_ID;
-        private System.Windows.Forms.TextBox txtMedia;
-        private System.Windows.Forms.Label lblMedia;
-        private System.Windows.Forms.Label lblNome;
-        private System.Windows.Forms.ComboBox cbBimestre;
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Panel panel1;
     }
 }

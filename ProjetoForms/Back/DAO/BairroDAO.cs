@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using ProjetoForms.Back.Entities;
 using System;
+using System.Data;
 
 namespace ProjetoForms.Back.DAO
 {
@@ -9,7 +10,7 @@ namespace ProjetoForms.Back.DAO
 
         ConexaoMySQL conn = new ConexaoMySQL();
         MySqlCommand cmd;
-
+        CidadeDAO cidadeDAO = new CidadeDAO();
        
         public bool VerificarSeBairroExiste(Bairro bairro)
         {
@@ -51,6 +52,37 @@ namespace ProjetoForms.Back.DAO
             }
             finally { conn.FecharConexao(); }
             
+        }
+
+        internal Bairro ReceberBairroPorId(int id)
+        {
+            try
+            {
+                var bairro = new Bairro();
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("SELECT * FROM bairro WHERE ID = @estadoEndereco", conn.conn);
+                cmd.Parameters.AddWithValue("@estadoEndereco", id);
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                adapter.SelectCommand = cmd;
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                foreach(DataRow dr in dt.Rows)
+                {
+                    
+                    bairro.Id = id;
+                    bairro.NomeBairro = dr["Nome_Bairro"].ToString();
+                    int idCidade = Convert.ToInt32(dr["fk_cidade_id"]);
+                    bairro.Cidade = cidadeDAO.ReceberCidadePorId(idCidade);
+                }
+                cmd.Dispose();
+                return bairro;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { conn.FecharConexao(); }
         }
 
         internal int ReceberIdBairro(Bairro bairro)

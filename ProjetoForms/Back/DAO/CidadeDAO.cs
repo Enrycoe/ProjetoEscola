@@ -13,6 +13,7 @@ namespace ProjetoForms.Back.DAO
     internal class CidadeDAO 
     {
         ConexaoMySQL conn = new ConexaoMySQL();
+        EstadoDAO estadoDAO = new EstadoDAO();
         MySqlCommand cmd;
         public List<Cidade> BuscarCidadePorEstado(int id)
         {
@@ -30,6 +31,37 @@ namespace ProjetoForms.Back.DAO
                 throw ex;
             }
             finally { conn.FecharConexao(); }
+        }
+
+        internal Cidade ReceberCidadePorId(int idCidade)
+        {
+            try
+            {
+                var cidade = new Cidade();
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("SELECT * FROM cidade WHERE ID = @idCidade", conn.conn);
+                cmd.Parameters.AddWithValue("@idCidade", idCidade);
+                MySqlDataAdapter adapter = new MySqlDataAdapter();             
+                DataTable dt = new DataTable();
+                adapter.SelectCommand = cmd;
+                adapter.Fill(dt);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    
+                    cidade.Id = idCidade;
+                    cidade.Nome = dr["Nome_Cidade"].ToString();
+                    int idEstado = Convert.ToInt32(dr["fk_Estado_ID"]);
+                    cidade.Estado = estadoDAO.ReceberEstadoPorId(idEstado);
+                }
+                cmd.Dispose();
+                return cidade;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { conn.FecharConexao() ; }
         }
 
         private List<Cidade> ListarCidades (MySqlCommand cmd)

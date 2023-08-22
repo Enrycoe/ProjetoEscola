@@ -54,7 +54,11 @@ namespace ProjetoForms.Back.DAO
                     prova.Descricao = dr["descricao"].ToString();
                     prova.Materia.Id = Convert.ToInt32(dr["fk_Materia_ID"]);   
                     prova.Aluno.Id = Convert.ToInt32(dr["fk_Aluno_RA"]);
-                    prova.Media.Id = Convert.ToInt32(dr["fk_Media_RA"]);
+                    var VerificarSeFazParteOuNaoDeMedia = dr["fk_Media_ID"];
+                    if(VerificarSeFazParteOuNaoDeMedia != null && VerificarSeFazParteOuNaoDeMedia != DBNull.Value)
+                    {
+                        prova.Media.Id = Convert.ToInt32(VerificarSeFazParteOuNaoDeMedia);
+                    }        
                     provas.Add(prova);
                 }
                 return provas;
