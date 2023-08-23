@@ -17,6 +17,7 @@ namespace ProjetoForms.Front.Notas
     {
         int quantidadeProvas = 0;
         Aluno aluno;
+        Professor professor;
         Media media = new Media();
         double somaNotas = 0;
         AlunoModel alunoModel = new AlunoModel();
@@ -25,24 +26,26 @@ namespace ProjetoForms.Front.Notas
         BimestreModel bimestreModel = new BimestreModel();
         MediaModel mediaModel = new MediaModel();
 
-        public FormCalcularMedia(Aluno aluno)
+        public FormCalcularMedia(Aluno aluno, Professor professor)
         {
             InitializeComponent();
             try
             {
+                this.professor = professor;
                 this.aluno = aluno;
                 cbMateria.ValueMember = "Id";
                 cbMateria.DisplayMember = "NomeMateria";
                 cbBimestre.ValueMember = "Id";
                 cbBimestre.DisplayMember = "Nome";
-                cbMateria.DataSource = materiaModel.BuscarMateria();
+                cbMateria.DataSource = materiaModel.BuscarMateriaPorProfessor(professor);
                 cbBimestre.DataSource = bimestreModel.BuscarBimestres();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro: " + ex.Message, "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            
+
+            this.professor = professor;
         }
 
         private void comboBox1_TextChanged(object sender, EventArgs e)

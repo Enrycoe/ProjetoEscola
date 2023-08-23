@@ -28,3 +28,4 @@ C:\Users\Dell\source\repos\ProjetoForms\ProjetoForms\obj\Debug\ProjetoForms.Form
 C:\Users\Dell\source\repos\ProjetoForms\ProjetoForms\obj\Debug\ProjetoForms.Front.Professores.FormCadastrarProfessor.resources
 C:\Users\Dell\source\repos\ProjetoForms\ProjetoForms\obj\Debug\ProjetoForms.Front.Professores.FormVerProfessores.resources
 C:\Users\Dell\source\repos\ProjetoForms\ProjetoForms\obj\Debug\ProjetoForms.Front.Professores.FormEditarProfessor.resources
+C:\Users\Dell\source\repos\ProjetoForms\ProjetoForms\obj\Debug\ProjetoForms.Front.FormLogin.resources

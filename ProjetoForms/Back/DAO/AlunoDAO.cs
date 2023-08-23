@@ -153,7 +153,6 @@ namespace ProjetoForms.Back.DAO
                     aluno.Endereco = enderecoDAO.ReceberEnderecoPorPessoa(aluno);
                 }
 
-
                 return aluno;
 
             }
@@ -164,7 +163,6 @@ namespace ProjetoForms.Back.DAO
             }
             finally { conn.FecharConexao(); }
         }
-
 
         public bool VerificarSeRAExiste(int ra)
         {

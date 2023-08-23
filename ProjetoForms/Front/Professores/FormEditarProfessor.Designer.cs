@@ -78,6 +78,10 @@
             this.txtNomeCompleto = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblNomeCompleto = new System.Windows.Forms.Label();
+            this.txtLogin = new System.Windows.Forms.TextBox();
+            this.txtSenha = new System.Windows.Forms.TextBox();
+            this.lblLogin = new System.Windows.Forms.Label();
+            this.lblSenha = new System.Windows.Forms.Label();
             this.gbTurma.SuspendLayout();
             this.dbMateria.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -94,7 +98,7 @@
             this.brnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.brnExcluir.Font = new System.Drawing.Font("MS Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.brnExcluir.ForeColor = System.Drawing.Color.RosyBrown;
-            this.brnExcluir.Location = new System.Drawing.Point(27, 598);
+            this.brnExcluir.Location = new System.Drawing.Point(26, 653);
             this.brnExcluir.Name = "brnExcluir";
             this.brnExcluir.Size = new System.Drawing.Size(60, 60);
             this.brnExcluir.TabIndex = 45;
@@ -116,7 +120,7 @@
             this.gbTurma.Controls.Add(this.cbSC);
             this.gbTurma.Controls.Add(this.cbSB);
             this.gbTurma.ForeColor = System.Drawing.Color.White;
-            this.gbTurma.Location = new System.Drawing.Point(307, 366);
+            this.gbTurma.Location = new System.Drawing.Point(306, 375);
             this.gbTurma.Name = "gbTurma";
             this.gbTurma.Size = new System.Drawing.Size(247, 224);
             this.gbTurma.TabIndex = 44;
@@ -282,7 +286,7 @@
             this.dbMateria.Controls.Add(this.cbQuímica);
             this.dbMateria.Controls.Add(this.cbArtes);
             this.dbMateria.ForeColor = System.Drawing.Color.White;
-            this.dbMateria.Location = new System.Drawing.Point(27, 366);
+            this.dbMateria.Location = new System.Drawing.Point(26, 375);
             this.dbMateria.Name = "dbMateria";
             this.dbMateria.Size = new System.Drawing.Size(247, 224);
             this.dbMateria.TabIndex = 43;
@@ -437,7 +441,7 @@
             // 
             this.dtNascimento.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtNascimento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtNascimento.Location = new System.Drawing.Point(170, 100);
+            this.dtNascimento.Location = new System.Drawing.Point(169, 109);
             this.dtNascimento.Name = "dtNascimento";
             this.dtNascimento.Size = new System.Drawing.Size(385, 26);
             this.dtNascimento.TabIndex = 42;
@@ -451,7 +455,7 @@
             this.panel2.Controls.Add(this.txtTelefonePessoal);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
-            this.panel2.Location = new System.Drawing.Point(-14, 305);
+            this.panel2.Location = new System.Drawing.Point(-15, 314);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(785, 55);
             this.panel2.TabIndex = 40;
@@ -509,7 +513,7 @@
             this.pnlEndereço.Controls.Add(this.lblEstado);
             this.pnlEndereço.Controls.Add(this.cbCidade);
             this.pnlEndereço.Controls.Add(this.cbEstado);
-            this.pnlEndereço.Location = new System.Drawing.Point(-26, 148);
+            this.pnlEndereço.Location = new System.Drawing.Point(-27, 157);
             this.pnlEndereço.Name = "pnlEndereço";
             this.pnlEndereço.Size = new System.Drawing.Size(677, 151);
             this.pnlEndereço.TabIndex = 39;
@@ -620,7 +624,7 @@
             this.btnAtualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAtualizar.Font = new System.Drawing.Font("MS Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAtualizar.ForeColor = System.Drawing.Color.Green;
-            this.btnAtualizar.Location = new System.Drawing.Point(473, 598);
+            this.btnAtualizar.Location = new System.Drawing.Point(472, 634);
             this.btnAtualizar.Name = "btnAtualizar";
             this.btnAtualizar.Size = new System.Drawing.Size(60, 60);
             this.btnAtualizar.TabIndex = 38;
@@ -656,7 +660,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(24, 100);
+            this.label2.Location = new System.Drawing.Point(23, 109);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(141, 18);
             this.label2.TabIndex = 34;
@@ -673,12 +677,55 @@
             this.lblNomeCompleto.TabIndex = 33;
             this.lblNomeCompleto.Text = "Nome Completo:";
             // 
+            // txtLogin
+            // 
+            this.txtLogin.Enabled = false;
+            this.txtLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLogin.Location = new System.Drawing.Point(143, 605);
+            this.txtLogin.Name = "txtLogin";
+            this.txtLogin.Size = new System.Drawing.Size(119, 26);
+            this.txtLogin.TabIndex = 46;
+            // 
+            // txtSenha
+            // 
+            this.txtSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSenha.Location = new System.Drawing.Point(368, 605);
+            this.txtSenha.Name = "txtSenha";
+            this.txtSenha.Size = new System.Drawing.Size(119, 26);
+            this.txtSenha.TabIndex = 47;
+            // 
+            // lblLogin
+            // 
+            this.lblLogin.AutoSize = true;
+            this.lblLogin.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLogin.ForeColor = System.Drawing.Color.White;
+            this.lblLogin.Location = new System.Drawing.Point(80, 613);
+            this.lblLogin.Name = "lblLogin";
+            this.lblLogin.Size = new System.Drawing.Size(51, 18);
+            this.lblLogin.TabIndex = 48;
+            this.lblLogin.Text = "Login:";
+            // 
+            // lblSenha
+            // 
+            this.lblSenha.AutoSize = true;
+            this.lblSenha.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSenha.ForeColor = System.Drawing.Color.White;
+            this.lblSenha.Location = new System.Drawing.Point(305, 609);
+            this.lblSenha.Name = "lblSenha";
+            this.lblSenha.Size = new System.Drawing.Size(51, 18);
+            this.lblSenha.TabIndex = 49;
+            this.lblSenha.Text = "Senha:\r\n";
+            // 
             // FormEditarProfessor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(51)))), ((int)(((byte)(71)))));
-            this.ClientSize = new System.Drawing.Size(567, 678);
+            this.ClientSize = new System.Drawing.Size(567, 717);
+            this.Controls.Add(this.lblSenha);
+            this.Controls.Add(this.lblLogin);
+            this.Controls.Add(this.txtSenha);
+            this.Controls.Add(this.txtLogin);
             this.Controls.Add(this.brnExcluir);
             this.Controls.Add(this.gbTurma);
             this.Controls.Add(this.dbMateria);
@@ -762,5 +809,9 @@
         private System.Windows.Forms.TextBox txtNomeCompleto;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblNomeCompleto;
+        private System.Windows.Forms.TextBox txtLogin;
+        private System.Windows.Forms.TextBox txtSenha;
+        private System.Windows.Forms.Label lblLogin;
+        private System.Windows.Forms.Label lblSenha;
     }
 }

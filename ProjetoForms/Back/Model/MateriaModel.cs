@@ -25,6 +25,17 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-      
+        public List<Materia> BuscarMateriaPorProfessor(Professor professor)
+        {
+
+            try
+            {
+                return dao.BuscarMateriaPorProfessor(professor);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

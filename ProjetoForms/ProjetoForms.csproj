@@ -61,6 +61,7 @@
     <Compile Include="Back\DAO\ProfessorDAO.cs" />
     <Compile Include="Back\DAO\ProvaDAO.cs" />
     <Compile Include="Back\DAO\TurmaDAO.cs" />
+    <Compile Include="Back\DAO\UsuarioDAO.cs" />
     <Compile Include="Back\Entities\Aluno.cs" />
     <Compile Include="Back\Entities\Bairro.cs" />
     <Compile Include="Back\Entities\Bimestre.cs" />
@@ -68,12 +69,14 @@
     <Compile Include="Back\Entities\Cidade.cs" />
     <Compile Include="Back\Entities\Endereco.cs" />
     <Compile Include="Back\Entities\Estado.cs" />
+    <Compile Include="Back\Entities\IUsuario.cs" />
     <Compile Include="Back\Entities\Materia.cs" />
     <Compile Include="Back\Entities\Media.cs" />
     <Compile Include="Back\Entities\Pessoa.cs" />
     <Compile Include="Back\Entities\Professor.cs" />
     <Compile Include="Back\Entities\Prova.cs" />
     <Compile Include="Back\Entities\Turma.cs" />
+    <Compile Include="Back\Entities\Usuario.cs" />
     <Compile Include="Back\Model\AlunoModel.cs" />
     <Compile Include="Back\Model\BimestreModel.cs" />
     <Compile Include="Back\Model\CidadeModel.cs" />
@@ -85,6 +88,8 @@
     <Compile Include="Back\Model\ProfessorModel.cs" />
     <Compile Include="Back\Model\ProvaModel.cs" />
     <Compile Include="Back\Model\TurmaModel.cs" />
+    <Compile Include="Back\Model\UsuarioModel.cs" />
+    <Compile Include="Back\Enum\TipoDeUsuario.cs" />
     <Compile Include="Front\Alunos\FormCadastrarAluno.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +101,12 @@
     </Compile>
     <Compile Include="Front\Alunos\FormEditarAluno.Designer.cs">
       <DependentUpon>FormEditarAluno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Front\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Front\FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Front\FormMain.cs">
       <SubType>Form</SubType>
@@ -170,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Front\Alunos\FormEditarAluno.resx">
       <DependentUpon>FormEditarAluno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Front\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Front\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

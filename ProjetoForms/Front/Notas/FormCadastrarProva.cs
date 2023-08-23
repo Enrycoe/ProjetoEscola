@@ -19,13 +19,15 @@ namespace ProjetoForms.Front.Notas
         AlunoModel alunoModel = new AlunoModel();
         MateriaModel materiaModel = new MateriaModel();
         Aluno aluno;
+        Professor professor = new Professor();
         
-        public FormCadastrarProva(Aluno aluno)
+        public FormCadastrarProva(Aluno aluno, Professor professor)
         {
             InitializeComponent();
             try
             {
                 this.aluno = aluno;
+                this.professor = professor;
                 cbMateria.ValueMember = "ID";
                 cbMateria.DisplayMember = "NomeMateria";
 
@@ -43,7 +45,7 @@ namespace ProjetoForms.Front.Notas
             try
             {
                 lblAluno.Text = "Aluno: " + aluno.Nome.ToString();
-                cbMateria.DataSource = materiaModel.BuscarMateria();
+                cbMateria.DataSource = materiaModel.BuscarMateriaPorProfessor(professor);
             }
             catch (Exception ex)
             {

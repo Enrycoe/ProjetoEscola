@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using ProjetoForms.Back;
+using ProjetoForms.Back.Entities;
+using ProjetoForms.Back.Model;
 using ProjetoForms.Front.Alunos;
 using ProjetoForms.Front.Professores;
 
@@ -18,12 +21,27 @@ namespace ProjetoForms
 {
     public partial class FormMain : Form
     {
-        
-        public FormMain()
+        private Usuario usuario;
+        private Professor professor;
+        ProfessorModel professorModel = new ProfessorModel();
+
+        public FormMain(Usuario usuario)
         {
             InitializeComponent();
-
+            this.usuario = usuario;
+            if(usuario.TipoUsuario == (int)TipoDeUsuario.PROFESSOR)
+            {
+                this.professor = usuario.Professor;
+                alunosToolStripMenuItem.Enabled = false;
+                professoresToolStripMenuItem.Enabled = false;
+            }
+            if (usuario.TipoUsuario == (int)TipoDeUsuario.ADMINISTRADOR)
+            {
+                NotaTurmasToolStripMenuItem.Enabled = false;
+                CalcularMediaToolStripMenuItem.Enabled = false;
+            }
         }
+
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
@@ -48,13 +66,6 @@ namespace ProjetoForms
         }
 
 
-        private void alunosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form form = new FormVerAlunos();
-            form.ShowDialog();
-
-        }
-
         private void verAlunosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form form = new FormVerAlunos();
@@ -69,20 +80,29 @@ namespace ProjetoForms
 
         private void NotaTurmasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form form = new FormVerAlunoNota();
+            Form form = new FormVerAlunoNota(professor);
             form.ShowDialog();
         }
 
         private void CalcularMediaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form form = new FormVerAlunoMedia();
+            Form form = new FormVerAlunoMedia(professor);
             form.ShowDialog(); 
         }
 
         private void boletimToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Form form = new FormVerAlunoBoletim();
-            form.ShowDialog();
+            if(professor == null)
+            {
+                Form form = new FormVerAlunoBoletim();
+                form.ShowDialog();
+            }
+            else
+            {
+                Form form = new FormVerAlunoBoletim(professor);
+                form.ShowDialog();
+            }
+            
         }
 
         private void btnFechar_Click(object sender, EventArgs e)

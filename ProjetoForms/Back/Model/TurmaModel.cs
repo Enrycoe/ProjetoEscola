@@ -25,5 +25,18 @@ namespace ProjetoForms.Back.Model
                 throw ex;
             }
         }
+
+        public List<Turma> BuscarTurmasPorProfessor(Professor professor)
+        {
+            try
+            {
+                return dao.BuscarTurmasPorProfessor(professor);
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

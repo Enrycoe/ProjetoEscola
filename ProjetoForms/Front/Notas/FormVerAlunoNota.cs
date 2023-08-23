@@ -14,12 +14,19 @@ namespace ProjetoForms
     {
         AlunoModel alunoModel = new AlunoModel();
         TurmaModel turmaModel = new TurmaModel();
+        private Professor professor;
 
         public FormVerAlunoNota()
         {
             InitializeComponent();
-            cbTurma.ValueMember = "id";
-            cbTurma.DisplayMember = "Nome_Turma";
+          
+        }
+
+        public FormVerAlunoNota(Professor professor)
+        {
+            InitializeComponent();
+           
+            this.professor = professor;
         }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -29,8 +36,9 @@ namespace ProjetoForms
 
         private void FormVerAlunoNota_Load(object sender, EventArgs e)
         {
-            cbTurma.DataSource = turmaModel.BuscarTurmas();
-            cbTurma.SelectedIndex = 12;
+            cbTurma.ValueMember = "id";
+            cbTurma.DisplayMember = "Nome_Turma";
+            cbTurma.DataSource = turmaModel.BuscarTurmasPorProfessor(professor);
             gridAlunos.EnableHeadersVisualStyles = false;
             gridAlunos.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
             PesquisarAluno();
@@ -44,7 +52,7 @@ namespace ProjetoForms
             {
                 int id = Convert.ToInt32(gridAlunos.CurrentRow.Cells[0].Value);
                 Aluno aluno = alunoModel.ReceberAlunoPorId(id);
-                Form f = new FormCadastrarProva(aluno);
+                Form f = new FormCadastrarProva(aluno, professor);
                 f.ShowDialog();
                 PesquisarAluno();
             }

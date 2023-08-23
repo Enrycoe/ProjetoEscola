@@ -96,7 +96,7 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
-        internal void Cadastrar(Pessoa pessoa)
+        internal void Cadastrar(Pessoa pessoa, int idUsuario)
         {
             Professor professor = pessoa as Professor;
             try
@@ -117,35 +117,40 @@ namespace ProjetoForms.Back.DAO
 
                 }
                 conn.AbrirConexao();
-                cmd = new MySqlCommand($"INSERT INTO professor (Idade, Data_de_Nascimento, fk_Endereço_ID,  Telefone_Pessoal, Telefone_Fixo, Nome) " +
-                       $"VALUES(@Idade, @Data_de_Nascimento, @fk_endereco_id, @Telefone_Pessoal, @Telefone_Fixo, @nome)", conn.conn);
+                cmd = new MySqlCommand($"INSERT INTO professor (Idade, Data_de_Nascimento, fk_Endereço_ID,  Telefone_Pessoal, Telefone_Fixo, Nome, fk_Usuario_ID) " +
+                       $"VALUES(@Idade, @Data_de_Nascimento, @fk_endereco_id, @Telefone_Pessoal, @Telefone_Fixo, @nome, @idUsuario)", conn.conn);
                 cmd.Parameters.AddWithValue("@Data_de_Nascimento", professor.DataNascimento.ToString("yyyy-MM-dd"));
                 cmd.Parameters.AddWithValue("@Idade", professor.Idade);
                 cmd.Parameters.AddWithValue("@nome", professor.Nome);
                 cmd.Parameters.AddWithValue("@fk_endereco_id", professor.Endereco.Id);
                 cmd.Parameters.AddWithValue("@Telefone_Pessoal", professor.TelefonePessoal);
                 cmd.Parameters.AddWithValue("@Telefone_Fixo", professor.TelefoneFixo);
+                cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
-
+                conn.FecharConexao();
                 professor.Id = ReceberIdUltimoProfessor();
                 cmd.Dispose();
                 foreach (Materia materia in professor.Materias)
                 {
+                    conn.AbrirConexao();
                     cmd = new MySqlCommand("INSERT INTO materia_professor(fk_Materia_ID, fk_Professor_ID) VALUES (@materia, @professor)", conn.conn);
                     cmd.Parameters.AddWithValue("@materia", materia.Id);
                     cmd.Parameters.AddWithValue("@professor", professor.Id);
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
+                    conn.FecharConexao();
                 }
 
                 foreach (Turma turma in professor.Turmas)
                 {
+                    conn.AbrirConexao();
                     cmd = new MySqlCommand("INSERT INTO professor_turma(fk_Turma_ID, fk_Professor_ID) VALUES (@turma, @professor)", conn.conn);
                     cmd.Parameters.AddWithValue("@turma", turma.Id);
                     cmd.Parameters.AddWithValue("@professor", professor.Id);
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
+                    conn.FecharConexao();
                 }
 
             }
@@ -301,7 +306,53 @@ namespace ProjetoForms.Back.DAO
                 cmd.Dispose();
                 professor.Turmas = turmaDAO.BuscarTurmasPorProfessor(professor);
                 professor.Materias = materiaDAO.BuscarMateriaPorProfessor(professor);
-                return professor;
+                if(professor != null)
+                {
+                    return professor;
+                }
+                return null;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { conn.FecharConexao(); }
+        }
+
+        internal Professor ReceberProfessorPorUsuarioID(int id)
+        {
+            try
+            {
+                Professor professor = new Professor();
+                professor.Endereco = new Endereco();
+                professor.Endereco.Bairro = new Bairro();
+                professor.Endereco.Bairro.Cidade = new Cidade();
+                professor.Endereco.Bairro.Cidade.Estado = new Estado();
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("SELECT * FROM professor p WHERE p.fk_Usuario_ID = @ID", conn.conn);
+                cmd.Parameters.AddWithValue("@ID", id);
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    professor.Id = Convert.ToInt32(reader["ID"]);
+                    professor.DataNascimento = Convert.ToDateTime(reader["Data_de_Nascimento"]);
+                    professor.Idade = Convert.ToInt32(reader["Idade"]);
+                    professor.Nome = reader["Nome"].ToString();
+                    professor.TelefonePessoal = reader["Telefone_Pessoal"].ToString();
+                    professor.TelefoneFixo = reader["Telefone_Fixo"].ToString();
+                    professor.Endereco.Id = Convert.ToInt32(reader["fk_endereço_id"]);
+                    professor.Endereco = enderecoDAO.ReceberEnderecoPorPessoa(professor);
+                }
+                cmd.Dispose();
+                professor.Turmas = turmaDAO.BuscarTurmasPorProfessor(professor);
+                professor.Materias = materiaDAO.BuscarMateriaPorProfessor(professor);
+                if (professor.Id != 0)
+                {
+                    return professor;
+                }
+                return null;
 
             }
             catch (Exception ex)

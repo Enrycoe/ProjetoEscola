@@ -15,6 +15,7 @@ namespace ProjetoForms.Front.Professores
 {
     public partial class FormEditarProfessor : Form
     {
+        UsuarioModel usuarioModel = new UsuarioModel();
         ProfessorModel professorModel = new ProfessorModel();
         Professor professor;
         EstadoModel estadoModel = new EstadoModel();
@@ -33,6 +34,9 @@ namespace ProjetoForms.Front.Professores
         {
             try
             {
+                Usuario usuarioProfessor = usuarioModel.ReceberUsuarioPorProfessor(professor);
+                txtLogin.Text = usuarioProfessor.NomeUsuario;
+                txtSenha.Text = usuarioProfessor.SenhaUsuario;
                 cbEstado.DataSource = estadoModel.BuscarEstados();
                 cbEstado.SelectedValue = professor.Endereco.Bairro.Cidade.Estado.Id;
                 cbCidade.SelectedValue = professor.Endereco.Bairro.Cidade.Id;

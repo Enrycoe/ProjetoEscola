@@ -12,6 +12,7 @@ namespace ProjetoForms.Back.Model
     internal class ProfessorModel : IPessoaModel
     {
         ProfessorDAO dao = new ProfessorDAO();
+        UsuarioModel usuarioModel = new UsuarioModel();
 
         public void AtualizarPorId(Pessoa pessoa, Pessoa pessoaAtualizada)
         {
@@ -23,7 +24,6 @@ namespace ProjetoForms.Back.Model
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
 
@@ -33,8 +33,9 @@ namespace ProjetoForms.Back.Model
         {
             try
             {
+                int idUsuario = usuarioModel.GerarERetornarLogin();
                 professor.Idade = professor.CalcularIdade(professor.DataNascimento);
-                dao.Cadastrar(professor);
+                dao.Cadastrar(professor, idUsuario);
             }
             catch (Exception ex)
             {

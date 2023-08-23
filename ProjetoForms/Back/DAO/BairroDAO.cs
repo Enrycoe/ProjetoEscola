@@ -67,8 +67,7 @@ namespace ProjetoForms.Back.DAO
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
                 foreach(DataRow dr in dt.Rows)
-                {
-                    
+                {                   
                     bairro.Id = id;
                     bairro.NomeBairro = dr["Nome_Bairro"].ToString();
                     int idCidade = Convert.ToInt32(dr["fk_cidade_id"]);

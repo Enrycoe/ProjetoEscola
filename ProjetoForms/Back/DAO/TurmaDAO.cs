@@ -44,7 +44,6 @@ namespace ProjetoForms.Back.DAO
             }
             finally { conn.FecharConexao(); }
         }
-
         public List<Turma> ListarTurmas(MySqlCommand cmd)
         {
             try
@@ -72,8 +71,6 @@ namespace ProjetoForms.Back.DAO
             }
             
             
-        }
-
-      
+        }  
     }
 }

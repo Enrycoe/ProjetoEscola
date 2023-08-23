@@ -14,12 +14,25 @@ namespace ProjetoForms
     {
         AlunoModel alunoModel = new AlunoModel();
         TurmaModel turmaModel = new TurmaModel();
+        private Professor professor;
 
         public FormVerAlunoBoletim()
         {
             InitializeComponent();
             cbTurma.ValueMember = "id";
             cbTurma.DisplayMember = "Nome_Turma";
+            cbTurma.DataSource = turmaModel.BuscarTurmas();
+            cbTurma.SelectedValue = 13;
+
+        }
+
+        public FormVerAlunoBoletim(Professor professor)
+        {
+            InitializeComponent();
+            this.professor = professor;
+            cbTurma.ValueMember = "id";
+            cbTurma.DisplayMember = "Nome_Turma";
+            cbTurma.DataSource = turmaModel.BuscarTurmasPorProfessor(professor);
         }
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
@@ -31,8 +44,7 @@ namespace ProjetoForms
         {
             try
             {
-                cbTurma.DataSource = turmaModel.BuscarTurmas();
-                cbTurma.SelectedIndex = 12;
+              
                 gridAlunos.EnableHeadersVisualStyles = false;
                 gridAlunos.ColumnHeadersDefaultCellStyle.BackColor = Color.White;
                 PesquisarAluno();
