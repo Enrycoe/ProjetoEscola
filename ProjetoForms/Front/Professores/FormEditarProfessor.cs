@@ -19,7 +19,7 @@ namespace ProjetoForms.Front.Professores
         ProfessorModel professorModel = new ProfessorModel();
         Professor professor;
         EstadoModel estadoModel = new EstadoModel();
-        CidadeModel cidadeModel = new CidadeModel();    
+        CidadeModel cidadeModel = new CidadeModel();
         public FormEditarProfessor(Professor professor)
         {
             InitializeComponent();
@@ -161,8 +161,8 @@ namespace ProjetoForms.Front.Professores
 
                 MessageBox.Show("Erro: " + ex.Message, "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            
-            
+
+
         }
 
         private void DeletarPorId()
@@ -177,7 +177,7 @@ namespace ProjetoForms.Front.Professores
 
                 throw;
             }
-            
+
         }
 
         private void cbEstado_TextChanged(object sender, EventArgs e)
@@ -199,6 +199,14 @@ namespace ProjetoForms.Front.Professores
         {
             try
             {
+                bool trocouASenha = usuarioModel.VerificarSeTrocouASenha(txtSenha.Text, txtLogin.Text);
+                if (trocouASenha)
+                {
+                    if (MessageBox.Show("Você Atualizou o campo senha, deseja realmente altera-la?", "Aviso!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        usuarioModel.AlterarSenha(txtSenha.Text, txtLogin.Text);
+                    }
+                }
                 Professor professor = new Professor();
                 if (string.IsNullOrWhiteSpace(txtNomeCompleto.Text))
                 {
@@ -240,32 +248,30 @@ namespace ProjetoForms.Front.Professores
 
                 MessageBox.Show("Erro: " + ex.Message, "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-           
+
         }
 
         private void Atualizar()
         {
             try
-            {
-                Professor professorAtualizado = new Professor();
-                professorAtualizado.Endereco = new Endereco();
-                professorAtualizado.Endereco.Bairro = new Bairro();
-                professorAtualizado.Endereco.Bairro.Cidade = new Cidade();  
-                professorAtualizado.Endereco.Bairro.Cidade.Id = Convert.ToInt32(cbCidade.SelectedValue);
-                professorAtualizado.Id = professor.Id;
-                professorAtualizado.Materias = new List<Materia>();
-                professorAtualizado.Turmas = new List<Turma>();
-                professorAtualizado.Materias.Clear();
-                professorAtualizado.Turmas.Clear();
-                professorAtualizado.Materias = ReceberMateriasSelecionadas();
-                professorAtualizado.Turmas = ReceberTurmasSelecionadas();
-                professorAtualizado.DataNascimento = Convert.ToDateTime(dtNascimento.Text);
-                professorAtualizado.Nome = txtNomeCompleto.Text;
-                professorAtualizado.Endereco.NomeRua = txtRua.Text;
-                professorAtualizado.Endereco.NumCasa = Convert.ToInt32(txtNumeroCasa.Text);
-                professorAtualizado.Endereco.Bairro.NomeBairro = txtBairro.Text;
-                professorAtualizado.TelefoneFixo = txtTelefoneFixo.Text;
-                professorAtualizado.TelefonePessoal = txtTelefonePessoal.Text;
+            {             
+                Professor util = new Professor();
+                int id = professor.Id;
+                int idCidade = Convert.ToInt32(cbCidade.SelectedValue);
+                Cidade cidade = new Cidade(idCidade);
+                string nomeBairro = txtBairro.Text;
+                Bairro bairro = new Bairro(nomeBairro, cidade);
+                List<Materia> materias = ReceberMateriasSelecionadas();
+                List<Turma> turmas = ReceberTurmasSelecionadas();
+                DateTime dataNascimento = Convert.ToDateTime(dtNascimento.Text);
+                string nome = txtNomeCompleto.Text;
+                string nomeRua = txtRua.Text;
+                int numCasa = Convert.ToInt32(txtNumeroCasa.Text);
+                Endereco endereco = new Endereco(numCasa, nomeRua, bairro);
+                int idade = util.CalcularIdade(dataNascimento);
+                string telefoneFixo = txtTelefoneFixo.Text;
+                string telefonePessoal = txtTelefonePessoal.Text;
+                Professor professorAtualizado = new Professor(id, nome, dataNascimento, idade, endereco, telefonePessoal, telefoneFixo, materias, turmas);
                 professorModel.AtualizarPorId(professor, professorAtualizado);
                 MessageBox.Show("Professor atualizado com sucesso", "Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -281,86 +287,97 @@ namespace ProjetoForms.Front.Professores
             List<Turma> turmas = new List<Turma>();
             if (cbPA.Checked)
             {
-                Turma turma = new Turma();
-                turma.Nome = cbPA.Text;
-                turma.Id = 1;
+
+                string nome = cbPA.Text;
+                int id = 1;
+                Turma turma = new Turma(id, nome);
                 turmas.Add(turma);
             }
             if (cbPB.Checked)
             {
-                Turma turma = new Turma();
-                turma.Nome = cbPB.Text;
-                turma.Id = 2;
+                string nome = cbPB.Text;
+                int id = 2;
+                Turma turma = new Turma(id, nome);
                 turmas.Add(turma);
             }
             if (cbPC.Checked)
             {
-                Turma turma = new Turma();
-                turma.Nome = cbPC.Text;
-                turma.Id = 3;
+                
+                string nome = cbPC.Text;
+                int id = 3;
+                Turma turma = new Turma(id, nome);
                 turmas.Add(turma);
             }
             if (cbPD.Checked)
             {
-                Turma turma = new Turma();
-                turma.Nome = cbPD.Text;
-                turma.Id = 4;
+                
+                string nome = cbPD.Text;
+                int id = 4;
+                Turma turma = new Turma(id, nome);
                 turmas.Add(turma);
             }
             if (cbSA.Checked)
             {
-                Turma turma = new Turma();
-                turma.Nome = cbSA.Text;
-                turma.Id = 5;
+                ;
+                string nome = cbSA.Text;
+                int id = 5;
+                Turma turma = new Turma(id, nome);
                 turmas.Add(turma);
             }
             if (cbSB.Checked)
             {
-                Turma turma = new Turma();
-                turma.Nome = cbSB.Text;
-                turma.Id = 6;
+                
+                string nome = cbSB.Text;
+                int id = 6;
+                Turma turma = new Turma(id, nome);
                 turmas.Add(turma);
             }
             if (cbSC.Checked)
             {
-                Turma turma = new Turma();
-                turma.Nome = cbSC.Text;
-                turma.Id = 7;
+                
+                string nome = cbSC.Text;
+                int id = 7;
+                Turma turma = new Turma(id, nome);
                 turmas.Add(turma);
             }
             if (cbSD.Checked)
             {
-                Turma turma = new Turma();
-                turma.Nome = cbSD.Text;
-                turma.Id = 8;
+                
+                string nome = cbSD.Text;
+                int id = 8;
+                Turma turma = new Turma(id, nome);
                 turmas.Add(turma);
             }
             if (cbTA.Checked)
             {
-                Turma turma = new Turma();
-                turma.Nome = cbTA.Text;
-                turma.Id = 9;
+                
+                string nome = cbTA.Text;
+                int id = 9;
+                Turma turma = new Turma(id, nome);
                 turmas.Add(turma);
             }
             if (cbTB.Checked)
             {
-                Turma turma = new Turma();
-                turma.Nome = cbTB.Text;
-                turma.Id = 10;
+                
+                string nome = cbTB.Text;
+                int id = 10;
+                Turma turma = new Turma(id, nome);
                 turmas.Add(turma);
             }
             if (cbTC.Checked)
             {
-                Turma turma = new Turma();
-                turma.Nome = cbTC.Text;
-                turma.Id = 11;
+                
+                string nome = cbTC.Text;
+                int id = 11;
+                Turma turma = new Turma(id, nome);
                 turmas.Add(turma);
             }
             if (cbTD.Checked)
             {
-                Turma turma = new Turma();
-                turma.Nome = cbTD.Text;
-                turma.Id = 12;
+                
+                string nome = cbTD.Text;
+                int id = 12;
+                Turma turma = new Turma(id, nome);
                 turmas.Add(turma);
             }
             return turmas;
@@ -371,86 +388,98 @@ namespace ProjetoForms.Front.Professores
             List<Materia> materias = new List<Materia>();
             if (cbArtes.Checked)
             {
-                Materia materia = new Materia();
-                materia.NomeMateria = cbArtes.Text;
-                materia.Id = 1;
+
+                string nome = cbArtes.Text;
+                int id = 1;
+                Materia materia = new Materia(id, nome);
                 materias.Add(materia);
             }
             if (cbEducacaoF.Checked)
             {
-                Materia materia = new Materia();
-                materia.NomeMateria = cbEducacaoF.Text;
-                materia.Id = 2;
+
+                string nome = cbEducacaoF.Text;
+                int id = 2;
+                Materia materia = new Materia(id, nome);
                 materias.Add(materia);
             }
             if (cbFilosofia.Checked)
             {
-                Materia materia = new Materia();
-                materia.NomeMateria = cbFilosofia.Text;
-                materia.Id = 3;
+
+                string nome = cbFilosofia.Text;
+                int id = 3;
+                Materia materia = new Materia(id, nome);
                 materias.Add(materia);
             }
             if (cbSociologia.Checked)
             {
-                Materia materia = new Materia();
-                materia.NomeMateria = cbSociologia.Text;
-                materia.Id = 4;
+
+                string nome = cbSociologia.Text;
+                int id = 4;
+                Materia materia = new Materia(id, nome);
                 materias.Add(materia);
             }
             if (cbIngles.Checked)
             {
-                Materia materia = new Materia();
-                materia.NomeMateria = cbIngles.Text;
-                materia.Id = 5;
+
+                string nome = cbIngles.Text;
+                int id = 5;
+                Materia materia = new Materia(id, nome);
                 materias.Add(materia);
             }
             if (cbFisica.Checked)
             {
-                Materia materia = new Materia();
-                materia.NomeMateria = cbFisica.Text;
-                materia.Id = 6;
+
+                string nome = cbFisica.Text;
+                int id = 6;
+                Materia materia = new Materia(id, nome);
                 materias.Add(materia);
             }
             if (cbQuímica.Checked)
             {
-                Materia materia = new Materia();
-                materia.NomeMateria = cbQuímica.Text;
-                materia.Id = 7;
+
+                string nome = cbQuímica.Text;
+                int id = 7;
+                Materia materia = new Materia(id, nome);
                 materias.Add(materia);
             }
             if (cbBiologia.Checked)
             {
-                Materia materia = new Materia();
-                materia.NomeMateria = cbBiologia.Text;
-                materia.Id = 8;
+
+                string nome = cbBiologia.Text;
+                int id = 8;
+                Materia materia = new Materia(id, nome);
                 materias.Add(materia);
             }
             if (cbGeografia.Checked)
             {
-                Materia materia = new Materia();
-                materia.NomeMateria = cbGeografia.Text;
-                materia.Id = 9;
+
+                string nome = cbGeografia.Text;
+                int id = 9;
+                Materia materia = new Materia(id, nome);
                 materias.Add(materia);
             }
             if (cbHistoria.Checked)
             {
-                Materia materia = new Materia();
-                materia.NomeMateria = cbHistoria.Text;
-                materia.Id = 10;
+
+                string nome = cbHistoria.Text;
+                int id = 10;
+                Materia materia = new Materia(id, nome);
                 materias.Add(materia);
             }
             if (cbMatematica.Checked)
             {
-                Materia materia = new Materia();
-                materia.NomeMateria = cbMatematica.Text;
-                materia.Id = 11;
+
+                string nome = cbMatematica.Text;
+                int id = 11;
+                Materia materia = new Materia(id, nome);
                 materias.Add(materia);
             }
             if (cbLinguaP.Checked)
             {
-                Materia materia = new Materia();
-                materia.NomeMateria = cbLinguaP.Text;
-                materia.Id = 12;
+
+                string nome = cbLinguaP.Text;
+                int id = 12;
+                Materia materia = new Materia(id, nome);
                 materias.Add(materia);
             }
             return materias;
@@ -492,7 +521,6 @@ namespace ProjetoForms.Front.Professores
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
-  
 
         private void FormEditarProfessor_MouseDown(object sender, MouseEventArgs e)
         {

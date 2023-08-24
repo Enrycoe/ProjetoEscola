@@ -35,7 +35,7 @@ namespace ProjetoForms.Back.DAO
         {
             try
             {
-                var estado = new Estado();
+               
                 conn.AbrirConexao();
                 cmd = new MySqlCommand("SELECT * FROM estado WHERE ID = @idEstado", conn.conn);
                 cmd.Parameters.AddWithValue("@idEstado", idEstado);
@@ -46,12 +46,14 @@ namespace ProjetoForms.Back.DAO
                 foreach (DataRow dr in dt.Rows)
                 {
                     
-                    estado.Id = idEstado;
-                    estado.Nome = dr["Nome_Estado"].ToString();
-                    estado.Sigla = dr["Sigla"].ToString();
+                    
+                    string nome = dr["Nome_Estado"].ToString();
+                    string sigla = dr["Sigla"].ToString();
+                    Estado estado = new Estado(idEstado, nome, sigla);
+                    return estado;
                 }
                 cmd.Dispose();
-                return estado;
+                return null;
             }
             catch (Exception)
             {
@@ -73,10 +75,11 @@ namespace ProjetoForms.Back.DAO
                 adapter.Fill(dt);
                 foreach (DataRow dr in dt.Rows)
                 {
-                    var estado = new Estado();
-                    estado.Nome = dr["Nome_Estado"].ToString();
-                    estado.Id = Convert.ToInt32(dr["ID"]);
-                    estado.Sigla = dr["Sigla"].ToString();
+                    
+                    string nome = dr["Nome_Estado"].ToString();
+                    int id = Convert.ToInt32(dr["ID"]);
+                    string sigla = dr["Sigla"].ToString();
+                    Estado estado = new Estado(id, nome, sigla);
                     estados.Add(estado);
                 }
 

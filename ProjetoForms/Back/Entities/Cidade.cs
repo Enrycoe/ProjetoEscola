@@ -6,15 +6,38 @@ using System.Threading.Tasks;
 
 namespace ProjetoForms.Back.Entities
 {
-    internal class Cidade
+    public class Cidade
     {
         int id;
         string nome;
         Estado estado;
-        List<Bairro> bairros;
+
+        public Cidade()
+        {
+            
+        }
+
+        public Cidade(int idCidade)
+        {
+            this.id = idCidade;
+        }
+
+        public Cidade(int idCidade, string nome) 
+        {
+            this.id = idCidade;
+            this.nome = nome;
+        }
+
+        public Cidade(int idCidade, string nome, Estado estado)
+        {
+            this.id = idCidade;
+            this.nome = nome;
+            this.estado = estado;
+        }
+
         public int Id { get => id; set => id = value; }
         public string Nome { get => nome; set => nome = value; }
         internal Estado Estado { get => estado; set => estado = value; }
-        internal List<Bairro> Bairros { get => bairros; set => bairros = value; }
+        
     }
 }

@@ -43,12 +43,12 @@ namespace ProjetoForms.Back.Model
 
         }
 
-        internal void CadastrarProva(Prova prova, Aluno aluno)
+        internal void CadastrarProva(Prova prova)
         {
 
             try
             {
-                dao.CadastrarProva(prova, aluno);
+                dao.CadastrarProva(prova);
             }
             catch (Exception ex)
             {

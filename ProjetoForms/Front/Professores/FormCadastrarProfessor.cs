@@ -66,9 +66,6 @@ namespace ProjetoForms.Front.Professores
             try
             {
                 Professor professor = new Professor();
-                professor.Endereco = new Endereco();
-                professor.Endereco.Bairro = new Bairro();
-                professor.Endereco.Bairro.Cidade = new Cidade();
 
                 if (string.IsNullOrWhiteSpace(txtNomeCompleto.Text))
                 {
@@ -102,7 +99,7 @@ namespace ProjetoForms.Front.Professores
                     dtNascimento.Focus();
                     return;
                 }
-                Cadastrar(professor);
+                Cadastrar();
 
             }
             catch (Exception ex)
@@ -113,20 +110,28 @@ namespace ProjetoForms.Front.Professores
            
         }
 
-        private void Cadastrar(Professor professor)
+        private void Cadastrar()
         {
             try
             {
-                professor.Endereco.Bairro.Cidade.Id = Convert.ToInt32(cbCidade.SelectedValue);
-                professor.Materias = ReceberMateriasSelecionadas();
-                professor.Turmas = ReceberTurmasSelecionadas();
-                professor.DataNascimento = Convert.ToDateTime(dtNascimento.Text);
-                professor.Nome = txtNomeCompleto.Text;
-                professor.Endereco.NomeRua = txtRua.Text;
-                professor.Endereco.NumCasa = Convert.ToInt32(txtNumeroCasa.Text);
-                professor.Endereco.Bairro.NomeBairro = txtBairro.Text;
-                professor.TelefoneFixo = txtTelefoneFixo.Text;
-                professor.TelefonePessoal = txtTelefonePessoal.Text;
+                Professor util = new Professor();
+                int idCidade = Convert.ToInt32(cbCidade.SelectedValue);
+                Cidade cidade = new Cidade(idCidade);
+                string nomeBairro = txtBairro.Text;
+                Bairro bairro = new Bairro(nomeBairro, cidade);
+                List<Materia> materias = ReceberMateriasSelecionadas();
+                List<Turma> turmas = ReceberTurmasSelecionadas();
+                DateTime dataNascimento= Convert.ToDateTime(dtNascimento.Text);
+                string nome = txtNomeCompleto.Text;
+                string nomeRua = txtRua.Text;
+                int numCasa = Convert.ToInt32(txtNumeroCasa.Text);
+                Endereco endereco = new Endereco(numCasa, nomeRua, bairro);
+
+                int idade = util.CalcularIdade(dataNascimento);
+                
+                string telefoneFixo = txtTelefoneFixo.Text;
+                string telefonePessoal = txtTelefonePessoal.Text;
+                Professor professor = new Professor(nome, dataNascimento, idade, endereco, telefonePessoal, telefoneFixo, materias, turmas); 
                 professorModel.Cadastrar(professor);
                 MessageBox.Show("Professor cadastrado com sucesso", "Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimparCampos();

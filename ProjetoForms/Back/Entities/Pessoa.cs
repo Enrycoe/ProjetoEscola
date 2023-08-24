@@ -13,10 +13,45 @@ namespace ProjetoForms.Back.Entities
         private DateTime dataNascimento;
         private int idade;
         Endereco endereco;
+        string telefonePessoal;
+        string telefoneFixo;
+        public Pessoa()
+        {
+            
+        }
+
+        public Pessoa(int id)
+        {
+            this.id = id;
+        }
+
+        public Pessoa(string nome, DateTime dataNascimento, int idade, Endereco endereco, string telefoneFixo, string telefonePessoal)
+        {
+            this.nome = nome;
+            this.dataNascimento = dataNascimento;
+            this.idade = idade;
+            this.endereco = endereco;
+            this.telefoneFixo = telefoneFixo;
+            this.telefonePessoal = telefonePessoal;
+        }
+
+        public Pessoa(int id, string nome, DateTime dataNascimento, int idade, Endereco endereco, string telefoneFixo, string telefonePessoal)
+        {
+            this.id = id;
+            this.nome = nome;
+            this.dataNascimento = dataNascimento;
+            this.idade = idade;
+            this.endereco = endereco;
+            this.TelefoneFixo = telefoneFixo;
+            this.TelefonePessoal = telefonePessoal;
+        }
+
         public int Id { get => id; set => id = value; }
         public string Nome { get => nome; set => nome = value; }
         public DateTime DataNascimento { get => dataNascimento; set => dataNascimento = value; }
         public int Idade { get => idade; set => idade = value; }
+        public string TelefonePessoal { get => telefonePessoal; set => telefonePessoal = value; }
+        public string TelefoneFixo { get => telefoneFixo; set => telefoneFixo = value; }
         internal Endereco Endereco { get => endereco; set => endereco = value; }
 
         public int CalcularIdade(DateTime dataNascimento)

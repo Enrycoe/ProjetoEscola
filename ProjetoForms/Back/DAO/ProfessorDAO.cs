@@ -11,23 +11,33 @@ using System.Windows.Forms;
 
 namespace ProjetoForms.Back.DAO
 {
-    internal class ProfessorDAO
+    public class ProfessorDAO
     {
-        EnderecoDAO enderecoDAO = new EnderecoDAO();
-        TurmaDAO turmaDAO = new TurmaDAO();
-        MateriaDAO materiaDAO = new MateriaDAO();
-        BairroDAO bairroDAO = new BairroDAO();
-        ConexaoMySQL conn = new ConexaoMySQL();
+        UsuarioDAO usuarioDAO;
+        EnderecoDAO enderecoDAO;
+        TurmaDAO turmaDAO;
+        MateriaDAO materiaDAO;
+        BairroDAO bairroDAO;
+        ConexaoMySQL conn;
         MySqlCommand cmd;
 
-        internal void Atualizar(Pessoa pessoa, Pessoa pessoaAtualizada)
+        public ProfessorDAO()
+        {
+
+            enderecoDAO = new EnderecoDAO();
+            turmaDAO = new TurmaDAO();
+            materiaDAO = new MateriaDAO();
+            bairroDAO = new BairroDAO();
+            conn = new ConexaoMySQL();
+        }
+        public void Atualizar(Pessoa pessoa, Pessoa pessoaAtualizada)
         {
 
             Professor professor = pessoa as Professor;
             Professor professorAtualizada = pessoaAtualizada as Professor;
             try
             {
-                
+
 
                 bool bairroExiste = bairroDAO.VerificarSeBairroExiste(professorAtualizada.Endereco.Bairro);
                 if (bairroExiste)
@@ -51,7 +61,7 @@ namespace ProjetoForms.Back.DAO
                     cmd.Parameters.AddWithValue("@professor", professorAtualizada.Id);
                     cmd.ExecuteNonQuery();
                     cmd.Dispose();
-                }         
+                }
                 foreach (Turma turma in professorAtualizada.Turmas)
                 {
                     cmd = new MySqlCommand("INSERT INTO professor_turma (fk_Turma_ID, fk_Professor_ID) VALUES (@turma, @professor)", conn.conn);
@@ -78,7 +88,7 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
-        internal List<Professor> BuscarPorNome(string nome)
+        public List<Professor> BuscarPorNome(string nome)
         {
             try
             {
@@ -86,7 +96,7 @@ namespace ProjetoForms.Back.DAO
                 cmd = new MySqlCommand("SELECT * FROM professor WHERE Nome LIKE @nome", conn.conn);
                 cmd.Parameters.AddWithValue("@nome", nome + "%");
 
-               return ListarProfessores(cmd);
+                return ListarProfessores(cmd);
             }
             catch (Exception ex)
             {
@@ -96,7 +106,7 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
-        internal void Cadastrar(Pessoa pessoa, int idUsuario)
+        public void Cadastrar(Pessoa pessoa, int idUsuario)
         {
             Professor professor = pessoa as Professor;
             try
@@ -162,7 +172,7 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
-        internal int ReceberIdUltimoProfessor()
+        public int ReceberIdUltimoProfessor()
         {
             try
             {
@@ -178,7 +188,7 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
-        internal void DeletarMateriaDoProfessorPorId(int id)
+        public void DeletarMateriaDoProfessorPorId(int id)
         {
             try
             {
@@ -196,7 +206,7 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
-        internal void DeletarTurmadoProfessorPorId(int id)
+        public void DeletarTurmadoProfessorPorId(int id)
         {
             try
             {
@@ -213,17 +223,21 @@ namespace ProjetoForms.Back.DAO
             }
             finally { conn.FecharConexao(); }
         }
-        internal void DeletarPorId(int id)
+        public void DeletarPorId(int id)
         {
             try
             {
+                usuarioDAO = new UsuarioDAO();
                 DeletarMateriaDoProfessorPorId(id);
                 DeletarTurmadoProfessorPorId(id);
+                Professor professor = ReceberProfessorPorId(id);
+                Usuario usuario = usuarioDAO.ReceberUsuarioPorProfessor(professor);
                 conn.AbrirConexao();
                 cmd = new MySqlCommand("DELETE FROM professor WHERE ID = @ID", conn.conn);
                 cmd.Parameters.AddWithValue("@ID", id);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
+                usuarioDAO.DeletarLoginPorUsuario(usuario);
             }
             catch (Exception ex)
             {
@@ -234,13 +248,15 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
-        internal List<Professor> BuscarTodosProfessores()
+
+
+        public List<Professor> BuscarTodosProfessores()
         {
             try
             {
                 conn.AbrirConexao();
                 cmd = new MySqlCommand("SELECT * FROM professor", conn.conn);
-                
+
 
                 return ListarProfessores(cmd);
             }
@@ -254,62 +270,55 @@ namespace ProjetoForms.Back.DAO
 
         private List<Professor> ListarProfessores(MySqlCommand cmd)
         {
-            List<Professor> professores = new List<Professor>();    
+            List<Professor> professores = new List<Professor>();
             MySqlDataAdapter adapter = new MySqlDataAdapter();
             adapter.SelectCommand = cmd;
 
             DataTable dt = new DataTable();
             adapter.Fill(dt);
 
-            foreach(DataRow dr in dt.Rows)
+            foreach (DataRow dr in dt.Rows)
             {
-                Professor professor = new Professor();
-                professor.Endereco = new Endereco();
-                professor.Id = Convert.ToInt32(dr["ID"]);
-                professor.DataNascimento = Convert.ToDateTime(dr["Data_de_Nascimento"]);
-                professor.Idade = Convert.ToInt32(dr["Idade"]);
-                professor.Nome = dr["Nome"].ToString();
-                professor.TelefonePessoal = dr["Telefone_Pessoal"].ToString();
-                professor.TelefoneFixo = dr["Telefone_Fixo"].ToString();
-                professor.Endereco.Id = Convert.ToInt32(dr["fk_endereÇo_ID"]);
-                professor.Materias = materiaDAO.BuscarMateriaPorProfessor(professor);
-                professor.Turmas = turmaDAO.BuscarTurmasPorProfessor(professor);
+                int id = Convert.ToInt32(dr["ID"]);
+                DateTime dataNascimento = Convert.ToDateTime(dr["Data_de_Nascimento"]);
+                int idade = Convert.ToInt32(dr["Idade"]);
+                string nome = dr["Nome"].ToString();
+                string telefonePessoal = dr["Telefone_Pessoal"].ToString();
+                string telefoneFixo = dr["Telefone_Fixo"].ToString();
+                int idEndereco = Convert.ToInt32(dr["fk_endereço_id"]);
+                Endereco endereco = enderecoDAO.ReceberEnderecoPorPessoa(idEndereco);
+                List<Turma> turmas = turmaDAO.BuscarTurmasPorProfessor(id);
+                List<Materia> materias = materiaDAO.BuscarMateriaPorProfessor(id);
+                Professor professor = new Professor(id, nome, dataNascimento, idade, endereco, telefonePessoal, telefoneFixo, materias, turmas);
                 professores.Add(professor);
             }
             return professores;
         }
 
-        internal Professor ReceberProfessorPorId(int id)
+        public Professor ReceberProfessorPorId(int id)
         {
             try
             {
-                Professor professor = new Professor();
-                professor.Endereco = new Endereco();
-                professor.Endereco.Bairro = new Bairro();
-                professor.Endereco.Bairro.Cidade = new Cidade();
-                professor.Endereco.Bairro.Cidade.Estado = new Estado();
                 conn.AbrirConexao();
                 cmd = new MySqlCommand("SELECT * FROM professor p WHERE p.ID = @ID", conn.conn);
                 cmd.Parameters.AddWithValue("@ID", id);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    professor.Id = Convert.ToInt32(reader["ID"]);
-                    professor.DataNascimento = Convert.ToDateTime(reader["Data_de_Nascimento"]);
-                    professor.Idade = Convert.ToInt32(reader["Idade"]);
-                    professor.Nome = reader["Nome"].ToString();
-                    professor.TelefonePessoal = reader["Telefone_Pessoal"].ToString();
-                    professor.TelefoneFixo = reader["Telefone_Fixo"].ToString();
-                    professor.Endereco.Id = Convert.ToInt32(reader["fk_endereço_id"]);
-                    professor.Endereco = enderecoDAO.ReceberEnderecoPorPessoa(professor);
-                }
-                cmd.Dispose();
-                professor.Turmas = turmaDAO.BuscarTurmasPorProfessor(professor);
-                professor.Materias = materiaDAO.BuscarMateriaPorProfessor(professor);
-                if(professor != null)
-                {
+
+                    DateTime dataNascimento = Convert.ToDateTime(reader["Data_de_Nascimento"]);
+                    int idade = Convert.ToInt32(reader["Idade"]);
+                    string nome = reader["Nome"].ToString();
+                    string telefonePessoal = reader["Telefone_Pessoal"].ToString();
+                    string telefoneFixo = reader["Telefone_Fixo"].ToString();
+                    int idEndereco = Convert.ToInt32(reader["fk_endereço_id"]);
+                    Endereco endereco = enderecoDAO.ReceberEnderecoPorPessoa(idEndereco);
+                    List<Turma> turmas = turmaDAO.BuscarTurmasPorProfessor(id);
+                    List<Materia> materias = materiaDAO.BuscarMateriaPorProfessor(id);
+                    Professor professor = new Professor(id, nome, dataNascimento, idade, endereco, telefonePessoal, telefoneFixo, materias, turmas);
                     return professor;
                 }
+                cmd.Dispose();
                 return null;
 
             }
@@ -321,37 +330,32 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
-        internal Professor ReceberProfessorPorUsuarioID(int id)
+       
+        public Professor ReceberProfessorPorUsuarioID(int id)
         {
             try
             {
-                Professor professor = new Professor();
-                professor.Endereco = new Endereco();
-                professor.Endereco.Bairro = new Bairro();
-                professor.Endereco.Bairro.Cidade = new Cidade();
-                professor.Endereco.Bairro.Cidade.Estado = new Estado();
+
                 conn.AbrirConexao();
                 cmd = new MySqlCommand("SELECT * FROM professor p WHERE p.fk_Usuario_ID = @ID", conn.conn);
                 cmd.Parameters.AddWithValue("@ID", id);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    professor.Id = Convert.ToInt32(reader["ID"]);
-                    professor.DataNascimento = Convert.ToDateTime(reader["Data_de_Nascimento"]);
-                    professor.Idade = Convert.ToInt32(reader["Idade"]);
-                    professor.Nome = reader["Nome"].ToString();
-                    professor.TelefonePessoal = reader["Telefone_Pessoal"].ToString();
-                    professor.TelefoneFixo = reader["Telefone_Fixo"].ToString();
-                    professor.Endereco.Id = Convert.ToInt32(reader["fk_endereço_id"]);
-                    professor.Endereco = enderecoDAO.ReceberEnderecoPorPessoa(professor);
-                }
-                cmd.Dispose();
-                professor.Turmas = turmaDAO.BuscarTurmasPorProfessor(professor);
-                professor.Materias = materiaDAO.BuscarMateriaPorProfessor(professor);
-                if (professor.Id != 0)
-                {
+
+                    DateTime dataNascimento = Convert.ToDateTime(reader["Data_de_Nascimento"]);
+                    int idade = Convert.ToInt32(reader["Idade"]);
+                    string nome = reader["Nome"].ToString();
+                    string telefonePessoal = reader["Telefone_Pessoal"].ToString();
+                    string telefoneFixo = reader["Telefone_Fixo"].ToString();
+                    int idEndereco = Convert.ToInt32(reader["fk_endereço_id"]);
+                    Endereco endereco = enderecoDAO.ReceberEnderecoPorPessoa(idEndereco);
+                    List<Turma> turmas = turmaDAO.BuscarTurmasPorProfessor(id);
+                    List<Materia> materias = materiaDAO.BuscarMateriaPorProfessor(id);
+                    Professor professor = new Professor(id, nome, dataNascimento, idade, endereco, telefonePessoal, telefoneFixo, materias, turmas);
                     return professor;
                 }
+                cmd.Dispose();
                 return null;
 
             }

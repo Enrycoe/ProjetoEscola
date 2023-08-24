@@ -17,6 +17,27 @@ namespace ProjetoForms.Back.Entities
         double notaMaxima = 10;
         Aluno aluno;
 
+        public Prova()
+        {
+        }
+
+        public Prova(int idProva)
+        {
+            this.id = idProva;
+        }
+
+        public Prova(double nota, string descricao, Materia materia, Aluno aluno)
+        {
+            this.nota = nota;
+            this.descricao = descricao;
+            this.materia = materia;
+            this.aluno = aluno;
+        }
+
+        public Prova(int idProva, double nota, string descricao, Materia materia, Aluno aluno) : this(idProva)
+        {
+        }
+
         public int Id { get => id; set => id = value; }
         public double Nota { get => nota; set => nota = value; }
         public double NotaMinima { get => notaMinima; set => notaMinima = value; }

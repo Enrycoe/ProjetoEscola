@@ -78,14 +78,14 @@ namespace ProjetoForms.Back.DAO
           
         }
 
-        internal Endereco ReceberEnderecoPorPessoa(Pessoa pessoa)
+        internal Endereco ReceberEnderecoPorPessoa(int enderecoPessoaId)
         {
             try
             {
-                var endereco = new Endereco();
+             
                 conn.AbrirConexao();
                 cmd = new MySqlCommand("SELECT * FROM endereco WHERE ID = @enderecoPessoa", conn.conn);
-                cmd.Parameters.AddWithValue("@enderecoPessoa", pessoa.Endereco.Id);
+                cmd.Parameters.AddWithValue("@enderecoPessoa", enderecoPessoaId);
                 MySqlDataAdapter adapter = new MySqlDataAdapter();
                 DataTable dt = new DataTable();
                 adapter.SelectCommand = cmd;
@@ -93,14 +93,15 @@ namespace ProjetoForms.Back.DAO
                 foreach (DataRow dr in dt.Rows)
                 {
                     
-                    endereco.Id = pessoa.Endereco.Id;
-                    endereco.NumCasa = Convert.ToInt32(dr["Numero_casa"]);
-                    endereco.NomeRua = dr["Nome_Rua"].ToString();
+                    int numCasa = Convert.ToInt32(dr["Numero_casa"]);
+                    string nomeRua = dr["Nome_Rua"].ToString();
                     int bairroId = Convert.ToInt32(dr["fk_bairro_id"]);
-                    endereco.Bairro = bairroDAO.ReceberBairroPorId(bairroId);
+                    Bairro bairro = bairroDAO.ReceberBairroPorId(bairroId);
+                    Endereco endereco = new Endereco(enderecoPessoaId, numCasa, nomeRua, bairro);
+                    return endereco;
                 }
                 cmd.Dispose();
-                return endereco;
+                return null;
             }
             catch (Exception)
             {

@@ -6,16 +6,29 @@ using System.Threading.Tasks;
 
 namespace ProjetoForms.Back.Entities
 {
-    internal class Materia
+    public class Materia
     {
-        int id;
+        private int id;
         string nomeMateria;
-        string descricao;
         List<Professor> professoresPorMateria;
+
+
+        public Materia()
+        {
+        }
+        public Materia(int idMateria)
+        {
+            this.id = idMateria;
+        }
+
+        public Materia(int idMateria, string nome) 
+        {
+            this.id = idMateria;
+            this.nomeMateria = nome;
+        }
 
         public int Id { get => id; set => id = value; }
         public string NomeMateria { get => nomeMateria; set => nomeMateria = value; }
-        public string Descricao { get => descricao; set => descricao = value; }
         internal List<Professor> ProfessoresPorMateria { get => professoresPorMateria; }
     }
 }

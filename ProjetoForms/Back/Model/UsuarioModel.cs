@@ -70,5 +70,31 @@ namespace ProjetoForms.Back.Model
                 throw ex;
             }
         }
+
+        internal bool VerificarSeTrocouASenha(string senha, string login)
+        {
+            try
+            {
+                return dao.VerificarSeTrocouASenha(senha, login);
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        internal void AlterarSenha(string senha, string login)
+        {
+            try
+            {
+                dao.AlterarSenha(senha, login);
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

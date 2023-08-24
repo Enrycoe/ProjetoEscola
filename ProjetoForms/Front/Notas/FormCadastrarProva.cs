@@ -1,5 +1,6 @@
 ﻿using ProjetoForms.Back.Entities;
 using ProjetoForms.Back.Model;
+using ProjetoForms.Back.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -59,22 +60,24 @@ namespace ProjetoForms.Front.Notas
         {
             try
             {
-                Prova prova = new Prova();
-                prova.Materia = new Materia();
-                prova.Nota = Convert.ToDouble(txtNota.Text);
-                if (prova.Nota > prova.NotaMaxima || prova.Nota < prova.NotaMinima)
+                double nota = Convert.ToDouble(txtNota.Text);
+                bool notaValida = Services.VerificarSeNotaEValida(nota);
+                if (!notaValida)
                 {
                     MessageBox.Show("Insira um valor válido! A nota deve estar entre 0 e 10", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
-                prova.Descricao = txtDesc.Text;
-                if (string.IsNullOrEmpty(prova.Descricao))
+                string descricao = txtDesc.Text;
+                if (string.IsNullOrEmpty(descricao))
                 {
                     MessageBox.Show("Insira uma descrição para a prova", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return;
                 }
-                prova.Materia.Id = Convert.ToInt32(cbMateria.SelectedValue);
-                CadastrarProva(prova, aluno);
+                int idMateria = Convert.ToInt32(cbMateria.SelectedValue);
+                Materia materia = new Materia(idMateria);
+                Prova prova = new Prova(nota, descricao, materia, aluno);
+                
+                CadastrarProva(prova);
                 txtDesc.Text = null;
                 txtNota.Text = null;    
             }
@@ -85,11 +88,11 @@ namespace ProjetoForms.Front.Notas
             }  
         }
 
-        private void CadastrarProva(Prova prova, Aluno aluno)
+        private void CadastrarProva(Prova prova)
         {
             try
             {
-                provaModel.CadastrarProva(prova, aluno);
+                provaModel.CadastrarProva(prova);
                 MessageBox.Show("Prova Cadstrada com sucesso!", "Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)

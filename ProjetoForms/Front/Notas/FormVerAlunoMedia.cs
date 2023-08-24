@@ -61,10 +61,10 @@ namespace ProjetoForms
                 int id = Convert.ToInt32(gridAlunos.CurrentRow.Cells[0].Value);
                 Aluno aluno = alunoModel.ReceberAlunoPorId(id);
                 Form f = new FormCalcularMedia(aluno, professor);
-                f.ShowDialog();
+                f.Show();
                 PesquisarAluno();
             }
-            catch(System.InvalidOperationException ex)
+            catch(System.InvalidOperationException)
             {
                 MessageBox.Show("Erro inesperado! Tente novamente.", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

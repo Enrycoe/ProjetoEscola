@@ -45,15 +45,18 @@ namespace ProjetoForms.Back.DAO
                 adapter.Fill(dt);
                 foreach (DataRow dr in dt.Rows)
                 {
-                    var prova = new Prova();
-                    prova.Aluno = new Aluno();
-                    prova.Materia = new Materia();
-                    prova.Media = new Media();  
-                    prova.Nota = Convert.ToDouble(dr["nota"]);
-                    prova.Id = Convert.ToInt32(dr["id"]);
-                    prova.Descricao = dr["descricao"].ToString();
-                    prova.Materia.Id = Convert.ToInt32(dr["fk_Materia_ID"]);   
-                    prova.Aluno.Id = Convert.ToInt32(dr["fk_Aluno_RA"]);
+                    
+                    int idAluno = Convert.ToInt32(dr["fk_Aluno_RA"]);
+                    Aluno aluno = new Aluno(idAluno);
+                    int idMateria = Convert.ToInt32(dr["fk_Materia_ID"]);
+                    Materia materia = new Materia(idMateria);
+                    
+                    
+                    double nota = Convert.ToDouble(dr["nota"]);
+                    int id = Convert.ToInt32(dr["id"]);
+                    string descricao = dr["descricao"].ToString();
+                    Prova prova = new Prova(id, nota, descricao, materia, aluno);
+                    prova.Media = new Media();
                     var VerificarSeFazParteOuNaoDeMedia = dr["fk_Media_ID"];
                     if(VerificarSeFazParteOuNaoDeMedia != null && VerificarSeFazParteOuNaoDeMedia != DBNull.Value)
                     {
@@ -70,7 +73,7 @@ namespace ProjetoForms.Back.DAO
             }
         }
 
-        internal void CadastrarProva(Prova prova, Aluno aluno)
+        internal void CadastrarProva(Prova prova)
         {
             try
             {
@@ -79,7 +82,7 @@ namespace ProjetoForms.Back.DAO
                 cmd.Parameters.AddWithValue("@nota", prova.Nota);
                 cmd.Parameters.AddWithValue("@descricao", prova.Descricao);
                 cmd.Parameters.AddWithValue("@materia", prova.Materia.Id);
-                cmd.Parameters.AddWithValue("@aluno", aluno.Id);
+                cmd.Parameters.AddWithValue("@aluno", prova.Aluno.Id);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
             }

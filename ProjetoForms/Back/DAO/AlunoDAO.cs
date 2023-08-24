@@ -39,6 +39,7 @@ namespace ProjetoForms.Back.DAO
         {
             try
             {
+                TurmaDAO turmaDAO = new TurmaDAO();
                 List<Aluno> alunos = new List<Aluno>();
                 MySqlDataAdapter adapter = new MySqlDataAdapter();
                 adapter.SelectCommand = cmd;
@@ -48,26 +49,21 @@ namespace ProjetoForms.Back.DAO
 
                 foreach (DataRow dr in dt.Rows)
                 {
-                    var aluno = new Aluno();
-                    aluno.Endereco = new Endereco();
-                    aluno.Endereco.Bairro = new Bairro();
-                    aluno.Endereco.Bairro.Cidade = new Cidade();
-                    aluno.Endereco.Bairro.Cidade.Estado = new Estado();
-                    aluno.Turma = new Turma();
 
-                    aluno.Id = Convert.ToInt32(dr["RA"]);
-                    aluno.DataNascimento = Convert.ToDateTime(dr["Data_de_Nascimento"]);
-                    aluno.Idade = Convert.ToInt32(dr["Idade"]);
-                    aluno.Nome = dr["Nome"].ToString();
-                    aluno.Turma.Id = Convert.ToInt32(dr["fk_Turma_ID"]);
-                    aluno.TelefonePessoal = dr["Telefone_Pessoal"].ToString();
-                    aluno.TelefoneFixo = dr["Telefone_Fixo"].ToString();
-                    aluno.TelefoneResponsavel = dr["Telefone_Responsavel"].ToString();
-                    aluno.TelefoneResponsavel2 = dr["Telefone_Responsavel_2"].ToString();
-                    aluno.Endereco.Id = Convert.ToInt32(dr["fk_endereco_ID"]);
-                    aluno.Turma.Nome = dr["Nome_Turma"].ToString();
+                    int ra = Convert.ToInt32(dr["RA"]);
+                    DateTime dataNascimento = Convert.ToDateTime(dr["Data_de_Nascimento"]);
+                    int idade = Convert.ToInt32(dr["Idade"]);
+                    string nome = dr["Nome"].ToString();
+                    int idTurma = Convert.ToInt32(dr["fk_Turma_ID"]);
+                    Turma turma = turmaDAO.ReceberTurmaPorId(idTurma);
+                    string telefonePessoal = dr["Telefone_Pessoal"].ToString();
+                    string telefoneFixo = dr["Telefone_Fixo"].ToString();
+                    string telefoneResponsavel = dr["Telefone_Responsavel"].ToString();
+                    string telefoneResponsavel2 = dr["Telefone_Responsavel_2"].ToString();
+                    int enderecoId = Convert.ToInt32(dr["fk_endereco_ID"]);
+                    Endereco endereco = enderecoDAO.ReceberEnderecoPorPessoa(enderecoId);
 
-
+                    Aluno aluno = new Aluno(ra, nome, dataNascimento, idade, endereco, telefonePessoal, telefoneFixo, telefoneResponsavel, telefoneResponsavel2, turma);
                     alunos.Add(aluno);
                 }
                 return alunos;
@@ -127,33 +123,31 @@ namespace ProjetoForms.Back.DAO
         {
             try
             {
-                Aluno aluno = new Aluno();
-                aluno.Turma = new Turma();
-                aluno.Endereco = new Endereco();
-                aluno.Endereco.Bairro = new Bairro();
-                aluno.Endereco.Bairro.Cidade = new Cidade();
-                aluno.Endereco.Bairro.Cidade.Estado = new Estado();
+                TurmaDAO turmaDAO = new TurmaDAO();
                 conn.AbrirConexao();
                 cmd = new MySqlCommand("SELECT * FROM aluno a JOIN turma t ON t.ID = fk_Turma_ID WHERE a.RA = @RA", conn.conn);
                 cmd.Parameters.AddWithValue("@RA", id);
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    aluno.Id = Convert.ToInt32(reader["RA"]);
-                    aluno.DataNascimento = Convert.ToDateTime(reader["Data_de_Nascimento"]);
-                    aluno.Idade = Convert.ToInt32(reader["Idade"]);
-                    aluno.Nome = reader["Nome"].ToString();
-                    aluno.Turma.Id = Convert.ToInt32(reader["fk_Turma_ID"]);
-                    aluno.TelefonePessoal = reader["Telefone_Pessoal"].ToString();
-                    aluno.TelefoneFixo = reader["Telefone_Fixo"].ToString();
-                    aluno.TelefoneResponsavel = reader["Telefone_Responsavel"].ToString();
-                    aluno.TelefoneResponsavel2 = reader["Telefone_Responsavel_2"].ToString();
-                    aluno.Endereco.Id = Convert.ToInt32(reader["fk_endereco_ID"]);
-                    aluno.Turma.Nome = reader["Nome_Turma"].ToString();
-                    aluno.Endereco = enderecoDAO.ReceberEnderecoPorPessoa(aluno);
+                    int ra = Convert.ToInt32(reader["RA"]);
+                    DateTime dataNascimento = Convert.ToDateTime(reader["Data_de_Nascimento"]);
+                    int idade = Convert.ToInt32(reader["Idade"]);
+                    string nome = reader["Nome"].ToString();
+                    int idTurma = Convert.ToInt32(reader["fk_Turma_ID"]);
+                    Turma turma = turmaDAO.ReceberTurmaPorId(idTurma);
+                    string telefonePessoal = reader["Telefone_Pessoal"].ToString();
+                    string telefoneFixo = reader["Telefone_Fixo"].ToString();
+                    string telefoneResponsavel = reader["Telefone_Responsavel"].ToString();
+                    string telefoneResponsavel2 = reader["Telefone_Responsavel_2"].ToString();
+                    int enderecoId = Convert.ToInt32(reader["fk_endereco_ID"]);
+                    Endereco endereco= enderecoDAO.ReceberEnderecoPorPessoa(enderecoId);
+
+                    Aluno aluno = new Aluno(ra, nome, dataNascimento, idade, endereco, telefonePessoal,telefoneFixo,telefoneResponsavel,telefoneResponsavel2, turma);
+                    return aluno;
                 }
 
-                return aluno;
+                return null;
 
             }
             catch (Exception ex)
@@ -340,20 +334,13 @@ namespace ProjetoForms.Back.DAO
             try
             {
                 conn.AbrirConexao();
-                if (idTurma == 13)
-                {
-                    cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE Nome LIKE @nome", conn.conn);
-                    cmd.Parameters.AddWithValue("@nome", nome + "%");
-                    cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
-                    return ListarAlunos(cmd);
-                }
-                else
-                {
-                    cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE Nome LIKE @nome AND fk_Turma_ID = @fk_turma_id", conn.conn);
-                    cmd.Parameters.AddWithValue("@nome", nome + "%");
-                    cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
-                    return ListarAlunos(cmd);
-                }
+
+
+                cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE Nome LIKE @nome AND fk_Turma_ID = @fk_turma_id", conn.conn);
+                cmd.Parameters.AddWithValue("@nome", nome + "%");
+                cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
+                return ListarAlunos(cmd);
+
 
             }
 
@@ -390,20 +377,13 @@ namespace ProjetoForms.Back.DAO
             try
             {
                 conn.AbrirConexao();
-                if (idTurma == 13)
-                {
-                    cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE RA LIKE @RA ", conn.conn);
-                    cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
-                    cmd.Parameters.AddWithValue("@RA", rA + "%");
-                    return ListarAlunos(cmd);
-                }
-                else
-                {
-                    cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE fk_Turma_ID = @fk_turma_id AND RA LIKE @RA ", conn.conn);
-                    cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
-                    cmd.Parameters.AddWithValue("@RA", rA + "%");
-                    return ListarAlunos(cmd);
-                }
+
+
+                cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE fk_Turma_ID = @fk_turma_id AND RA LIKE @RA ", conn.conn);
+                cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
+                cmd.Parameters.AddWithValue("@RA", rA + "%");
+                return ListarAlunos(cmd);
+
 
             }
 
@@ -419,18 +399,11 @@ namespace ProjetoForms.Back.DAO
             try
             {
                 conn.AbrirConexao();
-                if (idTurma == 13)
-                {
-                    cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID", conn.conn);
-                    cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
-                    return ListarAlunos(cmd);
-                }
-                else
-                {
-                    cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE fk_Turma_ID = @fk_turma_id", conn.conn);
-                    cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
-                    return ListarAlunos(cmd);
-                }
+
+                cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE fk_Turma_ID = @fk_turma_id", conn.conn);
+                cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
+                return ListarAlunos(cmd);
+
             }
             catch (Exception ex)
             {

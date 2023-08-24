@@ -54,10 +54,7 @@ namespace ProjetoForms.Front.Alunos
             try
             {
                 Aluno aluno = new Aluno();
-                aluno.Turma = new Turma();
-                aluno.Endereco = new Endereco();
-                aluno.Endereco.Bairro = new Bairro();
-                aluno.Endereco.Bairro.Cidade = new Cidade();
+               
                 if (string.IsNullOrWhiteSpace(txtNomeCompleto.Text))
                 {
                     MessageBox.Show("Nome do aluno não pode estar em branco", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -90,7 +87,7 @@ namespace ProjetoForms.Front.Alunos
                     dtNascimento.Focus();
                     return;
                 }
-                Cadastrar(aluno);
+                Cadastrar();
                 LimparCampos();
 
             }
@@ -103,23 +100,29 @@ namespace ProjetoForms.Front.Alunos
 
         }
 
-        private void Cadastrar(Aluno aluno)
+        private void Cadastrar()
         {
 
             try
             {
-                aluno.Nome = txtNomeCompleto.Text;
-                aluno.DataNascimento = Convert.ToDateTime(dtNascimento.Text);
-                aluno.Endereco.Bairro.NomeBairro = txtBairro.Text;
-                aluno.Endereco.NumCasa = Convert.ToInt32(txtNumeroCasa.Text);
-                aluno.Endereco.NomeRua = txtRua.Text;
-                aluno.Endereco.Bairro.Cidade.Id = (Convert.ToInt32(cbCidade.SelectedValue));
-                aluno.TelefonePessoal = txtTelefonePessoal.Text;
-                aluno.TelefoneFixo = txtTelefoneFixo.Text;
-                aluno.Idade = aluno.CalcularIdade(aluno.DataNascimento);
-                aluno.TelefoneResponsavel = txtTelefoneResponsavel.Text;
-                aluno.TelefoneResponsavel2 = txtTelefoneResponsavel2.Text;
-                aluno.Turma.Id = (Convert.ToInt32(cbTurma.SelectedValue));
+                Aluno util = new Aluno();
+                string nome = txtNomeCompleto.Text;
+                DateTime dataNascimento = Convert.ToDateTime(dtNascimento.Text);
+                int idCidade = (Convert.ToInt32(cbCidade.SelectedValue));
+                Cidade cidade = new Cidade(idCidade);
+                string nomeBairro = txtBairro.Text;
+                Bairro bairro = new Bairro(nomeBairro, cidade);
+                string nomeRua = txtRua.Text;
+                int numCasa = Convert.ToInt32(txtNumeroCasa.Text);
+                Endereco endereco = new Endereco(numCasa, nomeRua, bairro);
+                string telefonePessoal = txtTelefonePessoal.Text;
+                string telefoneFixo = txtTelefoneFixo.Text;
+                int idade = util.CalcularIdade(dataNascimento);
+                string telefoneResponsavel = txtTelefoneResponsavel.Text;
+                string telefoneResponsavel2 = txtTelefoneResponsavel2.Text;
+                int idTurma = (Convert.ToInt32(cbTurma.SelectedValue));
+                Turma turma = new Turma(idTurma);
+                Aluno aluno = new Aluno(nome, dataNascimento,idade,endereco,telefonePessoal,telefoneFixo,telefoneResponsavel,telefoneResponsavel2,turma);
                 alunoModel.Cadastrar(aluno);
                 MessageBox.Show("Aluno Cadastrado com Sucesso!", "Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

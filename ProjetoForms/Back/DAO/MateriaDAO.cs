@@ -41,9 +41,10 @@ namespace ProjetoForms.Back.Model
                 adapter.Fill(dt);
                 foreach (DataRow dr in dt.Rows)
                 {
-                    var materia = new Materia();
-                    materia.NomeMateria = dr["Nome_da_Materia"].ToString();
-                    materia.Id = Convert.ToInt32(dr["ID"]);
+                    
+                    string nome = dr["Nome_da_Materia"].ToString();
+                    int id = Convert.ToInt32(dr["ID"]);
+                    Materia materia = new Materia(id, nome);
                     materias.Add(materia);
                 }
                 return materias;
@@ -57,14 +58,14 @@ namespace ProjetoForms.Back.Model
 
 
 
-        public List<Materia> BuscarMateriaPorProfessor(Professor professor)
+        public List<Materia> BuscarMateriaPorProfessor(int id)
         {
             try
             {
                 List<Materia> materias = new List<Materia>();
                 conn.AbrirConexao();
                 cmd = new MySqlCommand("SELECT m.ID, m.Nome_da_Materia FROM materia_professor p JOIN materia m ON m.ID = fk_Materia_ID WHERE fk_Professor_ID = @ID", conn.conn);
-                cmd.Parameters.AddWithValue("@ID", professor.Id);
+                cmd.Parameters.AddWithValue("@ID", id);
                 return ListarMaterias(cmd);
             }
             catch (Exception)

@@ -1,5 +1,6 @@
 ﻿using ProjetoForms.Back.Entities;
 using ProjetoForms.Back.Model;
+using ProjetoForms.Back.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +19,7 @@ namespace ProjetoForms.Front.Notas
         int quantidadeProvas = 0;
         Aluno aluno;
         Professor professor;
-        Media media = new Media();
+        double notaMedia;
         double somaNotas = 0;
         AlunoModel alunoModel = new AlunoModel();
         MateriaModel materiaModel = new MateriaModel();
@@ -62,7 +63,7 @@ namespace ProjetoForms.Front.Notas
                 dataGridProvas.DataSource = provaModel.BuscarProvaPorMateria(prova);
                 quantidadeProvas = 0;
                 somaNotas = 0;
-                media.ValorMedia = 0;
+                notaMedia = 0;
                 txtMedia.Text = "0";
 
             }
@@ -88,16 +89,16 @@ namespace ProjetoForms.Front.Notas
                     dataGridProvas.CurrentRow.Cells[0].Value = 1;
                     quantidadeProvas++;
                     somaNotas += Convert.ToDouble(dataGridProvas.CurrentRow.Cells[1].Value);
-                    media.ValorMedia = somaNotas / quantidadeProvas;
-                    txtMedia.Text = media.ValorMedia.ToString("F");                  
+                    notaMedia = Services.CalcularMediaPorBimestre(quantidadeProvas, somaNotas);
+                    txtMedia.Text = notaMedia.ToString("F");                  
                 }
                 else
                 {
                     dataGridProvas.CurrentRow.Cells[0].Value = 0;
                     quantidadeProvas--;
                     somaNotas -= Convert.ToDouble(dataGridProvas.CurrentRow.Cells[1].Value);
-                    media.ValorMedia = somaNotas / quantidadeProvas;
-                    txtMedia.Text = media.ValorMedia.ToString("F");                
+                    notaMedia = Services.CalcularMediaPorBimestre(quantidadeProvas, somaNotas);
+                    txtMedia.Text = notaMedia.ToString("F");                
                 }
             }
 
@@ -118,8 +119,8 @@ namespace ProjetoForms.Front.Notas
                     if (Convert.ToDouble(row.Cells[0].Value) == 1)
                     {
                         provaSelecionada = true;
-                        Prova prova = new Prova();
-                        prova.Id = Convert.ToInt32(row.Cells[2].Value);
+                        int idProva = Convert.ToInt32(row.Cells[3].Value);
+                        Prova prova = new Prova(idProva);
                         provas.Add(prova);
                     }
                 }
@@ -128,12 +129,12 @@ namespace ProjetoForms.Front.Notas
                     MessageBox.Show("Selecione pelo menos uma prova para cadastrar um média", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
-
-                media.Materia = new Materia();
-                media.Materia.Id = Convert.ToInt32(cbMateria.SelectedValue);
-                media.Bimestre = new Bimestre();
-                media.Bimestre.Id = Convert.ToInt32(cbBimestre.SelectedValue);
-                media.Aluno = aluno;
+                int idMateria = Convert.ToInt32(cbMateria.SelectedValue);
+                Materia materia = new Materia(idMateria);
+               int idBimestre = Convert.ToInt32(cbBimestre.SelectedValue);
+                Bimestre bimestre = new Bimestre(idBimestre);
+                Media media = new Media(notaMedia, bimestre, materia, aluno);
+                
                 if (mediaModel.VerificarMediaExistente(media))
                 {
                     CadastrarMedia(media);
@@ -150,10 +151,11 @@ namespace ProjetoForms.Front.Notas
                         return;
                     }
                 }
+                int idMedia = ReceberIDUltimaMedia();
+                Media mediaProva = new Media(idMedia);
                 foreach (Prova prova in provas)
-                {
-                    prova.Media = new Media();
-                    prova.Media.Id = ReceberIDUltimaMedia();
+                {                  
+                    prova.Media = mediaProva;
                     DesignarProvaMedia(prova);
                 }
 

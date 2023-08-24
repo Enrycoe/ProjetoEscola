@@ -29,7 +29,7 @@ namespace ProjetoForms.Front
             string senha = txtSenha.Text;
 
             Usuario usuario = usuarioModel.ReceberUsuario(nome, senha);
-            if (usuario.Id == 0)
+            if (usuario == null)
             {
                 MessageBox.Show("Usuario ou senha incorretas", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtUsuario.Focus();

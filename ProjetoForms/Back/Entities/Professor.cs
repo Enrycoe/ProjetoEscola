@@ -8,19 +8,30 @@ namespace ProjetoForms.Back.Entities
 {
     public class Professor : Pessoa
     {
-        string telefonePessoal;
-        string telefoneFixo;
-        List<Materia> materias;
-        List<Turma> turmas;
+       
+        private List<Materia> materias;
+        private List<Turma> turmas;
 
-        int idadeMinima = 21;
-        int idadeMaxima = 100;
+        private int idadeMinima = 21;
+        private int idadeMaxima = 100;
 
-        public string TelefonePessoal { get => telefonePessoal; set => telefonePessoal = value; }
-        public string TelefoneFixo { get => telefoneFixo; set => telefoneFixo = value; }
+        public Professor()
+        {
+            
+        }
+        public Professor(int id, string nome, DateTime dataNascimento, int idade, Endereco endereco, string telefonePessoal, string telefoneFixo, List<Materia> materias, List<Turma> turmas) : base(id, nome, dataNascimento, idade, endereco, telefoneFixo, telefonePessoal)
+        {
+            this.turmas = turmas;
+            this.materias = materias;
+        }
+        public Professor( string nome, DateTime dataNascimento, int idade, Endereco endereco, string telefonePessoal, string telefoneFixo, List<Materia> materias, List<Turma> turmas) : base( nome, dataNascimento, idade, endereco, telefoneFixo, telefonePessoal)
+        {
+            this.turmas = turmas;
+            this.materias = materias;
+        }
         public int IdadeMinima { get => idadeMinima; set => idadeMinima = value; }
         public int IdadeMaxima { get => idadeMaxima; set => idadeMaxima = value; }
-        internal List<Materia> Materias { get => materias; set => materias = value; }
-        internal List<Turma> Turmas { get => turmas; set => turmas = value; }
+        public List<Materia> Materias { get => materias; set => materias = value; }
+        public List<Turma> Turmas { get => turmas; set => turmas = value; }
     }
 }

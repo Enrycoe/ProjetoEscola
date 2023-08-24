@@ -128,26 +128,25 @@ namespace ProjetoForms.Front.Alunos
 
             try
             {
-                Aluno alunoAtualizado = new Aluno();
-                alunoAtualizado.Endereco = new Endereco();
-                alunoAtualizado.Endereco.Bairro = new Bairro(); 
-                alunoAtualizado.Endereco.Bairro.Cidade = new Cidade();
-                alunoAtualizado.Turma = new Turma();
-                alunoAtualizado.Id = Convert.ToInt32(txtRA.Text);
-                alunoAtualizado.Nome = txtNomeCompleto.Text;
-                alunoAtualizado.DataNascimento = Convert.ToDateTime(dtNascimento.Text);
-                alunoAtualizado.Idade = alunoAtualizado.CalcularIdade(alunoAtualizado.DataNascimento);
-                alunoAtualizado.Endereco.Bairro.NomeBairro = txtBairro.Text;
-                alunoAtualizado.Endereco.NumCasa = Convert.ToInt32(txtNumeroCasa.Text);
-                alunoAtualizado.Endereco.NomeRua = txtRua.Text;
-                alunoAtualizado.Endereco.Bairro.Cidade.Id = (Convert.ToInt32(cbCidade.SelectedValue));
-                alunoAtualizado.TelefonePessoal = txtTelefonePessoal.Text;
-                alunoAtualizado.TelefoneFixo = txtTelefoneFixo.Text;
-                alunoAtualizado.TelefoneResponsavel = txtTelefoneResponsavel.Text;
-                alunoAtualizado.TelefoneResponsavel2 = txtTelefoneResponsavel2.Text;
-                alunoAtualizado.Turma.Id = (Convert.ToInt32(cbTurma.SelectedValue));
-
-
+                Aluno util = new Aluno();
+                string nome = txtNomeCompleto.Text;
+                DateTime dataNascimento = Convert.ToDateTime(dtNascimento.Text);
+                int idCidade = (Convert.ToInt32(cbCidade.SelectedValue));
+                Cidade cidade = new Cidade(idCidade);
+                string nomeBairro = txtBairro.Text;
+                Bairro bairro = new Bairro(nomeBairro, cidade);
+                string nomeRua = txtRua.Text;
+                int numCasa = Convert.ToInt32(txtNumeroCasa.Text);
+                Endereco endereco = new Endereco(numCasa, nomeRua, bairro);
+                string telefonePessoal = txtTelefonePessoal.Text;
+                string telefoneFixo = txtTelefoneFixo.Text;
+                int idade = util.CalcularIdade(dataNascimento);
+                string telefoneResponsavel = txtTelefoneResponsavel.Text;
+                string telefoneResponsavel2 = txtTelefoneResponsavel2.Text;
+                int idTurma = (Convert.ToInt32(cbTurma.SelectedValue));
+                int id = Convert.ToInt32(txtRA.Text);
+                Turma turma = new Turma(idTurma);
+                Aluno alunoAtualizado = new Aluno(id, nome, dataNascimento, idade, endereco, telefonePessoal, telefoneFixo, telefoneResponsavel, telefoneResponsavel2, turma);
                 alunoModel.AtualizarPorId(aluno, alunoAtualizado);
                 MessageBox.Show("Aluno Salvo com Sucesso!", "Salvo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

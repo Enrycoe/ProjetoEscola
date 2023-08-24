@@ -28,14 +28,14 @@ namespace ProjetoForms.Back.DAO
             }
             finally { conn.FecharConexao(); }
         }
-        public List<Turma> BuscarTurmasPorProfessor(Professor professor)
+        public List<Turma> BuscarTurmasPorProfessor(int id)
         {
             try
             {
                 List<Turma> turmas = new List<Turma>();
                 conn.AbrirConexao();
                 cmd = new MySqlCommand("SELECT t.ID, t.Nome_Turma FROM professor_turma p JOIN turma t ON t.ID = fk_Turma_ID WHERE fk_Professor_ID = @ID", conn.conn);
-                cmd.Parameters.AddWithValue("@ID", professor.Id);
+                cmd.Parameters.AddWithValue("@ID",  id);
                 return ListarTurmas(cmd);
             }
             catch (Exception)
@@ -56,9 +56,10 @@ namespace ProjetoForms.Back.DAO
                 adapter.Fill(dt);
                 foreach (DataRow dr in dt.Rows)
                 {
-                    var turma = new Turma();
-                    turma.Id = Convert.ToInt32(dr["ID"]);
-                    turma.Nome = dr["Nome_Turma"].ToString();
+                    
+                    int id = Convert.ToInt32(dr["ID"]);
+                    string nome = dr["Nome_Turma"].ToString();
+                    Turma turma = new Turma(id, nome);
                     turmas.Add(turma);
                 }
                 return turmas;
@@ -71,6 +72,38 @@ namespace ProjetoForms.Back.DAO
             }
             
             
-        }  
+        }
+
+        internal Turma ReceberTurmaPorId(int idTurma)
+        {
+            try
+            {
+                Turma turma;
+                int id;
+                string nome;
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("SELECT * FROM turma WHERE ID = @ID", conn.conn);
+                cmd.Parameters.AddWithValue("@ID", idTurma);
+                MySqlDataAdapter adapter = new MySqlDataAdapter();
+                adapter.SelectCommand = cmd;
+
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    id = Convert.ToInt32(dr["ID"]);
+                    nome = dr["Nome_Turma"].ToString();
+                    turma = new Turma(id, nome);
+                    return turma;
+                }
+                return null;
+                               
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally { conn.FecharConexao(); }
+        }
     }
 }

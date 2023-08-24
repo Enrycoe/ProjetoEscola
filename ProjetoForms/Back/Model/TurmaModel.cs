@@ -30,7 +30,7 @@ namespace ProjetoForms.Back.Model
         {
             try
             {
-                return dao.BuscarTurmasPorProfessor(professor);
+                return dao.BuscarTurmasPorProfessor(professor.Id);
             }
 
             catch (Exception ex)

@@ -44,11 +44,8 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.CheckBox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.nota = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fk_Materia_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fk_Aluno_RA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fk_media_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProvas)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -91,11 +88,8 @@
             this.dataGridProvas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CheckBox,
             this.nota,
-            this.ID,
             this.descricao,
-            this.fk_Materia_ID,
-            this.fk_Aluno_RA,
-            this.fk_media_ID});
+            this.ID});
             this.dataGridProvas.Location = new System.Drawing.Point(12, 157);
             this.dataGridProvas.Name = "dataGridProvas";
             this.dataGridProvas.ReadOnly = true;
@@ -197,18 +191,34 @@
             // 
             // CheckBox
             // 
+            this.CheckBox.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
             this.CheckBox.HeaderText = "";
             this.CheckBox.Name = "CheckBox";
             this.CheckBox.ReadOnly = true;
             this.CheckBox.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CheckBox.Width = 5;
             // 
             // nota
             // 
+            this.nota.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.nota.DataPropertyName = "Nota";
             this.nota.HeaderText = "Nota";
+            this.nota.MinimumWidth = 80;
             this.nota.Name = "nota";
             this.nota.ReadOnly = true;
             this.nota.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.nota.Width = 80;
+            // 
+            // descricao
+            // 
+            this.descricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.descricao.DataPropertyName = "Descricao";
+            this.descricao.HeaderText = "Descrição";
+            this.descricao.MinimumWidth = 315;
+            this.descricao.Name = "descricao";
+            this.descricao.ReadOnly = true;
+            this.descricao.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.descricao.Width = 315;
             // 
             // ID
             // 
@@ -217,39 +227,6 @@
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
             this.ID.Visible = false;
-            // 
-            // descricao
-            // 
-            this.descricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.descricao.DataPropertyName = "Descricao";
-            this.descricao.HeaderText = "Descrição";
-            this.descricao.Name = "descricao";
-            this.descricao.ReadOnly = true;
-            this.descricao.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // fk_Materia_ID
-            // 
-            this.fk_Materia_ID.DataPropertyName = "fk_Materia_ID";
-            this.fk_Materia_ID.HeaderText = "Materia_ID";
-            this.fk_Materia_ID.Name = "fk_Materia_ID";
-            this.fk_Materia_ID.ReadOnly = true;
-            this.fk_Materia_ID.Visible = false;
-            // 
-            // fk_Aluno_RA
-            // 
-            this.fk_Aluno_RA.DataPropertyName = "fk_Aluno_RA";
-            this.fk_Aluno_RA.HeaderText = "Aluno_RA";
-            this.fk_Aluno_RA.Name = "fk_Aluno_RA";
-            this.fk_Aluno_RA.ReadOnly = true;
-            this.fk_Aluno_RA.Visible = false;
-            // 
-            // fk_media_ID
-            // 
-            this.fk_media_ID.DataPropertyName = "fk_media_ID";
-            this.fk_media_ID.HeaderText = "Media";
-            this.fk_media_ID.Name = "fk_media_ID";
-            this.fk_media_ID.ReadOnly = true;
-            this.fk_media_ID.Visible = false;
             // 
             // FormCalcularMedia
             // 
@@ -295,10 +272,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn CheckBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn nota;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn descricao;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fk_Materia_ID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fk_Aluno_RA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fk_media_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
     }
 }

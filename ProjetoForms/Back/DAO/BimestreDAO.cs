@@ -43,9 +43,10 @@ namespace ProjetoForms.Back.DAO
                 adapter.Fill(dt);
                 foreach (DataRow dr in dt.Rows)
                 {
-                    Bimestre bimestre = new Bimestre();
-                    bimestre.Nome = dr["bimestre"].ToString();
-                    bimestre.Id = Convert.ToInt32(dr["id"]);
+                    
+                    string nome = dr["bimestre"].ToString();
+                    int id = Convert.ToInt32(dr["id"]);
+                    Bimestre bimestre = new Bimestre(id, nome);
                     bimestres.Add(bimestre);
                 }
                 return bimestres;

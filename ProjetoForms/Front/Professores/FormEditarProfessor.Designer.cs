@@ -98,7 +98,7 @@
             this.brnExcluir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.brnExcluir.Font = new System.Drawing.Font("MS Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.brnExcluir.ForeColor = System.Drawing.Color.RosyBrown;
-            this.brnExcluir.Location = new System.Drawing.Point(26, 653);
+            this.brnExcluir.Location = new System.Drawing.Point(12, 645);
             this.brnExcluir.Name = "brnExcluir";
             this.brnExcluir.Size = new System.Drawing.Size(60, 60);
             this.brnExcluir.TabIndex = 45;
@@ -513,23 +513,24 @@
             this.pnlEndereço.Controls.Add(this.lblEstado);
             this.pnlEndereço.Controls.Add(this.cbCidade);
             this.pnlEndereço.Controls.Add(this.cbEstado);
-            this.pnlEndereço.Location = new System.Drawing.Point(-27, 157);
+            this.pnlEndereço.Location = new System.Drawing.Point(-27, 153);
             this.pnlEndereço.Name = "pnlEndereço";
-            this.pnlEndereço.Size = new System.Drawing.Size(677, 151);
+            this.pnlEndereço.Size = new System.Drawing.Size(683, 172);
             this.pnlEndereço.TabIndex = 39;
             // 
             // txtNumeroCasa
             // 
             this.txtNumeroCasa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNumeroCasa.Location = new System.Drawing.Point(455, 89);
+            this.txtNumeroCasa.Location = new System.Drawing.Point(455, 94);
             this.txtNumeroCasa.Name = "txtNumeroCasa";
             this.txtNumeroCasa.Size = new System.Drawing.Size(86, 22);
             this.txtNumeroCasa.TabIndex = 9;
+            this.txtNumeroCasa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumeroCasa_KeyPress);
             // 
             // txtRua
             // 
             this.txtRua.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRua.Location = new System.Drawing.Point(141, 89);
+            this.txtRua.Location = new System.Drawing.Point(141, 94);
             this.txtRua.Name = "txtRua";
             this.txtRua.Size = new System.Drawing.Size(233, 22);
             this.txtRua.TabIndex = 8;
@@ -538,7 +539,7 @@
             // txtBairro
             // 
             this.txtBairro.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBairro.Location = new System.Drawing.Point(141, 60);
+            this.txtBairro.Location = new System.Drawing.Point(141, 65);
             this.txtBairro.Name = "txtBairro";
             this.txtBairro.Size = new System.Drawing.Size(400, 22);
             this.txtBairro.TabIndex = 7;
@@ -548,7 +549,7 @@
             // 
             this.lblNumero.AutoSize = true;
             this.lblNumero.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumero.Location = new System.Drawing.Point(391, 92);
+            this.lblNumero.Location = new System.Drawing.Point(391, 97);
             this.lblNumero.Name = "lblNumero";
             this.lblNumero.Size = new System.Drawing.Size(62, 18);
             this.lblNumero.TabIndex = 6;
@@ -558,7 +559,7 @@
             // 
             this.lblRua.AutoSize = true;
             this.lblRua.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRua.Location = new System.Drawing.Point(80, 92);
+            this.lblRua.Location = new System.Drawing.Point(80, 97);
             this.lblRua.Name = "lblRua";
             this.lblRua.Size = new System.Drawing.Size(38, 18);
             this.lblRua.TabIndex = 5;
@@ -568,7 +569,7 @@
             // 
             this.lblBairro.AutoSize = true;
             this.lblBairro.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBairro.Location = new System.Drawing.Point(80, 60);
+            this.lblBairro.Location = new System.Drawing.Point(80, 65);
             this.lblBairro.Name = "lblBairro";
             this.lblBairro.Size = new System.Drawing.Size(54, 18);
             this.lblBairro.TabIndex = 4;
@@ -578,7 +579,7 @@
             // 
             this.lblCidade.AutoSize = true;
             this.lblCidade.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCidade.Location = new System.Drawing.Point(357, 29);
+            this.lblCidade.Location = new System.Drawing.Point(357, 34);
             this.lblCidade.Name = "lblCidade";
             this.lblCidade.Size = new System.Drawing.Size(60, 18);
             this.lblCidade.TabIndex = 3;
@@ -588,7 +589,7 @@
             // 
             this.lblEstado.AutoSize = true;
             this.lblEstado.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstado.Location = new System.Drawing.Point(81, 29);
+            this.lblEstado.Location = new System.Drawing.Point(81, 34);
             this.lblEstado.Name = "lblEstado";
             this.lblEstado.Size = new System.Drawing.Size(61, 18);
             this.lblEstado.TabIndex = 2;
@@ -599,7 +600,7 @@
             this.cbCidade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCidade.FormattingEnabled = true;
-            this.cbCidade.Location = new System.Drawing.Point(420, 26);
+            this.cbCidade.Location = new System.Drawing.Point(420, 31);
             this.cbCidade.Name = "cbCidade";
             this.cbCidade.Size = new System.Drawing.Size(121, 24);
             this.cbCidade.TabIndex = 1;
@@ -609,7 +610,7 @@
             this.cbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbEstado.FormattingEnabled = true;
-            this.cbEstado.Location = new System.Drawing.Point(141, 28);
+            this.cbEstado.Location = new System.Drawing.Point(141, 33);
             this.cbEstado.Name = "cbEstado";
             this.cbEstado.Size = new System.Drawing.Size(121, 24);
             this.cbEstado.TabIndex = 0;
@@ -624,7 +625,7 @@
             this.btnAtualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAtualizar.Font = new System.Drawing.Font("MS Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAtualizar.ForeColor = System.Drawing.Color.Green;
-            this.btnAtualizar.Location = new System.Drawing.Point(472, 634);
+            this.btnAtualizar.Location = new System.Drawing.Point(495, 645);
             this.btnAtualizar.Name = "btnAtualizar";
             this.btnAtualizar.Size = new System.Drawing.Size(60, 60);
             this.btnAtualizar.TabIndex = 38;
@@ -681,7 +682,7 @@
             // 
             this.txtLogin.Enabled = false;
             this.txtLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLogin.Location = new System.Drawing.Point(143, 605);
+            this.txtLogin.Location = new System.Drawing.Point(140, 625);
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(119, 26);
             this.txtLogin.TabIndex = 46;
@@ -689,7 +690,7 @@
             // txtSenha
             // 
             this.txtSenha.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSenha.Location = new System.Drawing.Point(368, 605);
+            this.txtSenha.Location = new System.Drawing.Point(365, 625);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.Size = new System.Drawing.Size(119, 26);
             this.txtSenha.TabIndex = 47;
@@ -699,7 +700,7 @@
             this.lblLogin.AutoSize = true;
             this.lblLogin.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogin.ForeColor = System.Drawing.Color.White;
-            this.lblLogin.Location = new System.Drawing.Point(80, 613);
+            this.lblLogin.Location = new System.Drawing.Point(83, 629);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(51, 18);
             this.lblLogin.TabIndex = 48;
@@ -710,7 +711,7 @@
             this.lblSenha.AutoSize = true;
             this.lblSenha.Font = new System.Drawing.Font("Modern No. 20", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSenha.ForeColor = System.Drawing.Color.White;
-            this.lblSenha.Location = new System.Drawing.Point(305, 609);
+            this.lblSenha.Location = new System.Drawing.Point(308, 629);
             this.lblSenha.Name = "lblSenha";
             this.lblSenha.Size = new System.Drawing.Size(51, 18);
             this.lblSenha.TabIndex = 49;

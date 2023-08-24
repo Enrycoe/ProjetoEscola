@@ -37,7 +37,7 @@ namespace ProjetoForms.Back.DAO
         {
             try
             {
-                var cidade = new Cidade();
+                
                 conn.AbrirConexao();
                 cmd = new MySqlCommand("SELECT * FROM cidade WHERE ID = @idCidade", conn.conn);
                 cmd.Parameters.AddWithValue("@idCidade", idCidade);
@@ -48,13 +48,14 @@ namespace ProjetoForms.Back.DAO
                 foreach (DataRow dr in dt.Rows)
                 {
                     
-                    cidade.Id = idCidade;
-                    cidade.Nome = dr["Nome_Cidade"].ToString();
+                    string nome = dr["Nome_Cidade"].ToString();
                     int idEstado = Convert.ToInt32(dr["fk_Estado_ID"]);
-                    cidade.Estado = estadoDAO.ReceberEstadoPorId(idEstado);
+                    Estado estado = estadoDAO.ReceberEstadoPorId(idEstado);
+                    Cidade cidade = new Cidade(idCidade, nome, estado);
+                    return cidade;
                 }
                 cmd.Dispose();
-                return cidade;
+                return null;
             }
             catch (Exception)
             {
@@ -76,11 +77,12 @@ namespace ProjetoForms.Back.DAO
                 adapter.Fill(dt);
                 foreach (DataRow dr in dt.Rows)
                 {
-                    var cidade = new Cidade();
-                    cidade.Estado = new Estado();
-                    cidade.Estado.Id = Convert.ToInt32(dr["fk_estado_ID"]);
-                    cidade.Nome = dr["Nome_Cidade"].ToString();
-                    cidade.Id = Convert.ToInt32(dr["ID"]);
+                    
+                    int idEstado = Convert.ToInt32(dr["fk_estado_ID"]);
+                    Estado estado = estadoDAO.ReceberEstadoPorId(idEstado);
+                    string nome = dr["Nome_Cidade"].ToString();
+                    int id = Convert.ToInt32(dr["ID"]);
+                    Cidade cidade = new Cidade(id, nome);
                     cidades.Add(cidade);
                 }
 

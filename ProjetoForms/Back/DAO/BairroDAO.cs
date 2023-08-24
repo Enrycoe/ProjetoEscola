@@ -11,14 +11,14 @@ namespace ProjetoForms.Back.DAO
         ConexaoMySQL conn = new ConexaoMySQL();
         MySqlCommand cmd;
         CidadeDAO cidadeDAO = new CidadeDAO();
-       
+
         public bool VerificarSeBairroExiste(Bairro bairro)
         {
             try
             {
                 conn.AbrirConexao();
                 cmd = new MySqlCommand("SELECT * FROM bairro WHERE nome_bairro = @nome AND fk_cidade_id = @fk_cidade_id", conn.conn);
-                cmd.Parameters.AddWithValue("@nome",bairro.NomeBairro);
+                cmd.Parameters.AddWithValue("@nome", bairro.NomeBairro);
                 cmd.Parameters.AddWithValue("@fk_cidade_id", bairro.Cidade.Id);
                 var result = cmd.ExecuteScalar();
                 if (result != null && result != DBNull.Value)
@@ -51,14 +51,14 @@ namespace ProjetoForms.Back.DAO
                 throw ex;
             }
             finally { conn.FecharConexao(); }
-            
+
         }
 
         internal Bairro ReceberBairroPorId(int id)
         {
             try
             {
-                var bairro = new Bairro();
+
                 conn.AbrirConexao();
                 cmd = new MySqlCommand("SELECT * FROM bairro WHERE ID = @estadoEndereco", conn.conn);
                 cmd.Parameters.AddWithValue("@estadoEndereco", id);
@@ -66,15 +66,17 @@ namespace ProjetoForms.Back.DAO
                 adapter.SelectCommand = cmd;
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
-                foreach(DataRow dr in dt.Rows)
-                {                   
-                    bairro.Id = id;
-                    bairro.NomeBairro = dr["Nome_Bairro"].ToString();
+                foreach (DataRow dr in dt.Rows)
+                {
+
+                    string nomeBairro = dr["Nome_Bairro"].ToString();
                     int idCidade = Convert.ToInt32(dr["fk_cidade_id"]);
-                    bairro.Cidade = cidadeDAO.ReceberCidadePorId(idCidade);
+                    Cidade cidade = cidadeDAO.ReceberCidadePorId(idCidade);
+                    Bairro bairro = new Bairro(id, nomeBairro, cidade);
+                    return bairro;
                 }
                 cmd.Dispose();
-                return bairro;
+                return null;
             }
             catch (Exception)
             {
@@ -90,7 +92,7 @@ namespace ProjetoForms.Back.DAO
             {
                 conn.AbrirConexao();
                 cmd = new MySqlCommand("SELECT id FROM bairro where nome_bairro = @nome AND fk_cidade_id = @idCidade", conn.conn);
-                cmd.Parameters.AddWithValue("@nome",bairro.NomeBairro);
+                cmd.Parameters.AddWithValue("@nome", bairro.NomeBairro);
                 cmd.Parameters.AddWithValue("@idCidade", bairro.Cidade.Id);
                 var result = cmd.ExecuteScalar();
                 return Convert.ToInt32(result);
@@ -117,7 +119,7 @@ namespace ProjetoForms.Back.DAO
                 throw ex;
             }
             finally { conn.FecharConexao(); }
-            
+
         }
     }
 }

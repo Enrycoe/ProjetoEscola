@@ -6,11 +6,29 @@ using System.Threading.Tasks;
 
 namespace ProjetoForms.Back.Entities
 {
-    internal class Bairro
+    public class Bairro
     {
         int id;
         string nomeBairro;
         Cidade cidade;
+
+        public Bairro()
+        {
+            
+        }
+
+        public Bairro(string nomeBairro, Cidade cidade)
+        {
+            this.nomeBairro = nomeBairro;
+            this.cidade = cidade;
+        }
+
+        public Bairro(int id, string nomeBairro, Cidade cidade)
+        {
+            this.id = id;
+            this.nomeBairro = nomeBairro;
+            this.cidade = cidade;
+        }
 
         public int Id { get => id; set => id = value; }
         public string NomeBairro { get => nomeBairro; set => nomeBairro = value; }

@@ -90,6 +90,7 @@
     <Compile Include="Back\Model\TurmaModel.cs" />
     <Compile Include="Back\Model\UsuarioModel.cs" />
     <Compile Include="Back\Enum\TipoDeUsuario.cs" />
+    <Compile Include="Back\Service\Services.cs" />
     <Compile Include="Front\Alunos\FormCadastrarAluno.cs">
       <SubType>Form</SubType>
     </Compile>

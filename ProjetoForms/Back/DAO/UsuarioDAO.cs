@@ -6,15 +6,16 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ProjetoForms.Back.DAO
 {
     internal class UsuarioDAO
     {
         ConexaoMySQL conn = new ConexaoMySQL();
-        ProfessorDAO professorDAO = new ProfessorDAO();
         MySqlCommand cmd;
 
+        
         internal int GerarERetornarLogin(string nome)
         {
             try
@@ -55,7 +56,7 @@ namespace ProjetoForms.Back.DAO
         {
             try
             {
-                Usuario usuario = new Usuario();
+                ProfessorDAO professorDAO = new ProfessorDAO();
                 conn.AbrirConexao();
                 cmd = new MySqlCommand("SELECT * FROM usuario u WHERE Usuario = @usuario AND Senha = @senha", conn.conn);
                 cmd.Parameters.AddWithValue("@usuario", nome);
@@ -66,13 +67,13 @@ namespace ProjetoForms.Back.DAO
                 adapter.Fill(dt);
                 foreach (DataRow dr in dt.Rows)
                 {
-                    usuario.NomeUsuario = dr["Usuario"].ToString();
-                    usuario.TipoUsuario = Convert.ToInt32(dr["fk_Tipo_Usuario"]);
-                    usuario.Id = Convert.ToInt32(dr["ID"]);
-                    usuario.Professor = professorDAO.ReceberProfessorPorUsuarioID(Convert.ToInt32(usuario.Id));                
-                }
-                if (usuario != null)
-                {
+
+                    string nomeUsuario = dr["Usuario"].ToString();
+                    string senhaUsuario = dr["Senha"].ToString();
+                    int tipoUsuario = Convert.ToInt32(dr["fk_Tipo_Usuario"]);
+                    int id = Convert.ToInt32(dr["ID"]);
+                    Professor professor = professorDAO.ReceberProfessorPorUsuarioID(id);
+                    Usuario usuario = new Usuario(id, nomeUsuario, senhaUsuario, tipoUsuario, professor);
                     return usuario;
                 }
                 return null;
@@ -89,7 +90,7 @@ namespace ProjetoForms.Back.DAO
         {
             try
             {
-                Usuario usuario = new Usuario();
+                
                 conn.AbrirConexao();
                 cmd = new MySqlCommand("SELECT * FROM usuario u JOIN professor p ON p.fk_Usuario_ID = u.ID WHERE p.ID = @ID", conn.conn);
                 cmd.Parameters.AddWithValue("@ID", professor.Id);
@@ -99,14 +100,11 @@ namespace ProjetoForms.Back.DAO
                 adapter.Fill(dt);
                 foreach (DataRow dr in dt.Rows)
                 {
-                    usuario.NomeUsuario = dr["Usuario"].ToString();
-                    usuario.SenhaUsuario = dr["Senha"].ToString();
-                    usuario.TipoUsuario = Convert.ToInt32(dr["fk_Tipo_Usuario"]);
-                    usuario.Id = Convert.ToInt32(dr["ID"]);
-                    usuario.Professor = professor;
-                }
-                if (usuario != null)
-                {
+                    string nomeUsuario = dr["Usuario"].ToString();             
+                    string senhaUsuario = dr["Senha"].ToString();
+                    int tipoUsuario = Convert.ToInt32(dr["fk_Tipo_Usuario"]);
+                    int id = Convert.ToInt32(dr["ID"]);
+                    Usuario usuario = new Usuario(id, nomeUsuario, senhaUsuario, tipoUsuario, professor);
                     return usuario;
                 }
                 return null;
@@ -135,6 +133,74 @@ namespace ProjetoForms.Back.DAO
                 {
                     return false;
                 }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            finally { conn.FecharConexao(); }
+        }
+
+        internal bool VerificarSeTrocouASenha(string senha, string login)
+        {
+            try
+            {
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("SELECT Senha FROM usuario WHERE Usuario = @login AND Senha = @senha", conn.conn);
+                cmd.Parameters.AddWithValue("@senha", senha);
+                cmd.Parameters.AddWithValue("@login", login);
+                var result = cmd.ExecuteScalar();
+                if (result != null)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            finally { conn.FecharConexao(); }
+        }
+
+        public void DeletarLoginPorUsuario(Usuario usuario)
+        {
+            try
+            {
+        
+                
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("DELETE FROM usuario WHERE ID = @ID", conn.conn);
+                cmd.Parameters.AddWithValue("@ID", usuario.Id);
+                cmd.ExecuteNonQuery();
+                cmd.Dispose();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            finally { conn.FecharConexao(); }
+        }
+        internal void AlterarSenha(string senha, string login)
+        {
+            try
+            {
+                conn.AbrirConexao();
+                cmd = new MySqlCommand("UPDATE usuario SET Senha = @senha WHERE Usuario = @login", conn.conn);
+                cmd.Parameters.AddWithValue("@senha", senha);
+                cmd.Parameters.AddWithValue("@login", login);
+                cmd.ExecuteNonQuery();
 
             }
             catch (Exception ex)
