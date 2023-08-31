@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace ProjetoForms.Back.Model
 {
-    internal class UsuarioModel
+    public class UsuarioModel
     {
         UsuarioDAO dao = new UsuarioDAO();
 
-        internal int GerarERetornarLogin()
+        public int GerarERetornarLogin()
         {
             try
             {
@@ -45,7 +45,7 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal Usuario ReceberUsuario(string nome, string senha)
+        public Usuario ReceberUsuario(string nome, string senha)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal Usuario ReceberUsuarioPorProfessor(Professor professor)
+        public Usuario ReceberUsuarioPorProfessor(Professor professor)
         {
             try
             {
@@ -71,7 +71,7 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal bool VerificarSeTrocouASenha(string senha, string login)
+        public bool VerificarSeTrocouASenha(string senha, string login)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal void AlterarSenha(string senha, string login)
+        public void AlterarSenha(string senha, string login)
         {
             try
             {

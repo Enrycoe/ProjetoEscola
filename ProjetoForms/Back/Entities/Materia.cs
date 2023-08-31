@@ -9,8 +9,8 @@ namespace ProjetoForms.Back.Entities
     public class Materia
     {
         private int id;
-        string nomeMateria;
-        List<Professor> professoresPorMateria;
+        private string nomeMateria;
+        private List<Professor> professoresPorMateria;
 
 
         public Materia()
@@ -29,6 +29,6 @@ namespace ProjetoForms.Back.Entities
 
         public int Id { get => id; set => id = value; }
         public string NomeMateria { get => nomeMateria; set => nomeMateria = value; }
-        internal List<Professor> ProfessoresPorMateria { get => professoresPorMateria; }
+        public List<Professor> ProfessoresPorMateria { get => professoresPorMateria; }
     }
 }

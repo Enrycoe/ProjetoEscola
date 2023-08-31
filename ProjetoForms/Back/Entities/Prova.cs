@@ -8,14 +8,14 @@ namespace ProjetoForms.Back.Entities
 {
     public class Prova
     {
-        int id;
-        double nota;
-        Materia materia;
-        string descricao;
-        Media media;
-        double notaMinima = 0;
-        double notaMaxima = 10;
-        Aluno aluno;
+        private int id;
+        private double nota;
+        private Materia materia;
+        private string descricao;
+        private Media media;
+        private double notaMinima = 0;
+        private double notaMaxima = 10;
+        private Aluno aluno;
 
         public Prova()
         {
@@ -34,8 +34,13 @@ namespace ProjetoForms.Back.Entities
             this.aluno = aluno;
         }
 
-        public Prova(int idProva, double nota, string descricao, Materia materia, Aluno aluno) : this(idProva)
+        public Prova(int idProva, double nota, string descricao, Materia materia, Aluno aluno) 
         {
+            this.id = idProva;
+            this.nota = nota;
+            this.descricao = descricao;
+            this.materia= materia;
+            this.aluno = aluno; 
         }
 
         public int Id { get => id; set => id = value; }
@@ -44,7 +49,7 @@ namespace ProjetoForms.Back.Entities
         public double NotaMaxima { get => notaMaxima; set => notaMaxima = value; }
         public string Descricao { get => descricao; set => descricao = value; }
         public Aluno Aluno { get => aluno; set => aluno = value; }
-        internal Materia Materia { get => materia; set => materia = value; }
-        internal Media Media { get => media; set => media = value; }
+        public Materia Materia { get => materia; set => materia = value; }
+        public Media Media { get => media; set => media = value; }
     }
 }

@@ -177,6 +177,7 @@
             this.dtNascimento.Name = "dtNascimento";
             this.dtNascimento.Size = new System.Drawing.Size(385, 26);
             this.dtNascimento.TabIndex = 40;
+            this.dtNascimento.Value = new System.DateTime(2023, 8, 25, 23, 59, 59, 0);
             // 
             // pnlEndereço
             // 
@@ -422,7 +423,7 @@
             this.MinimizeBox = false;
             this.Name = "FormCadastrarAluno";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cadastro de Aluno";
+            this.Text = "7";
             this.Load += new System.EventHandler(this.FormCadastrarAluno_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormCadastrarAluno_MouseDown);
             this.panel1.ResumeLayout(false);

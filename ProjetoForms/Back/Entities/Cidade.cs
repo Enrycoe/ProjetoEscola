@@ -8,9 +8,9 @@ namespace ProjetoForms.Back.Entities
 {
     public class Cidade
     {
-        int id;
-        string nome;
-        Estado estado;
+        private int id;
+        private string nome;
+        private Estado estado;
 
         public Cidade()
         {
@@ -37,7 +37,7 @@ namespace ProjetoForms.Back.Entities
 
         public int Id { get => id; set => id = value; }
         public string Nome { get => nome; set => nome = value; }
-        internal Estado Estado { get => estado; set => estado = value; }
+        public Estado Estado { get => estado; set => estado = value; }
         
     }
 }

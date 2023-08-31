@@ -8,10 +8,10 @@ namespace ProjetoForms.Back.Entities
 {
     public class Estado
     {
-        int id;
-        string nome;
-        string sigla;
-        List<Cidade> cidades;
+        private int id;
+        private string nome;
+        private string sigla;
+        private List<Cidade> cidades;
 
         public Estado()
         {

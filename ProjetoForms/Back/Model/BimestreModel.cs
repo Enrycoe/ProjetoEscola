@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace ProjetoForms.Back.Model
 {
-    internal class BimestreModel
+    public class BimestreModel
     {
         BimestreDAO dao = new BimestreDAO();
 
-        internal List<Bimestre> BuscarBimestres()
+        public List<Bimestre> BuscarBimestres()
         {
             try
             {

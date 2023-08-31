@@ -12,9 +12,9 @@ namespace ProjetoForms.Back.Entities
         private string nome;
         private DateTime dataNascimento;
         private int idade;
-        Endereco endereco;
-        string telefonePessoal;
-        string telefoneFixo;
+        private Endereco endereco;
+        private string telefonePessoal;
+        private string telefoneFixo;
         public Pessoa()
         {
             
@@ -52,7 +52,7 @@ namespace ProjetoForms.Back.Entities
         public int Idade { get => idade; set => idade = value; }
         public string TelefonePessoal { get => telefonePessoal; set => telefonePessoal = value; }
         public string TelefoneFixo { get => telefoneFixo; set => telefoneFixo = value; }
-        internal Endereco Endereco { get => endereco; set => endereco = value; }
+        public Endereco Endereco { get => endereco; set => endereco = value; }
 
         public int CalcularIdade(DateTime dataNascimento)
         {

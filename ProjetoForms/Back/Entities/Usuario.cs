@@ -10,27 +10,24 @@ namespace ProjetoForms.Back.Entities
     public class Usuario 
     {
 
-        int id;
-        Professor professor;
-        string nomeUsuario;
-        string senhaUsuario;
-        int tipoUsuario;
+        private int id;
+        private string nomeUsuario;
+        private string senhaUsuario;
+        private int tipoUsuario;
 
         public Usuario()
         {
         }
 
-        public Usuario(int id, string nomeUsuario, string senhaUsuario, int tipoUsuario, Professor professor)
+        public Usuario(int id, string nomeUsuario, string senhaUsuario, int tipoUsuario)
         {
             this.id = id;
             this.nomeUsuario = nomeUsuario;
             this.senhaUsuario = senhaUsuario;
             this.tipoUsuario = tipoUsuario;
-            this.professor = professor;
         }
 
         public int Id { get => id; set => id = value; }
-        public Professor Professor { get => professor; set => professor = value; }
         public string NomeUsuario { get => nomeUsuario; set => nomeUsuario = value; }
         public string SenhaUsuario { get => senhaUsuario; set => senhaUsuario = value; }
         public int TipoUsuario { get => tipoUsuario; set => tipoUsuario = value; }

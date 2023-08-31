@@ -9,50 +9,55 @@ using System.Threading.Tasks;
 
 namespace ProjetoForms.Back.DAO
 {
-    internal class EstadoDAO
+    public class EstadoDAO
     {
-        ConexaoMySQL conn = new ConexaoMySQL();
-        MySqlCommand cmd;
+        private IDataBase dataBase;
+
+        public EstadoDAO(IDataBase dataBase)
+        {
+            this.dataBase = dataBase;
+        }
+
         public List<Estado> BuscarEstados()
         {
             try
             {
                 
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM estado", conn.conn);
+                
+                string query = "SELECT * FROM estado";
+                List<Dictionary<string, object>> resultado = dataBase.ExecuteReader(query);
                
-                return ListarEstados(cmd);
+                return ListarEstados(resultado);
             }
 
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
+           
         }
 
-        internal Estado ReceberEstadoPorId(int idEstado)
+        public Estado ReceberEstadoPorId(int idEstado)
         {
             try
             {
                
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM estado WHERE ID = @idEstado", conn.conn);
-                cmd.Parameters.AddWithValue("@idEstado", idEstado);
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                foreach (DataRow dr in dt.Rows)
+                string query = "SELECT * FROM estado WHERE ID = @idEstado";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    { "idEstado", idEstado }
+                };
+                List<Dictionary<string, object>> resultados = dataBase.ExecuteReader(query, parametros);
+                foreach (Dictionary<string, object> linha  in resultados)
                 {
                     
                     
-                    string nome = dr["Nome_Estado"].ToString();
-                    string sigla = dr["Sigla"].ToString();
+                    string nome = linha["Nome_Estado"].ToString();
+                    string sigla = linha["Sigla"].ToString();
                     Estado estado = new Estado(idEstado, nome, sigla);
                     return estado;
                 }
-                cmd.Dispose();
+                
                 return null;
             }
             catch (Exception)
@@ -60,25 +65,20 @@ namespace ProjetoForms.Back.DAO
 
                 throw;
             }
-            finally { conn.FecharConexao();}
         }
 
-        private List<Estado> ListarEstados(MySqlCommand cmd)
+        private List<Estado> ListarEstados(List<Dictionary<string, object>> resposta)
         {
             try
             {
                 List<Estado> estados = new List<Estado>();
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
-
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                foreach (DataRow dr in dt.Rows)
+                
+                foreach (Dictionary<string, object> linha in resposta)
                 {
                     
-                    string nome = dr["Nome_Estado"].ToString();
-                    int id = Convert.ToInt32(dr["ID"]);
-                    string sigla = dr["Sigla"].ToString();
+                    string nome = linha["Nome_Estado"].ToString();
+                    int id = Convert.ToInt32(linha["ID"]);
+                    string sigla = linha["Sigla"].ToString();
                     Estado estado = new Estado(id, nome, sigla);
                     estados.Add(estado);
                 }

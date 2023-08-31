@@ -11,11 +11,11 @@ using System.Windows.Forms;
 
 namespace ProjetoForms.Back.Model
 {
-    internal class ProvaModel
+    public class ProvaModel
     {
-        ProvaDAO dao = new ProvaDAO();
+        ProvaDAO dao = new ProvaDAO(new ConexaoMySQL());
 
-        internal void DesignarProvaMedia(Prova prova)
+        public void DesignarProvaMedia(Prova prova)
         {
             try
             {
@@ -29,7 +29,7 @@ namespace ProjetoForms.Back.Model
 
         }
 
-        internal List<Prova> BuscarProvaPorMateria(Prova prova)
+        public List<Prova> BuscarProvaPorMateria(Prova prova)
         {
             try
             {
@@ -43,7 +43,7 @@ namespace ProjetoForms.Back.Model
 
         }
 
-        internal void CadastrarProva(Prova prova)
+        public void CadastrarProva(Prova prova)
         {
 
             try

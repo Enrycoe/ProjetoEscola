@@ -79,6 +79,11 @@ namespace ProjetoForms.Front.Alunos
                     txtRua.Focus();
                     return;
                 }
+                if (!txtTelefoneFixo.MaskCompleted)
+                {
+                    MessageBox.Show("Gay");
+                    return;
+                }
                 DateTime dataNascimento = Convert.ToDateTime(dtNascimento.Text);
                 int idade = aluno.CalcularIdade(dataNascimento);
                 if (idade < aluno.IdadeMinima || idade > aluno.IdadeMaxima)

@@ -1,73 +1,75 @@
 ﻿using MySql.Data.MySqlClient;
+using ProjetoForms.Back.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
+using System.Drawing;
 using System.Threading.Tasks;
-using ProjetoForms.Back.Entities;
-using System.Windows.Forms;
 
 namespace ProjetoForms.Back.DAO
 {
     public class AlunoDAO
     {
-        ConexaoMySQL conn = new ConexaoMySQL();
-        MySqlCommand cmd;
-        BairroDAO bairroDAO = new BairroDAO();
-        EnderecoDAO enderecoDAO = new EnderecoDAO();
-        ProvaDAO provaDAO = new ProvaDAO();
-        MediaDAO mediaDAO = new MediaDAO();
+
+        private BairroDAO bairroDAO;
+        private EnderecoDAO enderecoDAO;
+        private ProvaDAO provaDAO;
+        private MediaDAO mediaDAO;
+        private IDataBase dataBase;
+        private TurmaDAO turmaDAO;
+        public AlunoDAO(IDataBase dataBase)
+        {
+            bairroDAO = new BairroDAO(dataBase);
+            enderecoDAO = new EnderecoDAO(dataBase);
+            provaDAO = new ProvaDAO(dataBase);
+            turmaDAO = new TurmaDAO(dataBase);
+            mediaDAO = new MediaDAO(dataBase);
+            this.dataBase = dataBase;
+        }
+
         public List<Aluno> BuscarTodosAlunos()
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID", conn.conn);
 
-                return ListarAlunos(cmd);
+                string querry = "SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID";
+                
+                List<Dictionary<string, object>> resposta = dataBase.ExecuteReader(querry);
+
+                return ListarAlunos(resposta);
             }
 
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
         }
 
-        private List<Aluno> ListarAlunos(MySqlCommand cmd)
+        private List<Aluno> ListarAlunos(List<Dictionary<string, object>> resposta)
         {
             try
             {
-                TurmaDAO turmaDAO = new TurmaDAO();
                 List<Aluno> alunos = new List<Aluno>();
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
 
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-
-                foreach (DataRow dr in dt.Rows)
+                foreach (Dictionary<string, object> linha in resposta)
                 {
-
-                    int ra = Convert.ToInt32(dr["RA"]);
-                    DateTime dataNascimento = Convert.ToDateTime(dr["Data_de_Nascimento"]);
-                    int idade = Convert.ToInt32(dr["Idade"]);
-                    string nome = dr["Nome"].ToString();
-                    int idTurma = Convert.ToInt32(dr["fk_Turma_ID"]);
+                    int ra = Convert.ToInt32(linha["RA"]);
+                    DateTime dataNascimento = Convert.ToDateTime(linha["Data_de_Nascimento"]);
+                    int idade = Convert.ToInt32(linha["Idade"]);
+                    string nome = linha["Nome"].ToString();
+                    int idTurma = Convert.ToInt32(linha["fk_Turma_ID"]);
                     Turma turma = turmaDAO.ReceberTurmaPorId(idTurma);
-                    string telefonePessoal = dr["Telefone_Pessoal"].ToString();
-                    string telefoneFixo = dr["Telefone_Fixo"].ToString();
-                    string telefoneResponsavel = dr["Telefone_Responsavel"].ToString();
-                    string telefoneResponsavel2 = dr["Telefone_Responsavel_2"].ToString();
-                    int enderecoId = Convert.ToInt32(dr["fk_endereco_ID"]);
+                    string telefonePessoal = linha["Telefone_Pessoal"].ToString();
+                    string telefoneFixo = linha["Telefone_Fixo"].ToString();
+                    string telefoneResponsavel = linha["Telefone_Responsavel"].ToString();
+                    string telefoneResponsavel2 = linha["Telefone_Responsavel_2"].ToString();
+                    int enderecoId = Convert.ToInt32(linha["fk_endereco_id"]);
                     Endereco endereco = enderecoDAO.ReceberEnderecoPorPessoa(enderecoId);
 
                     Aluno aluno = new Aluno(ra, nome, dataNascimento, idade, endereco, telefonePessoal, telefoneFixo, telefoneResponsavel, telefoneResponsavel2, turma);
                     alunos.Add(aluno);
                 }
                 return alunos;
-
             }
             catch (Exception)
             {
@@ -95,77 +97,85 @@ namespace ProjetoForms.Back.DAO
                     enderecoDAO.CadastrarEndereco(aluno.Endereco);
                     aluno.Endereco.Id = enderecoDAO.ReceberIDUltimoEndereco();
                 }
-                conn.AbrirConexao();
-                cmd = new MySqlCommand($"INSERT INTO aluno(Data_de_Nascimento, RA, Idade, Nome, fk_Turma_ID, fk_Endereco_ID, Telefone_Pessoal, Telefone_Fixo, Telefone_Responsavel, Telefone_Responsavel_2) " +
-                       $"VALUES(@Data_de_Nascimento, @RA, @Idade, @nome, @fk_turma_id, @fk_endereco_id, @Telefone_Pessoal, @Telefone_Fixo, @Telefone_Responsavel, @Telefone_Responsavel_2)", conn.conn);
-                cmd.Parameters.AddWithValue("@Data_de_Nascimento", aluno.DataNascimento.ToString("yyyy-MM-dd"));
-                cmd.Parameters.AddWithValue("@RA", aluno.Id);
-                cmd.Parameters.AddWithValue("@Idade", aluno.Idade);
-                cmd.Parameters.AddWithValue("@nome", aluno.Nome);
-                cmd.Parameters.AddWithValue("@fk_turma_id", aluno.Turma.Id);
-                cmd.Parameters.AddWithValue("@fk_endereco_id", aluno.Endereco.Id);
-                cmd.Parameters.AddWithValue("@Telefone_Pessoal", aluno.TelefonePessoal);
-                cmd.Parameters.AddWithValue("@Telefone_Fixo", aluno.TelefoneFixo);
-                cmd.Parameters.AddWithValue("@Telefone_Responsavel", aluno.TelefoneResponsavel);
-                cmd.Parameters.AddWithValue("@Telefone_Responsavel_2", aluno.TelefoneResponsavel2);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
+                dataBase.AbrirConexao();
+                string querry = $"INSERT INTO aluno(Data_de_Nascimento, RA, Idade, Nome, fk_Turma_ID, fk_Endereco_ID, Telefone_Pessoal, Telefone_Fixo, Telefone_Responsavel, Telefone_Responsavel_2) " +
+                       $"VALUES(@dataNascimento, @ra, @idade, @nome, @turmaId, @enderecoId, @telefonePessoal, @telefoneFixo, @telefoneResponsavel, @telefoneResponsavel2)";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@dataNascimento", aluno.DataNascimento.ToString("yyyy-MM-dd") },
+                    {"@ra", aluno.Id },
+                    {"@idade", aluno.Idade },
+                    {"@nome", aluno.Nome },
+                    {"@turmaId", aluno.Turma.Id },
+                    {"@enderecoId", aluno.Endereco.Id },
+                    {"@telefonePessoal", aluno.TelefonePessoal },
+                    {"@telefoneFixo", aluno.TelefoneFixo },
+                    {"@telefoneResponsavel", aluno.TelefoneResponsavel},
+                    {"@telefoneResponsavel2", aluno.TelefoneResponsavel2 }
 
+                };
+
+                dataBase.ExecuteCommand(querry, parametros);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
+            finally { dataBase.FecharConexao(); }
         }
 
         public Aluno ReceberAlunoPorId(int id)
         {
             try
             {
-                TurmaDAO turmaDAO = new TurmaDAO();
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM aluno a JOIN turma t ON t.ID = fk_Turma_ID WHERE a.RA = @RA", conn.conn);
-                cmd.Parameters.AddWithValue("@RA", id);
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    int ra = Convert.ToInt32(reader["RA"]);
-                    DateTime dataNascimento = Convert.ToDateTime(reader["Data_de_Nascimento"]);
-                    int idade = Convert.ToInt32(reader["Idade"]);
-                    string nome = reader["Nome"].ToString();
-                    int idTurma = Convert.ToInt32(reader["fk_Turma_ID"]);
-                    Turma turma = turmaDAO.ReceberTurmaPorId(idTurma);
-                    string telefonePessoal = reader["Telefone_Pessoal"].ToString();
-                    string telefoneFixo = reader["Telefone_Fixo"].ToString();
-                    string telefoneResponsavel = reader["Telefone_Responsavel"].ToString();
-                    string telefoneResponsavel2 = reader["Telefone_Responsavel_2"].ToString();
-                    int enderecoId = Convert.ToInt32(reader["fk_endereco_ID"]);
-                    Endereco endereco= enderecoDAO.ReceberEnderecoPorPessoa(enderecoId);
 
-                    Aluno aluno = new Aluno(ra, nome, dataNascimento, idade, endereco, telefonePessoal,telefoneFixo,telefoneResponsavel,telefoneResponsavel2, turma);
+
+                string querry = "SELECT * FROM aluno a JOIN turma t ON t.ID = fk_Turma_ID WHERE a.RA = @id";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@id", id }
+                };
+                var resposta = dataBase.ExecuteReader(querry, parametros);
+
+                foreach (Dictionary<string, object> linha in resposta)
+                {
+                    int ra = Convert.ToInt32(linha["RA"]);
+                    DateTime dataNascimento = Convert.ToDateTime(linha["Data_de_Nascimento"]);
+                    int idade = Convert.ToInt32(linha["Idade"]);
+                    string nome = linha["Nome"].ToString();
+                    int idTurma = Convert.ToInt32(linha["fk_Turma_ID"]);
+                    Turma turma = turmaDAO.ReceberTurmaPorId(idTurma);
+                    string telefonePessoal = linha["Telefone_Pessoal"].ToString();
+                    string telefoneFixo = linha["Telefone_Fixo"].ToString();
+                    string telefoneResponsavel = linha["Telefone_Responsavel"].ToString();
+                    string telefoneResponsavel2 = linha["Telefone_Responsavel_2"].ToString();
+                    int enderecoId = Convert.ToInt32(linha["fk_endereco_id"]);
+                    Endereco endereco = enderecoDAO.ReceberEnderecoPorPessoa(enderecoId);
+
+                    Aluno aluno = new Aluno(ra, nome, dataNascimento, idade, endereco, telefonePessoal, telefoneFixo, telefoneResponsavel, telefoneResponsavel2, turma);
                     return aluno;
                 }
 
                 return null;
-
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
+
         }
 
         public bool VerificarSeRAExiste(int ra)
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT ra FROM aluno WHERE ra = @ra", conn.conn);
-                cmd.Parameters.AddWithValue("@ra", ra);
-                var result = cmd.ExecuteScalar();
+                string querry = "SELECT ra FROM aluno WHERE ra = @ra";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@ra", ra },
+                };
+                var result = dataBase.ExecuteScalar(querry, parametros);
                 if (result != null)
                 {
                     return true;
@@ -182,10 +192,10 @@ namespace ProjetoForms.Back.DAO
                 throw ex;
             }
 
-            finally { conn.FecharConexao(); }
+
         }
 
-        internal void AtualizarPorId(Pessoa pessoa, Pessoa pessoaAtualizada)
+        public void AtualizarPorId(Pessoa pessoa, Pessoa pessoaAtualizada)
         {
             Aluno aluno = pessoaAtualizada as Aluno;
             Aluno alunoAntigo = pessoa as Aluno;
@@ -205,211 +215,208 @@ namespace ProjetoForms.Back.DAO
                     aluno.Endereco.Bairro.Id = bairroDAO.ReceberIdUltimoBairro();
                     enderecoDAO.AtualizarEndereco(aluno.Endereco, alunoAntigo.Endereco);
                 }
-                conn.AbrirConexao();
-                cmd = new MySqlCommand($"UPDATE aluno SET Data_de_Nascimento = @Data_de_Nascimento , Idade = @Idade, Nome = @nome, fk_Turma_ID = @fk_turma_id, Telefone_Pessoal = @Telefone_Pessoal, Telefone_Fixo = @Telefone_Fixo, Telefone_Responsavel = @Telefone_Responsavel, Telefone_Responsavel_2 = @Telefone_Responsavel_2 WHERE RA = @RA", conn.conn);
-                cmd.Parameters.AddWithValue("@Data_de_Nascimento", aluno.DataNascimento.ToString("yyyy-MM-dd"));
-                cmd.Parameters.AddWithValue("@RA", aluno.Id);
-                cmd.Parameters.AddWithValue("@Idade", aluno.Idade);
-                cmd.Parameters.AddWithValue("@nome", aluno.Nome);
-                cmd.Parameters.AddWithValue("@fk_turma_id", aluno.Turma.Id);
-                cmd.Parameters.AddWithValue("@Telefone_Pessoal", aluno.TelefonePessoal);
-                cmd.Parameters.AddWithValue("@Telefone_Fixo", aluno.TelefoneFixo);
-                cmd.Parameters.AddWithValue("@Telefone_Responsavel", aluno.TelefoneResponsavel);
-                cmd.Parameters.AddWithValue("@Telefone_Responsavel_2", aluno.TelefoneResponsavel2);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
+
+                string querry = $"UPDATE aluno SET Data_de_Nascimento = @dataNascimento , Idade = @idade, Nome = @nome, fk_Turma_ID = @turmaId, Telefone_Pessoal = @telefonePessoal, Telefone_Fixo = @telefoneFixo, Telefone_Responsavel = @telefoneResponsavel, Telefone_Responsavel_2 = @telefoneResponsavel2 WHERE RA = @ra";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@nome", aluno.Nome },
+                    {"@ra", aluno.Id},
+                    {"@idade", aluno.Idade },
+                    {"@dataNascimento", aluno.DataNascimento.ToString("yyyy-MM-dd")},
+                    {"@turmaId", aluno.Turma.Id },
+                    {"@telefonePessoal", aluno.TelefonePessoal },
+                    {"@telefoneFixo", aluno.TelefoneFixo },
+                    {"@telefoneResponsavel", aluno.TelefoneResponsavel  },
+                    {"@telefoneResponsavel2" ,aluno.TelefoneResponsavel2 }
+                };
+                dataBase.ExecuteCommand(querry, parametros);
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
+
         }
 
-        internal void DeletarPorId(int id)
+        public void DeletarPorId(int id)
         {
             try
             {
                 provaDAO.DeletarProvaPorAluno(id);
                 mediaDAO.DeletarMediaPorAluno(id);
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("DELETE FROM aluno WHERE RA = @RA", conn.conn);
-                cmd.Parameters.AddWithValue("@RA", id);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
+                dataBase.AbrirConexao();
+                string querry = "DELETE FROM aluno WHERE RA = @param0";
+                dataBase.ExecuteCommand(querry);
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
+            finally { dataBase.FecharConexao(); }
         }
 
-        internal List<Aluno> BuscarAluno(string nome, int rA, int idTurma)
+        public List<Aluno> BuscarAluno(string nome, int rA, int idTurma)
         {
             try
             {
-                conn.AbrirConexao();
-                if (idTurma == 13)
+
+
+
+                string querry = "SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE Nome LIKE @nome AND fk_Turma_ID = @ra AND RA LIKE @idTurma ";
+
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
                 {
-                    cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE Nome LIKE @nome AND RA LIKE @RA ", conn.conn);
-                    cmd.Parameters.AddWithValue("@nome", nome + "%");
-                    cmd.Parameters.AddWithValue("@RA", rA + "%");
-                    MySqlDataAdapter adapter = new MySqlDataAdapter();
-                    adapter.SelectCommand = cmd;
+                    {"@nome", nome },
+                    {"@ra", rA},
+                    {"@idTurma", idTurma},
+                };
+                List<Dictionary<string, object>> resultados = dataBase.ExecuteReader(querry, parametros);
+                return ListarAlunos(resultados);
 
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    return ListarAlunos(cmd);
-                }
-                else
+
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public List<Aluno> BuscarAlunoPorNome(string nome)
+        {
+            try
+            {
+
+                string querry = "SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE Nome LIKE @nome ";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
                 {
-                    cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE Nome LIKE @nome AND fk_Turma_ID = @fk_turma_id AND RA LIKE @RA ", conn.conn);
-                    cmd.Parameters.AddWithValue("@nome", nome + "%");
-                    cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
-                    cmd.Parameters.AddWithValue("@RA", rA + "%");
-                    MySqlDataAdapter adapter = new MySqlDataAdapter();
-                    adapter.SelectCommand = cmd;
-
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    return ListarAlunos(cmd);
-                }
-
+                    {"@nome", nome + "%"}
+                };
+                List<Dictionary<string, object>> resultados = dataBase.ExecuteReader(querry, parametros);
+                return ListarAlunos(resultados);
             }
 
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
+
         }
 
-        internal List<Aluno> BuscarAlunoPorNome(string nome)
+        public List<Aluno> BuscarAlunoPorNomeERA(string nome, int rA)
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE Nome LIKE @nome", conn.conn);
-                cmd.Parameters.AddWithValue("@nome", nome + "%");
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
 
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                return ListarAlunos(cmd);
+                string querry = "SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE Nome LIKE @nome AND RA LIKE @ra ";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@nome", nome + "%"},
+                    {"@ra", rA+ "%"},
+                };
+                List<Dictionary<string, object>> resultados = dataBase.ExecuteReader(querry, parametros);
+                return ListarAlunos(resultados);
             }
 
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
+
         }
 
-        internal List<Aluno> BuscarAlunoPorNomeERA(string nome, int rA)
+        public List<Aluno> BuscarAlunoPorNomeETurma(string nome, int idTurma)
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE Nome LIKE @nome AND RA LIKE @RA ", conn.conn);
-                cmd.Parameters.AddWithValue("@nome", nome + "%");
-                cmd.Parameters.AddWithValue("@RA", rA + "%");
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
 
-                return ListarAlunos(cmd);
+                string querry = "SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE Nome LIKE @nome AND fk_Turma_ID = @tuma";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@nome", nome+ "%"},
+                    {"@tuma", idTurma }
+
+                };
+                List<Dictionary<string, object>> resultados = dataBase.ExecuteReader(querry, parametros);
+                return ListarAlunos(resultados);
             }
 
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
+
         }
 
-        internal List<Aluno> BuscarAlunoPorNomeETurma(string nome, int idTurma)
+        public List<Aluno> BuscarAlunoPorRA(int rA)
         {
             try
             {
-                conn.AbrirConexao();
 
+                string querry = "SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE RA LIKE @ra";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@ra", rA+ "%"}
+                };
+                List<Dictionary<string, object>> resultados = dataBase.ExecuteReader(querry, parametros);
 
-                cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE Nome LIKE @nome AND fk_Turma_ID = @fk_turma_id", conn.conn);
-                cmd.Parameters.AddWithValue("@nome", nome + "%");
-                cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
-                return ListarAlunos(cmd);
-
-
+                return ListarAlunos(resultados);
             }
 
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
+
         }
 
-        internal List<Aluno> BuscarAlunoPorRA(int rA)
+        public List<Aluno> BuscarAlunoPorRAETurma(int rA, int idTurma)
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE RA LIKE @RA ", conn.conn);
-                cmd.Parameters.AddWithValue("@RA", rA + "%");
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                return ListarAlunos(cmd);
+
+
+
+                string querry = "SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE fk_Turma_ID = @idTurma AND RA LIKE @ra ";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@ra", rA+ "%"},
+                    {"@idTurma", idTurma }
+                };
+                List<Dictionary<string, object>> resultados = dataBase.ExecuteReader(querry, parametros);
+                return ListarAlunos(resultados);
             }
 
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
         }
 
-        internal List<Aluno> BuscarAlunoPorRAETurma(int rA, int idTurma)
+        public List<Aluno> BuscarAlunoPorTurma(int idTurma)
         {
             try
             {
-                conn.AbrirConexao();
 
 
-                cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE fk_Turma_ID = @fk_turma_id AND RA LIKE @RA ", conn.conn);
-                cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
-                cmd.Parameters.AddWithValue("@RA", rA + "%");
-                return ListarAlunos(cmd);
 
-
-            }
-
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally { conn.FecharConexao(); }
-        }
-
-        internal List<Aluno> BuscarAlunoPorTurma(int idTurma)
-        {
-            try
-            {
-                conn.AbrirConexao();
-
-                cmd = new MySqlCommand("SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE fk_Turma_ID = @fk_turma_id", conn.conn);
-                cmd.Parameters.AddWithValue("@fk_turma_id", idTurma + "%");
-                return ListarAlunos(cmd);
+                string querry = "SELECT aluno.*, turma.Nome_Turma FROM aluno JOIN turma ON turma.ID = fk_Turma_ID WHERE fk_Turma_ID = @idTurma";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@idTurma", idTurma }
+                };
+                bool[] usarLike = { false };
+                List<Dictionary<string, object>> resultados = dataBase.ExecuteReader(querry, parametros);
+                return ListarAlunos(resultados);
 
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
         }
     }
 }

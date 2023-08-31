@@ -14,6 +14,7 @@ using MySql.Data.MySqlClient;
 using ProjetoForms.Back;
 using ProjetoForms.Back.Entities;
 using ProjetoForms.Back.Model;
+using ProjetoForms.Front;
 using ProjetoForms.Front.Alunos;
 using ProjetoForms.Front.Professores;
 
@@ -23,6 +24,7 @@ namespace ProjetoForms
     {
         private Usuario usuario;
         private Professor professor;
+        Thread threadData;
         ProfessorModel professorModel = new ProfessorModel();
 
         public FormMain(Usuario usuario)
@@ -31,14 +33,16 @@ namespace ProjetoForms
             this.usuario = usuario;
             if(usuario.TipoUsuario == (int)TipoDeUsuario.PROFESSOR)
             {
-                this.professor = usuario.Professor;
+                this.professor = professorModel.ReceberProfessorPorUsuarioID(usuario);
                 alunosToolStripMenuItem.Enabled = false;
                 professoresToolStripMenuItem.Enabled = false;
+                lblNomeProfessor.Text = professor.Nome;
             }
             if (usuario.TipoUsuario == (int)TipoDeUsuario.ADMINISTRADOR)
             {
                 NotaTurmasToolStripMenuItem.Enabled = false;
                 CalcularMediaToolStripMenuItem.Enabled = false;
+                lblNomeProfessor.Text = "Administrador";
             }
         }
 
@@ -59,7 +63,7 @@ namespace ProjetoForms
 
         private void lblDataHora_Load(object sender, EventArgs e)
         {
-            Thread threadData = new Thread(new ThreadStart(MostrarDataEHora));
+            threadData = new Thread(new ThreadStart(MostrarDataEHora));
             threadData.IsBackground = true;
             threadData.Start();
 
@@ -132,5 +136,15 @@ namespace ProjetoForms
         {
             Application.Exit();
         }
+
+        private void btnLogoff_Click(object sender, EventArgs e)
+        {
+
+            Thread starForm = new Thread(new ThreadStart(() => { new FormLogin().ShowDialog(); }));
+            threadData.Abort();
+            starForm.Start();
+            this.Close();
+        }
+
     }
 }

@@ -5,6 +5,8 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProjetoForms
@@ -64,15 +66,19 @@ namespace ProjetoForms
         private void cbTurma_TextChanged(object sender, EventArgs e)
         {
             PesquisarAluno();
+           
+            
         }
 
         private void txtNome_TextChanged(object sender, EventArgs e)
         {
+
             PesquisarAluno();
         }
 
         private void txtRA_TextChanged(object sender, EventArgs e)
         {
+
             PesquisarAluno();
         }
 
@@ -96,6 +102,7 @@ namespace ProjetoForms
                 int idTurma = Convert.ToInt32(cbTurma.SelectedValue);
                 gridAlunos.AutoGenerateColumns = false;
                 gridAlunos.DataSource = alunoModel.PesquisarAluno<Aluno>(nome, raStr, ra, turma, idTurma);
+                
             }
             catch (Exception ex)
             {

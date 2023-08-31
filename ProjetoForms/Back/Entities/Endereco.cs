@@ -8,10 +8,10 @@ namespace ProjetoForms.Back.Entities
 {
     public class Endereco
     {
-        int id;
-        string nomeRua;
-        int numCasa;
-        Bairro bairro;
+        private int id;
+        private string nomeRua;
+        private int numCasa;
+        private Bairro bairro;
 
         public Endereco()
         {            

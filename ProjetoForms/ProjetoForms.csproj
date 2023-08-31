@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Back\ConexaoMariaDB.cs" />
     <Compile Include="Back\ConexaoMySQL.cs" />
     <Compile Include="Back\DAO\AlunoDAO.cs" />
     <Compile Include="Back\DAO\BairroDAO.cs" />
@@ -69,7 +70,6 @@
     <Compile Include="Back\Entities\Cidade.cs" />
     <Compile Include="Back\Entities\Endereco.cs" />
     <Compile Include="Back\Entities\Estado.cs" />
-    <Compile Include="Back\Entities\IUsuario.cs" />
     <Compile Include="Back\Entities\Materia.cs" />
     <Compile Include="Back\Entities\Media.cs" />
     <Compile Include="Back\Entities\Pessoa.cs" />
@@ -77,6 +77,7 @@
     <Compile Include="Back\Entities\Prova.cs" />
     <Compile Include="Back\Entities\Turma.cs" />
     <Compile Include="Back\Entities\Usuario.cs" />
+    <Compile Include="Back\IDataBase.cs" />
     <Compile Include="Back\Model\AlunoModel.cs" />
     <Compile Include="Back\Model\BimestreModel.cs" />
     <Compile Include="Back\Model\CidadeModel.cs" />
@@ -90,7 +91,7 @@
     <Compile Include="Back\Model\TurmaModel.cs" />
     <Compile Include="Back\Model\UsuarioModel.cs" />
     <Compile Include="Back\Enum\TipoDeUsuario.cs" />
-    <Compile Include="Back\Service\Services.cs" />
+    <Compile Include="Back\Service\ServicesNotas.cs" />
     <Compile Include="Front\Alunos\FormCadastrarAluno.cs">
       <SubType>Form</SubType>
     </Compile>

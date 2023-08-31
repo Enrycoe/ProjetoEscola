@@ -43,6 +43,8 @@
             this.boletimToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDataHora = new System.Windows.Forms.Label();
             this.btnFechar = new System.Windows.Forms.Button();
+            this.btnLogoff = new System.Windows.Forms.Button();
+            this.lblNomeProfessor = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -109,7 +111,7 @@
             // 
             this.verAlunosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("verAlunosToolStripMenuItem.Image")));
             this.verAlunosToolStripMenuItem.Name = "verAlunosToolStripMenuItem";
-            this.verAlunosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.verAlunosToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.verAlunosToolStripMenuItem.Text = "Ver Alunos";
             this.verAlunosToolStripMenuItem.Click += new System.EventHandler(this.verAlunosToolStripMenuItem_Click);
             // 
@@ -117,7 +119,7 @@
             // 
             this.cadastrarAlunosToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cadastrarAlunosToolStripMenuItem.Image")));
             this.cadastrarAlunosToolStripMenuItem.Name = "cadastrarAlunosToolStripMenuItem";
-            this.cadastrarAlunosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cadastrarAlunosToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.cadastrarAlunosToolStripMenuItem.Text = "Cadastrar Aluno";
             this.cadastrarAlunosToolStripMenuItem.Click += new System.EventHandler(this.cadastrarAlunosToolStripMenuItem_Click);
             // 
@@ -184,6 +186,35 @@
             this.btnFechar.UseVisualStyleBackColor = false;
             this.btnFechar.Click += new System.EventHandler(this.btnFechar_Click_1);
             // 
+            // btnLogoff
+            // 
+            this.btnLogoff.BackColor = System.Drawing.Color.Transparent;
+            this.btnLogoff.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLogoff.BackgroundImage")));
+            this.btnLogoff.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnLogoff.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogoff.FlatAppearance.BorderSize = 0;
+            this.btnLogoff.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogoff.Location = new System.Drawing.Point(1232, 12);
+            this.btnLogoff.Name = "btnLogoff";
+            this.btnLogoff.Size = new System.Drawing.Size(50, 50);
+            this.btnLogoff.TabIndex = 3;
+            this.btnLogoff.UseVisualStyleBackColor = false;
+            this.btnLogoff.Click += new System.EventHandler(this.btnLogoff_Click);
+            // 
+            // lblNomeProfessor
+            // 
+            this.lblNomeProfessor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblNomeProfessor.AutoSize = true;
+            this.lblNomeProfessor.Font = new System.Drawing.Font("Modern No. 20", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNomeProfessor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(51)))), ((int)(((byte)(71)))));
+            this.lblNomeProfessor.Location = new System.Drawing.Point(12, 691);
+            this.lblNomeProfessor.Name = "lblNomeProfessor";
+            this.lblNomeProfessor.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblNomeProfessor.Size = new System.Drawing.Size(80, 29);
+            this.lblNomeProfessor.TabIndex = 4;
+            this.lblNomeProfessor.Text = "Nome";
+            this.lblNomeProfessor.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -192,6 +223,8 @@
             this.BackgroundImage = global::ProjetoForms.Properties.Resources.FundoXD;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.lblNomeProfessor);
+            this.Controls.Add(this.btnLogoff);
             this.Controls.Add(this.btnFechar);
             this.Controls.Add(this.lblDataHora);
             this.Controls.Add(this.menuStrip1);
@@ -228,6 +261,8 @@
         private System.Windows.Forms.Label lblDataHora;
         private System.Windows.Forms.ToolStripMenuItem boletimToolStripMenuItem1;
         private System.Windows.Forms.Button btnFechar;
+        private System.Windows.Forms.Button btnLogoff;
+        private System.Windows.Forms.Label lblNomeProfessor;
     }
 }
 

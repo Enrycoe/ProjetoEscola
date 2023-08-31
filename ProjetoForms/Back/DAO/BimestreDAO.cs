@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace ProjetoForms.Back.DAO
 {
-    internal class BimestreDAO 
+    public class BimestreDAO 
     {
         ConexaoMySQL conn = new ConexaoMySQL();
         MySqlCommand cmd;
-        internal List<Bimestre> BuscarBimestres() //////transforma em lista seu viado
+        public List<Bimestre> BuscarBimestres()
         {
             try
             {
                 
-                conn.AbrirConexao();
+
                 cmd = new MySqlCommand("SELECT * FROM bimestre", conn.conn);
                 return ListarBimestres(cmd);
                 
@@ -28,7 +28,6 @@ namespace ProjetoForms.Back.DAO
             {
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
         }
 
         private List<Bimestre> ListarBimestres(MySqlCommand cmd)

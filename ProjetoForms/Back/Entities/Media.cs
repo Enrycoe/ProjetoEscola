@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace ProjetoForms.Back.Entities
 {
-    internal class Media
+    public class Media
     {
-        int id;
-        Materia materia;
-        double valorMedia;
-        Aluno aluno;
-        Bimestre bimestre;
-        List<Prova> provas;
-        double notaMinima = 7;
+        private int id;
+        private Materia materia;
+        private double valorMedia;
+        private Aluno aluno;
+        private Bimestre bimestre;
+        private List<Prova> provas;
+        private double notaMinima = 7;
 
         public Media()
         {

@@ -35,6 +35,10 @@
             this.cbMateria = new System.Windows.Forms.ComboBox();
             this.lblMateria = new System.Windows.Forms.Label();
             this.dataGridProvas = new System.Windows.Forms.DataGridView();
+            this.CheckBox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.nota = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtMedia = new System.Windows.Forms.TextBox();
             this.lblMedia = new System.Windows.Forms.Label();
             this.lblNome = new System.Windows.Forms.Label();
@@ -42,10 +46,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSalvarMedia = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
-            this.CheckBox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.nota = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridProvas)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -76,6 +76,7 @@
             // dataGridProvas
             // 
             this.dataGridProvas.AllowUserToAddRows = false;
+            this.dataGridProvas.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -91,6 +92,7 @@
             this.descricao,
             this.ID});
             this.dataGridProvas.Location = new System.Drawing.Point(12, 157);
+            this.dataGridProvas.MultiSelect = false;
             this.dataGridProvas.Name = "dataGridProvas";
             this.dataGridProvas.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -107,6 +109,45 @@
             this.dataGridProvas.Size = new System.Drawing.Size(444, 270);
             this.dataGridProvas.TabIndex = 2;
             this.dataGridProvas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProvas_CellContentClick);
+            // 
+            // CheckBox
+            // 
+            this.CheckBox.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
+            this.CheckBox.HeaderText = "";
+            this.CheckBox.Name = "CheckBox";
+            this.CheckBox.ReadOnly = true;
+            this.CheckBox.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CheckBox.Width = 5;
+            // 
+            // nota
+            // 
+            this.nota.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.nota.DataPropertyName = "Nota";
+            this.nota.HeaderText = "Nota";
+            this.nota.MinimumWidth = 80;
+            this.nota.Name = "nota";
+            this.nota.ReadOnly = true;
+            this.nota.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.nota.Width = 80;
+            // 
+            // descricao
+            // 
+            this.descricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.descricao.DataPropertyName = "Descricao";
+            this.descricao.HeaderText = "Descrição";
+            this.descricao.MinimumWidth = 315;
+            this.descricao.Name = "descricao";
+            this.descricao.ReadOnly = true;
+            this.descricao.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.descricao.Width = 315;
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
             // 
             // txtMedia
             // 
@@ -188,45 +229,6 @@
             this.btnCancelar.TabIndex = 26;
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // CheckBox
-            // 
-            this.CheckBox.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCellsExceptHeader;
-            this.CheckBox.HeaderText = "";
-            this.CheckBox.Name = "CheckBox";
-            this.CheckBox.ReadOnly = true;
-            this.CheckBox.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CheckBox.Width = 5;
-            // 
-            // nota
-            // 
-            this.nota.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.nota.DataPropertyName = "Nota";
-            this.nota.HeaderText = "Nota";
-            this.nota.MinimumWidth = 80;
-            this.nota.Name = "nota";
-            this.nota.ReadOnly = true;
-            this.nota.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.nota.Width = 80;
-            // 
-            // descricao
-            // 
-            this.descricao.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.descricao.DataPropertyName = "Descricao";
-            this.descricao.HeaderText = "Descrição";
-            this.descricao.MinimumWidth = 315;
-            this.descricao.Name = "descricao";
-            this.descricao.ReadOnly = true;
-            this.descricao.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.descricao.Width = 315;
-            // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
             // 
             // FormCalcularMedia
             // 

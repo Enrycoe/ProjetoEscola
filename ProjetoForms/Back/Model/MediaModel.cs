@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace ProjetoForms.Back.Model
 {
-    internal class MediaModel
+    public class MediaModel
     {
-        MediaDAO dao = new MediaDAO();
-        internal void CadastrarMedia(Media media)
+        MediaDAO dao = new MediaDAO(new ConexaoMySQL());
+        public void CadastrarMedia(Media media)
         {
             try
             {
@@ -24,7 +24,7 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal void ExcluirMediaExistente(Media media)
+        public void ExcluirMediaExistente(Media media)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal int ReceberIDUltimaMedia()
+        public int ReceberIDUltimaMedia()
         {
             try
             {
@@ -50,7 +50,7 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal double ReceberMedia(Aluno aluno, int idBimestre, int idMateria)
+        public double ReceberMedia(Aluno aluno, int idBimestre, int idMateria)
         {
             try
             {
@@ -64,7 +64,7 @@ namespace ProjetoForms.Back.Model
             
         }
 
-        internal bool VerificarMediaExistente(Media media)
+        public bool VerificarMediaExistente(Media media)
         {
             try
             {

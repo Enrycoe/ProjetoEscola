@@ -12,8 +12,8 @@ namespace ProjetoForms.Back.Entities
         
         private string telefoneResponsavel;
         private string telefoneResponsavel2;
-        Turma turma;
-        List<Prova> provas;
+        private Turma turma;
+        private List<Prova> provas;
         public Aluno() 
         {          
         }
@@ -36,8 +36,7 @@ namespace ProjetoForms.Back.Entities
         }
 
         public Aluno(int id) : base (id)
-        {
-            
+        {         
         }
 
         int idadeMinima = 13;

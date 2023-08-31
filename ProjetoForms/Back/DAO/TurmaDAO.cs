@@ -9,56 +9,57 @@ using System.Threading.Tasks;
 
 namespace ProjetoForms.Back.DAO
 {
-    internal class TurmaDAO
+    public class TurmaDAO
     {
-        ConexaoMySQL conn = new ConexaoMySQL();
-        MySqlCommand cmd;
+        private IDataBase dataBase;
+
+        public TurmaDAO(IDataBase dataBase)
+        {
+            this.dataBase = dataBase;
+        }
+
         public List<Turma> BuscarTurmas()
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM turma", conn.conn);
-                return ListarTurmas(cmd);
+                string query = "SELECT * FROM turma";
+                return ListarTurmas(dataBase.ExecuteReader(query));
             }
 
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
+           
         }
         public List<Turma> BuscarTurmasPorProfessor(int id)
         {
             try
             {
-                List<Turma> turmas = new List<Turma>();
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT t.ID, t.Nome_Turma FROM professor_turma p JOIN turma t ON t.ID = fk_Turma_ID WHERE fk_Professor_ID = @ID", conn.conn);
-                cmd.Parameters.AddWithValue("@ID",  id);
-                return ListarTurmas(cmd);
+
+                string query = "SELECT t.ID, t.Nome_Turma FROM professor_turma p JOIN turma t ON t.ID = fk_Turma_ID WHERE fk_Professor_ID = @ID";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@ID",  id }
+                };
+               
+                return ListarTurmas(dataBase.ExecuteReader(query, parametros));
             }
             catch (Exception)
             {
                 throw;
             }
-            finally { conn.FecharConexao(); }
         }
-        public List<Turma> ListarTurmas(MySqlCommand cmd)
+        private List<Turma> ListarTurmas(List<Dictionary<string, object>> resposta)
         {
             try
             {
                 List<Turma> turmas = new List<Turma>();
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
-
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                foreach (DataRow dr in dt.Rows)
+                foreach (Dictionary<string, object> linha in resposta)
                 {
-                    
-                    int id = Convert.ToInt32(dr["ID"]);
-                    string nome = dr["Nome_Turma"].ToString();
+
+                    int id = Convert.ToInt32(linha["ID"]);
+                    string nome = linha["Nome_Turma"].ToString();
                     Turma turma = new Turma(id, nome);
                     turmas.Add(turma);
                 }
@@ -74,25 +75,24 @@ namespace ProjetoForms.Back.DAO
             
         }
 
-        internal Turma ReceberTurmaPorId(int idTurma)
+        public Turma ReceberTurmaPorId(int idTurma)
         {
             try
             {
                 Turma turma;
                 int id;
                 string nome;
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM turma WHERE ID = @ID", conn.conn);
-                cmd.Parameters.AddWithValue("@ID", idTurma);
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
-
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                foreach (DataRow dr in dt.Rows)
+               
+                string query = "SELECT * FROM turma WHERE ID = @ID";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
                 {
-                    id = Convert.ToInt32(dr["ID"]);
-                    nome = dr["Nome_Turma"].ToString();
+                    {"@ID", idTurma},
+                };
+                List<Dictionary<string, object>> resultados = dataBase.ExecuteReader(query, parametros);
+                foreach (Dictionary<string, object> linha in resultados)
+                {
+                    id = Convert.ToInt32(linha["ID"]);
+                    nome = linha["Nome_Turma"].ToString();
                     turma = new Turma(id, nome);
                     return turma;
                 }
@@ -103,7 +103,6 @@ namespace ProjetoForms.Back.DAO
             {
                 throw;
             }
-            finally { conn.FecharConexao(); }
         }
     }
 }

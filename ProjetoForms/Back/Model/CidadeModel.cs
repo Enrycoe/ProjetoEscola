@@ -10,9 +10,14 @@ using System.Windows.Forms;
 
 namespace ProjetoForms.Back.Model
 {
-    internal class CidadeModel
+    public class CidadeModel
     {
-        CidadeDAO dao =  new CidadeDAO();
+        private CidadeDAO dao;
+        public CidadeModel()
+        {
+            dao = new CidadeDAO(new ConexaoMySQL());
+        }
+        
         public List<Cidade> BuscarCidadePorEstado(int id)
         {
             try

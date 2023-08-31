@@ -10,9 +10,14 @@ using System.Windows.Forms;
 
 namespace ProjetoForms.Back.Model
 {
-    internal class EstadoModel
+    public class EstadoModel
     {
-        EstadoDAO dao = new EstadoDAO();
+        private EstadoDAO dao;
+        public EstadoModel()
+        {
+            dao = new EstadoDAO(new ConexaoMySQL());
+        }
+        
         public List<Estado> BuscarEstados()
         {
             try

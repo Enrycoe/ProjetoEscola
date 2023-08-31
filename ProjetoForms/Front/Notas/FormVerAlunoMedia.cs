@@ -6,6 +6,7 @@ using System;
 using System.Data;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace ProjetoForms
@@ -78,17 +79,23 @@ namespace ProjetoForms
 
         private void cbTurma_TextChanged(object sender, EventArgs e)
         {
-            PesquisarAluno();
+            Thread pesquisar = new Thread(PesquisarAluno);
+            pesquisar.Start();
+            pesquisar.Abort();
         }
 
         private void txtNome_TextChanged(object sender, EventArgs e)
         {
-            PesquisarAluno();
+            Thread pesquisar = new Thread(PesquisarAluno);
+            pesquisar.Start();
+            pesquisar.Abort();
         }
 
         private void txtRA_TextChanged(object sender, EventArgs e)
         {
-            PesquisarAluno();
+            Thread pesquisar = new Thread(PesquisarAluno); 
+            pesquisar.Start();
+            pesquisar.Abort();
         }
 
         private void PesquisarAluno()

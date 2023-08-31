@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace ProjetoForms.Back.Model
 {
-    internal class MateriaModel
+    public class MateriaModel
     {
-        MateriaDAO dao = new MateriaDAO();
+        MateriaDAO dao = new MateriaDAO(new ConexaoMySQL());
         public List<Materia> BuscarMateria()
         {
 

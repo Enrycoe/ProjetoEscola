@@ -20,14 +20,15 @@ namespace ProjetoForms.Back.DAO
         BairroDAO bairroDAO;
         ConexaoMySQL conn;
         MySqlCommand cmd;
+        IDataBase dataBase;
 
-        public ProfessorDAO()
+        public ProfessorDAO(IDataBase dataBase)
         {
-
-            enderecoDAO = new EnderecoDAO();
-            turmaDAO = new TurmaDAO();
-            materiaDAO = new MateriaDAO();
-            bairroDAO = new BairroDAO();
+            this.dataBase = dataBase;
+            enderecoDAO = new EnderecoDAO(dataBase);
+            turmaDAO = new TurmaDAO(dataBase);
+            materiaDAO = new MateriaDAO(dataBase);
+            bairroDAO = new BairroDAO(dataBase);
             conn = new ConexaoMySQL();
         }
         public void Atualizar(Pessoa pessoa, Pessoa pessoaAtualizada)
@@ -330,7 +331,7 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
-       
+
         public Professor ReceberProfessorPorUsuarioID(int id)
         {
             try
@@ -344,6 +345,7 @@ namespace ProjetoForms.Back.DAO
                 {
 
                     DateTime dataNascimento = Convert.ToDateTime(reader["Data_de_Nascimento"]);
+                    int idProfessor = Convert.ToInt32(reader["ID"]);
                     int idade = Convert.ToInt32(reader["Idade"]);
                     string nome = reader["Nome"].ToString();
                     string telefonePessoal = reader["Telefone_Pessoal"].ToString();
@@ -352,7 +354,7 @@ namespace ProjetoForms.Back.DAO
                     Endereco endereco = enderecoDAO.ReceberEnderecoPorPessoa(idEndereco);
                     List<Turma> turmas = turmaDAO.BuscarTurmasPorProfessor(id);
                     List<Materia> materias = materiaDAO.BuscarMateriaPorProfessor(id);
-                    Professor professor = new Professor(id, nome, dataNascimento, idade, endereco, telefonePessoal, telefoneFixo, materias, turmas);
+                    Professor professor = new Professor(idProfessor, nome, dataNascimento, idade, endereco, telefonePessoal, telefoneFixo, materias, turmas);
                     return professor;
                 }
                 cmd.Dispose();

@@ -8,120 +8,125 @@ using System.Threading.Tasks;
 
 namespace ProjetoForms.Back.DAO
 {
-    internal class MediaDAO
+    public class MediaDAO
     {
-        ConexaoMySQL conn = new ConexaoMySQL();
-        MySqlCommand cmd;
+        IDataBase dataBase;
 
-        internal void CadastrarMedia(Media media)
+        public MediaDAO(IDataBase dataBase)
+        {
+            this.dataBase = dataBase;   
+        }
+        public void CadastrarMedia(Media media)
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("INSERT INTO media (fk_materia_ID, Valor_Media, fk_Aluno_RA, fk_Bimestre_ID) VALUES (@materia, @nota, @aluno, @bimeste)", conn.conn);
-                cmd.Parameters.AddWithValue("@materia", media.Materia.Id);
-                cmd.Parameters.AddWithValue("@nota", media.ValorMedia);
-                cmd.Parameters.AddWithValue("@aluno", media.Aluno.Id);
-                cmd.Parameters.AddWithValue("@bimeste", media.Bimestre.Id);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
+                string query = "INSERT INTO media (fk_materia_ID, Valor_Media, fk_Aluno_RA, fk_Bimestre_ID) VALUES (@materia, @nota, @aluno, @bimestre)";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@materia", media.Materia.Id},
+                    {"@nota", media.ValorMedia },
+                    {"@aluno", media.Aluno.Id},
+                    {"@bimestre", media.Bimestre.Id}
+                };
+                dataBase.ExecuteCommand(query, parametros);         
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
         }
 
-        internal void DeletarMediaPorAluno(int id)
+        public void DeletarMediaPorAluno(int id)
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("DELETE FROM media WHERE fk_Aluno_RA = @RA", conn.conn);
-                cmd.Parameters.AddWithValue("@RA", id);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
+                string query = "DELETE FROM media WHERE fk_Aluno_RA = @RA";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@RA", id}
+                };
+                dataBase.ExecuteCommand(query, parametros);
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
             
         }
 
-        internal void ExcluirMediaExistente(Media media)
+        public void ExcluirMediaExistente(Media media)
         {
             try
             {
                 
                 media.Id = ReceberIDMedia(media);
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("UPDATE provas SET fk_Media_ID = null WHERE fk_Media_ID = @media ", conn.conn);
-                cmd.Parameters.AddWithValue("@media", media.Id);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
-                cmd = new MySqlCommand("DELETE FROM media WHERE fk_Aluno_RA = @aluno AND fk_Bimestre_ID = @bimestre AND fk_Materia_ID = @materia", conn.conn);
-                cmd.Parameters.AddWithValue("@aluno", media.Aluno.Id);
-                cmd.Parameters.AddWithValue("@bimestre", media.Bimestre.Id);
-                cmd.Parameters.AddWithValue("@materia", media.Materia.Id);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();  
+                string query = "UPDATE provas SET fk_Media_ID = null WHERE fk_Media_ID = @id ";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    { "@id", media.Id },
+
+                };
+                dataBase.ExecuteCommand(query, parametros );
+                query = "DELETE FROM media WHERE fk_Aluno_RA = @ra AND fk_Bimestre_ID = @bimestre AND fk_Materia_ID = @materia";
+                parametros = new Dictionary<string, object>()
+                {
+                    { "@ra", media.Aluno.Id },
+                    {"@bimestre",  media.Bimestre.Id},
+                    {"@materia", media.Materia.Id },
+                };
+                dataBase.ExecuteCommand(query, parametros);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
         }
 
-        internal int ReceberIDMedia(Media media)
+        public int ReceberIDMedia(Media media)
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT ID FROM media WHERE fk_Aluno_RA = @aluno AND fk_Bimestre_ID = @bimestre AND fk_Materia_ID = @materia ORDER BY ID DESC LIMIT 1", conn.conn);
-                cmd.Parameters.AddWithValue("@aluno", media.Aluno.Id);
-                cmd.Parameters.AddWithValue("@bimestre", media.Bimestre.Id);
-                cmd.Parameters.AddWithValue("@materia", media.Materia.Id);
-                return Convert.ToInt32(cmd.ExecuteScalar());
+                string query = "SELECT ID FROM media WHERE fk_Aluno_RA = @ra AND fk_Bimestre_ID = @bimestre AND fk_Materia_ID = @materia ORDER BY ID DESC LIMIT 1";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@ra",  media.Aluno.Id },
+                    {"@bimestre", media.Bimestre.Id },
+                    {"@materia", media.Materia.Id }
+                };
+                return Convert.ToInt32(dataBase.ExecuteScalar(query, parametros ));      
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
         }
-        internal int ReceberIDUltimaMedia()
+        public int ReceberIDUltimaMedia()
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT ID FROM media ORDER BY ID DESC LIMIT 1", conn.conn);
-                int id = Convert.ToInt32(cmd.ExecuteScalar());
-                return id;
+                string query = "SELECT ID FROM media ORDER BY ID DESC LIMIT 1";
+                return Convert.ToInt32(dataBase.ExecuteScalar(query));
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
-            finally { conn.FecharConexao() ;}
         }
 
-        internal double ReceberMedia(Aluno aluno, int idBimestre, int idMateria)
+        public double ReceberMedia(Aluno aluno, int idBimestre, int idMateria)
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT Valor_Media FROM media WHERE fk_Aluno_RA = @aluno AND fk_Bimestre_ID = @bimestre AND fk_Materia_ID = @materia ORDER BY ID DESC LIMIT 1", conn.conn);
-                cmd.Parameters.AddWithValue("@aluno", aluno.Id);
-                cmd.Parameters.AddWithValue("@bimestre", idBimestre);
-                cmd.Parameters.AddWithValue("@materia", idMateria);
-                var media = cmd.ExecuteScalar();
+                string query = "SELECT Valor_Media FROM media WHERE fk_Aluno_RA = @param0 AND fk_Bimestre_ID = @param1 AND fk_Materia_ID = @param2 ORDER BY ID DESC LIMIT 1";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@aluno", aluno.Id },
+                    {"@bimestre", idBimestre },
+                    {"@materia", idMateria }
+                };
+                var media = dataBase.ExecuteScalar(query, parametros);
                 if(media == null) 
                 {
                     return -1;
@@ -134,19 +139,20 @@ namespace ProjetoForms.Back.DAO
 
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
         }
 
-        internal bool VerificarMediaExistente(Media media)
+        public bool VerificarMediaExistente(Media media)
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM media WHERE fk_Aluno_RA = @aluno AND fk_Bimestre_ID = @bimestre AND fk_Materia_ID = @materia ORDER BY ID DESC LIMIT 1", conn.conn);
-                cmd.Parameters.AddWithValue("@aluno", media.Aluno.Id);
-                cmd.Parameters.AddWithValue("@bimestre", media.Bimestre.Id);
-                cmd.Parameters.AddWithValue("@materia", media.Materia.Id);
-                var mediasExistentes = cmd.ExecuteScalar();
+                string query = "SELECT * FROM media WHERE fk_Aluno_RA = @ra AND fk_Bimestre_ID = @param1 AND fk_Materia_ID = @param2 ORDER BY ID DESC LIMIT 1";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@ra", media.Aluno.Id },
+                    {"@bimestre",  media.Bimestre.Id},
+                    {"@materia", media.Materia.Id}
+                };
+                var mediasExistentes = dataBase.ExecuteScalar(query, parametros);
                 if (mediasExistentes != null)
                 {
                     return false;
@@ -158,7 +164,6 @@ namespace ProjetoForms.Back.DAO
 
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
         }
     }
 }

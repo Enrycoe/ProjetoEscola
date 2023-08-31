@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace ProjetoForms.Back.Model
 {
-    internal class ProfessorModel : IPessoaModel
+    public class ProfessorModel : IPessoaModel
     {
-        ProfessorDAO dao = new ProfessorDAO();
+        ProfessorDAO dao = new ProfessorDAO(new ConexaoMySQL());
         UsuarioModel usuarioModel = new UsuarioModel();
 
         public void AtualizarPorId(Pessoa pessoa, Pessoa pessoaAtualizada)
@@ -72,12 +72,12 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal List<Professor> BuscarPorNome(string nome)
+        public List<Professor> BuscarPorNome(string nome)
         {
             return dao.BuscarPorNome(nome);
         }
 
-        internal Professor ReceberProfessorPorId(int id)
+        public Professor ReceberProfessorPorId(int id)
         {
             try
             {
@@ -87,6 +87,19 @@ namespace ProjetoForms.Back.Model
             {
 
                 throw ex;
+            }
+        }
+
+        public Professor ReceberProfessorPorUsuarioID(Usuario usuario)
+        {
+            try
+            {
+                return dao.ReceberProfessorPorUsuarioID(usuario.Id);
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

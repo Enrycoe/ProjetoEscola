@@ -76,14 +76,14 @@ namespace ProjetoForms.Front.Notas
                 double media3 = mediaModel.ReceberMedia(aluno, 3, 1);
                 double media4 = mediaModel.ReceberMedia(aluno, 4, 1);
 
-                lbl1Artes.Text = Services.MostrarNotaOuNula(media1);
-                lbl2Artes.Text = Services.MostrarNotaOuNula(media2);
-                lbl3Artes.Text = Services.MostrarNotaOuNula(media3);
-                lbl4Artes.Text = Services.MostrarNotaOuNula(media4);
+                lbl1Artes.Text = ServicesNotas.MostrarNotaOuNula(media1);
+                lbl2Artes.Text = ServicesNotas.MostrarNotaOuNula(media2);
+                lbl3Artes.Text = ServicesNotas.MostrarNotaOuNula(media3);
+                lbl4Artes.Text = ServicesNotas.MostrarNotaOuNula(media4);
 
-                double mediaFinal = Services.CalcularMediaFinal(media1, media2, media3, media4);
-                lblMArtes.Text = Services.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
-                lblSArtes.Text = Services.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
+                double mediaFinal = ServicesNotas.CalcularMediaFinal(media1, media2, media3, media4);
+                lblMArtes.Text = ServicesNotas.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+                lblSArtes.Text = ServicesNotas.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
             }
             catch (Exception ex)
             {
@@ -101,14 +101,14 @@ namespace ProjetoForms.Front.Notas
                 double media3 = mediaModel.ReceberMedia(aluno, 3, 2);
                 double media4 = mediaModel.ReceberMedia(aluno, 4, 2);
 
-                lbl1EF.Text = Services.MostrarNotaOuNula(media1);
-                lbl2EF.Text = Services.MostrarNotaOuNula(media2);
-                lbl3EF.Text = Services.MostrarNotaOuNula(media3);
-                lbl4EF.Text = Services.MostrarNotaOuNula(media4);
+                lbl1EF.Text = ServicesNotas.MostrarNotaOuNula(media1);
+                lbl2EF.Text = ServicesNotas.MostrarNotaOuNula(media2);
+                lbl3EF.Text = ServicesNotas.MostrarNotaOuNula(media3);
+                lbl4EF.Text = ServicesNotas.MostrarNotaOuNula(media4);
 
-                double mediaFinal = Services.CalcularMediaFinal(media1, media2, media3, media4);
-                lblMEF.Text = Services.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
-                lblSEF.Text = Services.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
+                double mediaFinal = ServicesNotas.CalcularMediaFinal(media1, media2, media3, media4);
+                lblMEF.Text = ServicesNotas.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+                lblSEF.Text = ServicesNotas.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
             }
             catch (Exception ex)
             {
@@ -127,14 +127,14 @@ namespace ProjetoForms.Front.Notas
                 double media3 = mediaModel.ReceberMedia(aluno, 3, 3);
                 double media4 = mediaModel.ReceberMedia(aluno, 4, 3);
 
-                lbl1Filosifia.Text = Services.MostrarNotaOuNula(media1);
-                lbl2Filosifia.Text = Services.MostrarNotaOuNula(media2);
-                lbl3Filosifia.Text = Services.MostrarNotaOuNula(media3);
-                lbl4Filosifia.Text = Services.MostrarNotaOuNula(media4);
+                lbl1Filosifia.Text = ServicesNotas.MostrarNotaOuNula(media1);
+                lbl2Filosifia.Text = ServicesNotas.MostrarNotaOuNula(media2);
+                lbl3Filosifia.Text = ServicesNotas.MostrarNotaOuNula(media3);
+                lbl4Filosifia.Text = ServicesNotas.MostrarNotaOuNula(media4);
 
-                double mediaFinal = Services.CalcularMediaFinal(media1, media2, media3, media4);
-                lblMFilosifia.Text = Services.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
-                lblSFilosifia.Text = Services.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
+                double mediaFinal = ServicesNotas.CalcularMediaFinal(media1, media2, media3, media4);
+                lblMFilosifia.Text = ServicesNotas.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+                lblSFilosifia.Text = ServicesNotas.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
             }
             catch (Exception ex)
             {
@@ -153,14 +153,14 @@ namespace ProjetoForms.Front.Notas
                 double media3 = mediaModel.ReceberMedia(aluno, 3, 4);
                 double media4 = mediaModel.ReceberMedia(aluno, 4, 4);
 
-                lbl1Sociologia.Text = Services.MostrarNotaOuNula(media1);
-                lbl2Sociologia.Text = Services.MostrarNotaOuNula(media2);
-                lbl3Sociologia.Text = Services.MostrarNotaOuNula(media3);
-                lbl4Sociologia.Text = Services.MostrarNotaOuNula(media4);
+                lbl1Sociologia.Text = ServicesNotas.MostrarNotaOuNula(media1);
+                lbl2Sociologia.Text = ServicesNotas.MostrarNotaOuNula(media2);
+                lbl3Sociologia.Text = ServicesNotas.MostrarNotaOuNula(media3);
+                lbl4Sociologia.Text = ServicesNotas.MostrarNotaOuNula(media4);
 
-                double mediaFinal = Services.CalcularMediaFinal(media1, media2, media3, media4);
-                lblMSociologia.Text = Services.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
-                lblSSociologia.Text = Services.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
+                double mediaFinal = ServicesNotas.CalcularMediaFinal(media1, media2, media3, media4);
+                lblMSociologia.Text = ServicesNotas.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+                lblSSociologia.Text = ServicesNotas.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
             }
             catch (Exception ex)
             {
@@ -178,13 +178,13 @@ namespace ProjetoForms.Front.Notas
                 double media2 = mediaModel.ReceberMedia(aluno, 2, 5);
                 double media3 = mediaModel.ReceberMedia(aluno, 3, 5);
                 double media4 = mediaModel.ReceberMedia(aluno, 4, 5);
-                lbl1Ingles.Text = Services.MostrarNotaOuNula(media1);
-                lbl2Ingles.Text = Services.MostrarNotaOuNula(media2);
-                lbl3Ingles.Text = Services.MostrarNotaOuNula(media3);
-                lbl4Ingles.Text = Services.MostrarNotaOuNula(media4);
-                double mediaFinal = Services.CalcularMediaFinal(media1, media2, media3, media4);
-                lblMIngles.Text = Services.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
-                lblSIngles.Text = Services.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
+                lbl1Ingles.Text = ServicesNotas.MostrarNotaOuNula(media1);
+                lbl2Ingles.Text = ServicesNotas.MostrarNotaOuNula(media2);
+                lbl3Ingles.Text = ServicesNotas.MostrarNotaOuNula(media3);
+                lbl4Ingles.Text = ServicesNotas.MostrarNotaOuNula(media4);
+                double mediaFinal = ServicesNotas.CalcularMediaFinal(media1, media2, media3, media4);
+                lblMIngles.Text = ServicesNotas.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+                lblSIngles.Text = ServicesNotas.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
             }
             catch (Exception ex)
             {
@@ -202,13 +202,13 @@ namespace ProjetoForms.Front.Notas
                 double media2 = mediaModel.ReceberMedia(aluno, 2, 6);
                 double media3 = mediaModel.ReceberMedia(aluno, 3, 6);
                 double media4 = mediaModel.ReceberMedia(aluno, 4, 6);
-                lbl1Fisica.Text = Services.MostrarNotaOuNula(media1);
-                lbl2Fisica.Text = Services.MostrarNotaOuNula(media2);
-                lbl3Fisica.Text = Services.MostrarNotaOuNula(media3);
-                lbl4Fisica.Text = Services.MostrarNotaOuNula(media4);
-                double mediaFinal = Services.CalcularMediaFinal(media1, media2, media3, media4);
-                lblMFisica.Text = Services.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
-                lblSFisica.Text = Services.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
+                lbl1Fisica.Text = ServicesNotas.MostrarNotaOuNula(media1);
+                lbl2Fisica.Text = ServicesNotas.MostrarNotaOuNula(media2);
+                lbl3Fisica.Text = ServicesNotas.MostrarNotaOuNula(media3);
+                lbl4Fisica.Text = ServicesNotas.MostrarNotaOuNula(media4);
+                double mediaFinal = ServicesNotas.CalcularMediaFinal(media1, media2, media3, media4);
+                lblMFisica.Text = ServicesNotas.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+                lblSFisica.Text = ServicesNotas.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
             }
             catch (Exception ex)
             {
@@ -226,13 +226,13 @@ namespace ProjetoForms.Front.Notas
                 double media2 = mediaModel.ReceberMedia(aluno, 2, 7);
                 double media3 = mediaModel.ReceberMedia(aluno, 3, 7);
                 double media4 = mediaModel.ReceberMedia(aluno, 4, 7);
-                lbl1Quimica.Text = Services.MostrarNotaOuNula(media1);
-                lbl2Quimica.Text = Services.MostrarNotaOuNula(media2);
-                lbl3Quimica.Text = Services.MostrarNotaOuNula(media3);
-                lbl4Quimica.Text = Services.MostrarNotaOuNula(media4);
-                double mediaFinal = Services.CalcularMediaFinal(media1, media2, media3, media4);
-                lblMQuimica.Text = Services.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
-                lblSQuimica.Text = Services.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
+                lbl1Quimica.Text = ServicesNotas.MostrarNotaOuNula(media1);
+                lbl2Quimica.Text = ServicesNotas.MostrarNotaOuNula(media2);
+                lbl3Quimica.Text = ServicesNotas.MostrarNotaOuNula(media3);
+                lbl4Quimica.Text = ServicesNotas.MostrarNotaOuNula(media4);
+                double mediaFinal = ServicesNotas.CalcularMediaFinal(media1, media2, media3, media4);
+                lblMQuimica.Text = ServicesNotas.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+                lblSQuimica.Text = ServicesNotas.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
             }
             catch (Exception ex)
             {
@@ -250,13 +250,13 @@ namespace ProjetoForms.Front.Notas
                 double media2 = mediaModel.ReceberMedia(aluno, 2, 8);
                 double media3 = mediaModel.ReceberMedia(aluno, 3, 8);
                 double media4 = mediaModel.ReceberMedia(aluno, 4, 8);
-                lbl1Biologia.Text = Services.MostrarNotaOuNula(media1);
-                lbl2Biologia.Text = Services.MostrarNotaOuNula(media2);
-                lbl3Biologia.Text = Services.MostrarNotaOuNula(media3);
-                lbl4Biologia.Text = Services.MostrarNotaOuNula(media4);
-                double mediaFinal = Services.CalcularMediaFinal(media1, media2, media3, media4);
-                lblMBiologia.Text = Services.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
-                lblSBiologia.Text = Services.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
+                lbl1Biologia.Text = ServicesNotas.MostrarNotaOuNula(media1);
+                lbl2Biologia.Text = ServicesNotas.MostrarNotaOuNula(media2);
+                lbl3Biologia.Text = ServicesNotas.MostrarNotaOuNula(media3);
+                lbl4Biologia.Text = ServicesNotas.MostrarNotaOuNula(media4);
+                double mediaFinal = ServicesNotas.CalcularMediaFinal(media1, media2, media3, media4);
+                lblMBiologia.Text = ServicesNotas.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+                lblSBiologia.Text = ServicesNotas.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
             }
             catch (Exception ex)
             {
@@ -274,13 +274,13 @@ namespace ProjetoForms.Front.Notas
                 double media2 = mediaModel.ReceberMedia(aluno, 2, 9);
                 double media3 = mediaModel.ReceberMedia(aluno, 3, 9);
                 double media4 = mediaModel.ReceberMedia(aluno, 4, 9);
-                lbl1Geografia.Text = Services.MostrarNotaOuNula(media1);
-                lbl2Geografia.Text = Services.MostrarNotaOuNula(media2);
-                lbl3Geografia.Text = Services.MostrarNotaOuNula(media3);
-                lbl4Geografia.Text = Services.MostrarNotaOuNula(media4);
-                double mediaFinal = Services.CalcularMediaFinal(media1, media2, media3, media4);
-                lblMGeografia.Text = Services.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
-                lblSGeografia.Text = Services.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
+                lbl1Geografia.Text = ServicesNotas.MostrarNotaOuNula(media1);
+                lbl2Geografia.Text = ServicesNotas.MostrarNotaOuNula(media2);
+                lbl3Geografia.Text = ServicesNotas.MostrarNotaOuNula(media3);
+                lbl4Geografia.Text = ServicesNotas.MostrarNotaOuNula(media4);
+                double mediaFinal = ServicesNotas.CalcularMediaFinal(media1, media2, media3, media4);
+                lblMGeografia.Text = ServicesNotas.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+                lblSGeografia.Text = ServicesNotas.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
             }
             catch (Exception ex)
             {
@@ -298,13 +298,13 @@ namespace ProjetoForms.Front.Notas
                 double media2 = mediaModel.ReceberMedia(aluno, 2, 10);
                 double media3 = mediaModel.ReceberMedia(aluno, 3, 10);
                 double media4 = mediaModel.ReceberMedia(aluno, 4, 10);
-                lbl1Historia.Text = Services.MostrarNotaOuNula(media1);
-                lbl2Historia.Text = Services.MostrarNotaOuNula(media2);
-                lbl3Historia.Text = Services.MostrarNotaOuNula(media3);
-                lbl4Historia.Text = Services.MostrarNotaOuNula(media4);
-                double mediaFinal = Services.CalcularMediaFinal(media1, media2, media3, media4);
-                lblMHistoria.Text = Services.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
-                lblSHistoria.Text = Services.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
+                lbl1Historia.Text = ServicesNotas.MostrarNotaOuNula(media1);
+                lbl2Historia.Text = ServicesNotas.MostrarNotaOuNula(media2);
+                lbl3Historia.Text = ServicesNotas.MostrarNotaOuNula(media3);
+                lbl4Historia.Text = ServicesNotas.MostrarNotaOuNula(media4);
+                double mediaFinal = ServicesNotas.CalcularMediaFinal(media1, media2, media3, media4);
+                lblMHistoria.Text = ServicesNotas.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+                lblSHistoria.Text = ServicesNotas.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
             }
             catch (Exception ex)
             {
@@ -322,13 +322,13 @@ namespace ProjetoForms.Front.Notas
                 double media2 = mediaModel.ReceberMedia(aluno, 2, 11);
                 double media3 = mediaModel.ReceberMedia(aluno, 3, 11);
                 double media4 = mediaModel.ReceberMedia(aluno, 4, 11);
-                lbl1Matematica.Text = Services.MostrarNotaOuNula(media1);
-                lbl2Matematica.Text = Services.MostrarNotaOuNula(media2);
-                lbl3Matematica.Text = Services.MostrarNotaOuNula(media3);
-                lbl4Matematica.Text = Services.MostrarNotaOuNula(media4);
-                double mediaFinal = Services.CalcularMediaFinal(media1, media2, media3, media4);
-                lblMMatematica.Text = Services.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
-                lblSMatematica.Text = Services.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
+                lbl1Matematica.Text = ServicesNotas.MostrarNotaOuNula(media1);
+                lbl2Matematica.Text = ServicesNotas.MostrarNotaOuNula(media2);
+                lbl3Matematica.Text = ServicesNotas.MostrarNotaOuNula(media3);
+                lbl4Matematica.Text = ServicesNotas.MostrarNotaOuNula(media4);
+                double mediaFinal = ServicesNotas.CalcularMediaFinal(media1, media2, media3, media4);
+                lblMMatematica.Text = ServicesNotas.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+                lblSMatematica.Text = ServicesNotas.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
 
             }
             catch (Exception ex)
@@ -347,13 +347,13 @@ namespace ProjetoForms.Front.Notas
                 double media2 = mediaModel.ReceberMedia(aluno, 2, 12);
                 double media3 = mediaModel.ReceberMedia(aluno, 3, 12);
                 double media4 = mediaModel.ReceberMedia(aluno, 4, 12);
-                lbl1LP.Text = Services.MostrarNotaOuNula(media1);
-                lbl2LP.Text = Services.MostrarNotaOuNula(media2);
-                lbl3LP.Text = Services.MostrarNotaOuNula(media3);
-                lbl4LP.Text = Services.MostrarNotaOuNula(media4);
-                double mediaFinal = Services.CalcularMediaFinal(media1, media2, media3, media4);
-                lblMLP.Text = Services.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
-                lblSLP.Text = Services.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
+                lbl1LP.Text = ServicesNotas.MostrarNotaOuNula(media1);
+                lbl2LP.Text = ServicesNotas.MostrarNotaOuNula(media2);
+                lbl3LP.Text = ServicesNotas.MostrarNotaOuNula(media3);
+                lbl4LP.Text = ServicesNotas.MostrarNotaOuNula(media4);
+                double mediaFinal = ServicesNotas.CalcularMediaFinal(media1, media2, media3, media4);
+                lblMLP.Text = ServicesNotas.MostrarMediaFinal(mediaFinal, media1, media2, media3, media4);
+                lblSLP.Text = ServicesNotas.AprovadoOuReporovado(mediaFinal, media1, media2, media3, media4);
             }
             catch (Exception ex)
             {

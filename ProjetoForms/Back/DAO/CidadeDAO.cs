@@ -10,19 +10,30 @@ using System.Windows.Forms;
 
 namespace ProjetoForms.Back.DAO
 {
-    internal class CidadeDAO 
+    public class CidadeDAO 
     {
-        ConexaoMySQL conn = new ConexaoMySQL();
-        EstadoDAO estadoDAO = new EstadoDAO();
-        MySqlCommand cmd;
+        private IDataBase dataBase;
+        private EstadoDAO estadoDAO;
+
+        public CidadeDAO(IDataBase dataBase)
+        {
+            this.dataBase = dataBase;
+            this.estadoDAO = new EstadoDAO(dataBase);
+        }
+
         public List<Cidade> BuscarCidadePorEstado(int id)
         {
             try
             {
                 
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM cidade WHERE fk_estado_ID = " + id, conn.conn);
-                return ListarCidades(cmd);
+               
+                string query = "SELECT * FROM cidade WHERE fk_estado_ID = @id";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@id", id }
+                };
+                var resultados = dataBase.ExecuteReader(query, parametros);
+                return ListarCidades(resultados);
                
             }
 
@@ -30,31 +41,32 @@ namespace ProjetoForms.Back.DAO
             {
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
+           
         }
 
-        internal Cidade ReceberCidadePorId(int idCidade)
+        public Cidade ReceberCidadePorId(int idCidade)
         {
             try
             {
                 
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM cidade WHERE ID = @idCidade", conn.conn);
-                cmd.Parameters.AddWithValue("@idCidade", idCidade);
-                MySqlDataAdapter adapter = new MySqlDataAdapter();             
-                DataTable dt = new DataTable();
-                adapter.SelectCommand = cmd;
-                adapter.Fill(dt);
-                foreach (DataRow dr in dt.Rows)
+               
+                string query = "SELECT * FROM cidade WHERE ID = @idCidade";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@idCidade", idCidade }
+                };
+                
+                List<Dictionary<string, object>> resultado = dataBase.ExecuteReader(query, parametros);
+                foreach (Dictionary<string, object> linha in resultado)
                 {
                     
-                    string nome = dr["Nome_Cidade"].ToString();
-                    int idEstado = Convert.ToInt32(dr["fk_Estado_ID"]);
+                    string nome = linha["Nome_Cidade"].ToString();
+                    int idEstado = Convert.ToInt32(linha["fk_Estado_ID"]);
                     Estado estado = estadoDAO.ReceberEstadoPorId(idEstado);
                     Cidade cidade = new Cidade(idCidade, nome, estado);
                     return cidade;
                 }
-                cmd.Dispose();
+            
                 return null;
             }
             catch (Exception)
@@ -62,28 +74,22 @@ namespace ProjetoForms.Back.DAO
 
                 throw;
             }
-            finally { conn.FecharConexao() ; }
+           
         }
 
-        private List<Cidade> ListarCidades (MySqlCommand cmd)
+        private List<Cidade> ListarCidades (List<Dictionary<string, object>> resposta)
         {
             try
             {
                 List<Cidade> cidades = new List<Cidade>();
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
-
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                foreach (DataRow dr in dt.Rows)
+                foreach (Dictionary<string, object> linha in resposta)
                 {
-                    
-                    int idEstado = Convert.ToInt32(dr["fk_estado_ID"]);
+                    int idCidade = Convert.ToInt32(linha["ID"]);
+                    string nome = linha["Nome_Cidade"].ToString();
+                    int idEstado = Convert.ToInt32(linha["fk_Estado_ID"]);
                     Estado estado = estadoDAO.ReceberEstadoPorId(idEstado);
-                    string nome = dr["Nome_Cidade"].ToString();
-                    int id = Convert.ToInt32(dr["ID"]);
-                    Cidade cidade = new Cidade(id, nome);
-                    cidades.Add(cidade);
+                    Cidade cidade = new Cidade(idCidade, nome, estado);
+                    cidades.Add(cidade);    
                 }
 
                 return cidades;
@@ -95,7 +101,6 @@ namespace ProjetoForms.Back.DAO
             }
             
         }
-
       
     }
 }

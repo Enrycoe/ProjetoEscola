@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ProjetoForms.Back.Model
 {
-    internal class TurmaModel
+    public class TurmaModel
     {
-        TurmaDAO dao = new TurmaDAO();
+        TurmaDAO dao = new TurmaDAO(new ConexaoMySQL());
         public List<Turma> BuscarTurmas()
         {
             try

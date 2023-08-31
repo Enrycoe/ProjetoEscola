@@ -1,22 +1,17 @@
 ﻿using MySql.Data.MySqlClient;
 using ProjetoForms.Back.Entities;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ProjetoForms.Back.DAO
 {
-    internal class UsuarioDAO
+    public class UsuarioDAO
     {
         ConexaoMySQL conn = new ConexaoMySQL();
         MySqlCommand cmd;
 
-        
-        internal int GerarERetornarLogin(string nome)
+
+        public int GerarERetornarLogin(string nome)
         {
             try
             {
@@ -35,7 +30,7 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
-        private int RetornarIDUltimoUsuario()
+        public int RetornarIDUltimoUsuario()
         {
             try
             {
@@ -52,11 +47,11 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
-        internal Usuario ReceberUsuario(string nome, string senha)
+        public Usuario ReceberUsuario(string nome, string senha)
         {
             try
             {
-                ProfessorDAO professorDAO = new ProfessorDAO();
+                ProfessorDAO professorDAO = new ProfessorDAO(new ConexaoMySQL());
                 conn.AbrirConexao();
                 cmd = new MySqlCommand("SELECT * FROM usuario u WHERE Usuario = @usuario AND Senha = @senha", conn.conn);
                 cmd.Parameters.AddWithValue("@usuario", nome);
@@ -72,8 +67,7 @@ namespace ProjetoForms.Back.DAO
                     string senhaUsuario = dr["Senha"].ToString();
                     int tipoUsuario = Convert.ToInt32(dr["fk_Tipo_Usuario"]);
                     int id = Convert.ToInt32(dr["ID"]);
-                    Professor professor = professorDAO.ReceberProfessorPorUsuarioID(id);
-                    Usuario usuario = new Usuario(id, nomeUsuario, senhaUsuario, tipoUsuario, professor);
+                    Usuario usuario = new Usuario(id, nomeUsuario, senhaUsuario, tipoUsuario);
                     return usuario;
                 }
                 return null;
@@ -86,7 +80,7 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
-        internal Usuario ReceberUsuarioPorProfessor(Professor professor)
+        public Usuario ReceberUsuarioPorProfessor(Professor professor)
         {
             try
             {
@@ -104,7 +98,7 @@ namespace ProjetoForms.Back.DAO
                     string senhaUsuario = dr["Senha"].ToString();
                     int tipoUsuario = Convert.ToInt32(dr["fk_Tipo_Usuario"]);
                     int id = Convert.ToInt32(dr["ID"]);
-                    Usuario usuario = new Usuario(id, nomeUsuario, senhaUsuario, tipoUsuario, professor);
+                    Usuario usuario = new Usuario(id, nomeUsuario, senhaUsuario, tipoUsuario);
                     return usuario;
                 }
                 return null;
@@ -117,7 +111,7 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
-        internal bool VerificarSeLoginExiste(string login)
+        public bool VerificarSeLoginExiste(string login)
         {
             try
             {
@@ -144,7 +138,7 @@ namespace ProjetoForms.Back.DAO
             finally { conn.FecharConexao(); }
         }
 
-        internal bool VerificarSeTrocouASenha(string senha, string login)
+        public bool VerificarSeTrocouASenha(string senha, string login)
         {
             try
             {
@@ -192,7 +186,7 @@ namespace ProjetoForms.Back.DAO
 
             finally { conn.FecharConexao(); }
         }
-        internal void AlterarSenha(string senha, string login)
+        public void AlterarSenha(string senha, string login)
         {
             try
             {

@@ -8,8 +8,8 @@ namespace ProjetoForms.Back.Entities
 {
     public class Turma
     {
-        int id;
-        string nome;
+        private int id;
+        private string nome;
 
         public Turma()
         {

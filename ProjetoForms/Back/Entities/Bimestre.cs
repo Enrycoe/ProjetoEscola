@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace ProjetoForms.Back.Entities
 {
-    internal class Bimestre
+    public class Bimestre
     {
-        int id;
-        string nome;
-        private int idBimestre;
+        private int id;
+        private string nome;
 
         public Bimestre()
         {

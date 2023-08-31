@@ -8,9 +8,13 @@ namespace ProjetoForms.Back.Entities
 {
     internal class Boletim
     {
-        int id;
-        Aluno aluno;
-        List<Media> medias;
+        private int id;
+        private Aluno aluno;
+        private List<Media> medias;
+
+        public Boletim()
+        {
+        }
         public int Id { get => id; set => id = value; }
         public Aluno Aluno { get => aluno; set => aluno = value; }
         internal List<Media> Medias { get => medias; }

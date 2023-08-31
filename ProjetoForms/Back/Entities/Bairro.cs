@@ -8,13 +8,12 @@ namespace ProjetoForms.Back.Entities
 {
     public class Bairro
     {
-        int id;
-        string nomeBairro;
-        Cidade cidade;
+        private int id;
+        private string nomeBairro;
+        private Cidade cidade;
 
         public Bairro()
-        {
-            
+        {           
         }
 
         public Bairro(string nomeBairro, Cidade cidade)
@@ -32,6 +31,6 @@ namespace ProjetoForms.Back.Entities
 
         public int Id { get => id; set => id = value; }
         public string NomeBairro { get => nomeBairro; set => nomeBairro = value; }
-        internal Cidade Cidade { get => cidade; set => cidade = value; }
+        public Cidade Cidade { get => cidade; set => cidade = value; }
     }
 }

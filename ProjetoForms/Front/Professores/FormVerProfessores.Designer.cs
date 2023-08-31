@@ -132,6 +132,7 @@
             this.Data_de_Nascimento,
             this.fk_endereço_id});
             this.gridProfessores.Location = new System.Drawing.Point(64, 216);
+            this.gridProfessores.MultiSelect = false;
             this.gridProfessores.Name = "gridProfessores";
             this.gridProfessores.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;

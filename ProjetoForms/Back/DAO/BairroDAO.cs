@@ -1,26 +1,37 @@
 ﻿using MySql.Data.MySqlClient;
 using ProjetoForms.Back.Entities;
 using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace ProjetoForms.Back.DAO
 {
-    internal class BairroDAO
+    public class BairroDAO
     {
 
-        ConexaoMySQL conn = new ConexaoMySQL();
-        MySqlCommand cmd;
-        CidadeDAO cidadeDAO = new CidadeDAO();
+       
+        private CidadeDAO cidadeDAO;
+        private IDataBase dataBase;
+
+        public BairroDAO(IDataBase dataBase)
+        {
+            this.dataBase = dataBase;
+            cidadeDAO = new CidadeDAO(dataBase);
+        }
 
         public bool VerificarSeBairroExiste(Bairro bairro)
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM bairro WHERE nome_bairro = @nome AND fk_cidade_id = @fk_cidade_id", conn.conn);
-                cmd.Parameters.AddWithValue("@nome", bairro.NomeBairro);
-                cmd.Parameters.AddWithValue("@fk_cidade_id", bairro.Cidade.Id);
-                var result = cmd.ExecuteScalar();
+                string querry = "SELECT * FROM bairro WHERE nome_bairro = @param0 AND fk_cidade_id = @param1";
+               
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@nomeBairro", bairro.NomeBairro },
+                    {"@cidadeId",  bairro.Cidade.Id}
+                };
+                bool[] usarLike = { false, false };
+                var result = dataBase.ExecuteScalar(querry, parametros);
                 if (result != null && result != DBNull.Value)
                 {
                     return true;
@@ -32,50 +43,48 @@ namespace ProjetoForms.Back.DAO
 
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
         }
 
-        internal void CadastrarBairro(Bairro bairro)
+        public void CadastrarBairro(Bairro bairro)
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("INSERT INTO bairro (Nome_Bairro, fk_cidade_id) VALUES (@Nome_Bairro, @fk_cidade_id)", conn.conn);
-                cmd.Parameters.AddWithValue("@Nome_Bairro", bairro.NomeBairro);
-                cmd.Parameters.AddWithValue("@fk_cidade_id", bairro.Cidade.Id);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally { conn.FecharConexao(); }
-
-        }
-
-        internal Bairro ReceberBairroPorId(int id)
-        {
-            try
-            {
-
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM bairro WHERE ID = @estadoEndereco", conn.conn);
-                cmd.Parameters.AddWithValue("@estadoEndereco", id);
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                foreach (DataRow dr in dt.Rows)
+                string querry = "INSERT INTO bairro (Nome_Bairro, fk_cidade_id) VALUES (@Nome_Bairro, @fkCidade)";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
                 {
+                    {"@Nome_Bairro", bairro.NomeBairro },
+                    {"@fkCidade",  bairro.Cidade.Id}       
+                };
+                dataBase.ExecuteCommand(querry, parametros); 
+            }
+            catch (Exception)
+            {
+                throw;
+            }
 
-                    string nomeBairro = dr["Nome_Bairro"].ToString();
-                    int idCidade = Convert.ToInt32(dr["fk_cidade_id"]);
+        }
+
+        public Bairro ReceberBairroPorId(int id)
+        {
+            try
+            {
+
+                
+                string querry = "SELECT * FROM bairro WHERE ID = @id";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@id", id }
+                };
+                List<Dictionary<string, object>> resultado =  dataBase.ExecuteReader(querry,parametros);
+                
+                foreach (Dictionary<string, object> linha in resultado)
+                {
+                    string nomeBairro = linha["Nome_Bairro"].ToString();
+                    int idCidade = Convert.ToInt32(linha["fk_cidade_id"]);
                     Cidade cidade = cidadeDAO.ReceberCidadePorId(idCidade);
                     Bairro bairro = new Bairro(id, nomeBairro, cidade);
                     return bairro;
                 }
-                cmd.Dispose();
                 return null;
             }
             catch (Exception)
@@ -83,34 +92,35 @@ namespace ProjetoForms.Back.DAO
 
                 throw;
             }
-            finally { conn.FecharConexao(); }
         }
 
-        internal int ReceberIdBairro(Bairro bairro)
+        public int ReceberIdBairro(Bairro bairro)
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT id FROM bairro where nome_bairro = @nome AND fk_cidade_id = @idCidade", conn.conn);
-                cmd.Parameters.AddWithValue("@nome", bairro.NomeBairro);
-                cmd.Parameters.AddWithValue("@idCidade", bairro.Cidade.Id);
-                var result = cmd.ExecuteScalar();
+                string querry = "SELECT id FROM bairro where nome_bairro = @nomeBairro AND fk_cidade_id = @param1";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@nomeBairro", bairro.NomeBairro },
+                    {"@cidadeId",  bairro.Cidade.Id}
+                };
+                var result = dataBase.ExecuteScalar(querry, parametros);
+               
                 return Convert.ToInt32(result);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
         }
 
-        internal int ReceberIdUltimoBairro()
+        public int ReceberIdUltimoBairro()
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand($"SELECT id FROM bairro ORDER BY id DESC LIMIT 1", conn.conn);
-                var result = cmd.ExecuteScalar();
+                string querry = $"SELECT id FROM bairro ORDER BY id DESC LIMIT 1";
+                
+                var result = dataBase.ExecuteScalar(querry);
                 return Convert.ToInt32(result);
             }
             catch (Exception ex)
@@ -118,7 +128,6 @@ namespace ProjetoForms.Back.DAO
 
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
 
         }
     }

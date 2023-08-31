@@ -10,9 +10,9 @@ using MySql.Data.MySqlClient;
 
 namespace ProjetoForms.Back.Model
 {
-    internal class AlunoModel : IPessoaModel
+    public class AlunoModel : IPessoaModel
     {
-        AlunoDAO dao = new AlunoDAO();
+        AlunoDAO dao = new AlunoDAO(new ConexaoMySQL());
 
         public List<T> Listar<T>() where T : Pessoa
         {
@@ -67,7 +67,7 @@ namespace ProjetoForms.Back.Model
 
         }
 
-        internal Aluno ReceberAlunoPorId(int id)
+        public Aluno ReceberAlunoPorId(int id)
         {
             try
             {
@@ -125,7 +125,7 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal List<Aluno> BuscarAlunoPorNome(string nome)
+        public List<Aluno> BuscarAlunoPorNome(string nome)
         {
             try
             {
@@ -138,7 +138,7 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal List<Aluno> BuscarAlunoPorNomeERA(string nome, int rA)
+        public List<Aluno> BuscarAlunoPorNomeERA(string nome, int rA)
         
         {
             try
@@ -151,7 +151,7 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal List<Aluno> BuscarAlunoPorNomeETurma(string nome, int idTurma)
+        public List<Aluno> BuscarAlunoPorNomeETurma(string nome, int idTurma)
         {
             try
             {
@@ -164,7 +164,7 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal List<Aluno> BuscarAlunoPorRA(int rA) 
+        public List<Aluno> BuscarAlunoPorRA(int rA) 
         {
             try
             {
@@ -177,7 +177,7 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal List<Aluno> BuscarAlunoPorRAETurma(int rA, int idTurma)
+        public List<Aluno> BuscarAlunoPorRAETurma(int rA, int idTurma)
         {
             try
             {
@@ -190,7 +190,7 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal List<Aluno> BuscarAlunoPorTurma(int idTurma)
+        public List<Aluno> BuscarAlunoPorTurma(int idTurma)
         {
             try
             {
@@ -203,7 +203,7 @@ namespace ProjetoForms.Back.Model
             }
         }
 
-        internal List<T> PesquisarAluno<T>(string nome, string raStr, int ra, string turma, int idTurma) where T : Pessoa
+        public List<T> PesquisarAluno<T>(string nome, string raStr, int ra, string turma, int idTurma) where T : Pessoa
         {
             try
             {

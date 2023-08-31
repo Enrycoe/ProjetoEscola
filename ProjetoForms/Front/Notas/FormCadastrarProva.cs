@@ -61,7 +61,7 @@ namespace ProjetoForms.Front.Notas
             try
             {
                 double nota = Convert.ToDouble(txtNota.Text);
-                bool notaValida = Services.VerificarSeNotaEValida(nota);
+                bool notaValida = ServicesNotas.VerificarSeNotaEValida(nota);
                 if (!notaValida)
                 {
                     MessageBox.Show("Insira um valor válido! A nota deve estar entre 0 e 10", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

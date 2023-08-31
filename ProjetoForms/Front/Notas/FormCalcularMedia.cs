@@ -3,13 +3,7 @@ using ProjetoForms.Back.Model;
 using ProjetoForms.Back.Service;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProjetoForms.Front.Notas
@@ -89,7 +83,7 @@ namespace ProjetoForms.Front.Notas
                     dataGridProvas.CurrentRow.Cells[0].Value = 1;
                     quantidadeProvas++;
                     somaNotas += Convert.ToDouble(dataGridProvas.CurrentRow.Cells[1].Value);
-                    notaMedia = Services.CalcularMediaPorBimestre(quantidadeProvas, somaNotas);
+                    notaMedia = ServicesNotas.CalcularMediaPorBimestre(quantidadeProvas, somaNotas);
                     txtMedia.Text = notaMedia.ToString("F");                  
                 }
                 else
@@ -97,7 +91,7 @@ namespace ProjetoForms.Front.Notas
                     dataGridProvas.CurrentRow.Cells[0].Value = 0;
                     quantidadeProvas--;
                     somaNotas -= Convert.ToDouble(dataGridProvas.CurrentRow.Cells[1].Value);
-                    notaMedia = Services.CalcularMediaPorBimestre(quantidadeProvas, somaNotas);
+                    notaMedia = ServicesNotas.CalcularMediaPorBimestre(quantidadeProvas, somaNotas);
                     txtMedia.Text = notaMedia.ToString("F");                
                 }
             }
