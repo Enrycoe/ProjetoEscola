@@ -10,7 +10,11 @@ namespace ProjetoForms.Back.Model
 {
     public class UsuarioModel
     {
-        UsuarioDAO dao = new UsuarioDAO();
+        UsuarioDAO dao;
+        public UsuarioModel()
+        {
+            dao = new UsuarioDAO(new ConexaoMySQL());
+        }
 
         public int GerarERetornarLogin()
         {

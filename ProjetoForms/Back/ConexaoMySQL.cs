@@ -11,24 +11,8 @@ namespace ProjetoForms.Back
 {
     public class ConexaoMySQL : IDataBase
     {
-        public string conexao = "SERVER=localhost; DATABASE=db_escola; USER=root; PASSWORD=Enrycoe23042003@;";
-        public MySqlConnection conn = new MySqlConnection("SERVER=localhost; DATABASE=db_escola; USER=root; PASSWORD=Enrycoe23042003@;");
-
-
-       
-
-        public void AbrirConexao()
-        {
-            try
-            {
-                conn.Open();
-                
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        
+        private MySqlConnection conn = new MySqlConnection("SERVER=localhost; DATABASE=db_escola; USER=root; PASSWORD=Enrycoe23042003@;");
 
         public object ExecuteScalar(string query, Dictionary<string, object> parametros)
         {
@@ -107,9 +91,7 @@ namespace ProjetoForms.Back
                     cmd.Parameters.AddWithValue(paramName, obj.Value);
                    
                 }
-                List<Dictionary<string, object>> resultados = new List<Dictionary<string, object>>();
-
-                
+                List<Dictionary<string, object>> resultados = new List<Dictionary<string, object>>();   
                 
                 var result = cmd.ExecuteReader();
                 
@@ -138,19 +120,7 @@ namespace ProjetoForms.Back
             finally { conn.Close(); }
         }
 
-        public void FecharConexao()
-        {
-            try
-            {
-                conn = new MySqlConnection(conexao);
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-          
-        }
+       
 
       
 

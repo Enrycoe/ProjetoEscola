@@ -11,7 +11,12 @@ namespace ProjetoForms.Back.Model
 {
     public class BimestreModel
     {
-        BimestreDAO dao = new BimestreDAO();
+        BimestreDAO dao;
+        public BimestreModel()
+        {
+            dao = new BimestreDAO(new ConexaoMySQL());
+        }
+      
 
         public List<Bimestre> BuscarBimestres()
         {

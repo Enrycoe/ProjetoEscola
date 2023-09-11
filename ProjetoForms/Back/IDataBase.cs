@@ -8,9 +8,7 @@ namespace ProjetoForms.Back
 {
     public interface IDataBase
     {
-        void AbrirConexao();
-
-        void FecharConexao();
+       
 
         void ExecuteCommand(string query, Dictionary<string, object> args);
         List<Dictionary<string, object>> ExecuteReader(string query, Dictionary<string, object> args);

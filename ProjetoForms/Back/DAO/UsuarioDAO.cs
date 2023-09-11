@@ -1,25 +1,32 @@
 ﻿using MySql.Data.MySqlClient;
 using ProjetoForms.Back.Entities;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace ProjetoForms.Back.DAO
 {
     public class UsuarioDAO
     {
-        ConexaoMySQL conn = new ConexaoMySQL();
-        MySqlCommand cmd;
+        IDataBase dataBase;
+        public UsuarioDAO(IDataBase dataBase)
+        {
+            this.dataBase = dataBase;
+        }
 
 
         public int GerarERetornarLogin(string nome)
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("INSERT INTO usuario (Usuario, Senha, fk_Tipo_Usuario) VALUES (@nome, 123, 2)", conn.conn);
-                cmd.Parameters.AddWithValue("nome", nome);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
+                
+                string query = "INSERT INTO usuario (Usuario, Senha, fk_Tipo_Usuario) VALUES (@nome, 123, 2)";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@nome", nome }
+                };
+                dataBase.ExecuteCommand(query, parametros);
                 return RetornarIDUltimoUsuario();
             }
             catch (Exception)
@@ -27,24 +34,21 @@ namespace ProjetoForms.Back.DAO
 
                 throw;
             }
-            finally { conn.FecharConexao(); }
         }
 
         public int RetornarIDUltimoUsuario()
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand($"SELECT id FROM usuario ORDER BY id DESC LIMIT 1", conn.conn);
-                var result = cmd.ExecuteScalar();
-                return Convert.ToInt32(result);
+                
+                string query = $"SELECT id FROM usuario ORDER BY id DESC LIMIT 1";
+                return Convert.ToInt32(dataBase.ExecuteScalar(query));
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
-            finally { conn.FecharConexao(); }
         }
 
         public Usuario ReceberUsuario(string nome, string senha)
@@ -52,21 +56,20 @@ namespace ProjetoForms.Back.DAO
             try
             {
                 ProfessorDAO professorDAO = new ProfessorDAO(new ConexaoMySQL());
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM usuario u WHERE Usuario = @usuario AND Senha = @senha", conn.conn);
-                cmd.Parameters.AddWithValue("@usuario", nome);
-                cmd.Parameters.AddWithValue("@senha", senha);
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                foreach (DataRow dr in dt.Rows)
+                string query = "SELECT * FROM usuario u WHERE Usuario = @usuario AND Senha = @senha" ;
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@usuario", nome },
+                    {"@senha", senha }
+                };
+               var resultados = dataBase.ExecuteReader(query, parametros);
+                foreach (Dictionary<string, object> linha in resultados)
                 {
 
-                    string nomeUsuario = dr["Usuario"].ToString();
-                    string senhaUsuario = dr["Senha"].ToString();
-                    int tipoUsuario = Convert.ToInt32(dr["fk_Tipo_Usuario"]);
-                    int id = Convert.ToInt32(dr["ID"]);
+                    string nomeUsuario = linha["Usuario"].ToString();
+                    string senhaUsuario = linha["Senha"].ToString();
+                    int tipoUsuario = Convert.ToInt32(linha["fk_Tipo_Usuario"]);
+                    int id = Convert.ToInt32(linha["ID"]);
                     Usuario usuario = new Usuario(id, nomeUsuario, senhaUsuario, tipoUsuario);
                     return usuario;
                 }
@@ -77,7 +80,6 @@ namespace ProjetoForms.Back.DAO
 
                 throw;
             }
-            finally { conn.FecharConexao(); }
         }
 
         public Usuario ReceberUsuarioPorProfessor(Professor professor)
@@ -85,19 +87,19 @@ namespace ProjetoForms.Back.DAO
             try
             {
                 
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT * FROM usuario u JOIN professor p ON p.fk_Usuario_ID = u.ID WHERE p.ID = @ID", conn.conn);
-                cmd.Parameters.AddWithValue("@ID", professor.Id);
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
-                DataTable dt = new DataTable();
-                adapter.Fill(dt);
-                foreach (DataRow dr in dt.Rows)
+                string query = "SELECT * FROM usuario u JOIN professor p ON p.fk_Usuario_ID = u.ID WHERE p.ID = @ID";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
                 {
-                    string nomeUsuario = dr["Usuario"].ToString();             
-                    string senhaUsuario = dr["Senha"].ToString();
-                    int tipoUsuario = Convert.ToInt32(dr["fk_Tipo_Usuario"]);
-                    int id = Convert.ToInt32(dr["ID"]);
+                    {"@ID", professor.Id }
+                };
+
+                var resultados = dataBase.ExecuteReader(query, parametros);
+                foreach (Dictionary<string, object> linha in resultados)
+                {
+                    string nomeUsuario = linha["Usuario"].ToString();             
+                    string senhaUsuario = linha["Senha"].ToString();
+                    int tipoUsuario = Convert.ToInt32(linha["fk_Tipo_Usuario"]);
+                    int id = Convert.ToInt32(linha["ID"]);
                     Usuario usuario = new Usuario(id, nomeUsuario, senhaUsuario, tipoUsuario);
                     return usuario;
                 }
@@ -108,17 +110,19 @@ namespace ProjetoForms.Back.DAO
 
                 throw;
             }
-            finally { conn.FecharConexao(); }
         }
 
         public bool VerificarSeLoginExiste(string login)
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT Usuario FROM usuario WHERE Usuario = @login", conn.conn);
-                cmd.Parameters.AddWithValue("@login", login);
-                var result = cmd.ExecuteScalar();
+               string query = "SELECT Usuario FROM usuario WHERE Usuario = @login";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@login", login }
+                };
+               
+                var result = dataBase.ExecuteScalar(query,parametros);
                 if (result != null)
                 {
                     return true;
@@ -135,18 +139,20 @@ namespace ProjetoForms.Back.DAO
                 throw ex;
             }
 
-            finally { conn.FecharConexao(); }
         }
 
         public bool VerificarSeTrocouASenha(string senha, string login)
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("SELECT Senha FROM usuario WHERE Usuario = @login AND Senha = @senha", conn.conn);
-                cmd.Parameters.AddWithValue("@senha", senha);
-                cmd.Parameters.AddWithValue("@login", login);
-                var result = cmd.ExecuteScalar();
+                string query = "SELECT Senha FROM usuario WHERE Usuario = @login AND Senha = @senha";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@senha", senha },
+                    {"@login", login }
+                };
+                
+                var result = dataBase.ExecuteScalar(query, parametros);
                 if (result != null)
                 {
                     return false;
@@ -163,20 +169,21 @@ namespace ProjetoForms.Back.DAO
                 throw ex;
             }
 
-            finally { conn.FecharConexao(); }
+            
         }
 
         public void DeletarLoginPorUsuario(Usuario usuario)
         {
             try
             {
-        
-                
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("DELETE FROM usuario WHERE ID = @ID", conn.conn);
-                cmd.Parameters.AddWithValue("@ID", usuario.Id);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
+
+
+                string query = "DELETE FROM usuario WHERE ID = @ID";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@ID", usuario.Id }
+                };
+                dataBase.ExecuteCommand(query, parametros);
             }
             catch (Exception ex)
             {
@@ -184,17 +191,18 @@ namespace ProjetoForms.Back.DAO
                 throw ex;
             }
 
-            finally { conn.FecharConexao(); }
         }
         public void AlterarSenha(string senha, string login)
         {
             try
             {
-                conn.AbrirConexao();
-                cmd = new MySqlCommand("UPDATE usuario SET Senha = @senha WHERE Usuario = @login", conn.conn);
-                cmd.Parameters.AddWithValue("@senha", senha);
-                cmd.Parameters.AddWithValue("@login", login);
-                cmd.ExecuteNonQuery();
+                string query = "UPDATE usuario SET Senha = @senha WHERE Usuario = @login";
+                Dictionary<string, object> parametros = new Dictionary<string, object>()
+                {
+                    {"@senha", senha },
+                    {"@login", login }
+                };
+                dataBase.ExecuteCommand(query, parametros);
 
             }
             catch (Exception ex)
@@ -203,7 +211,7 @@ namespace ProjetoForms.Back.DAO
                 throw ex;
             }
 
-            finally { conn.FecharConexao(); }
+           
         }
     }
 }

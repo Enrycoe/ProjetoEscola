@@ -97,7 +97,6 @@ namespace ProjetoForms.Back.DAO
                     enderecoDAO.CadastrarEndereco(aluno.Endereco);
                     aluno.Endereco.Id = enderecoDAO.ReceberIDUltimoEndereco();
                 }
-                dataBase.AbrirConexao();
                 string querry = $"INSERT INTO aluno(Data_de_Nascimento, RA, Idade, Nome, fk_Turma_ID, fk_Endereco_ID, Telefone_Pessoal, Telefone_Fixo, Telefone_Responsavel, Telefone_Responsavel_2) " +
                        $"VALUES(@dataNascimento, @ra, @idade, @nome, @turmaId, @enderecoId, @telefonePessoal, @telefoneFixo, @telefoneResponsavel, @telefoneResponsavel2)";
                 Dictionary<string, object> parametros = new Dictionary<string, object>()
@@ -121,7 +120,7 @@ namespace ProjetoForms.Back.DAO
             {
                 throw ex;
             }
-            finally { dataBase.FecharConexao(); }
+      
         }
 
         public Aluno ReceberAlunoPorId(int id)
@@ -158,10 +157,10 @@ namespace ProjetoForms.Back.DAO
 
                 return null;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw ex;
+                throw;
             }
 
         }
@@ -233,7 +232,6 @@ namespace ProjetoForms.Back.DAO
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
 
@@ -245,7 +243,6 @@ namespace ProjetoForms.Back.DAO
             {
                 provaDAO.DeletarProvaPorAluno(id);
                 mediaDAO.DeletarMediaPorAluno(id);
-                dataBase.AbrirConexao();
                 string querry = "DELETE FROM aluno WHERE RA = @param0";
                 dataBase.ExecuteCommand(querry);
             }
@@ -254,7 +251,6 @@ namespace ProjetoForms.Back.DAO
 
                 throw ex;
             }
-            finally { dataBase.FecharConexao(); }
         }
 
         public List<Aluno> BuscarAluno(string nome, int rA, int idTurma)

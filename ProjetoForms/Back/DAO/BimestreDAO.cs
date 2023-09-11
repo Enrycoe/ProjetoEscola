@@ -11,16 +11,19 @@ namespace ProjetoForms.Back.DAO
 {
     public class BimestreDAO 
     {
-        ConexaoMySQL conn = new ConexaoMySQL();
-        MySqlCommand cmd;
+        IDataBase dataBase;
+        public BimestreDAO(IDataBase dataBase)
+        {
+            this.dataBase = dataBase;
+        }
         public List<Bimestre> BuscarBimestres()
         {
             try
             {
                 
 
-                cmd = new MySqlCommand("SELECT * FROM bimestre", conn.conn);
-                return ListarBimestres(cmd);
+                string query = "SELECT * FROM bimestre";
+                return ListarBimestres(dataBase.ExecuteReader(query));
                 
             }
 
@@ -30,21 +33,16 @@ namespace ProjetoForms.Back.DAO
             }
         }
 
-        private List<Bimestre> ListarBimestres(MySqlCommand cmd)
+        private List<Bimestre> ListarBimestres(List<Dictionary<string, object>> resposta)
         {
             try
             {
                 List<Bimestre> bimestres = new List<Bimestre>();
-                MySqlDataAdapter adapter = new MySqlDataAdapter();
-                adapter.SelectCommand = cmd;
-                DataTable dt = new DataTable();
-
-                adapter.Fill(dt);
-                foreach (DataRow dr in dt.Rows)
+                foreach (Dictionary<string, object> linha in resposta)
                 {
-                    
-                    string nome = dr["bimestre"].ToString();
-                    int id = Convert.ToInt32(dr["id"]);
+
+                    string nome = linha["bimestre"].ToString();
+                    int id = Convert.ToInt32(linha["id"]);
                     Bimestre bimestre = new Bimestre(id, nome);
                     bimestres.Add(bimestre);
                 }
